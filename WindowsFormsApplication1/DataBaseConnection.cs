@@ -18,6 +18,8 @@ namespace WindowsFormsApplication1
             //本地数据库连接语句
             MySqlCon= "Data Source = " + str[0] + ";Initial Catalog = " + str[1] + ";Integrated Security = TRUE";
             ////服务器数据库连接语句
+
+
             //MySqlCon = "Data Source=" + str[0] + ";Initial Catalog = " + str[1] + ";User ID = " + str[2] + ";Pwd =" + str[3] + "";
         }
         private static List<String> str = new List<String>();
