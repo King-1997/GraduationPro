@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA58DC7C-D89B-4BF2-9720-E7497EE5F238}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\..\..\..\..\Desktop\科勒软件需求\窗体美化\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IrisSkin4">
+      <HintPath>..\..\..\..\..\Desktop\科勒软件需求\窗体美化\IrisSkin4.dll\IrisSkin4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplyView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplyView.designer.cs">
+      <DependentUpon>ApplyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseLesson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseLesson.Designer.cs">
+      <DependentUpon>ChooseLesson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClaeeesInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClaeeesInfo.Designer.cs">
+      <DependentUpon>ClaeeesInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes.Designer.cs">
+      <DependentUpon>Classes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassChoose.designer.cs">
+      <DependentUpon>ClassChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmailSend.cs" />
+    <Compile Include="ExamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamForm.designer.cs">
+      <DependentUpon>ExamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExamShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamShow.Designer.cs">
+      <DependentUpon>ExamShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Excel.cs" />
+    <Compile Include="ExcelOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcelOutput.Designer.cs">
+      <DependentUpon>ExcelOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Learn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Learn.Designer.cs">
+      <DependentUpon>Learn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LessonArrangement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LessonArrangement.Designer.cs">
+      <DependentUpon>LessonArrangement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadClasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadClasses.Designer.cs">
+      <DependentUpon>LoadClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadExam.Designer.cs">
+      <DependentUpon>LoadExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mainmenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mainmenu.Designer.cs">
+      <DependentUpon>Mainmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage.Designer.cs">
+      <DependentUpon>Manage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Man_Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Man_Management.designer.cs">
+      <DependentUpon>Man_Management.cs</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="News.Designer.cs">
+      <DependentUpon>News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PeopleChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PeopleChoose.designer.cs">
+      <DependentUpon>PeopleChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalForm.Designer.cs">
+      <DependentUpon>PersonalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataBaseConnection.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Video.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Video.designer.cs">
+      <DependentUpon>Video.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workers_message.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Workers_message.Designer.cs">
+      <DependentUpon>Workers_message.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ApplyView.resx">
+      <DependentUpon>ApplyView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseLesson.resx">
+      <DependentUpon>ChooseLesson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClaeeesInfo.resx">
+      <DependentUpon>ClaeeesInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes.resx">
+      <DependentUpon>Classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassChoose.resx">
+      <DependentUpon>ClassChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExamForm.resx">
+      <DependentUpon>ExamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExamShow.resx">
+      <DependentUpon>ExamShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExcelOutput.resx">
+      <DependentUpon>ExcelOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Learn.resx">
+      <DependentUpon>Learn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LessonArrangement.resx">
+      <DependentUpon>LessonArrangement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadClasses.resx">
+      <DependentUpon>LoadClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadExam.resx">
+      <DependentUpon>LoadExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mainmenu.resx">
+      <DependentUpon>Mainmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage.resx">
+      <DependentUpon>Manage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Man_Management.resx">
+      <DependentUpon>Man_Management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="News.resx">
+      <DependentUpon>News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PeopleChoose.resx">
+      <DependentUpon>PeopleChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalForm.resx">
+      <DependentUpon>PersonalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Video.resx">
+      <DependentUpon>Video.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Workers_message.resx">
+      <DependentUpon>Workers_message.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
