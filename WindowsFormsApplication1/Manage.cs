@@ -25,11 +25,6 @@ namespace WindowsFormsApplication1
             this.Dispose();
         }
 
-        private void p_btnQuit_Click(object sender, EventArgs e)//注销
-        {
-            this.Owner.Owner.Show();
-            this.Owner.Dispose();
-        }
         public void UsernameC()
         {
 
@@ -79,5 +74,10 @@ namespace WindowsFormsApplication1
             this.Hide();
         }
 
+        private void p_btnQuit_Click(object sender, EventArgs e)//注销
+        {
+            this.Owner.Owner.Show();
+            this.Owner.Dispose();
+        }
     }
 }

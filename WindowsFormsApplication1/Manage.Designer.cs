@@ -85,6 +85,7 @@
             this.p_btnQuit.TabIndex = 14;
             this.p_btnQuit.Text = "注销";
             this.p_btnQuit.UseVisualStyleBackColor = false;
+            this.p_btnQuit.Click += new System.EventHandler(this.p_btnQuit_Click);
             // 
             // btn_allTime
             // 
