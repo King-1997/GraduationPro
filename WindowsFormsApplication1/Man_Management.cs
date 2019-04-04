@@ -21,8 +21,8 @@ namespace WindowsFormsApplication1
         }
         public Man_Management()
         {
-            //查询下拉框
             InitializeComponent();
+            //查询下拉框
             cbB_findKey.Items.AddRange(new object[] { "按组别", "按姓名", "按工号","按入职时间" });
             cbB_findKey.SelectedIndex = 0;
             //查询组别下拉框
@@ -217,37 +217,37 @@ namespace WindowsFormsApplication1
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //员工姓名
-                    var u_name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][0].ToString()) };
+                    var u_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     u_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_name.TextAlign = ContentAlignment.MiddleCenter;
                     u_name.Width = 60;
                     //所在分组
-                    var u_group = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][1].ToString()) };
+                    var u_group = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     u_group.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_group.TextAlign = ContentAlignment.MiddleCenter;
                     u_group.Width = 70;
                     //员工类型
-                    var u_ut = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][2].ToString()) };
+                    var u_ut = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     u_ut.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_ut.TextAlign = ContentAlignment.MiddleCenter;
                     u_ut.Width = 60;
                     //性别
-                    var u_sex = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][3].ToString()) };
+                    var u_sex = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     u_sex.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_sex.TextAlign = ContentAlignment.MiddleCenter;
                     u_sex.Width = 30;
                     //工号
-                    var u_account = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][4].ToString()) };
+                    var u_account = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     u_account.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_account.Width = 100;
                     u_account.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
-                    var u_credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][5].ToString()) };
+                    var u_credit = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
                     u_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_credit.TextAlign = ContentAlignment.MiddleCenter;
                     u_credit.Width = 30;
                     //电话号码
-                    var u_phone = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][6].ToString()) };
+                    var u_phone = new Label { Text = ds.Tables["user"].Rows[i][6].ToString() };
                     u_phone.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
                     u_phone.Width = 80;
@@ -287,7 +287,7 @@ namespace WindowsFormsApplication1
         //编辑员工信息
         private void Edit_Click(object sender, EventArgs e)
         {
-            //数据库操作
+            //点击按钮进入员工信息编辑页面，并传入员工工号 
             Button button = (Button)sender;
             String u_account = button.Name;
             Console.WriteLine("按钮里的员工工号：" + u_account);
@@ -307,7 +307,7 @@ namespace WindowsFormsApplication1
                 //数据库操作
                 Button button = (Button)sender;
                 String u_account = button.Name;
-                Console.WriteLine("按钮里的员工工号：" + u_account);
+                //Console.WriteLine("按钮里的员工工号：" + u_account);
                 //确认删除
                 //数据库操作
                 DataBaseConnection dc = new DataBaseConnection();
@@ -439,6 +439,7 @@ namespace WindowsFormsApplication1
                         u_entryTime = Convert.ToDateTime(dt.Rows[i][9].ToString());
                         //Console.WriteLine("u_entryTime:"+u_entryTime);
 
+                        //执行插入语句
                         insert_user = "insert into [User] values (" + ut_id + "," + g_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "')";
                         Console.WriteLine(insert_user);
                         int flag = dc.ExecuteUpdate(insert_user);

@@ -145,7 +145,7 @@ namespace WindowsFormsApplication1
                 Console.WriteLine("查询语句：" + sql);
                 WorkerShow(sql);           
         }
-        private void WorkerShow(String sql)
+        private void WorkerShow(string sql)
         {
             //刷新显示窗口
             fLP_people.Controls.Clear();
