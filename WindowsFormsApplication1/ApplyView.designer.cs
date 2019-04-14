@@ -79,7 +79,7 @@
             // 
             // AV_txtBx_Reason
             // 
-            this.AV_txtBx_Reason.Location = new System.Drawing.Point(168, 159);
+            this.AV_txtBx_Reason.Location = new System.Drawing.Point(215, 159);
             this.AV_txtBx_Reason.Name = "AV_txtBx_Reason";
             this.AV_txtBx_Reason.Size = new System.Drawing.Size(407, 116);
             this.AV_txtBx_Reason.TabIndex = 5;
@@ -89,7 +89,7 @@
             // 
             this.AV_lbl_Reason.AutoSize = true;
             this.AV_lbl_Reason.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.AV_lbl_Reason.Location = new System.Drawing.Point(165, 129);
+            this.AV_lbl_Reason.Location = new System.Drawing.Point(212, 129);
             this.AV_lbl_Reason.Name = "AV_lbl_Reason";
             this.AV_lbl_Reason.Size = new System.Drawing.Size(68, 17);
             this.AV_lbl_Reason.TabIndex = 8;
@@ -99,7 +99,7 @@
             // 
             this.AV_lbl_Category.AutoSize = true;
             this.AV_lbl_Category.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.AV_lbl_Category.Location = new System.Drawing.Point(165, 88);
+            this.AV_lbl_Category.Location = new System.Drawing.Point(212, 88);
             this.AV_lbl_Category.Name = "AV_lbl_Category";
             this.AV_lbl_Category.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.AV_lbl_Category.Size = new System.Drawing.Size(68, 17);
@@ -114,7 +114,7 @@
             this.AV_Combx_category.Items.AddRange(new object[] {
             "请假",
             "加班"});
-            this.AV_Combx_category.Location = new System.Drawing.Point(294, 88);
+            this.AV_Combx_category.Location = new System.Drawing.Point(341, 88);
             this.AV_Combx_category.Name = "AV_Combx_category";
             this.AV_Combx_category.Size = new System.Drawing.Size(144, 20);
             this.AV_Combx_category.TabIndex = 12;
@@ -123,7 +123,7 @@
             // 
             this.AV_lbl_StartTime.AutoSize = true;
             this.AV_lbl_StartTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.AV_lbl_StartTime.Location = new System.Drawing.Point(165, 297);
+            this.AV_lbl_StartTime.Location = new System.Drawing.Point(212, 297);
             this.AV_lbl_StartTime.Name = "AV_lbl_StartTime";
             this.AV_lbl_StartTime.Size = new System.Drawing.Size(68, 17);
             this.AV_lbl_StartTime.TabIndex = 13;
@@ -134,7 +134,7 @@
             this.AV_dtp_StartTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.AV_dtp_StartTime.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.AV_dtp_StartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AV_dtp_StartTime.Location = new System.Drawing.Point(282, 292);
+            this.AV_dtp_StartTime.Location = new System.Drawing.Point(329, 292);
             this.AV_dtp_StartTime.Name = "AV_dtp_StartTime";
             this.AV_dtp_StartTime.Size = new System.Drawing.Size(156, 23);
             this.AV_dtp_StartTime.TabIndex = 22;
@@ -144,7 +144,7 @@
             this.AV_dtp_EndTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.AV_dtp_EndTime.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.AV_dtp_EndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AV_dtp_EndTime.Location = new System.Drawing.Point(282, 331);
+            this.AV_dtp_EndTime.Location = new System.Drawing.Point(329, 331);
             this.AV_dtp_EndTime.Name = "AV_dtp_EndTime";
             this.AV_dtp_EndTime.Size = new System.Drawing.Size(156, 23);
             this.AV_dtp_EndTime.TabIndex = 24;
@@ -153,7 +153,7 @@
             // 
             this.AV_lbl_EndTime.AutoSize = true;
             this.AV_lbl_EndTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.AV_lbl_EndTime.Location = new System.Drawing.Point(165, 336);
+            this.AV_lbl_EndTime.Location = new System.Drawing.Point(212, 336);
             this.AV_lbl_EndTime.Name = "AV_lbl_EndTime";
             this.AV_lbl_EndTime.Size = new System.Drawing.Size(68, 17);
             this.AV_lbl_EndTime.TabIndex = 23;
@@ -163,7 +163,7 @@
             // 
             this.AV_lbl_Prove.AutoSize = true;
             this.AV_lbl_Prove.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.AV_lbl_Prove.Location = new System.Drawing.Point(165, 372);
+            this.AV_lbl_Prove.Location = new System.Drawing.Point(212, 372);
             this.AV_lbl_Prove.Name = "AV_lbl_Prove";
             this.AV_lbl_Prove.Size = new System.Drawing.Size(68, 17);
             this.AV_lbl_Prove.TabIndex = 25;
@@ -178,7 +178,7 @@
             "未提交",
             "已提交并通过",
             "已提交并未通过"});
-            this.AV_Combx_Prove.Location = new System.Drawing.Point(282, 372);
+            this.AV_Combx_Prove.Location = new System.Drawing.Point(329, 372);
             this.AV_Combx_Prove.Name = "AV_Combx_Prove";
             this.AV_Combx_Prove.Size = new System.Drawing.Size(156, 20);
             this.AV_Combx_Prove.TabIndex = 26;
@@ -203,7 +203,7 @@
             this.AV_btn_Submit.BackColor = System.Drawing.Color.Transparent;
             this.AV_btn_Submit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.AV_btn_Submit.DownBack = null;
-            this.AV_btn_Submit.Location = new System.Drawing.Point(198, 419);
+            this.AV_btn_Submit.Location = new System.Drawing.Point(245, 419);
             this.AV_btn_Submit.MouseBack = null;
             this.AV_btn_Submit.Name = "AV_btn_Submit";
             this.AV_btn_Submit.NormlBack = null;
@@ -218,7 +218,7 @@
             this.AV_btn_Return.BackColor = System.Drawing.Color.Transparent;
             this.AV_btn_Return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.AV_btn_Return.DownBack = null;
-            this.AV_btn_Return.Location = new System.Drawing.Point(459, 419);
+            this.AV_btn_Return.Location = new System.Drawing.Point(506, 419);
             this.AV_btn_Return.MouseBack = null;
             this.AV_btn_Return.Name = "AV_btn_Return";
             this.AV_btn_Return.NormlBack = null;

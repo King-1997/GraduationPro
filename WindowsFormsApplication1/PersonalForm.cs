@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         private void PersonalForm_Load(object sender, EventArgs e)
         {
-            if (User.userType.Equals("员工"))
+            if (User.userType.Equals("修理工") || User.userType.Equals("电镀工"))
             {
                 Btn_ApplyUndisposed.Enabled = false;
             }
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             try
             {                
-                String sql = "select u.u_account,g.g_group,u.u_credit,u.u_phone from [user] u,[group] g where u_name = N'" + User.userName + "' and u.g_id = g.g_id";
+                String sql = "select u.u_account,g.g_group,u.u_credit,u.u_phone from [user] u,[group] g where u.u_id = " + User.userId + " and u.g_id = g.g_id";
                 DataSet ds = dc.ExecuteQuery(sql);
                 if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
                 {
@@ -65,12 +65,12 @@ namespace WindowsFormsApplication1
 
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'"+User.userName+"');";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u.u_id = " + User.userId + ")";
             displayClasses(sql);
         }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 0) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName + "')";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 0) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u.u_id = " + User.userId + ")";
             displayClasses(sql);
 
         }
@@ -170,13 +170,17 @@ namespace WindowsFormsApplication1
             //从数据库中查找未处理的申请
             string u_type = User.userType;
             string sql = "";
-            if (u_type.Equals("主管")) { 
-                sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is null and  sr.u_id in (select u_id from  [User] where g_id = " + User.groupId+")";
-            }else if (u_type.Equals("系统管理员"))
-            {
-                sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is not null and sr.sr_person2 is null and sr.u_id in (select u_id from  [User] where g_id = " + User.groupId + ")";
-            }
-            displayNews(sql);
+
+                if (u_type.Equals("主管"))
+                {
+                    sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is null and  sr.u_id in (select u_id from  [User] where g_id = " + User.groupId + ")";
+                }
+                else if (u_type.Equals("系统管理员"))
+                {
+                    sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is not null and sr.sr_person2 is null and sr.u_id in (select u_id from  [User] where g_id = " + User.groupId + ")";
+                }
+                displayNews(sql);
+            
         }
 
         private void displayNews(string sql)
@@ -264,7 +268,7 @@ namespace WindowsFormsApplication1
 
         private void Btn_MyApply_Click(object sender, EventArgs e)
         {
-            String sql = "select sr_type,sr_time,sr_person1,sr_result1,sr_handleTime1 from SignRecord where u_id in (select u_id from [User] where u_name = '"+User.userName+"')";
+            String sql = "select sr_type,sr_time,sr_person1,sr_result1,sr_handleTime1 from SignRecord where u_id  = " + User.userId;
             displayMyApplication(sql);
         }
 
