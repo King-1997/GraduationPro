@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         private void PersonalForm_Load(object sender, EventArgs e)
         {
-            if (User.userType.Equals("修理工") || User.userType.Equals("电镀工"))
+            if (!User.userType.Equals("主管") || !User.userType.Equals("系统管理员"))
             {
                 Btn_ApplyUndisposed.Enabled = false;
             }
@@ -31,18 +31,15 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             try
             {                
-                String sql = "select u.u_account,g.g_group,u.u_credit,u.u_phone from [user] u,[group] g where u.u_id = " + User.userId + " and u.g_id = g.g_id";
+                String sql = "select u.u_account,g.g_group,u.u_credit,u.u_entryTime,u.u_phone from [user] u,[group] g where u.u_id = " + User.userId + " and u.g_id = g.g_id";
                 DataSet ds = dc.ExecuteQuery(sql);
                 if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
                 {
-                    //Console.WriteLine("工号的值：" + ds.Tables["user"].Rows[0][0]);
-                    //Console.WriteLine("所在分组：" + ds.Tables["user"].Rows[0][1]);
-                    //Console.WriteLine("学分：" + ds.Tables["user"].Rows[0][2]);
-                    //Console.WriteLine("电话号码：" + ds.Tables["user"].Rows[0][3]);
                     this.p_lblAccount.Text = ds.Tables["user"].Rows[0][0].ToString();
                     this.p_lblGroup.Text = ds.Tables["user"].Rows[0][1].ToString();
                     this.p_lblCredit.Text = ds.Tables["user"].Rows[0][2].ToString();
-                    this.p_lblPhone.Text = ds.Tables["user"].Rows[0][3].ToString();
+                    this.p_lblEntryTime.Text = ds.Tables["user"].Rows[0][3].ToString();
+                    this.p_lblPhone.Text = ds.Tables["user"].Rows[0][4].ToString();
                 }
             }
             catch (Exception ex)
@@ -59,7 +56,7 @@ namespace WindowsFormsApplication1
 
         private void p_btnQuit_Click(object sender, EventArgs e)
         {
-            this.Owner.Owner.Show();//打开登陆界面
+            this.Owner.Owner.Show();//注销，返回登陆界面
             this.Owner.Dispose();
         }
 

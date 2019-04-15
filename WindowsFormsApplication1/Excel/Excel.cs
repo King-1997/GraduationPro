@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
             using (var fs = File.OpenWrite(fileAdd+ columnHeader+".xls"))
             {
                 workbook.Write(fs);   //向打开的这个xls文件中写入mySheet表并保存。
-                MessageBox.Show("生成成功");
+                MessageBox.Show("生成成功！");
             }
         }//DataTable数据源，fileAdd文件名，columnHeader，文章标题
         //设置Excel样板
