@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1
             String c_introdution = txtBxIntroduce.Text;
             String c_file = lc_txtBxFileName.Text;
             String c_credit = txtBx_grade.Text;
-            String c_time = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //String c_time = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             String c_recommendTime = txtBx_classTime.Text;
             String c_ifExam = LC_cbb_ifExam.SelectedItem.ToString();
             String c_maxTime = txtBx_classMaxTime.Text;
@@ -123,7 +123,7 @@ namespace WindowsFormsApplication1
                 {
                     //将课程信息保存到数据库
                     //选择考题信息               
-                    String insert_sql = "insert into Classes values (" + User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "','" + c_time + "',N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
+                    String insert_sql = "insert into Classes values (" + User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
                     Console.WriteLine("SQL:"+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag == 1)

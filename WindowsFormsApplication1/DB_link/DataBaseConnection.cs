@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
             String line;
             while ((line = sr.ReadLine()) != null)
             {
-                    Console.WriteLine(line.ToString());
+                    //Console.WriteLine(line.ToString());
                     str.Add(line.ToString());              
             }        
         }        

@@ -30,8 +30,8 @@ namespace WindowsFormsApplication1
 
             DataBaseConnection dc = new DataBaseConnection();
             try
-            {                
-                String sql = "select u.u_account,g.g_group,u.u_credit,u.u_entryTime,u.u_phone from [user] u,[group] g where u.u_id = " + User.userId + " and u.g_id = g.g_id";
+            {
+                String sql = "select u.u_account,g.g_group,u.u_credit,convert(varchar(100),u.u_entryTime,120) as u_entryTime,u.u_phone from [user] u,[group] g where u.u_id = " + User.userId + " and u.g_id = g.g_id";
                 DataSet ds = dc.ExecuteQuery(sql);
                 if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
                 {

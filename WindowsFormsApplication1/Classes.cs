@@ -68,6 +68,7 @@ namespace WindowsFormsApplication1
                 btnCom.Name = ds.Tables["user"].Rows[i][0].ToString();
                 btnCom.Click += new EventHandler(Edit_ClassesInfo);
                 btnCom.TextAlign = ContentAlignment.MiddleCenter;
+
                 c_flpClasses.Controls.Add(lblMineClasses_name);
                 c_flpClasses.Controls.Add(lblMineClasses_credit);
                 c_flpClasses.Controls.Add(lblMineClasses_ifExam);
@@ -92,7 +93,7 @@ namespace WindowsFormsApplication1
             Button button = (Button)sender;
             ClaeeesInfo.c_name = button.Name;
             Console.WriteLine("button里的课程名："+ button.Name);
-            //选择课程，跳转到学习页面
+            //选择课程，跳转到课程详细信息页面
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
             this.Hide();
@@ -102,7 +103,7 @@ namespace WindowsFormsApplication1
         {
             this.p_lblCurPerson.Text = User.userName;//给界面的用户名字段赋值
             //权限控制：隐藏上传按钮loadClasses
-            if (!User.userType.Equals("员工"))
+            if (!User.userType.Equals("修理工") || !User.userType.Equals("电镀工"))
             {
                 btn_loadClasses.Visible = true;
             ////权限控制：隐藏我上传的课程按钮c_btnMine
