@@ -14,6 +14,8 @@ namespace WindowsFormsApplication1
 {
     public partial class PersonalForm : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public PersonalForm()
         {
             InitializeComponent();
@@ -82,19 +84,19 @@ namespace WindowsFormsApplication1
                 //标签栏目
                 var lblname = new Label { Text = "课程名" };
                 lblname.Width = 100;
-                lblname.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lblname.Font = font;
                 var lblcredit = new Label { Text = "学分" };
                 lblcredit.Width = 80;
-                lblcredit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lblcredit.Font = font;
                 var lblu_name = new Label { Text = "上传人" };
                 lblu_name.Width = 60;
-                lblu_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lblu_name.Font = font;
                 var lbltime = new Label { Text = "学时" };
                 lbltime.Width = 80;
-                lbltime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbltime.Font = font;
                 var lbl_false = new Label { Text = "" };
                 lbl_false.Width = 50;
-                lbl_false.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_false.Font = font;
 
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 lblcredit.TextAlign = ContentAlignment.MiddleCenter;
@@ -111,27 +113,27 @@ namespace WindowsFormsApplication1
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //课程名
-                    var lblUFClasses_name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][0].ToString()) };
+                    var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     lblUFClasses_name.Width = 100;
-                    lblUFClasses_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_name.Font = font;
                     lblUFClasses_name.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
-                    var lblUFClasses_credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][1].ToString()) };
+                    var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     lblUFClasses_credit.Width = 80;
-                    lblUFClasses_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_credit.Font = font;
                     lblUFClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
                     //上传人
-                    var lblUFClasses_u_name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][2].ToString()) };
+                    var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     lblUFClasses_u_name.Width = 60;
-                    lblUFClasses_u_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_u_name.Font = font;
                     lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
-                    var lblUFClasses_recommendTime = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][3].ToString()) };
+                    var lblUFClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     lblUFClasses_recommendTime.Width = 80;
-                    lblUFClasses_recommendTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_recommendTime.Font = font;
                     lblUFClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
 
-                    var btnCom = new Button { Text = string.Concat("学习") };
+                    var btnCom = new Button { Text = "学习" };
                     btnCom.Width = 50;
                     btnCom.Name = ds.Tables["user"].Rows[i][0].ToString();
                     btnCom.Click += new EventHandler(btn_studyClass_Click);
@@ -191,19 +193,19 @@ namespace WindowsFormsApplication1
                 //申请人标签
                 var lblname = new Label { Text = "申请人" };
                 lblname.Width = 100;
-                lblname.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lblname.Font = font;
                 //申请类型标签
                 var lbltype = new Label { Text = "申请类型" };
                 lbltype.Width = 80;
-                lbltype.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbltype.Font = font;
                 //申请时间标签
                 var lbldatetime = new Label { Text = "申请时间" };
                 lbldatetime.Width = 160;
-                lbldatetime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbldatetime.Font = font;
                 //处理按钮标签
                 var lbl_false = new Label { Text = "" };
                 lbl_false.Width = 50;
-                lbl_false.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_false.Font = font;
 
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 lbltype.TextAlign = ContentAlignment.MiddleCenter;
@@ -218,22 +220,22 @@ namespace WindowsFormsApplication1
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //申请人
-                    var lblUFClasses_name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][1].ToString()) };
+                    var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     lblUFClasses_name.Width = 100;
-                    lblUFClasses_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_name.Font = font;
                     lblUFClasses_name.TextAlign = ContentAlignment.MiddleCenter;
                     //申请类型
-                    var lblUFClasses_credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][2].ToString()) };
+                    var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     lblUFClasses_credit.Width = 80;
-                    lblUFClasses_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_credit.Font = font;
                     lblUFClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
                     //申请时间
-                    var lblUFClasses_u_name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][3].ToString()) };
+                    var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     lblUFClasses_u_name.Width = 160;
-                    lblUFClasses_u_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lblUFClasses_u_name.Font = font;
                     lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;                    
                     //处理按钮
-                    var btnHandle = new Button { Text = string.Concat("处理") };
+                    var btnHandle = new Button { Text = "处理" };
                     btnHandle.Width = 50;
                     btnHandle.Name = ds.Tables["user"].Rows[i][0].ToString();
                     btnHandle.Click += new EventHandler(btn_handle_Click);
@@ -280,23 +282,23 @@ namespace WindowsFormsApplication1
                 //申请类型标签
                 var lblname = new Label { Text = "申请类型" };
                 lblname.Width = 80;
-                lblname.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));              
+                lblname.Font = font;              
                 //申请时间标签
                 var lbldatetime = new Label { Text = "申请时间" };
                 lbldatetime.Width = 150;
-                lbldatetime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbldatetime.Font = font;
                 //处理人标签
                 var lbl_handleName = new Label { Text = "处理人" };
                 lbl_handleName.Width = 60;
-                lbl_handleName.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_handleName.Font = font;
                 //处理结果标签
                 var lbl_result = new Label { Text = "处理结果" };
                 lbl_result.Width = 70;
-                lbl_result.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_result.Font = font;
                 //处理时间标签
                 var lbl_handletime = new Label { Text = "处理时间" };
                 lbl_handletime.Width = 150;
-                lbl_handletime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));               
+                lbl_handletime.Font = font;               
 
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 lbldatetime.TextAlign = ContentAlignment.MiddleCenter;
@@ -314,25 +316,25 @@ namespace WindowsFormsApplication1
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //申请类型标签
-                    var name = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][0].ToString()) };
+                    var name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     name.Width = 80;
-                    name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    name.Font = font;
                     //申请时间标签
-                    var datetime = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][1].ToString()) };
+                    var datetime = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     datetime.Width = 150;
-                    datetime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    datetime.Font = font;
                     //处理人标签
-                    var handleName = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][2].ToString()) };
+                    var handleName = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     handleName.Width = 60;
-                    handleName.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    handleName.Font = font;
                     //处理结果标签
-                    var result = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][3].ToString()) };
+                    var result = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     result.Width = 70;
-                    result.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    result.Font = font;
                     //处理时间标签
-                    var handletime = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][4].ToString()) };
+                    var handletime = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     handletime.Width = 150;
-                    handletime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    handletime.Font = font;
 
                     name.TextAlign = ContentAlignment.MiddleCenter;
                     datetime.TextAlign = ContentAlignment.MiddleCenter;

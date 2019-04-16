@@ -81,7 +81,7 @@ namespace WindowsFormsApplication1
             N_tbx_Reason.Text = ds.Tables["user"].Rows[0][3].ToString();
         }
 
-        private void N_cbx_IfAgree_SelectedIndexChanged(object sender, EventArgs e)
+        private void N_cbx_IfAgree_SelectedIndexChanged(object sender, EventArgs e)//当审批意见为驳回时显示驳回理由输入框
         {
             if (N_cbx_IfAgree.Text == "同意")
             {

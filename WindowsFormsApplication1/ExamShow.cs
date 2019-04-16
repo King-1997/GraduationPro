@@ -58,6 +58,7 @@ namespace WindowsFormsApplication1
                 var btn_Edit = new Button { Text = "编辑", Name = i.ToString() };
                 btn_Edit.Width = 50;
                 btn_Edit.Click += new EventHandler(EditQuestion);
+
                 fLP_showQuestions.Controls.Add(label);
                 fLP_showQuestions.Controls.Add(btn_delete);
                 fLP_showQuestions.Controls.Add(btn_Edit);

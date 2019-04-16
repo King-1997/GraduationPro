@@ -190,6 +190,7 @@
     <Compile Include="Man_Management.designer.cs">
       <DependentUpon>Man_Management.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Classes.cs" />
     <Compile Include="News.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class LessonArrangement : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public static String lesson_name=null;
         public static String lesson_time = null;
         public static List<string> people = null;
@@ -144,9 +146,9 @@ namespace WindowsFormsApplication1
             fLP_lessonesAdd.Controls.Clear();
             //标签栏目
             var lblname = new Label { Text = "课程名" };
-            lblname.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            lblname.Font = font;
             var lbltime = new Label { Text = "学时" };
-            lbltime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            lbltime.Font = font;
             lblname.TextAlign = ContentAlignment.MiddleCenter;
             lbltime.TextAlign = ContentAlignment.MiddleCenter;
             fLP_lessonesAdd.Controls.Add(lblname);
@@ -171,7 +173,7 @@ namespace WindowsFormsApplication1
                     fLP_lessonesAdd.Controls.Add(rb);
                     //学时
                     var tBx = new TextBox { Text = lesson_time};
-                    tBx.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    tBx.Font = font;
                     tBx.Name = "tbx_ClassesTime";
                     fLP_lessonesAdd.Controls.Add(tBx);
                     tBx.KeyPress += new KeyPressEventHandler(tBx_KeyPress);
@@ -212,7 +214,7 @@ namespace WindowsFormsApplication1
                 {
                     //员工
                     var rb = new CheckBox { Text = people[i] };
-                    rb.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    rb.Font = font;
                     rb.Checked = true;
                     rb.CheckedChanged += new EventHandler(Works_delete_CheckedChanged);
                     fLP_peopleChoosed.Controls.Add(rb);

@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
         {
             this.timer1.Start();    //启动定时器
             timer1.Interval = 1000;
-            L_lblTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            L_lblTime.Text = DateTime.Now.ToString("YYYY/MM/DD H24:mm:ss");
             //地址输入
             DirectoryInfo theFolder = new DirectoryInfo(@"D:\BaiduNetdiskDownload");
             scan(theFolder);
@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1
             L_lblTime.Text = dt.ToString();//显示当前时间
 
             //判断学习状态
-            if (learningtime%5==0)//每隔一段时间进行弹窗确认学习状态
+            if (learningtime%30==0)//每隔一段时间进行弹窗确认学习状态
             {
                 learningtime++;
                 learn = false;//未回应则设置为不在学习
@@ -168,7 +168,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("文件类型错误！");
+                MessageBox.Show("不支持该文件类型！");
             }
         }
 

@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Man_Management : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         private string preboxname = null;//保存当前输入框的Name，当下拉框改变时更改
         private void Man_Management_Load(object sender, EventArgs e)
         {
@@ -132,7 +134,9 @@ namespace WindowsFormsApplication1
                     entryTime2 = Convert.ToDateTime(year + "-" + month + "-30");
                 }
 
-                sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone from [User] u, [group] g, userType ut where u.g_id = g.g_id and u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1+ "' and u.u_entryTime <= '"+ entryTime2+ "'";
+                sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone " +
+                    "from [User] u, [group] g, userType ut where u.g_id = g.g_id and " +
+                    "u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1+ "' and u.u_entryTime <= '"+ entryTime2+ "'";
             }
             Console.WriteLine("查询语句：" + sql);
             WorkerShow(sql);
@@ -162,38 +166,38 @@ namespace WindowsFormsApplication1
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 //员工姓名标签
-                var lbl_name = new Label { Text = string.Concat("姓名") };
-                lbl_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_name = new Label { Text = "姓名" };
+                lbl_name.Font = font;
                 lbl_name.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_name.Width = 60;
                 //所在分组标签
-                var lbl_group = new Label { Text = string.Concat("所在分组") };
-                lbl_group.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_group = new Label { Text = "所在分组" };
+                lbl_group.Font = font;
                 lbl_group.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_group.Width = 70;
                 //员工类型标签
-                var lbl_ut = new Label { Text = string.Concat("员工类型") };
-                lbl_ut.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_ut = new Label { Text = "员工类型" };
+                lbl_ut.Font = font;
                 lbl_ut.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_ut.Width = 60;
                 //性别标签
-                var lbl_sex = new Label { Text = string.Concat("性别") };
-                lbl_sex.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_sex = new Label { Text = "性别" };
+                lbl_sex.Font = font;
                 lbl_sex.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_sex.Width = 30;
                 //工号标签
-                var lbl_account = new Label { Text = string.Concat("工号") };
-                lbl_account.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_account = new Label { Text = "工号" };
+                lbl_account.Font = font;
                 lbl_account.Width = 100;
                 lbl_account.TextAlign = ContentAlignment.MiddleCenter;
                 //学分标签
-                var lbl_credit = new Label { Text = string.Concat("学分") };
-                lbl_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_credit = new Label { Text = "学分" };
+                lbl_credit.Font = font;
                 lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_credit.Width = 30;
                 //电话号码标签
-                var lbl_phone = new Label { Text = string.Concat("电话号码") };
-                lbl_phone.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var lbl_phone = new Label { Text = "电话号码" };
+                lbl_phone.Font = font;
                 lbl_phone.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_phone.Width = 80;
                 //编辑按钮标签
@@ -219,37 +223,37 @@ namespace WindowsFormsApplication1
                 {
                     //员工姓名
                     var u_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
-                    u_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_name.Font = font;
                     u_name.TextAlign = ContentAlignment.MiddleCenter;
                     u_name.Width = 60;
                     //所在分组
                     var u_group = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
-                    u_group.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_group.Font = font;
                     u_group.TextAlign = ContentAlignment.MiddleCenter;
                     u_group.Width = 70;
                     //员工类型
                     var u_ut = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    u_ut.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_ut.Font = font;
                     u_ut.TextAlign = ContentAlignment.MiddleCenter;
                     u_ut.Width = 60;
                     //性别
                     var u_sex = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
-                    u_sex.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_sex.Font = font;
                     u_sex.TextAlign = ContentAlignment.MiddleCenter;
                     u_sex.Width = 30;
                     //工号
                     var u_account = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
-                    u_account.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_account.Font = font;
                     u_account.Width = 100;
                     u_account.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
                     var u_credit = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
-                    u_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_credit.Font = font;
                     u_credit.TextAlign = ContentAlignment.MiddleCenter;
                     u_credit.Width = 30;
                     //电话号码
                     var u_phone = new Label { Text = ds.Tables["user"].Rows[i][6].ToString() };
-                    u_phone.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    u_phone.Font = font;
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
                     u_phone.Width = 80;
                     //编辑按钮

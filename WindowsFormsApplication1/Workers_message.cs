@@ -90,18 +90,18 @@ namespace WindowsFormsApplication1
                     int ut_id = Wm_cbBUserType.SelectedIndex + 1;
                     int g_id = Wm_cbBGroup.SelectedIndex + 1;
 
-                ////验证输入的省份证号码是否有误
+                //验证输入的省份证号码是否有误
                 //CheckChinaIDCardNumberFormat(Wm_tbxIDNum.Text);
-                ////验证输入的电话号码是否有误
+                //验证输入的电话号码是否有误
                 //CheckPhoneIsAble(Wm_tbxPhone.Text);
                 if (Wm_tbxAccount.Text == null)
                 {
 
                 }
-                    String insert_sql = "insert into [User] values (" + ut_id + "," + g_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','"+ Wm_dtpEntryTime.Value + "')";
+                    String insert_sql = "insert into [User] values (" + ut_id + "," + g_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','"+ this.Wm_dtpEntryTime.Value + "')";
                     Console.WriteLine("新增语句："+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
-                    if (flag == 1)
+                    if (flag != 0)
                     {
                         MessageBox.Show("新增员工成功！");
                         Mw_btnReturn_Click(sender, e);

@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class ChooseLesson : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public ChooseLesson()
         {
             InitializeComponent();
@@ -50,32 +52,32 @@ namespace WindowsFormsApplication1
                 {
                     //课程名标签
                     var lbl_rb = new Label { Text = string.Concat("课程名称") };
-                    lbl_rb.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_rb.Font = font;
                     lbl_rb.Width = 100;
                     lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
                     //上传人标签
                     var lbl_Loadman = new Label { Text = string.Concat("上传人") };
-                    lbl_Loadman.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_Loadman.Font = font;
                     lbl_Loadman.Width = 50;
                     lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //课程简介标签
                     var lbl_introducation = new Label { Text = string.Concat("课程简介") };
-                    lbl_introducation.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_introducation.Font = font;
                     lbl_introducation.Width = 100;
                     lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学分标签
                     var lbl_credit = new Label { Text = string.Concat("课程学分") };
-                    lbl_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_credit.Font = font;
                     lbl_credit.Width = 65;
                     lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学时标签
                     var lbl_recommendTime = new Label { Text = string.Concat("课程学时") };
-                    lbl_recommendTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_recommendTime.Font = font;
                     lbl_recommendTime.Width = 65;
                     lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                     //是否考试标签
                     var lbl_ifExam = new Label { Text = string.Concat("是否考试") };
-                    lbl_ifExam.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    lbl_ifExam.Font = font;
                     lbl_ifExam.Width = 65;
                     lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
                     //查看课程信息标签
@@ -96,32 +98,32 @@ namespace WindowsFormsApplication1
                     {
                         //课程名
                         var rb = new CheckBox { Text = string.Concat(ds.Tables["user"].Rows[count][0].ToString()) };
-                        rb.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        rb.Font = font;
                         rb.Width = 100;
                         rb.TextAlign = ContentAlignment.MiddleCenter;
                         //上传人
                         var Loadman = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][1].ToString()) };
-                        Loadman.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        Loadman.Font = font;
                         Loadman.Width = 50;
                         Loadman.TextAlign = ContentAlignment.MiddleCenter;
                         //课程简介
                         var introducation = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][2].ToString()) };
-                        introducation.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        introducation.Font = font;
                         introducation.Width = 100;
                         introducation.TextAlign = ContentAlignment.MiddleCenter;
                         //课程学分
                         var credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][3].ToString()) };
-                        credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        credit.Font = font;
                         credit.Width = 65;
                         credit.TextAlign = ContentAlignment.MiddleCenter;
                         //课程学时
                         var recommendTime = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][4].ToString()) };
-                        recommendTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        recommendTime.Font = font;
                         recommendTime.Width = 65;
                         recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                         //是否考试
                         var ifExam = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][5].ToString()) };
-                        ifExam.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                        ifExam.Font = font;
                         ifExam.Width = 65;
                         ifExam.TextAlign = ContentAlignment.MiddleCenter;
                         //查看课程信息
@@ -187,32 +189,32 @@ namespace WindowsFormsApplication1
             {
                 //课程名标签
                 var lbl_rb = new Label { Text = string.Concat("课程名称") };
-                lbl_rb.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_rb.Font = font;
                 lbl_rb.Width = 100;
                 lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
                 //上传人标签
                 var lbl_Loadman = new Label { Text = string.Concat("上传人") };
-                lbl_Loadman.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_Loadman.Font = font;
                 lbl_Loadman.Width = 50;
                 lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
                 //课程简介标签
                 var lbl_introducation = new Label { Text = string.Concat("课程简介") };
-                lbl_introducation.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_introducation.Font = font;
                 lbl_introducation.Width = 100;
                 lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
                 //课程学分标签
                 var lbl_credit = new Label { Text = string.Concat("课程学分") };
-                lbl_credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_credit.Font = font;
                 lbl_credit.Width = 65;
                 lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
                 //课程学时标签
                 var lbl_recommendTime = new Label { Text = string.Concat("课程学时") };
-                lbl_recommendTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_recommendTime.Font = font;
                 lbl_recommendTime.Width = 65;
                 lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                 //是否考试标签
                 var lbl_ifExam = new Label { Text = string.Concat("是否考试") };
-                lbl_ifExam.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_ifExam.Font = font;
                 lbl_ifExam.Width = 65;
                 lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
                 //查看课程信息标签
@@ -232,32 +234,32 @@ namespace WindowsFormsApplication1
                 {
                     //课程名
                     var rb = new CheckBox { Text = string.Concat(ds.Tables["user"].Rows[i][0].ToString()) };
-                    rb.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    rb.Font = font;
                     rb.Width = 100;
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     //上传人
                     var Loadman = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][1].ToString()) };
-                    Loadman.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    Loadman.Font = font;
                     Loadman.Width = 50;
                     Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //课程简介
                     var introducation = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][2].ToString()) };
-                    introducation.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    introducation.Font = font;
                     introducation.Width = 100;
                     introducation.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学分
                     var credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][3].ToString()) };
-                    credit.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    credit.Font = font;
                     credit.Width = 65;
                     credit.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学分
                     var recommendTime = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][4].ToString()) };
-                    recommendTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    recommendTime.Font = font;
                     recommendTime.Width = 65;
                     recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                     //是否考试
                     var ifExam = new Label { Text = string.Concat(ds.Tables["user"].Rows[i][5].ToString()) };
-                    ifExam.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    ifExam.Font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
                     ifExam.Width = 65;
                     ifExam.TextAlign = ContentAlignment.MiddleCenter;
                     //查看课程信息
@@ -306,17 +308,17 @@ namespace WindowsFormsApplication1
                     int c_id = (int)ds.Tables["user"].Rows[0][0];
                     int c_recommendTime = (int)ds.Tables["user"].Rows[0][1];
                     Console.WriteLine("C_id为：" + c_id + "\n 推荐学时为：" + c_recommendTime);
-                    String selectUser_sql = "select u_id from [User] where u_name =N'" + User.userName + "'";
-                    DataSet ds2 = dc.ExecuteQuery(selectUser_sql);
-                    int u_id = (int)ds2.Tables["user"].Rows[0][0];
-                    Console.WriteLine("u_id为：" + u_id);
-                    String insert_dc_sql = "insert into ClassesDestribute values(" + c_id + "," + u_id + "," + c_recommendTime + ",N'" + User.userName + "')";
+                    //String selectUser_sql = "select u_id from [User] where u_name =N'" + User.userName + "'";
+                    //DataSet ds2 = dc.ExecuteQuery(selectUser_sql);
+                    //int u_id = (int)ds2.Tables["user"].Rows[0][0];
+                    Console.WriteLine("u_id为：" + User.userId);
+                    String insert_dc_sql = "insert into ClassesDestribute values(" + c_id + "," + User.userId + "," + c_recommendTime + ",N'" + User.userName + "')";
                     dc.ExecuteUpdate(insert_dc_sql);
-                    String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + u_id + " and cd_time = " + c_recommendTime + " and cd_name = N'" + User.userName + "'";
+                    String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + User.userName + "'";
                     DataSet ds3 = dc.ExecuteQuery(select_cd_id);
                     int cd_id = (int)ds3.Tables["user"].Rows[0][0];
                     Console.WriteLine("cd_id为：" + cd_id);
-                    String insert_uc_sql = "insert into UserClasses values (" + u_id + "," + cd_id + ",0,0,2)";
+                    String insert_uc_sql = "insert into UserClasses values (" + User.userId + "," + cd_id + ",0,0,2)";
                     dc.ExecuteUpdate(insert_uc_sql);                    
                 }
                 if (i == classes.Count)

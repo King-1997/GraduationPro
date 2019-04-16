@@ -50,7 +50,7 @@
             this.L_lblTime.Location = new System.Drawing.Point(764, 31);
             this.L_lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblTime.Name = "L_lblTime";
-            this.L_lblTime.Size = new System.Drawing.Size(229, 32);
+            this.L_lblTime.Size = new System.Drawing.Size(174, 32);
             this.L_lblTime.TabIndex = 1;
             this.L_lblTime.Text = "yyyy/MM/dd HH:mm:ss";
             // 
@@ -108,10 +108,10 @@
             // fLP_filesPreview
             // 
             this.fLP_filesPreview.AutoScroll = true;
-            this.fLP_filesPreview.Location = new System.Drawing.Point(77, 194);
+            this.fLP_filesPreview.Location = new System.Drawing.Point(80, 168);
             this.fLP_filesPreview.Margin = new System.Windows.Forms.Padding(5);
             this.fLP_filesPreview.Name = "fLP_filesPreview";
-            this.fLP_filesPreview.Size = new System.Drawing.Size(853, 351);
+            this.fLP_filesPreview.Size = new System.Drawing.Size(853, 418);
             this.fLP_filesPreview.TabIndex = 10;
             // 
             // lbl_learningState
@@ -159,7 +159,7 @@
             this.L_btnExam.MouseBack = null;
             this.L_btnExam.Name = "L_btnExam";
             this.L_btnExam.NormlBack = null;
-            this.L_btnExam.Size = new System.Drawing.Size(103, 49);
+            this.L_btnExam.Size = new System.Drawing.Size(91, 37);
             this.L_btnExam.TabIndex = 15;
             this.L_btnExam.Text = "考试";
             this.L_btnExam.UseVisualStyleBackColor = false;
@@ -171,11 +171,11 @@
             this.L_btnReturn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btnReturn.DownBack = null;
             this.L_btnReturn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.L_btnReturn.Location = new System.Drawing.Point(845, 633);
+            this.L_btnReturn.Location = new System.Drawing.Point(843, 633);
             this.L_btnReturn.MouseBack = null;
             this.L_btnReturn.Name = "L_btnReturn";
             this.L_btnReturn.NormlBack = null;
-            this.L_btnReturn.Size = new System.Drawing.Size(103, 49);
+            this.L_btnReturn.Size = new System.Drawing.Size(91, 37);
             this.L_btnReturn.TabIndex = 16;
             this.L_btnReturn.Text = "返回";
             this.L_btnReturn.UseVisualStyleBackColor = false;
@@ -186,7 +186,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1005, 721);
+            this.ClientSize = new System.Drawing.Size(1018, 721);
             this.Controls.Add(this.L_btnReturn);
             this.Controls.Add(this.L_btnExam);
             this.Controls.Add(this.btn_preview);

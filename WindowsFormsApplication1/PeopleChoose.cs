@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class PeopleChoose : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         private string preboxname = null;//保存当前输入框的Name，当下拉框改变时更改
 
         public PeopleChoose()
@@ -158,28 +160,28 @@ namespace WindowsFormsApplication1
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 //姓名标签
-                var u_name_lbl = new Label { Text = string.Concat("姓名") };
-                u_name_lbl.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var u_name_lbl = new Label { Text = "姓名" };
+                u_name_lbl.Font = font;
                 u_name_lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                 //所在分组标签
-                var u_group_lbl = new Label { Text = string.Concat("所在分组") };
-                u_group_lbl.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var u_group_lbl = new Label { Text = "所在分组" };
+                u_group_lbl.Font = font;
                 u_group_lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                 //性别标签
-                var u_sex_lbl = new Label { Text = string.Concat("性别") };
-                u_sex_lbl.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var u_sex_lbl = new Label { Text = "性别" };
+                u_sex_lbl.Font = font;
                 u_sex_lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                 //电话号码标签
-                var u_phone_lbl = new Label { Text = string.Concat("电话号码") };
-                u_phone_lbl.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var u_phone_lbl = new Label { Text = "电话号码" };
+                u_phone_lbl.Font = font;
                 u_phone_lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                 //入职时间标签
-                var u_entryTime_lbl = new Label { Text = string.Concat("入职时间") };
-                u_entryTime_lbl.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                var u_entryTime_lbl = new Label { Text = "入职时间" };
+                u_entryTime_lbl.Font = font;
                 u_entryTime_lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                 fLP_people.Controls.Add(u_name_lbl);
@@ -191,28 +193,28 @@ namespace WindowsFormsApplication1
                 for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
                 {
                     //姓名
-                    var u_name = new CheckBox { Text = string.Concat(ds.Tables["user"].Rows[count][0].ToString()) };
-                    u_name.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    var u_name = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
+                    u_name.Font = font;
                     u_name.TextAlign = ContentAlignment.MiddleCenter;
 
                     //所在分组
-                    var u_group = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][1].ToString()) };
-                    u_group.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    var u_group = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
+                    u_group.Font = font;
                     u_group.TextAlign = ContentAlignment.MiddleCenter;
 
                     //性别
-                    var u_sex = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][2].ToString()) };
-                    u_sex.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    var u_sex = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
+                    u_sex.Font = font;
                     u_sex.TextAlign = ContentAlignment.MiddleCenter;
 
                     //电话号码
-                    var u_phone = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][3].ToString()) };
-                    u_phone.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    var u_phone = new Label { Text = ds.Tables["user"].Rows[count][3].ToString() };
+                    u_phone.Font = font;
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
 
                     //入职时间
-                    var u_entryTime = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][4].ToString()) };
-                    u_entryTime.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    var u_entryTime = new Label { Text = ds.Tables["user"].Rows[count][4].ToString() };
+                    u_entryTime.Font = font;
                     u_entryTime.TextAlign = ContentAlignment.MiddleCenter;
 
                     fLP_people.Controls.Add(u_name);

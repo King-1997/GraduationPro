@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class ExamForm : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public static String c_name;
         private List<String> answer = new List<string>();
         private List<String> selected = new List<string>();
@@ -93,11 +95,11 @@ namespace WindowsFormsApplication1
             
         }
         //单个考题的显示
-        private void SingleExamShow(String title,String option1,String option2,String option3,String option4)
+        private void SingleExamShow(String title,String optionA,String optionB,String optionC,String optionD)
         {
             //考题
             var que= new Label();
-            que.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            que.Font = font;
             //questinos = 数据库语句
             que.Text = title;
             fLP_ExamShow.Controls.Add(que);
@@ -105,33 +107,33 @@ namespace WindowsFormsApplication1
 
             //选项ABCD
             var A = new Label();
-            A.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            A.Font = font;
             //数据库语句 optionA=...
-            A.Text = "A："+option1;
+            A.Text = "A："+optionA;
             fLP_ExamShow.Controls.Add(A);
 
             var B = new Label();
-            B.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            B.Font = font;
             //数据库语句 optionB=...
-            B.Text = "B：" + option2;
+            B.Text = "B：" + optionB;
             fLP_ExamShow.Controls.Add(B);
 
             var C = new Label();
-            C.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            C.Font = font;
             //数据库语句 optionC=...
-            C.Text = "C：" + option3;
+            C.Text = "C：" + optionC;
             fLP_ExamShow.Controls.Add(C);
 
             var D = new Label();
-            D.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            D.Font = font;
             //数据库语句 optionD=...
-            D.Text = "D：" + option4;
+            D.Text = "D：" + optionD;
             fLP_ExamShow.Controls.Add(D);
             fLP_ExamShow.SetFlowBreak(D, true);
 
             //答案 
             var ans = new ComboBox();
-            ans.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            ans.Font = font;
             //数据库语句 answer=。。。
             ans.Items.Add("A");
             ans.Items.Add("B");
