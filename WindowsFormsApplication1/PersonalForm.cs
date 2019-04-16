@@ -156,7 +156,7 @@ namespace WindowsFormsApplication1
         {
             //选择课程，跳转到学习页面
             Button button = (Button)sender;
-            Learn.c_name = button.Name;
+            int.TryParse(button.Name, out Learn.c_id);
             Learn learn = new Learn();
             learn.Owner = this;
             this.Hide();

@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Learn : CCSkinMain
     {
-        public static string c_name = null;
+        public static int c_id = -1;
         private string c_file = null;
         private string c_ifExam = null;
         private int c_maxTime = 30;
@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
             scan(theFolder);
             //根据课程名字查出文件所在地址
             DataBaseConnection dc = new DataBaseConnection();
-            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime from Classes where c_name = N'" + c_name + "'";
+            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime from Classes where c_id = " + c_id;
             DataSet ds = dc.ExecuteQuery(select_c_file);
             //将文件所在地址赋值给全局变量c_file
             c_file = ds.Tables["user"].Rows[0][0].ToString();
@@ -176,7 +176,7 @@ namespace WindowsFormsApplication1
         {
             learn = false;
             open = false;
-            ExamForm.c_name = c_name;
+            ExamForm.c_id = c_id;
             ExamForm examForm = new ExamForm();
             examForm.Owner = this;
             this.Hide();

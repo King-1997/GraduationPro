@@ -13,13 +13,12 @@ namespace WindowsFormsApplication1
 {
     public partial class ExamShow : CCSkinMain
     {
+        //考题对应的课程id
+        public static int c_id = -1;
         public ExamShow()
         {
             InitializeComponent();
-        }
-        //考题对应的课程
-        public static string className;
-        private int c_id = 0;
+        }       
         //考题数组
         public static List<string> questions = new List<string>();
         public static List<string> answer = new List<string>();
@@ -46,7 +45,7 @@ namespace WindowsFormsApplication1
             for(int i=0; i<questions.Count; i++)
             {
                 var label = new TextBox { Text=questions[i]};
-                label.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label.Font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
                 label.TextAlign = HorizontalAlignment.Center;
                 label.ReadOnly=true;
                 label.Size = new Size(350,60);
@@ -73,9 +72,9 @@ namespace WindowsFormsApplication1
             {
                 Button button = (Button)sender;
             string words = button.Name;
-            //找到删除位置下表
-            int Index = questions.FindIndex(questions=>questions.Equals(words));
-            //删除该下表位置的值
+            //找到删除位置下标
+            int Index = questions.FindIndex(questions => questions.Equals(words));
+            //删除该下标位置的值
             questions.RemoveAt(Index);
             //刷新显示窗口
             ShowQuestions();
@@ -108,10 +107,8 @@ namespace WindowsFormsApplication1
 
                 String insert_sql = "insert into question values("+c_id+",N'"+q_title+ "',N'" + q_answer+ "',N'" + q_option1+ "',N'" + q_option2+ "',N'" + q_option3+ "',N'" + q_option4+"')";
                 dc.ExecuteUpdate(insert_sql);
-                
-
             }
-            String update_sql = "update Classes set c_count = " + cBx_passCount.SelectedItem.ToString() + " where c_name = '"+className+"'";
+            String update_sql = "update Classes set c_count = " + cBx_passCount.SelectedItem.ToString() + " where c_id = '"+c_id+"'";
             int flag = dc.ExecuteUpdate(update_sql);
             if (i == questions.Count && flag != 0)
             {
@@ -143,25 +140,19 @@ namespace WindowsFormsApplication1
         private void ExamShow_Load(object sender, EventArgs e)
         {
             cBx_passCount.Click += new EventHandler(click);
-
-            Console.WriteLine("ExamShow页面的className：" + className);
             DataBaseConnection dc = new DataBaseConnection();
-            String select_sql = "select c_id from Classes where c_name = N'" + className + "'";
-            DataSet ds = dc.ExecuteQuery(select_sql);
-            c_id = (int)ds.Tables["user"].Rows[0][0];
-            Console.WriteLine("c_id为："+c_id);
-            String select_question = "select * from question where c_id = "+c_id+"";
-            DataSet ds1 = dc.ExecuteQuery(select_question);
-            if(ds1.Tables["user"].Rows.Count != 0)
+            String select_question = "select q.c_id,q.c_id,q.q_title,q.q_answer,q.q_option1,q.q_option2,q.q_option2,q.q_option3,q.q_option4 from question q where c_id = " + c_id+"";
+            DataSet ds = dc.ExecuteQuery(select_question);
+            if(ds.Tables["user"].Rows.Count != 0)
             {
-                for(int i =0;i< ds1.Tables["user"].Rows.Count; i++)
+                for(int i =0;i< ds.Tables["user"].Rows.Count; i++)
                 {
-                    questions.Add(ds1.Tables["user"].Rows[i][2].ToString());
+                    questions.Add(ds.Tables["user"].Rows[i][2].ToString());
                     answer.Add(ds.Tables["user"].Rows[i][3].ToString());
-                    A.Add(ds1.Tables["user"].Rows[0][3].ToString());
-                    B.Add(ds1.Tables["user"].Rows[0][4].ToString());
-                    C.Add(ds1.Tables["user"].Rows[0][5].ToString());
-                    D.Add(ds1.Tables["user"].Rows[0][6].ToString());
+                    A.Add(ds.Tables["user"].Rows[0][4].ToString());
+                    B.Add(ds.Tables["user"].Rows[0][5].ToString());
+                    C.Add(ds.Tables["user"].Rows[0][6].ToString());
+                    D.Add(ds.Tables["user"].Rows[0][7].ToString());
                 }
 
                 ShowQuestions();

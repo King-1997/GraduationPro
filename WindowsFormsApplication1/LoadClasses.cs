@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
 { 
     public partial class LoadClasses : CCSkinMain
     {
-        public static String c_name = null;
+        public static int c_id = -1;
         public static List<string> question = new List<string>();
         public LoadClasses()
         {
@@ -21,13 +21,13 @@ namespace WindowsFormsApplication1
             LC_cbb_ifExam.Items.AddRange(new object[] { "是", "否" });
             LC_cbb_ifExam.SelectedIndex = 0;
 
-            if (c_name != null)
+            if (c_id != -1)
             {
                 Lal_windowname.Text = "课程信息修改";
                 btn_upload.Text = "确定";
-                Console.WriteLine("ClassesInfo里的课程名：" + c_name);
+                Console.WriteLine("ClassesInfo里的课程id：" + c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime from [User] u,Classes c where c.u_id = u.u_id and c_name = N'" + c_name + "'";
+                String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime from [User] u,Classes c where c.u_id = u.u_id and c_id = " + c_id + "";
                 DataSet ds = dc.ExecuteQuery(sql);
                 lbl_classhanded_show.Text = ds.Tables["user"].Rows[0][1].ToString();
                 txtBx_classname.Text = ds.Tables["user"].Rows[0][0].ToString();
@@ -90,10 +90,7 @@ namespace WindowsFormsApplication1
             {
                 //修改课程信息
                 if (btn_upload.Text.Equals("确定"))
-                {
-                    String select_c_id = "select c_id from Classes where c_name =N'" + c_name+"'";
-                    DataSet ds = dc.ExecuteQuery(select_c_id);
-                    int c_id = (int)ds.Tables["user"].Rows[0][0];
+                {                    
                     String update_sql = "update Classes set c_name = N'" + c_name1 + "',c_introduction = N'" + c_introdution + "',c_file = N'" + c_file + "',c_credit = '"+ c_credit + "',c_recommendTime = '"+ c_recommendTime + "',c_ifExam = N'" + c_ifExam + "',c_maxTime = "+c_maxTime+",c_minTime = "+c_minTime+" where c_id = "+c_id+"";
                     Console.WriteLine("更新操作的sql语句：" + update_sql);
                     if (dc.ExecuteUpdate(update_sql) != 0)
@@ -107,8 +104,7 @@ namespace WindowsFormsApplication1
                     if (c_ifExam.Equals("是"))
                     {
                         //用户选择确认上传考题的操作
-                        ExamShow.className = c_name;
-                        ExamShow.className = txtBx_classname.Text;
+                        ExamShow.c_id = c_id;
                         ExamShow examShow = new ExamShow();
                         examShow.Owner = this;
                         this.Hide();
@@ -126,14 +122,13 @@ namespace WindowsFormsApplication1
                     String insert_sql = "insert into Classes values (" + User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
                     Console.WriteLine("SQL:"+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
-                    if (flag == 1)
+                    if (flag != 0)
                     {
                         MessageBox.Show("上传课程成功！");
                         if (c_ifExam.Equals("是"))
                         {
                             //用户选择确认上传考题的操作
-                            ExamShow.className = c_name;
-                            ExamShow.className = txtBx_classname.Text;
+                            ExamShow.c_id = c_id;
                             ExamShow examShow = new ExamShow();
                             examShow.Owner = this;
                             this.Hide();

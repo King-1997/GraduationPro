@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
         {
             //显示查询的员工
             //从tBx_findkeywords，cbB_findKey中获得查询关键词
-            
+            JudgeYearAndMonth jym = new JudgeYearAndMonth();
             String keyword = tBx_findkeywords.Text;
             if (!cbB_findKey.Text.Equals("按组别") && !cbB_findKey.Text.Equals("按入职时间") && string.IsNullOrEmpty(keyword))
             {
@@ -108,32 +108,7 @@ namespace WindowsFormsApplication1
                 int month = 0;
                 int.TryParse(cBx_workerEntryMonth.SelectedItem.ToString(), out month);
                 entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");//设置开始时间都为该月1号
-                if (month == 02)//当月份为2时判断是否为闰年
-                {
-                    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-                    {
-
-                        //entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");
-                        entryTime2 = Convert.ToDateTime(year + "-" + month + "-29");
-                    }
-                    else
-                    {
-                        //entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");
-                        entryTime2 = Convert.ToDateTime(year + "-" + month + "-28");
-                    }
-                }
-                //当月份不为2时，判断当前月份是否有31号
-                if (month == 01 || month == 03 || month == 05 || month == 07 || month == 08 || month == 10 || month == 12)
-                {
-                    //entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");
-                    entryTime2 = Convert.ToDateTime(year + "-" + month + "-31");
-                }
-                else
-                {
-                    //entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");
-                    entryTime2 = Convert.ToDateTime(year + "-" + month + "-30");
-                }
-
+                entryTime2 = jym.judgeYearAndMonth(year, month);
                 sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone " +
                     "from [User] u, [group] g, userType ut where u.g_id = g.g_id and " +
                     "u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1+ "' and u.u_entryTime <= '"+ entryTime2+ "'";

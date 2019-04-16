@@ -35,15 +35,15 @@ namespace WindowsFormsApplication1
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
                 }
                 Console.WriteLine("查询语句：" + select_sql);
                 DataSet ds = dc.ExecuteQuery(select_sql);
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication1
                         var btn_check = new Button { Text = "查看" };
                         btn_check.Width = 50;
                         ifExam.TextAlign = ContentAlignment.MiddleCenter;
-                        btn_check.Name = ds.Tables["user"].Rows[count][0].ToString();
+                        btn_check.Name = ds.Tables["user"].Rows[count][6].ToString();
                         Console.WriteLine("button中的c_name："+ btn_check.Name);
                         btn_check.Click += new EventHandler(CheckClassesInfo);
 
@@ -155,7 +155,7 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             Console.WriteLine("button里的classesname："+button.Name);
-            ClaeeesInfo.c_name = button.Name;
+            int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
             this.Hide();

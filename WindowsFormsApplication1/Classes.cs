@@ -40,7 +40,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "推荐学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime from classes c,[user] u where u.u_id = c.u_id and u.u_name =N'" + User.userName + "' order by c.c_time desc";
+            String sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id and u.u_name =N'" + User.userName + "' order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
             {
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1
                 lblMineClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                 var btnCom = new Button { Text = "编辑" };
                 btnCom.Width = 50;
-                btnCom.Name = ds.Tables["user"].Rows[i][0].ToString();
+                btnCom.Name = ds.Tables["user"].Rows[i][4].ToString();
                 btnCom.Click += new EventHandler(Edit_ClassesInfo);
                 btnCom.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -81,9 +81,9 @@ namespace WindowsFormsApplication1
         private void Edit_ClassesInfo(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            LoadClasses.c_name = button.Name;
-            Console.WriteLine("button里的课程名：" + button.Name);
-            //选择课程，跳转到学习页面
+            int.TryParse(button.Name, out LoadClasses.c_id);            
+            Console.WriteLine("button里的课程id：" + button.Name);
+            //选择课程，跳转到课程信息修改页面
             LoadClasses loadClasses = new LoadClasses();
             loadClasses.Owner = this;
             this.Hide();
@@ -92,8 +92,8 @@ namespace WindowsFormsApplication1
         private void Check_ClassesInfo(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            ClaeeesInfo.c_name = button.Name;
-            Console.WriteLine("button里的课程名："+ button.Name);
+            int.TryParse(button.Name, out ClaeeesInfo.c_id);
+            Console.WriteLine("button里的课程id："+ button.Name);
             //选择课程，跳转到课程详细信息页面
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
@@ -120,7 +120,7 @@ namespace WindowsFormsApplication1
 
         private void btn_loadClasses_Click(object sender, EventArgs e)
         {
-            LoadClasses.c_name = null;
+            LoadClasses.c_id = -1;
             LoadClasses loadClasses = new LoadClasses();
             loadClasses.Owner = this;
             this.Hide();
@@ -134,7 +134,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc; ";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc; ";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {
@@ -163,7 +163,7 @@ namespace WindowsFormsApplication1
 
                     var btnLearnClasses = new Button { Text = "学习" };
                     btnLearnClasses.Width = 50;
-                    btnLearnClasses.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btnLearnClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     //给“学习”按钮添加点击事件，跳转到学习页面
                     btnLearnClasses.Click += new EventHandler(btn_studyClass_Click);
 
@@ -191,7 +191,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 2) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc;";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 2) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc;";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -224,7 +224,7 @@ namespace WindowsFormsApplication1
 
                     var btnSelectClasses = new Button { Text = "学习" };
                     btnSelectClasses.Width = 40;
-                    btnSelectClasses.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btnSelectClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     btnSelectClasses.Click += new EventHandler(btn_studyClass_Click);
 
                     var btnDeleteClasses = new Button { Text = "退选" };
@@ -252,16 +252,17 @@ namespace WindowsFormsApplication1
                 MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Button button = (Button)sender;
-                String c_name = button.Name;
-                Console.WriteLine("按钮里的课程名："+ c_name);
+                int c_id =0;
+                int.TryParse(button.Name, out c_id);
+                Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String select_cd_id = "select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_name = N'" + c_name+ "') and u_id in (select u_id from [User] where u_name =N'" + User.userName+ "')";
+                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id in (select u_id from [User] where u_name =N'" + User.userName+ "')";
                 DataSet ds = dc.ExecuteQuery(select_cd_id);
                 int cd_id = (int)ds.Tables["user"].Rows[0][0];
 
                 String delete_cd_sql = "delete from ClassesDestribute where cd_id ="+ cd_id + "";
                 int flag = dc.ExecuteUpdate(delete_cd_sql);
-                if(flag == 1)
+                if(flag != 0)
                 {
                     MessageBox.Show("退选成功！");
                     //刷新选修课程列表
@@ -276,7 +277,7 @@ namespace WindowsFormsApplication1
             //刷新显示区域，显示全部课程
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime from classes c,[user] u where u.u_id = c.u_id order by c.c_time desc";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -305,7 +306,7 @@ namespace WindowsFormsApplication1
 
                     var btnAllClasses = new Button { Text = "查看" };
                     btnAllClasses.Width = 50;
-                    btnAllClasses.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btnAllClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     btnAllClasses.Click += new EventHandler(Check_ClassesInfo);
 
                     btnAllClasses.TextAlign = ContentAlignment.MiddleCenter;
@@ -324,7 +325,7 @@ namespace WindowsFormsApplication1
         {
             //选择课程，跳转到学习页面
             Button button = (Button)sender;
-            Learn.c_name = button.Name;
+            int.TryParse(button.Name, out Learn.c_id);
             Learn learn = new Learn();
             learn.Owner = this;
             this.Hide();

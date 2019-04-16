@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-        public static String c_name;
+        public static int c_id = -1;
         private List<String> answer = new List<string>();
         private List<String> selected = new List<string>();
         public ExamForm()
@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1
                 }
             
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select c_count from Classes where c_name = N'" + c_name+"'";
+                String sql = "select c_count from Classes where c_id = " + c_id;
                 DataSet ds = dc.ExecuteQuery(sql);
 
                 int passCount = (int)ds.Tables["user"].Rows[0][0];//读取通过题数
@@ -65,7 +65,7 @@ namespace WindowsFormsApplication1
                 {
                     //通过，课程状态设置为已完成
                     MessageBox.Show("恭喜您已完成该课程！");
-                    String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_name =  N'" + c_name+"'))";
+                    String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_id =  " + c_id+"))";
                     dc.ExecuteUpdate(update_sql);
                 }
                 else
@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1
         private void ExamForm_Load(object sender, EventArgs e)
         {
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select * from question where c_id in (select c_id from Classes where c_name =N'" + c_name+"')";
+            String sql = "select * from question where c_id in (select c_id from Classes where c_id =" + c_id+")";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {

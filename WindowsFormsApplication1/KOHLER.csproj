@@ -122,7 +122,7 @@
     <Compile Include="ClassChoose.designer.cs">
       <DependentUpon>ClassChoose.cs</DependentUpon>
     </Compile>
-    <Compile Include="Email\EmailSend.cs" />
+    <Compile Include="Tools\EmailSend.cs" />
     <Compile Include="ExamForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,13 +135,14 @@
     <Compile Include="ExamShow.Designer.cs">
       <DependentUpon>ExamShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Excel\Excel.cs" />
+    <Compile Include="Tools\Excel.cs" />
     <Compile Include="ExcelOutput.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExcelOutput.Designer.cs">
       <DependentUpon>ExcelOutput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\JudgeYearAndMonth.cs" />
     <Compile Include="Learn.cs">
       <SubType>Form</SubType>
     </Compile>

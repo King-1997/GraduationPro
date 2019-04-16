@@ -43,19 +43,19 @@ namespace WindowsFormsApplication1
             Console.WriteLine("查询条件：" + KeyType);
             if (KeyType.Equals("按课程名"))
             {
-                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id and c.c_name like N'%" + KeyWord + "%'";
+                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and c.c_name like N'%" + KeyWord + "%'";
             }
             else if (KeyType.Equals("按学分"))
             {
-                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id and c.c_credit = " + KeyWord;
+                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and c.c_credit = " + KeyWord;
             }
             else if (KeyType.Equals("按上传人"))
             {
-                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id and u.u_name like N'%" + KeyWord + "%'";
+                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and u.u_name like N'%" + KeyWord + "%'";
             }
             else if (KeyType.Equals("按推荐学时"))
             {
-                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id and c.c_recommendTime = " + KeyWord;
+                sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and c.c_recommendTime = " + KeyWord;
             }
             Console.WriteLine("查询语句："+ sql);
             DataSet ds = dc.ExecuteQuery(sql);
@@ -143,7 +143,7 @@ namespace WindowsFormsApplication1
                     var btn_check = new Button { Text = "查看" };                  
                     btn_check.Width = 50;
                     ifExam.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_check.Name = ds.Tables["user"].Rows[count][0].ToString();
+                    btn_check.Name = ds.Tables["user"].Rows[count][6].ToString();
                     //Console.WriteLine("button中的c_name："+ btn_check.Name);
                     btn_check.Click += new EventHandler(CheckClassesInfo);
 
@@ -167,7 +167,7 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             //Console.WriteLine("button里的classesname："+button.Name);
-            ClaeeesInfo.c_name = button.Name;
+            int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
             this.Hide();
@@ -210,7 +210,7 @@ namespace WindowsFormsApplication1
             fLP_lessons.Controls.Clear();
 
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id";
+            String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {
@@ -295,7 +295,7 @@ namespace WindowsFormsApplication1
                     var btn_check = new Button { Text = "查看" };                   
                     btn_check.Width = 50;
                     ifExam.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_check.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btn_check.Name = ds.Tables["user"].Rows[i][6].ToString();
                     //Console.WriteLine("button中的c_name："+ btn_check.Name);
                     btn_check.Click += new EventHandler(CheckClassesInfo);
 
