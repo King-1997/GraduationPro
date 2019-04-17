@@ -33,11 +33,13 @@ namespace WindowsFormsApplication1
 
         private void ApplyView_Load(object sender, EventArgs e)
         {
-            AV_lbl_User.Text = User.userName;
+            AV_lbl_User.Text = Model.User.userName;
             AV_dtp_StartTime.MinDate = DateTime.Now;
             //AV_dtp_EndTime.MinDate = this.AV_dtp_StartTime.Value;
             AV_dtp_EndTime.MinDate = DateTime.Parse(AV_dtp_StartTime.Value.ToString());
+            AV_Combx_category.Items.AddRange(new object[] { "事假", "病假", "产假/陪产假","丧假","其他" });
             AV_Combx_category.SelectedIndex = 0;
+            AV_Combx_Prove.Items.AddRange(new object[] { "未提交", "已提交并通过", "已提交并未通过" });
             AV_Combx_Prove.SelectedIndex = 0;
         }
 
@@ -50,15 +52,15 @@ namespace WindowsFormsApplication1
             //Console.WriteLine("开始时间的格式："+startTime);
             DateTime endTime = this.AV_dtp_EndTime.Value;
             //Console.WriteLine("结束时间的格式：" + endTime);
-            Console.WriteLine(endTime.Subtract(startTime).TotalMilliseconds);
+            //Console.WriteLine(endTime.Subtract(startTime).TotalMilliseconds);
             int i = (int)((endTime.Subtract(startTime).TotalMilliseconds) / 43200000)+1;
-            Console.WriteLine(i);
+            //Console.WriteLine(i);
             DateTime nowTime = DateTime.Now;
             if(endTime > startTime)
             {
                 //连接数据库
                 DataBaseConnection dc = new DataBaseConnection();
-                String insert_sql = "insert into SignRecord values ("+User.userId+",'"+type+"','"+nowTime+"','"+startTime+"','"+endTime+"','"+reason+ "',null,null,null,null,null,null,null,null,null)";
+                String insert_sql = "insert into SignRecord values ("+ Model.User.userId+",'"+type+"','"+nowTime+"','"+startTime+"','"+endTime+"','"+reason+ "',null,null,null,null,null,null,null,null,null)";
                 int flag = dc.ExecuteUpdate(insert_sql);
                 //查询当前分组主管邮箱地址
                 String select_sql = "select u_email from [User] where ut_id in (select g_id from [UserType] where ut_type = '主管')";
@@ -69,7 +71,7 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("申请成功！");
                     EmailSend es = new EmailSend();
-                    es.Sendemail(type,User.userName/*,email*/);
+                    es.Sendemail(type, Model.User.userName/*,email*/);
                     Return_button_Click(sender,e);
                 }
                 else

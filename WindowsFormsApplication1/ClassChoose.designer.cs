@@ -34,8 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.fLP_lessons = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_find = new CCWin.SkinControl.SkinButton();
-            this.btn_cancel = new CCWin.SkinControl.SkinButton();
+            this.btn_allClasses = new CCWin.SkinControl.SkinButton();
             this.btn_oK = new CCWin.SkinControl.SkinButton();
+            this.btn_back = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // tBx_findkeywords
@@ -46,7 +47,6 @@
             this.tBx_findkeywords.Name = "tBx_findkeywords";
             this.tBx_findkeywords.Size = new System.Drawing.Size(219, 29);
             this.tBx_findkeywords.TabIndex = 3;
-            this.tBx_findkeywords.TextChanged += new System.EventHandler(this.tBx_findkeywords_TextChanged);
             // 
             // cbB_findKey
             // 
@@ -95,27 +95,27 @@
             this.btn_find.UseVisualStyleBackColor = false;
             this.btn_find.Click += new System.EventHandler(this.btn_find_Click);
             // 
-            // btn_cancel
+            // btn_allClasses
             // 
-            this.btn_cancel.BackColor = System.Drawing.Color.Transparent;
-            this.btn_cancel.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btn_cancel.DownBack = null;
-            this.btn_cancel.Location = new System.Drawing.Point(604, 47);
-            this.btn_cancel.MouseBack = null;
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.NormlBack = null;
-            this.btn_cancel.Size = new System.Drawing.Size(56, 30);
-            this.btn_cancel.TabIndex = 11;
-            this.btn_cancel.Text = "取消";
-            this.btn_cancel.UseVisualStyleBackColor = false;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            this.btn_allClasses.BackColor = System.Drawing.Color.Transparent;
+            this.btn_allClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btn_allClasses.DownBack = null;
+            this.btn_allClasses.Location = new System.Drawing.Point(604, 47);
+            this.btn_allClasses.MouseBack = null;
+            this.btn_allClasses.Name = "btn_allClasses";
+            this.btn_allClasses.NormlBack = null;
+            this.btn_allClasses.Size = new System.Drawing.Size(70, 30);
+            this.btn_allClasses.TabIndex = 11;
+            this.btn_allClasses.Text = "所有课程";
+            this.btn_allClasses.UseVisualStyleBackColor = false;
+            this.btn_allClasses.Click += new System.EventHandler(this.btn_allClasses_Click);
             // 
             // btn_oK
             // 
             this.btn_oK.BackColor = System.Drawing.Color.Transparent;
             this.btn_oK.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_oK.DownBack = null;
-            this.btn_oK.Location = new System.Drawing.Point(618, 506);
+            this.btn_oK.Location = new System.Drawing.Point(507, 510);
             this.btn_oK.MouseBack = null;
             this.btn_oK.Name = "btn_oK";
             this.btn_oK.NormlBack = null;
@@ -125,6 +125,21 @@
             this.btn_oK.UseVisualStyleBackColor = false;
             this.btn_oK.Click += new System.EventHandler(this.btn_oK_Click);
             // 
+            // btn_back
+            // 
+            this.btn_back.BackColor = System.Drawing.Color.Transparent;
+            this.btn_back.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btn_back.DownBack = null;
+            this.btn_back.Location = new System.Drawing.Point(628, 510);
+            this.btn_back.MouseBack = null;
+            this.btn_back.Name = "btn_back";
+            this.btn_back.NormlBack = null;
+            this.btn_back.Size = new System.Drawing.Size(91, 37);
+            this.btn_back.TabIndex = 13;
+            this.btn_back.Text = "返回";
+            this.btn_back.UseVisualStyleBackColor = false;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
+            // 
             // ClassChoose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -132,8 +147,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_oK);
-            this.Controls.Add(this.btn_cancel);
+            this.Controls.Add(this.btn_allClasses);
             this.Controls.Add(this.btn_find);
             this.Controls.Add(this.fLP_lessons);
             this.Controls.Add(this.label1);
@@ -155,7 +171,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel fLP_lessons;
         private CCWin.SkinControl.SkinButton btn_find;
-        private CCWin.SkinControl.SkinButton btn_cancel;
+        private CCWin.SkinControl.SkinButton btn_allClasses;
         private CCWin.SkinControl.SkinButton btn_oK;
+        private CCWin.SkinControl.SkinButton btn_back;
     }
 }

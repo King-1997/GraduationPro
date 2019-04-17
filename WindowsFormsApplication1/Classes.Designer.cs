@@ -215,6 +215,7 @@
             this.c_btnMine.TabIndex = 25;
             this.c_btnMine.Text = "我上传的";
             this.c_btnMine.UseVisualStyleBackColor = false;
+            this.c_btnMine.Visible = false;
             this.c_btnMine.Click += new System.EventHandler(this.c_btnMine_Click);
             // 
             // btn_loadClasses
@@ -230,6 +231,7 @@
             this.btn_loadClasses.TabIndex = 26;
             this.btn_loadClasses.Text = "上传课程";
             this.btn_loadClasses.UseVisualStyleBackColor = false;
+            this.btn_loadClasses.Visible = false;
             this.btn_loadClasses.Click += new System.EventHandler(this.btn_loadClasses_Click);
             // 
             // btn_lessonArrangement
@@ -245,6 +247,7 @@
             this.btn_lessonArrangement.TabIndex = 27;
             this.btn_lessonArrangement.Text = "安排课程";
             this.btn_lessonArrangement.UseVisualStyleBackColor = false;
+            this.btn_lessonArrangement.Visible = false;
             this.btn_lessonArrangement.Click += new System.EventHandler(this.btn_lessonArrangement_Click);
             // 
             // p_btnHome

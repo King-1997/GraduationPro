@@ -76,11 +76,11 @@ namespace WindowsFormsApplication1
                             MessageBox.Show("登录成功！");
                             //跳转主界面
                             Mainmenu main1 = new Mainmenu();
-                            User.userName = u_name;//记录用户名
-                            User.userType = u_type;
-                            User.userId = u_id;
-                            User.groupId = g_id;
-                            User.email = u_email;
+                            Model.User.userName = u_name;//记录用户名
+                            Model.User.userType = u_type;
+                            Model.User.userId = u_id;
+                            Model.User.groupId = g_id;
+                            Model.User.email = u_email;
                             main1.Owner = this;
                             main1.Show();
                             this.Hide();

@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
 
         private void Manage_Load(object sender, EventArgs e)
         {
-            this.p_lblCurPerson.Text = User.userName;
+            this.p_lblCurPerson.Text = Model.User.userName;
         }
 
         private void m_btnClasses_Click(object sender, EventArgs e)

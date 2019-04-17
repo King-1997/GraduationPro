@@ -15,11 +15,11 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-        public static String lesson_name=null;
-        public static String lesson_time = null;
+        public static String lesson_name=Model.ClassesInfo.class_name;
+        public static int lesson_time = Model.ClassesInfo.class_time;
         public static List<string> people = null;
 
-        private int classes_id = 0;
+        private int classes_id = Model.ClassesInfo.class_id;
         private List<int> user_id = new List<int>{1};
 
         private TextBox tbx_cd_time = new TextBox();
@@ -35,13 +35,13 @@ namespace WindowsFormsApplication1
         private void Find_Id()
         {
             DataBaseConnection dc = new DataBaseConnection();
-            if (lesson_name != null)
-            {
+            //if (lesson_name != null)
+            //{
                 
-                    String select_c_id = "select c_id from Classes where c_name = N'" + lesson_name + "'";
-                    DataSet ds = dc.ExecuteQuery(select_c_id);
-                    classes_id = (int)ds.Tables["user"].Rows[0][0];
-            }
+            //        String select_c_id = "select c_id from Classes where c_name = N'" + lesson_name + "'";
+            //        DataSet ds = dc.ExecuteQuery(select_c_id);
+            //        classes_id = (int)ds.Tables["user"].Rows[0][0];
+            //}
             if(people != null)
             {
                 for (int i = 0; i < people.Count; i++)
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication1
         private void btn_sure_Click(object sender, EventArgs e)
         {
             int i = 0;
-            Find_Id();           
+            Find_Id();
             find_cd_time();
             if (lesson_name == null || people == null)
             {
@@ -93,9 +93,9 @@ namespace WindowsFormsApplication1
                     for (i = 1; i < user_id.Count; i++)
                     {
                         int u_id = user_id[i];
-                        String insert_cd_sql = "insert into ClassesDestribute values (" + classes_id + "," + u_id + "," + cd_time1 + ",N'" + User.userName + "')";
+                        String insert_cd_sql = "insert into ClassesDestribute values (" + classes_id + "," + u_id + "," + cd_time1 + ",N'" + Model.User.userName + "')";
                         dc.ExecuteUpdate(insert_cd_sql);
-                        String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + classes_id + " and u_id = " + u_id + " and cd_time = " + cd_time1 + " and cd_name = N'" + User.userName + "'";
+                        String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + classes_id + " and u_id = " + u_id + " and cd_time = " + cd_time1 + " and cd_name = N'" + Model.User.userName + "'";
                         DataSet ds = dc.ExecuteQuery(select_cd_id);
                         int cd_id = (int)ds.Tables["user"].Rows[0][0];
                         Console.WriteLine("cd_id为：" + cd_id);
@@ -172,7 +172,7 @@ namespace WindowsFormsApplication1
                     rb.CheckedChanged += new EventHandler(Lessons_delete_CheckedChanged);                    
                     fLP_lessonesAdd.Controls.Add(rb);
                     //学时
-                    var tBx = new TextBox { Text = lesson_time};
+                    var tBx = new TextBox { Text = lesson_time.ToString()};
                     tBx.Font = font;
                     tBx.Name = "tbx_ClassesTime";
                     fLP_lessonesAdd.Controls.Add(tBx);

@@ -36,12 +36,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_timecount = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.fLP_filesPreview = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_learningState = new System.Windows.Forms.Label();
             this.lbl_learnTime = new System.Windows.Forms.Label();
             this.btn_preview = new CCWin.SkinControl.SkinButton();
             this.L_btnExam = new CCWin.SkinControl.SkinButton();
             this.L_btnReturn = new CCWin.SkinControl.SkinButton();
+            this.fLP_filesPreview = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // L_lblTime
@@ -104,15 +104,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // fLP_filesPreview
-            // 
-            this.fLP_filesPreview.AutoScroll = true;
-            this.fLP_filesPreview.Location = new System.Drawing.Point(80, 168);
-            this.fLP_filesPreview.Margin = new System.Windows.Forms.Padding(5);
-            this.fLP_filesPreview.Name = "fLP_filesPreview";
-            this.fLP_filesPreview.Size = new System.Drawing.Size(853, 418);
-            this.fLP_filesPreview.TabIndex = 10;
             // 
             // lbl_learningState
             // 
@@ -181,6 +172,15 @@
             this.L_btnReturn.UseVisualStyleBackColor = false;
             this.L_btnReturn.Click += new System.EventHandler(this.L_btnReturn_Click);
             // 
+            // fLP_filesPreview
+            // 
+            this.fLP_filesPreview.AutoScroll = true;
+            this.fLP_filesPreview.Location = new System.Drawing.Point(80, 168);
+            this.fLP_filesPreview.Margin = new System.Windows.Forms.Padding(5);
+            this.fLP_filesPreview.Name = "fLP_filesPreview";
+            this.fLP_filesPreview.Size = new System.Drawing.Size(853, 418);
+            this.fLP_filesPreview.TabIndex = 10;
+            // 
             // Learn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -216,11 +216,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_timecount;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.FlowLayoutPanel fLP_filesPreview;
         private System.Windows.Forms.Label lbl_learningState;
         private System.Windows.Forms.Label lbl_learnTime;
         private CCWin.SkinControl.SkinButton btn_preview;
         private CCWin.SkinControl.SkinButton L_btnExam;
         private CCWin.SkinControl.SkinButton L_btnReturn;
+        private System.Windows.Forms.FlowLayoutPanel fLP_filesPreview;
     }
 }

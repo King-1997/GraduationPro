@@ -101,11 +101,11 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 24F);
-            this.skinLabel1.Location = new System.Drawing.Point(317, 119);
+            this.skinLabel1.Location = new System.Drawing.Point(330, 113);
             this.skinLabel1.Name = "skinLabel1";
-            this.skinLabel1.Size = new System.Drawing.Size(350, 50);
+            this.skinLabel1.Size = new System.Drawing.Size(283, 50);
             this.skinLabel1.TabIndex = 9;
-            this.skinLabel1.Text = "南昌科勒员工学习系统";
+            this.skinLabel1.Text = "员工学习管理系统";
             // 
             // comboBox1
             // 
@@ -124,7 +124,7 @@
             this.btnLogin.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btnLogin.DownBack = null;
             this.btnLogin.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btnLogin.Location = new System.Drawing.Point(355, 393);
+            this.btnLogin.Location = new System.Drawing.Point(349, 393);
             this.btnLogin.MouseBack = null;
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.NormlBack = null;
@@ -140,7 +140,7 @@
             this.button2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.button2.DownBack = null;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.button2.Location = new System.Drawing.Point(510, 393);
+            this.button2.Location = new System.Drawing.Point(504, 393);
             this.button2.MouseBack = null;
             this.button2.Name = "button2";
             this.button2.NormlBack = null;
@@ -156,7 +156,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1024, 727);
+            this.ClientSize = new System.Drawing.Size(974, 610);
             this.ControlBox = false;
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnLogin);

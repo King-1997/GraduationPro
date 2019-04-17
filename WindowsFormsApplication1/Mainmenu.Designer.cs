@@ -44,19 +44,19 @@
             this.m_lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.m_lblTitle.Enabled = false;
             this.m_lblTitle.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold);
-            this.m_lblTitle.Location = new System.Drawing.Point(341, 74);
+            this.m_lblTitle.Location = new System.Drawing.Point(336, 74);
             this.m_lblTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.m_lblTitle.Name = "m_lblTitle";
             this.m_lblTitle.Size = new System.Drawing.Size(304, 53);
             this.m_lblTitle.TabIndex = 1;
-            this.m_lblTitle.Text = "南昌科勒学习系统";
+            this.m_lblTitle.Text = "员工学习管理系统";
             // 
             // p_lblCurPerson
             // 
             this.p_lblCurPerson.AutoSize = true;
             this.p_lblCurPerson.BackColor = System.Drawing.Color.Transparent;
             this.p_lblCurPerson.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_lblCurPerson.Location = new System.Drawing.Point(822, 124);
+            this.p_lblCurPerson.Location = new System.Drawing.Point(707, 157);
             this.p_lblCurPerson.Name = "p_lblCurPerson";
             this.p_lblCurPerson.Size = new System.Drawing.Size(32, 17);
             this.p_lblCurPerson.TabIndex = 5;
@@ -67,7 +67,7 @@
             this.p_lblWelcome.AutoSize = true;
             this.p_lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.p_lblWelcome.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_lblWelcome.Location = new System.Drawing.Point(763, 124);
+            this.p_lblWelcome.Location = new System.Drawing.Point(648, 157);
             this.p_lblWelcome.Name = "p_lblWelcome";
             this.p_lblWelcome.Size = new System.Drawing.Size(56, 17);
             this.p_lblWelcome.TabIndex = 4;
@@ -79,7 +79,7 @@
             this.p_btnQuit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnQuit.DownBack = null;
             this.p_btnQuit.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.p_btnQuit.Location = new System.Drawing.Point(860, 115);
+            this.p_btnQuit.Location = new System.Drawing.Point(757, 148);
             this.p_btnQuit.MouseBack = null;
             this.p_btnQuit.Name = "p_btnQuit";
             this.p_btnQuit.NormlBack = null;
@@ -132,6 +132,7 @@
             this.m_btnManage.TabIndex = 11;
             this.m_btnManage.Text = "管理中心";
             this.m_btnManage.UseVisualStyleBackColor = false;
+            this.m_btnManage.Visible = false;
             this.m_btnManage.Click += new System.EventHandler(this.m_btnManage_Click);
             // 
             // m_btnSign
@@ -155,7 +156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1024, 727);
+            this.ClientSize = new System.Drawing.Size(1024, 627);
             this.ControlBox = false;
             this.Controls.Add(this.m_btnSign);
             this.Controls.Add(this.m_btnManage);

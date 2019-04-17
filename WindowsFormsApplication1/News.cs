@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
             String handleTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "update SignRecord set sr_reason = '"+reason+"',sr_person1 = '"+User.userName+"',sr_result1 = '"+result+"',sr_handleTime1 = '"+ handleTime + "' where sr_id = "+sr_id+"";
+            String sql = "update SignRecord set sr_reason = '"+reason+"',sr_person1 = '"+ Model.User.userName+"',sr_result1 = '"+result+"',sr_handleTime1 = '"+ handleTime + "' where sr_id = "+sr_id+"";
             int flag = dc.ExecuteUpdate(sql);
             if(flag != 0)
             {
@@ -54,7 +54,7 @@ namespace WindowsFormsApplication1
                 DataSet ds1 = dc.ExecuteQuery(select_sql);
                 EmailSend es = new EmailSend();
                 String mailAddress = ds1.Tables["user"].Rows[0][0].ToString();
-                es.sendFeedBackEmail(User.userName);
+                es.sendFeedBackEmail(Model.User.userName);
                 N_btn_cancel_Click(sender,e);
             }
             else

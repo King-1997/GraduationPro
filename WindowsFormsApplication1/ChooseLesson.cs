@@ -35,15 +35,15 @@ namespace WindowsFormsApplication1
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
                 }
                 Console.WriteLine("查询语句：" + select_sql);
                 DataSet ds = dc.ExecuteQuery(select_sql);
@@ -183,7 +183,7 @@ namespace WindowsFormsApplication1
             CL_flpClasses.Controls.Clear();
 
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam from classes c ,[User] u where c.u_id = u.u_id and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + User.userName + "'))";
+            String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -265,7 +265,7 @@ namespace WindowsFormsApplication1
                     //查看课程信息
                     var btn_check = new Button { Text = "查看" };                   
                     btn_check.Width = 50;
-                    btn_check.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btn_check.Name = ds.Tables["user"].Rows[i][6].ToString();
                     btn_check.Click += new EventHandler(CheckClassesInfo);
 
                     CL_flpClasses.Controls.Add(rb);
@@ -303,22 +303,24 @@ namespace WindowsFormsApplication1
                 for (i = 0; i < classes.Count; i++)
                 {
                     DataBaseConnection dc = new DataBaseConnection();
-                    String select_sql = "select c_id ,c_recommendTime from Classes where c_name =N'" + classes[i] + "'";
+                    String select_sql = "select c.c_id ,c.c_recommendTime,c.c_minTime,c.c_maxTime from Classes c where c.c_name =N'" + classes[i] + "'";
                     DataSet ds = dc.ExecuteQuery(select_sql);
                     int c_id = (int)ds.Tables["user"].Rows[0][0];
                     int c_recommendTime = (int)ds.Tables["user"].Rows[0][1];
+                    int c_minTime = (int)ds.Tables["user"].Rows[0][2];
+                    int c_maxTime = (int)ds.Tables["user"].Rows[0][3];
                     Console.WriteLine("C_id为：" + c_id + "\n 推荐学时为：" + c_recommendTime);
                     //String selectUser_sql = "select u_id from [User] where u_name =N'" + User.userName + "'";
                     //DataSet ds2 = dc.ExecuteQuery(selectUser_sql);
                     //int u_id = (int)ds2.Tables["user"].Rows[0][0];
-                    Console.WriteLine("u_id为：" + User.userId);
-                    String insert_dc_sql = "insert into ClassesDestribute values(" + c_id + "," + User.userId + "," + c_recommendTime + ",N'" + User.userName + "')";
+                    Console.WriteLine("u_id为：" + Model.User.userId);
+                    String insert_dc_sql = "insert into ClassesDestribute values(" + c_id + "," + Model.User.userId + "," + c_recommendTime + ",N'" + Model.User.userName + "',"+ c_minTime + ","+ c_maxTime + ")";
                     dc.ExecuteUpdate(insert_dc_sql);
-                    String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + User.userName + "'";
+                    String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
                     DataSet ds3 = dc.ExecuteQuery(select_cd_id);
                     int cd_id = (int)ds3.Tables["user"].Rows[0][0];
                     Console.WriteLine("cd_id为：" + cd_id);
-                    String insert_uc_sql = "insert into UserClasses values (" + User.userId + "," + cd_id + ",0,0,2)";
+                    String insert_uc_sql = "insert into UserClasses values (" + Model.User.userId + "," + cd_id + ",0,0,2)";
                     dc.ExecuteUpdate(insert_uc_sql);                    
                 }
                 if (i == classes.Count)

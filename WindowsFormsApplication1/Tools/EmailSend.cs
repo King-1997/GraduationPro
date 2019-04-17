@@ -35,9 +35,9 @@ namespace WindowsFormsApplication1
             ////使用txt文件来读取发件人邮箱和授权码
             //client.Credentials = new NetworkCredential(str[0], str[1]); //qq邮箱  和 授权码
             MailMessage mmsg = new MailMessage(new MailAddress(/*str[0]/*使用txt文件操作时*/"1597595060@qq.com"), new MailAddress("mailaddress")); //发件人和收件人的邮箱地址
-            mmsg.Subject = name+"向您发送了一条"+ type +"申请";      //邮件主题
+            mmsg.Subject = name+"向您发送了一条请假申请，请及时处理！";      //邮件主题
             mmsg.SubjectEncoding = Encoding.UTF8;   //主题编码
-            mmsg.Body = name + "向您发送了一条" + type + "申请，请您进入签批系统个人中心进行处理。";         //邮件正文
+            mmsg.Body = name + "向您发送了一条请假申请，请假事由为：" + type + "申请，请您进入签批系统个人中心进行处理。";         //邮件正文
             mmsg.BodyEncoding = Encoding.UTF8;      //正文编码
             mmsg.IsBodyHtml = true;    //设置为HTML格式          
             mmsg.Priority = MailPriority.High;   //优先级         

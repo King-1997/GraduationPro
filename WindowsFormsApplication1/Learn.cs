@@ -19,7 +19,8 @@ namespace WindowsFormsApplication1
         private string c_ifExam = null;
         private int c_maxTime = 30;
         private int c_minTime = 20;
-
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public Learn()
         {
             InitializeComponent();
@@ -31,13 +32,13 @@ namespace WindowsFormsApplication1
             timer1.Interval = 1000;
             L_lblTime.Text = DateTime.Now.ToString("YYYY/MM/DD H24:mm:ss");
             //地址输入
-            DirectoryInfo theFolder = new DirectoryInfo(@"D:\BaiduNetdiskDownload");
+            DirectoryInfo theFolder = new DirectoryInfo(@"D:\01 SQL培训\2.0视频");
             scan(theFolder);
             //根据课程名字查出文件所在地址
             DataBaseConnection dc = new DataBaseConnection();
             String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime from Classes where c_id = " + c_id;
             DataSet ds = dc.ExecuteQuery(select_c_file);
-            //将文件所在地址赋值给全局变量c_file
+            //将文件路径赋值给全局变量c_file
             c_file = ds.Tables["user"].Rows[0][0].ToString();
             //将课程是否考试赋值给全局变量c_ifExam
             c_ifExam = ds.Tables["user"].Rows[0][1].ToString();
@@ -71,20 +72,23 @@ namespace WindowsFormsApplication1
         public static bool open = true;//记录打开页面的时间
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            if(open ==true)
+            if (open == true)
+            {
                 openingtime++;//计时：秒
-            if (learn == true)//如果当前学习状态为学习，则学习时间增加
+            }
+            else if (learn == true)//如果当前学习状态为学习，则学习时间增加
+            {
                 learningtime++;
-
+            }             
             //显示当前时间和打开时间
             lbl_timecount.Text = (openingtime / 60).ToString() + "分" + (openingtime % 60).ToString() + "秒";//显示已打开时间
             lbl_learnTime.Text = (learningtime / 60).ToString() + "分" + (learningtime % 60).ToString() + "秒";//显示已学时间
             DateTime dt = System.DateTime.Now;//获取当前时间
-            L_lblTime.Font = new Font("宋体", 12);  //设置label1显示字体
+            L_lblTime.Font = font;  //设置label1显示字体
             L_lblTime.Text = dt.ToString();//显示当前时间
 
             //判断学习状态
-            if (learningtime%30==0)//每隔一段时间进行弹窗确认学习状态
+            if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
             {
                 learningtime++;
                 learn = false;//未回应则设置为不在学习
@@ -99,7 +103,9 @@ namespace WindowsFormsApplication1
             {
                 timer1.Stop();
                 MessageBox.Show("您已超过学习时间,请重新学习");
-                L_btnReturn_Click(sender,e);
+                openingtime = 0;
+                learningtime = 0;
+                //L_btnReturn_Click(sender, e);
             }
 
         }
@@ -108,16 +114,20 @@ namespace WindowsFormsApplication1
             openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*.pdf";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
-                //string fileExtension = Path.GetExtension(openFileDialog1.FileName);//即扩展名
-                //if(fileExtension==".pdf")//打开pdf文件
-                //{
+                //System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
+                string fileExtension = Path.GetExtension(openFileDialog1.FileName);//文件路径及扩展名
+                if (fileExtension == ".pdf")//打开pdf文件
+                {
 
-                //}
-                //else//打开视频文件
-                //{
-                //    axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
-                //}
+                }
+                else if(fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
+                    fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
+                {
+                    Video video = new Video(openFileDialog1.FileName);
+                    video.Owner = this;
+                    video.ShowDialog();
+                    //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
+                }
             }
         }
         //遍历文件夹    
@@ -137,7 +147,7 @@ namespace WindowsFormsApplication1
                     string lblname = file.Name;
                     var lbl = new Label {Text = lblname};
                     lbl.AutoSize = true;
-                    lbl.Font = new Font(lbl.Font.FontFamily,15,lbl.Font.Style);
+                    lbl.Font = font;
                     lbl.Anchor = AnchorStyles.None;
                     var button = new Button {Name=lblname,Text = "打开" };
                     button.Click += new EventHandler(Filesopen);
@@ -153,7 +163,7 @@ namespace WindowsFormsApplication1
         private void Filesopen(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            string fileroad = "D:\\BaiduNetdiskDownload\\" + button.Name;//文件路径
+            string fileroad = "D:\\01 SQL培训\\2.0视频\\第1单元_Select" + button.Name;//文件路径
             string fileExtension = Path.GetExtension(fileroad);//即扩展名 
             if(fileExtension==".pdf")//打开pdf文件
             {

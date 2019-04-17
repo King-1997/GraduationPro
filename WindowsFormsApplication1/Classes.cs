@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
+
         public Classes()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "推荐学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id and u.u_name =N'" + User.userName + "' order by c.c_time desc";
+            String sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id and u.u_name =N'" + Model.User.userName + "' order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
             {
@@ -102,14 +103,15 @@ namespace WindowsFormsApplication1
         }
         private void Classes_Load(object sender, EventArgs e)
         {
-            this.p_lblCurPerson.Text = User.userName;//给界面的用户名字段赋值
-            //权限控制：隐藏上传按钮loadClasses
-            if (!User.userType.Equals("修理工") || !User.userType.Equals("电镀工"))
+            this.p_lblCurPerson.Text = Model.User.userName;//给界面的用户名字段赋值
+            
+            if (Model.User.userType.Equals("主管") || Model.User.userType.Equals("系统管理员"))
             {
+            //权限控制：显示上传按钮loadClasses
                 btn_loadClasses.Visible = true;
-            ////权限控制：隐藏我上传的课程按钮c_btnMine
+            //权限控制：显示我上传的课程按钮c_btnMine
                 c_btnMine.Visible = true;
-            ////权限控制：隐藏课程安排按钮btn_lessonArrangement
+            //权限控制：显示课程安排按钮btn_lessonArrangement
                 btn_lessonArrangement.Visible = true;
             }
             c_btnAll_Click(sender,e);
@@ -134,7 +136,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc; ";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + Model.User.userName+ "') order by c.c_time desc; ";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {
@@ -191,7 +193,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 2) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + User.userName+ "') order by c.c_time desc;";
+            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 2) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + Model.User.userName+ "') order by c.c_time desc;";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -256,7 +258,7 @@ namespace WindowsFormsApplication1
                 int.TryParse(button.Name, out c_id);
                 Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id in (select u_id from [User] where u_name =N'" + User.userName+ "')";
+                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id in (select u_id from [User] where u_name =N'" + Model.User.userName+ "')";
                 DataSet ds = dc.ExecuteQuery(select_cd_id);
                 int cd_id = (int)ds.Tables["user"].Rows[0][0];
 
