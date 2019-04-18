@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Learn));
             this.L_lblTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.L_lblClassesName = new System.Windows.Forms.Label();
@@ -42,6 +43,9 @@
             this.L_btnExam = new CCWin.SkinControl.SkinButton();
             this.L_btnReturn = new CCWin.SkinControl.SkinButton();
             this.fLP_filesPreview = new System.Windows.Forms.FlowLayoutPanel();
+            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
+            this.fLP_filesPreview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
             // L_lblTime
@@ -52,7 +56,7 @@
             this.L_lblTime.Name = "L_lblTime";
             this.L_lblTime.Size = new System.Drawing.Size(174, 32);
             this.L_lblTime.TabIndex = 1;
-            this.L_lblTime.Text = "yyyy/MM/dd HH:mm:ss";
+            this.L_lblTime.Text = "YYYY/MM/dd HH:mm:ss";
             // 
             // timer1
             // 
@@ -175,11 +179,21 @@
             // fLP_filesPreview
             // 
             this.fLP_filesPreview.AutoScroll = true;
+            this.fLP_filesPreview.Controls.Add(this.axAcroPDF1);
             this.fLP_filesPreview.Location = new System.Drawing.Point(80, 168);
             this.fLP_filesPreview.Margin = new System.Windows.Forms.Padding(5);
             this.fLP_filesPreview.Name = "fLP_filesPreview";
             this.fLP_filesPreview.Size = new System.Drawing.Size(853, 418);
             this.fLP_filesPreview.TabIndex = 10;
+            // 
+            // axAcroPDF1
+            // 
+            this.axAcroPDF1.Enabled = true;
+            this.axAcroPDF1.Location = new System.Drawing.Point(3, 3);
+            this.axAcroPDF1.Name = "axAcroPDF1";
+            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
+            this.axAcroPDF1.Size = new System.Drawing.Size(192, 192);
+            this.axAcroPDF1.TabIndex = 0;
             // 
             // Learn
             // 
@@ -203,6 +217,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "学习中心";
             this.Load += new System.EventHandler(this.Learn_Load);
+            this.fLP_filesPreview.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +238,6 @@
         private CCWin.SkinControl.SkinButton L_btnExam;
         private CCWin.SkinControl.SkinButton L_btnReturn;
         private System.Windows.Forms.FlowLayoutPanel fLP_filesPreview;
+        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
     }
 }
