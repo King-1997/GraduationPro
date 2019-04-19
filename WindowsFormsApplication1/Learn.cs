@@ -118,7 +118,7 @@ namespace WindowsFormsApplication1
                 string fileExtension = Path.GetExtension(openFileDialog1.FileName);//文件路径及扩展名
                 if (fileExtension == ".pdf")//打开pdf文件
                 {
-                    this.axAcroPDF1.LoadFile(fileExtension);
+                    //this.axAcroPDF1.LoadFile(fileExtension);
                 }
                 else if(fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
                     fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
