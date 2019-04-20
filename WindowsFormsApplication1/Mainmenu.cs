@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
         private void Main_Load(object sender, EventArgs e)
         {
             this.p_lblCurPerson.Text = Model.User.userName;
-            if (Model.User.userType.Equals("主管") || Model.User.userType.Equals("系统管理员"))
+            if (!Model.User.userType.Equals("员工"))
             {
                 this.m_btnManage.Visible = true;
 

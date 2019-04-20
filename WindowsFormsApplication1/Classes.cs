@@ -65,6 +65,7 @@ namespace WindowsFormsApplication1
                 lblMineClasses_recommendTime.Width = 80;
                 lblMineClasses_recommendTime.Font = font;
                 lblMineClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                //编辑按钮，点击之后跳转到课程信息编辑页面
                 var btnCom = new Button { Text = "编辑" };
                 btnCom.Width = 50;
                 btnCom.Name = ds.Tables["user"].Rows[i][4].ToString();
@@ -105,7 +106,7 @@ namespace WindowsFormsApplication1
         {
             this.p_lblCurPerson.Text = Model.User.userName;//给界面的用户名字段赋值
             
-            if (Model.User.userType.Equals("主管") || Model.User.userType.Equals("系统管理员"))
+            if (!Model.User.userType.Equals("员工"))
             {
             //权限控制：显示上传按钮loadClasses
                 btn_loadClasses.Visible = true;

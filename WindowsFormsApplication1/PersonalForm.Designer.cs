@@ -40,9 +40,8 @@
             this.p_lblGroup = new System.Windows.Forms.Label();
             this.p_lbl_Credit = new System.Windows.Forms.Label();
             this.p_lblCredit = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.p_lblPhone = new System.Windows.Forms.Label();
+            this.p_lbl_MyClasses = new System.Windows.Forms.Label();
+            this.p_lbl_Phone = new System.Windows.Forms.Label();
             this.p_flpClasses = new System.Windows.Forms.FlowLayoutPanel();
             this.p_btnQuit = new CCWin.SkinControl.SkinButton();
             this.Btn_classfinished = new CCWin.SkinControl.SkinButton();
@@ -51,8 +50,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Btn_ApplyUndisposed = new CCWin.SkinControl.SkinButton();
             this.Btn_MyApply = new CCWin.SkinControl.SkinButton();
-            this.label4 = new System.Windows.Forms.Label();
+            this.p_lbl_EntryTime = new System.Windows.Forms.Label();
             this.p_lblEntryTime = new System.Windows.Forms.Label();
+            this.p_btnEdit = new CCWin.SkinControl.SkinButton();
+            this.p_lbl_Email = new System.Windows.Forms.Label();
+            this.p_txtBxEmail = new System.Windows.Forms.TextBox();
+            this.p_txtBxPhone = new System.Windows.Forms.TextBox();
+            this.p_btnSubmit = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -132,7 +136,7 @@
             this.p_lbl_Group.Name = "p_lbl_Group";
             this.p_lbl_Group.Size = new System.Drawing.Size(68, 17);
             this.p_lbl_Group.TabIndex = 9;
-            this.p_lbl_Group.Text = "所在分组：";
+            this.p_lbl_Group.Text = "所在部门：";
             // 
             // p_lblGroup
             // 
@@ -164,42 +168,32 @@
             this.p_lblCredit.TabIndex = 12;
             this.p_lblCredit.Text = "63";
             // 
-            // label8
+            // p_lbl_MyClasses
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label8.Location = new System.Drawing.Point(96, 233);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 17);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "我的课程：";
+            this.p_lbl_MyClasses.AutoSize = true;
+            this.p_lbl_MyClasses.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_MyClasses.Location = new System.Drawing.Point(96, 233);
+            this.p_lbl_MyClasses.Name = "p_lbl_MyClasses";
+            this.p_lbl_MyClasses.Size = new System.Drawing.Size(68, 17);
+            this.p_lbl_MyClasses.TabIndex = 13;
+            this.p_lbl_MyClasses.Text = "我的课程：";
             // 
-            // label9
+            // p_lbl_Phone
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label9.Location = new System.Drawing.Point(96, 269);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 17);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "电话号码：";
-            // 
-            // p_lblPhone
-            // 
-            this.p_lblPhone.AutoSize = true;
-            this.p_lblPhone.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_lblPhone.Location = new System.Drawing.Point(179, 269);
-            this.p_lblPhone.Name = "p_lblPhone";
-            this.p_lblPhone.Size = new System.Drawing.Size(85, 17);
-            this.p_lblPhone.TabIndex = 17;
-            this.p_lblPhone.Text = "15686323256";
+            this.p_lbl_Phone.AutoSize = true;
+            this.p_lbl_Phone.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_Phone.Location = new System.Drawing.Point(96, 270);
+            this.p_lbl_Phone.Name = "p_lbl_Phone";
+            this.p_lbl_Phone.Size = new System.Drawing.Size(68, 17);
+            this.p_lbl_Phone.TabIndex = 16;
+            this.p_lbl_Phone.Text = "电话号码：";
             // 
             // p_flpClasses
             // 
             this.p_flpClasses.AutoScroll = true;
-            this.p_flpClasses.Location = new System.Drawing.Point(99, 335);
+            this.p_flpClasses.Location = new System.Drawing.Point(99, 373);
             this.p_flpClasses.Name = "p_flpClasses";
-            this.p_flpClasses.Size = new System.Drawing.Size(572, 189);
+            this.p_flpClasses.Size = new System.Drawing.Size(572, 154);
             this.p_flpClasses.TabIndex = 18;
             // 
             // p_btnQuit
@@ -252,11 +246,11 @@
             this.p_btnHome.BackColor = System.Drawing.Color.Transparent;
             this.p_btnHome.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnHome.DownBack = null;
-            this.p_btnHome.Location = new System.Drawing.Point(621, 533);
+            this.p_btnHome.Location = new System.Drawing.Point(653, 533);
             this.p_btnHome.MouseBack = null;
             this.p_btnHome.Name = "p_btnHome";
             this.p_btnHome.NormlBack = null;
-            this.p_btnHome.Size = new System.Drawing.Size(91, 37);
+            this.p_btnHome.Size = new System.Drawing.Size(73, 37);
             this.p_btnHome.TabIndex = 22;
             this.p_btnHome.Text = "返回主页";
             this.p_btnHome.UseVisualStyleBackColor = false;
@@ -266,7 +260,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label2.Location = new System.Drawing.Point(96, 304);
+            this.label2.Location = new System.Drawing.Point(96, 339);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 17);
             this.label2.TabIndex = 23;
@@ -277,7 +271,7 @@
             this.Btn_ApplyUndisposed.BackColor = System.Drawing.Color.Transparent;
             this.Btn_ApplyUndisposed.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Btn_ApplyUndisposed.DownBack = null;
-            this.Btn_ApplyUndisposed.Location = new System.Drawing.Point(182, 294);
+            this.Btn_ApplyUndisposed.Location = new System.Drawing.Point(182, 329);
             this.Btn_ApplyUndisposed.MouseBack = null;
             this.Btn_ApplyUndisposed.Name = "Btn_ApplyUndisposed";
             this.Btn_ApplyUndisposed.NormlBack = null;
@@ -292,7 +286,7 @@
             this.Btn_MyApply.BackColor = System.Drawing.Color.Transparent;
             this.Btn_MyApply.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Btn_MyApply.DownBack = null;
-            this.Btn_MyApply.Location = new System.Drawing.Point(274, 294);
+            this.Btn_MyApply.Location = new System.Drawing.Point(274, 329);
             this.Btn_MyApply.MouseBack = null;
             this.Btn_MyApply.Name = "Btn_MyApply";
             this.Btn_MyApply.NormlBack = null;
@@ -302,15 +296,15 @@
             this.Btn_MyApply.UseVisualStyleBackColor = false;
             this.Btn_MyApply.Click += new System.EventHandler(this.Btn_MyApply_Click);
             // 
-            // label4
+            // p_lbl_EntryTime
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label4.Location = new System.Drawing.Point(96, 204);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "入职时间：";
+            this.p_lbl_EntryTime.AutoSize = true;
+            this.p_lbl_EntryTime.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_EntryTime.Location = new System.Drawing.Point(96, 204);
+            this.p_lbl_EntryTime.Name = "p_lbl_EntryTime";
+            this.p_lbl_EntryTime.Size = new System.Drawing.Size(68, 17);
+            this.p_lbl_EntryTime.TabIndex = 26;
+            this.p_lbl_EntryTime.Text = "入职时间：";
             // 
             // p_lblEntryTime
             // 
@@ -322,6 +316,68 @@
             this.p_lblEntryTime.TabIndex = 27;
             this.p_lblEntryTime.Text = "2342";
             // 
+            // p_btnEdit
+            // 
+            this.p_btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.p_btnEdit.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.p_btnEdit.DownBack = null;
+            this.p_btnEdit.Location = new System.Drawing.Point(577, 533);
+            this.p_btnEdit.MouseBack = null;
+            this.p_btnEdit.Name = "p_btnEdit";
+            this.p_btnEdit.NormlBack = null;
+            this.p_btnEdit.Size = new System.Drawing.Size(70, 37);
+            this.p_btnEdit.TabIndex = 28;
+            this.p_btnEdit.Text = "编辑";
+            this.p_btnEdit.UseVisualStyleBackColor = false;
+            this.p_btnEdit.Click += new System.EventHandler(this.p_btnEdit_Click);
+            // 
+            // p_lbl_Email
+            // 
+            this.p_lbl_Email.AutoSize = true;
+            this.p_lbl_Email.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_Email.Location = new System.Drawing.Point(96, 302);
+            this.p_lbl_Email.Name = "p_lbl_Email";
+            this.p_lbl_Email.Size = new System.Drawing.Size(44, 17);
+            this.p_lbl_Email.TabIndex = 29;
+            this.p_lbl_Email.Text = "邮箱：";
+            // 
+            // p_txtBxEmail
+            // 
+            this.p_txtBxEmail.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.p_txtBxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.p_txtBxEmail.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p_txtBxEmail.Location = new System.Drawing.Point(182, 298);
+            this.p_txtBxEmail.Name = "p_txtBxEmail";
+            this.p_txtBxEmail.ReadOnly = true;
+            this.p_txtBxEmail.Size = new System.Drawing.Size(154, 22);
+            this.p_txtBxEmail.TabIndex = 30;
+            // 
+            // p_txtBxPhone
+            // 
+            this.p_txtBxPhone.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.p_txtBxPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.p_txtBxPhone.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p_txtBxPhone.Location = new System.Drawing.Point(182, 266);
+            this.p_txtBxPhone.Name = "p_txtBxPhone";
+            this.p_txtBxPhone.ReadOnly = true;
+            this.p_txtBxPhone.Size = new System.Drawing.Size(136, 22);
+            this.p_txtBxPhone.TabIndex = 31;
+            // 
+            // p_btnSubmit
+            // 
+            this.p_btnSubmit.BackColor = System.Drawing.Color.Transparent;
+            this.p_btnSubmit.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.p_btnSubmit.DownBack = null;
+            this.p_btnSubmit.Location = new System.Drawing.Point(501, 533);
+            this.p_btnSubmit.MouseBack = null;
+            this.p_btnSubmit.Name = "p_btnSubmit";
+            this.p_btnSubmit.NormlBack = null;
+            this.p_btnSubmit.Size = new System.Drawing.Size(70, 37);
+            this.p_btnSubmit.TabIndex = 32;
+            this.p_btnSubmit.Text = "确定";
+            this.p_btnSubmit.UseVisualStyleBackColor = false;
+            this.p_btnSubmit.Click += new System.EventHandler(this.p_btnSubmit_Click);
+            // 
             // PersonalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -330,8 +386,13 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(754, 577);
             this.ControlBox = false;
+            this.Controls.Add(this.p_btnSubmit);
+            this.Controls.Add(this.p_txtBxPhone);
+            this.Controls.Add(this.p_btnEdit);
+            this.Controls.Add(this.p_txtBxEmail);
+            this.Controls.Add(this.p_lbl_Email);
             this.Controls.Add(this.p_lblEntryTime);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.p_lbl_EntryTime);
             this.Controls.Add(this.Btn_MyApply);
             this.Controls.Add(this.Btn_ApplyUndisposed);
             this.Controls.Add(this.label2);
@@ -340,9 +401,8 @@
             this.Controls.Add(this.Btn_classfinished);
             this.Controls.Add(this.p_btnQuit);
             this.Controls.Add(this.p_flpClasses);
-            this.Controls.Add(this.p_lblPhone);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.p_lbl_Phone);
+            this.Controls.Add(this.p_lbl_MyClasses);
             this.Controls.Add(this.p_lblCredit);
             this.Controls.Add(this.p_lbl_Credit);
             this.Controls.Add(this.p_lblGroup);
@@ -377,9 +437,8 @@
         private System.Windows.Forms.Label p_lblGroup;
         private System.Windows.Forms.Label p_lbl_Credit;
         private System.Windows.Forms.Label p_lblCredit;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label p_lblPhone;
+        private System.Windows.Forms.Label p_lbl_MyClasses;
+        private System.Windows.Forms.Label p_lbl_Phone;
         private System.Windows.Forms.FlowLayoutPanel p_flpClasses;
         private CCWin.SkinControl.SkinButton p_btnQuit;
         private CCWin.SkinControl.SkinButton Btn_classfinished;
@@ -388,7 +447,12 @@
         private System.Windows.Forms.Label label2;
         private CCWin.SkinControl.SkinButton Btn_ApplyUndisposed;
         private CCWin.SkinControl.SkinButton Btn_MyApply;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label p_lbl_EntryTime;
         private System.Windows.Forms.Label p_lblEntryTime;
+        private CCWin.SkinControl.SkinButton p_btnEdit;
+        private System.Windows.Forms.Label p_lbl_Email;
+        private System.Windows.Forms.TextBox p_txtBxEmail;
+        private System.Windows.Forms.TextBox p_txtBxPhone;
+        private CCWin.SkinControl.SkinButton p_btnSubmit;
     }
 }

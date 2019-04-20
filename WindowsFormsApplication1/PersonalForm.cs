@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
 
         private void PersonalForm_Load(object sender, EventArgs e)
         {
-            if (!Model.User.userType.Equals("主管") && !Model.User.userType.Equals("系统管理员") && !Model.User.userType.Equals("管理员"))
+            if (Model.User.userType.Equals("员工"))
             {
                 Btn_ApplyUndisposed.Enabled = false;
             }else
@@ -32,11 +32,13 @@ namespace WindowsFormsApplication1
             }
             this.p_lblCurPerson.Text = Model.User.userName;
             this.p_lblName.Text = Model.User.userName;
+            this.p_txtBxPhone.ReadOnly = true;
+            this.p_txtBxEmail.ReadOnly = true;
 
             DataBaseConnection dc = new DataBaseConnection();
             try
             {
-                String sql = "select u.u_account,g.g_group,u.u_credit,convert(varchar(100),u.u_entryTime,120) as u_entryTime,u.u_phone from [user] u,[group] g where u.u_id = " + Model.User.userId + " and u.g_id = g.g_id";
+                String sql = "select u.u_account,g.g_group,u.u_credit,convert(varchar(100),u.u_entryTime,120) as u_entryTime,u.u_phone,u.u_email from [user] u,[group] g where u.u_id = " + Model.User.userId + " and u.g_id = g.g_id";
                 DataSet ds = dc.ExecuteQuery(sql);
                 if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
                 {
@@ -44,7 +46,10 @@ namespace WindowsFormsApplication1
                     this.p_lblGroup.Text = ds.Tables["user"].Rows[0][1].ToString();
                     this.p_lblCredit.Text = ds.Tables["user"].Rows[0][2].ToString();
                     this.p_lblEntryTime.Text = ds.Tables["user"].Rows[0][3].ToString();
-                    this.p_lblPhone.Text = ds.Tables["user"].Rows[0][4].ToString();
+                    this.p_txtBxPhone.Text = ds.Tables["user"].Rows[0][4].ToString();
+                    p_txtBxPhone.Font = font;
+                    this.p_txtBxEmail.Text = ds.Tables["user"].Rows[0][5].ToString();
+                    p_txtBxEmail.Font = font;
                 }
             }
             catch (Exception ex)
@@ -318,23 +323,23 @@ namespace WindowsFormsApplication1
 
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
-                    //申请类型标签
+                    //申请类型
                     var name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     name.Width = 80;
                     name.Font = font;
-                    //申请时间标签
+                    //申请时间
                     var datetime = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     datetime.Width = 150;
                     datetime.Font = font;
-                    //处理人标签
+                    //处理人
                     var handleName = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     handleName.Width = 60;
                     handleName.Font = font;
-                    //处理结果标签
+                    //处理结果
                     var result = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     result.Width = 70;
                     result.Font = font;
-                    //处理时间标签
+                    //处理时间
                     var handletime = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     handletime.Width = 150;
                     handletime.Font = font;
@@ -356,6 +361,33 @@ namespace WindowsFormsApplication1
             else
             {
                 MessageBox.Show("您当前还没有申请！");
+            }
+        }
+
+        private void p_btnEdit_Click(object sender, EventArgs e)
+        {
+            this.p_txtBxPhone.ReadOnly = false;
+            this.p_txtBxEmail.ReadOnly = false;
+        }
+
+        private void p_btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("您确定要修改吗", "判断", MessageBoxButtons.OKCancel,
+                       MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                string phone_number = this.p_txtBxPhone.Text;
+                string email = this.p_txtBxEmail.Text;
+                DataBaseConnection dc = new DataBaseConnection();
+                string update_sql = "update [User] set u_phone = '" + phone_number + "',u_email = '" + email + "' where u_id = "+Model.User.userId+"";
+                int flag = dc.ExecuteUpdate(update_sql);
+                if (flag != 0)
+                {
+                    MessageBox.Show("修改个人信息成功！");
+                    PersonalForm_Load(sender,e);
+                }
+            }else
+            {
+                MessageBox.Show("修改个人信息失败，请重试！");
             }
         }
     }

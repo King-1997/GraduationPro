@@ -32,8 +32,8 @@ namespace WindowsFormsApplication1
             timer1.Interval = 1000;
             L_lblTime.Text = DateTime.Now.ToString("YYYY/MM/DD H24:mm:ss");
             //地址输入
-            DirectoryInfo theFolder = new DirectoryInfo(@"D:\01 SQL培训\2.0视频");
-            scan(theFolder);
+            //DirectoryInfo theFolder = new DirectoryInfo(@"D:\01 SQL培训\2.0视频\第1单元_Select");
+            //scan(theFolder);
             //根据课程名字查出文件所在地址
             DataBaseConnection dc = new DataBaseConnection();
             String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime from Classes where c_id = " + c_id;
@@ -88,30 +88,31 @@ namespace WindowsFormsApplication1
             L_lblTime.Text = dt.ToString();//显示当前时间
 
             //判断学习状态
-            if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
-            {
-                learningtime++;
-                learn = false;//未回应则设置为不在学习
-                lbl_learningState.Text = "不在学习";
-                MessageBox.Show("请确认您当前的学习状况！");
-                learn = true;//回应成功修改成正在学习
-                lbl_learningState.Text = "正在学习";
-            }
-            if (learningtime > c_minTime)
-                L_btnExam.Enabled = true;
-            if (openingtime > c_maxTime)
-            {
-                timer1.Stop();
-                MessageBox.Show("您已超过学习时间,请重新学习");
-                openingtime = 0;
-                learningtime = 0;
-                //L_btnReturn_Click(sender, e);
-            }
+            //if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
+            //{
+            //    learningtime++;
+            //    learn = false;//未回应则设置为不在学习
+            //    lbl_learningState.Text = "不在学习";
+            //    MessageBox.Show("请确认您当前的学习状况！");
+            //    learn = true;//回应成功修改成正在学习
+            //    lbl_learningState.Text = "正在学习";
+            //}
+            //if (learningtime > c_minTime)
+            //    L_btnExam.Enabled = true;
+            //if (openingtime > c_maxTime)
+            //{
+            //    timer1.Stop();
+            //    MessageBox.Show("您已超过学习时间,请重新学习");
+            //    openingtime = 0;
+            //    learningtime = 0;
+            //    //L_btnReturn_Click(sender, e);
+            //}
 
         }
         private void btn_preview_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*.pdf";
+            //  c_file  使用数据库中存储的文件路径
+            openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
