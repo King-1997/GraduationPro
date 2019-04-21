@@ -186,7 +186,7 @@
             this.lc_txtBxFileName.Location = new System.Drawing.Point(330, 269);
             this.lc_txtBxFileName.Name = "lc_txtBxFileName";
             this.lc_txtBxFileName.ReadOnly = true;
-            this.lc_txtBxFileName.Size = new System.Drawing.Size(352, 22);
+            this.lc_txtBxFileName.Size = new System.Drawing.Size(317, 22);
             this.lc_txtBxFileName.TabIndex = 26;
             // 
             // lbl_classIfExam

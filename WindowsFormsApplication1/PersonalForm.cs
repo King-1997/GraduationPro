@@ -275,7 +275,7 @@ namespace WindowsFormsApplication1
 
         private void Btn_MyApply_Click(object sender, EventArgs e)
         {
-            String sql = "select sr_type,sr_time,sr_person1,sr_result1,sr_handleTime1 from SignRecord where u_id  = " + Model.User.userId;
+            String sql = "select sr_type,sr_time,isnull(sr_person1,'无'),isnull(sr_result1,'无'),isnull(convert(varchar(100),sr_handleTime1,120),'无') from SignRecord where u_id  = " + Model.User.userId;
             displayMyApplication(sql);
         }
 
