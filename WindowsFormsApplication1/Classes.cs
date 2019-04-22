@@ -113,11 +113,12 @@ namespace WindowsFormsApplication1
             //权限控制：显示我上传的课程按钮c_btnMine
                 c_btnMine.Visible = true;
             //权限控制：显示课程安排按钮btn_lessonArrangement
+                btn_CreatePlan.Visible = true;
+            //权限控制：显示课程安排按钮btn_lessonArrangement
                 btn_PlanArrangement.Visible = true;
+               
             }
             c_btnAll_Click(sender,e);
-
-
         }
                 
 
@@ -358,6 +359,15 @@ namespace WindowsFormsApplication1
             lessonArrangement.Owner = this;
             this.Hide();
             lessonArrangement.Show();
+        }
+
+        private void btn_CreatePlan_Click(object sender, EventArgs e)
+        {
+            //给组员安排课程，打开课程安排页面
+            CreatePlan createPlan = new CreatePlan();
+            createPlan.Owner = this;
+            this.Hide();
+            createPlan.Show();
         }
     }
 }

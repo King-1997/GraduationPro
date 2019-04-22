@@ -239,12 +239,12 @@ namespace WindowsFormsApplication1
         {
             if (MessageBox.Show("您确定要删除吗", "判断", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.OK)
-            { 
-                //用户选择确认删除的操作                
+            {
+                //用户选择确认删除的操作
                 DeleteWorks();
                 PeopleShow();
             }
-        } 
+        }
 
         private void DeleteLessons()
         {

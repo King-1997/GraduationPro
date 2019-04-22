@@ -42,12 +42,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.label1.Location = new System.Drawing.Point(317, 41);
+            this.label1.Location = new System.Drawing.Point(304, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 35);
+            this.label1.Size = new System.Drawing.Size(177, 35);
             this.label1.TabIndex = 2;
-            this.label1.Text = "课程安排";
+            this.label1.Text = "学习计划安排";
             // 
             // fLP_lessonesAdd
             // 
@@ -75,13 +75,13 @@
             this.btn_addLesson.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_addLesson.DownBack = null;
             this.btn_addLesson.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_addLesson.Location = new System.Drawing.Point(33, 153);
+            this.btn_addLesson.Location = new System.Drawing.Point(18, 153);
             this.btn_addLesson.MouseBack = null;
             this.btn_addLesson.Name = "btn_addLesson";
             this.btn_addLesson.NormlBack = null;
-            this.btn_addLesson.Size = new System.Drawing.Size(86, 50);
+            this.btn_addLesson.Size = new System.Drawing.Size(105, 50);
             this.btn_addLesson.TabIndex = 7;
-            this.btn_addLesson.Text = "添加课程";
+            this.btn_addLesson.Text = "添加学习计划";
             this.btn_addLesson.UseVisualStyleBackColor = false;
             this.btn_addLesson.Click += new System.EventHandler(this.btn_addLesson_Click);
             // 
@@ -91,11 +91,11 @@
             this.btn_peopleAdd.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_peopleAdd.DownBack = null;
             this.btn_peopleAdd.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_peopleAdd.Location = new System.Drawing.Point(33, 365);
+            this.btn_peopleAdd.Location = new System.Drawing.Point(18, 365);
             this.btn_peopleAdd.MouseBack = null;
             this.btn_peopleAdd.Name = "btn_peopleAdd";
             this.btn_peopleAdd.NormlBack = null;
-            this.btn_peopleAdd.Size = new System.Drawing.Size(86, 50);
+            this.btn_peopleAdd.Size = new System.Drawing.Size(105, 50);
             this.btn_peopleAdd.TabIndex = 8;
             this.btn_peopleAdd.Text = "添加员工";
             this.btn_peopleAdd.UseVisualStyleBackColor = false;

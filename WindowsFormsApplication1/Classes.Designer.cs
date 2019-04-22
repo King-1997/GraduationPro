@@ -280,6 +280,7 @@
             this.btn_CreatePlan.Text = "制定学习计划";
             this.btn_CreatePlan.UseVisualStyleBackColor = false;
             this.btn_CreatePlan.Visible = false;
+            this.btn_CreatePlan.Click += new System.EventHandler(this.btn_CreatePlan_Click);
             // 
             // Classes
             // 
