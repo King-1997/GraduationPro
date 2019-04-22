@@ -207,7 +207,7 @@ namespace WindowsFormsApplication1
             }
             if (classes.Count > 0)
             {
-                int i = 0;
+                int i = 0,flag1 = 0,flag2 = 0;
                 for (i = 0; i < classes.Count; i++)
                 {
                     DataBaseConnection dc = new DataBaseConnection();
@@ -217,21 +217,37 @@ namespace WindowsFormsApplication1
                     int c_recommendTime = (int)ds.Tables["user"].Rows[0][1];
                     int c_minTime = (int)ds.Tables["user"].Rows[0][2];
                     int c_maxTime = (int)ds.Tables["user"].Rows[0][3];
-                    Console.WriteLine("C_id为：" + c_id + "\n 推荐学时为：" + c_recommendTime);
-                    //String selectUser_sql = "select u_id from [User] where u_name =N'" + User.userName + "'";
-                    //DataSet ds2 = dc.ExecuteQuery(selectUser_sql);
-                    //int u_id = (int)ds2.Tables["user"].Rows[0][0];
-                    Console.WriteLine("u_id为：" + Model.User.userId);
-                    String insert_dc_sql = "insert into ClassesDestribute values(" + c_id + "," + Model.User.userId + "," + c_recommendTime + ",N'" + Model.User.userName + "',"+ c_minTime + ","+ c_maxTime + ")";
-                    dc.ExecuteUpdate(insert_dc_sql);
-                    String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
-                    DataSet ds3 = dc.ExecuteQuery(select_cd_id);
-                    int cd_id = (int)ds3.Tables["user"].Rows[0][0];
-                    Console.WriteLine("cd_id为：" + cd_id);
-                    String insert_uc_sql = "insert into UserClasses values (" + Model.User.userId + "," + cd_id + ",0,0,2)";
-                    dc.ExecuteUpdate(insert_uc_sql);                    
+                    Console.WriteLine("C_id为：" + c_id + "\n推荐学时为：" + c_recommendTime);
+
+                    String select_dc_sql = "select count(1) from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
+                    DataSet ds1 = dc.ExecuteQuery(select_dc_sql);
+                    int count = (int)ds1.Tables["user"].Rows[0][0];
+                    //Console.WriteLine("cd_id为：" + cd_id);
+                    if (count == 0)
+                    {
+                        //使用序列查询出cd_id的下一个值
+                        String select_cd_id = "select next value for ClassesDestribute_s";
+                        DataSet ds2 = dc.ExecuteQuery(select_cd_id);
+                        int cd_id = 0;
+                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(),out cd_id);
+                        //执行insert语句
+                        String insert_dc_sql = "insert into ClassesDestribute values("+cd_id+"," + c_id + "," + Model.User.userId + "," + c_recommendTime + ",N'" + Model.User.userName + "'," + c_minTime + "," + c_maxTime + ")";
+                        flag1 = dc.ExecuteUpdate(insert_dc_sql);                       
+                        String insert_uc_sql = "insert into UserClasses values (next value for UserClasses_s," + Model.User.userId + "," + cd_id + ",0,0,2)";
+                        flag2 = dc.ExecuteUpdate(insert_uc_sql);
+                    }else if(count == 1)
+                    {
+                        String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
+                        DataSet ds3 = dc.ExecuteQuery(select_cd_id);
+                        int cd_id = (int)ds3.Tables["user"].Rows[0][0];
+                        String update_dc_sql = "update ClassesDestribute set c_id = " + c_id + ",u_id = " + Model.User.userId + ",cd_time = " + c_recommendTime + ",cd_name = N'" + Model.User.userName + "',cd_minTime = " + c_minTime + ",cd_maxTime = " + c_maxTime + " where cd_id = "+cd_id;
+                        dc.ExecuteUpdate(update_dc_sql);
+                        String update_uc_sql = "update UserClasses set u_id = " + Model.User.userId + ",uc_status = 0,uc_curTime = 0,uc_property = 2 where cd_id = "+cd_id+"";
+                        dc.ExecuteUpdate(update_uc_sql);
+                    }
+                                       
                 }
-                if (i == classes.Count)
+                if (flag1 == 1 && flag2 == 1 && i == classes.Count)
                 {
                     MessageBox.Show("选课成功！");
                     this.Owner.Show();

@@ -380,7 +380,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             String usertype,usergroup,u_account,u_password,u_name,u_sex,u_idNum,u_phone;
             DateTime u_entryTime = new DateTime(2018, 8, 25);
-            int ut_id = 0,g_id = 0,count=0,count_e = 0,flag=0;
+            int ut_id = 0,g_id = 0,count=0,flag=0;
             String select_ut_id, select_g_id, insert_user, select_sql, update_sql;
             String fileAdd = this.MM_lblFileName.Text;
             Console.WriteLine("文件路径" + fileAdd);
@@ -418,12 +418,15 @@ namespace WindowsFormsApplication1
                         //Console.WriteLine("u_entryTime:"+u_entryTime);
 
                         //在表中查询存不存在该条员工数据，存在则更新，不存在则插入
-                        select_sql = "select count(1) as count from [User] u where u.ut_id = " + ut_id + " and u.g_id = "+g_id+" and u.u_account = '"+u_account+"' and  u.u_name = '"+u_name+"' and u.u_sex = '"+u_sex+"' and u.u_idNum = '"+u_idNum+"' and u.u_phone = '"+u_phone+"'";
+                        select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = "+g_id+" and u.u_account = '"+u_account+"' and  u.u_name = '"+u_name+"' and u.u_sex = '"+u_sex+"' and u.u_idNum = '"+u_idNum+"' and u.u_phone = '"+u_phone+"' group by u.u_id";
                         DataSet ds2 = dc.ExecuteQuery(select_sql);
-                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
+                        int count_e = 0;
+                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(),out count_e);
+                        int u_id = -1;
+                        int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
                         if (count_e == 1) 
                         {
-                            update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '"+u_entryTime+"' where u_account = '" + u_account +"'";
+                            update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '"+u_entryTime+"' where u_account = '" + u_account +"' where u_id = "+ u_id;
                             flag = dc.ExecuteUpdate(update_sql);
                             if (flag != 0)
                             {
@@ -437,7 +440,7 @@ namespace WindowsFormsApplication1
                         else if (count_e == 0)
                         {
                             //执行插入语句
-                            insert_user = "insert into [User] values (" + ut_id + "," + g_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "')";
+                            insert_user = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "')";
                             //Console.WriteLine(insert_user);
                             flag = dc.ExecuteUpdate(insert_user);
                             if (flag != 0)

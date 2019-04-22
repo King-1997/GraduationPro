@@ -44,8 +44,9 @@
             this.btn_chooseLesson = new CCWin.SkinControl.SkinButton();
             this.c_btnMine = new CCWin.SkinControl.SkinButton();
             this.btn_loadClasses = new CCWin.SkinControl.SkinButton();
-            this.btn_lessonArrangement = new CCWin.SkinControl.SkinButton();
+            this.btn_PlanArrangement = new CCWin.SkinControl.SkinButton();
             this.p_btnHome = new CCWin.SkinControl.SkinButton();
+            this.btn_CreatePlan = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // c_lblTitle
@@ -207,7 +208,7 @@
             this.c_btnMine.BackColor = System.Drawing.Color.Transparent;
             this.c_btnMine.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.c_btnMine.DownBack = null;
-            this.c_btnMine.Location = new System.Drawing.Point(620, 109);
+            this.c_btnMine.Location = new System.Drawing.Point(614, 108);
             this.c_btnMine.MouseBack = null;
             this.c_btnMine.Name = "c_btnMine";
             this.c_btnMine.NormlBack = null;
@@ -223,7 +224,7 @@
             this.btn_loadClasses.BackColor = System.Drawing.Color.Transparent;
             this.btn_loadClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_loadClasses.DownBack = null;
-            this.btn_loadClasses.Location = new System.Drawing.Point(620, 223);
+            this.btn_loadClasses.Location = new System.Drawing.Point(614, 200);
             this.btn_loadClasses.MouseBack = null;
             this.btn_loadClasses.Name = "btn_loadClasses";
             this.btn_loadClasses.NormlBack = null;
@@ -234,21 +235,21 @@
             this.btn_loadClasses.Visible = false;
             this.btn_loadClasses.Click += new System.EventHandler(this.btn_loadClasses_Click);
             // 
-            // btn_lessonArrangement
+            // btn_PlanArrangement
             // 
-            this.btn_lessonArrangement.BackColor = System.Drawing.Color.Transparent;
-            this.btn_lessonArrangement.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btn_lessonArrangement.DownBack = null;
-            this.btn_lessonArrangement.Location = new System.Drawing.Point(620, 343);
-            this.btn_lessonArrangement.MouseBack = null;
-            this.btn_lessonArrangement.Name = "btn_lessonArrangement";
-            this.btn_lessonArrangement.NormlBack = null;
-            this.btn_lessonArrangement.Size = new System.Drawing.Size(88, 54);
-            this.btn_lessonArrangement.TabIndex = 27;
-            this.btn_lessonArrangement.Text = "安排课程";
-            this.btn_lessonArrangement.UseVisualStyleBackColor = false;
-            this.btn_lessonArrangement.Visible = false;
-            this.btn_lessonArrangement.Click += new System.EventHandler(this.btn_lessonArrangement_Click);
+            this.btn_PlanArrangement.BackColor = System.Drawing.Color.Transparent;
+            this.btn_PlanArrangement.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btn_PlanArrangement.DownBack = null;
+            this.btn_PlanArrangement.Location = new System.Drawing.Point(614, 363);
+            this.btn_PlanArrangement.MouseBack = null;
+            this.btn_PlanArrangement.Name = "btn_PlanArrangement";
+            this.btn_PlanArrangement.NormlBack = null;
+            this.btn_PlanArrangement.Size = new System.Drawing.Size(88, 54);
+            this.btn_PlanArrangement.TabIndex = 27;
+            this.btn_PlanArrangement.Text = "安排学习计划";
+            this.btn_PlanArrangement.UseVisualStyleBackColor = false;
+            this.btn_PlanArrangement.Visible = false;
+            this.btn_PlanArrangement.Click += new System.EventHandler(this.btn_lessonArrangement_Click);
             // 
             // p_btnHome
             // 
@@ -265,14 +266,30 @@
             this.p_btnHome.UseVisualStyleBackColor = false;
             this.p_btnHome.Click += new System.EventHandler(this.p_btnHome_Click);
             // 
+            // btn_CreatePlan
+            // 
+            this.btn_CreatePlan.BackColor = System.Drawing.Color.Transparent;
+            this.btn_CreatePlan.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btn_CreatePlan.DownBack = null;
+            this.btn_CreatePlan.Location = new System.Drawing.Point(614, 283);
+            this.btn_CreatePlan.MouseBack = null;
+            this.btn_CreatePlan.Name = "btn_CreatePlan";
+            this.btn_CreatePlan.NormlBack = null;
+            this.btn_CreatePlan.Size = new System.Drawing.Size(88, 54);
+            this.btn_CreatePlan.TabIndex = 29;
+            this.btn_CreatePlan.Text = "制定学习计划";
+            this.btn_CreatePlan.UseVisualStyleBackColor = false;
+            this.btn_CreatePlan.Visible = false;
+            // 
             // Classes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.btn_CreatePlan);
             this.Controls.Add(this.p_btnHome);
-            this.Controls.Add(this.btn_lessonArrangement);
+            this.Controls.Add(this.btn_PlanArrangement);
             this.Controls.Add(this.btn_loadClasses);
             this.Controls.Add(this.c_btnMine);
             this.Controls.Add(this.btn_chooseLesson);
@@ -314,7 +331,8 @@
         private CCWin.SkinControl.SkinButton btn_chooseLesson;
         private CCWin.SkinControl.SkinButton c_btnMine;
         private CCWin.SkinControl.SkinButton btn_loadClasses;
-        private CCWin.SkinControl.SkinButton btn_lessonArrangement;
+        private CCWin.SkinControl.SkinButton btn_PlanArrangement;
         private CCWin.SkinControl.SkinButton p_btnHome;
+        private CCWin.SkinControl.SkinButton btn_CreatePlan;
     }
 }

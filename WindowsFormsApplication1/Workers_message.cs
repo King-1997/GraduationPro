@@ -98,7 +98,7 @@ namespace WindowsFormsApplication1
                 {
 
                 }
-                    String insert_sql = "insert into [User] values (" + ut_id + "," + g_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','"+ this.Wm_dtpEntryTime.Value + "')";
+                    String insert_sql = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','"+ this.Wm_dtpEntryTime.Value + "')";
                     Console.WriteLine("新增语句："+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)

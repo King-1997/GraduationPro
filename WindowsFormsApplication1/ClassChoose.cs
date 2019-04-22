@@ -117,7 +117,7 @@ namespace WindowsFormsApplication1
                     var rb = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
                     rb.Font = font;
                     rb.Width = 100;
-                    rb.Name = ds.Tables["user"].Rows[count][6].ToString();
+                    rb.Name = ds.Tables["user"].Rows[count][4].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     rb.Click += new EventHandler(btn_oK_Click);
                     //将课程信息传入ClassesInfo模型中
@@ -185,20 +185,21 @@ namespace WindowsFormsApplication1
         private void btn_oK_Click(object sender, EventArgs e)
         {
             //遍历 
-            //foreach (Control ctl in fLP_lessons.Controls)
-            //{
-            //    if (ctl is CheckBox)
-            //    {
-            //        if ((ctl as CheckBox).Checked==true){
-            //            //处理代码
-            //            lessonName = ctl.Text;
-            //            int.Parse(ctl.Name, out lessonId);
-            //            }
-            //    }
-            //}
+            foreach (Control ctl in fLP_lessons.Controls)
+            {
+                if (ctl is CheckBox)
+                {
+                    if ((ctl as CheckBox).Checked == true)
+                    {
+                        //处理代码
+                        lessonName = ctl.Text;
+                        lessonTime = ctl.Name;
+                    }
+                }
+            }
             //传递选定的课程
-            //  LessonArrangement.lesson_name = lessonName;
-            //  LessonArrangement.lesson_time = lessonTime;
+            LessonArrangement.lesson_name = lessonName;
+            LessonArrangement.lesson_time = lessonTime;
 
             //获取上一界面的已选课程窗口
             LessonArrangement lesson = (LessonArrangement)this.Owner;
@@ -214,7 +215,7 @@ namespace WindowsFormsApplication1
             //刷新窗口
             fLP_lessons.Controls.Clear();
             String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id";
-            showClassesInfo(sql);            
+            showClassesInfo(sql);  
         }
 
         private void btn_back_Click(object sender, EventArgs e)

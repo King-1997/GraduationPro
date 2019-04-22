@@ -119,7 +119,7 @@ namespace WindowsFormsApplication1
                 {
                     //将课程信息保存到数据库
                     //选择考题信息               
-                    String insert_sql = "insert into Classes values (" + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
+                    String insert_sql = "insert into Classes values (next value for Classes_s," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
                     Console.WriteLine("SQL:"+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)

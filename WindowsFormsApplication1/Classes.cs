@@ -113,7 +113,7 @@ namespace WindowsFormsApplication1
             //权限控制：显示我上传的课程按钮c_btnMine
                 c_btnMine.Visible = true;
             //权限控制：显示课程安排按钮btn_lessonArrangement
-                btn_lessonArrangement.Visible = true;
+                btn_PlanArrangement.Visible = true;
             }
             c_btnAll_Click(sender,e);
 
@@ -259,13 +259,21 @@ namespace WindowsFormsApplication1
                 int.TryParse(button.Name, out c_id);
                 Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id in (select u_id from [User] where u_name =N'" + Model.User.userName+ "')";
+                //在用户课程表中查询出相应的记录并删除
+                String select_uc_id = "select uc_id from UserClasses where cd_id in (select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id =" + Model.User.userId+")";
+                DataSet ds1 = dc.ExecuteQuery(select_uc_id);
+                int uc_id = (int)ds1.Tables["user"].Rows[0][0];
+                String delete_uc_sql = "delete from UserClasses where uc_id =" + uc_id;
+                int flag1 = dc.ExecuteUpdate(delete_uc_sql);
+                //在课程分配表中查询出相应的记录并删除
+                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id =" + Model.User.userId;
                 DataSet ds = dc.ExecuteQuery(select_cd_id);
                 int cd_id = (int)ds.Tables["user"].Rows[0][0];
 
-                String delete_cd_sql = "delete from ClassesDestribute where cd_id ="+ cd_id + "";
+                String delete_cd_sql = "delete from ClassesDestribute where cd_id ="+ cd_id;
                 int flag = dc.ExecuteUpdate(delete_cd_sql);
-                if(flag != 0)
+                
+                if(flag1 != 0 && flag != 0)
                 {
                     MessageBox.Show("退选成功！");
                     //刷新选修课程列表

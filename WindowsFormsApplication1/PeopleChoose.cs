@@ -123,7 +123,7 @@ namespace WindowsFormsApplication1
                 sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and u.u_entryTime >= '" + entryTime1 + "' and u.u_entryTime <= '" + entryTime2 + "'";
             }
                 Console.WriteLine("查询语句：" + sql);
-                WorkerShow(sql);           
+                WorkerShow(sql);
         }
         private void WorkerShow(string sql)
         {

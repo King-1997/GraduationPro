@@ -15,8 +15,8 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-        public static String lesson_name=Model.ClassesInfo.class_name;
-        public static int lesson_time = Model.ClassesInfo.class_time;
+        public static String lesson_name = null;
+        public static String lesson_time = null;
         public static List<string> people = null;
 
         private int classes_id = Model.ClassesInfo.class_id;
@@ -35,20 +35,21 @@ namespace WindowsFormsApplication1
         private void Find_Id()
         {
             DataBaseConnection dc = new DataBaseConnection();
-            //if (lesson_name != null)
-            //{
-                
-            //        String select_c_id = "select c_id from Classes where c_name = N'" + lesson_name + "'";
-            //        DataSet ds = dc.ExecuteQuery(select_c_id);
-            //        classes_id = (int)ds.Tables["user"].Rows[0][0];
-            //}
-            if(people != null)
+            if (lesson_name != null)
+            {
+
+                String select_c_id = "select c_id from Classes where c_name = N'" + lesson_name + "'";
+                DataSet ds = dc.ExecuteQuery(select_c_id);
+                int.TryParse(ds.Tables["user"].Rows[0][0].ToString(),out classes_id);
+            }
+            if (people != null)
             {
                 for (int i = 0; i < people.Count; i++)
                 {
                     String select_u_id = "select u_id from [User] where u_name = N'" + people[i] + "'";
                     DataSet ds = dc.ExecuteQuery(select_u_id);
-                    int u_id = (int)ds.Tables["user"].Rows[0][0];
+                    int u_id = -1;
+                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out u_id);
                     user_id.Add(u_id);
                     
                 }
@@ -239,8 +240,7 @@ namespace WindowsFormsApplication1
             if (MessageBox.Show("您确定要删除吗", "判断", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.OK)
             { 
-                //用户选择确认删除的操作
-
+                //用户选择确认删除的操作                
                 DeleteWorks();
                 PeopleShow();
             }
@@ -256,7 +256,6 @@ namespace WindowsFormsApplication1
                     if ((ctl as CheckBox).Checked == false)
                     {
                         //处理代码
-
                         lesson_name =  null;
                     }
                 }
@@ -272,7 +271,6 @@ namespace WindowsFormsApplication1
                     if ((ctl as CheckBox).Checked == false)
                     {
                         //处理代码
-
                         people.Remove(ctl.Text);
                     }
                 }
