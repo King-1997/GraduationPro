@@ -124,6 +124,12 @@
     <Compile Include="ClassChoose.designer.cs">
       <DependentUpon>ClassChoose.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagePlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagePlan.Designer.cs">
+      <DependentUpon>ManagePlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\EmailSend.cs" />
     <Compile Include="ExamForm.cs">
       <SubType>Form</SubType>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClassChoose.resx">
       <DependentUpon>ClassChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagePlan.resx">
+      <DependentUpon>ManagePlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExamForm.resx">
       <DependentUpon>ExamForm.cs</DependentUpon>

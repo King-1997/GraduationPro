@@ -68,7 +68,8 @@ namespace WindowsFormsApplication1
         {
             this.Owner.Show();
             this.Dispose();
-        }
+            people = null;
+    }
 
         private void btn_sure_Click(object sender, EventArgs e)
         {
@@ -114,7 +115,8 @@ namespace WindowsFormsApplication1
                     //返回上一页面
                     this.Owner.Show();
                     this.Dispose();
-                }                                                          
+                    people = null;
+    }                                                          
         }
 
         private void find_cd_time()

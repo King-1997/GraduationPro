@@ -364,10 +364,10 @@ namespace WindowsFormsApplication1
         private void btn_CreatePlan_Click(object sender, EventArgs e)
         {
             //给组员安排课程，打开课程安排页面
-            //CreatePlan createPlan = new CreatePlan();
-            //createPlan.Owner = this;
-            //this.Hide();
-            //createPlan.Show();
+            ManagePlan createPlan = new ManagePlan();
+            createPlan.Owner = this;
+            this.Hide();
+            createPlan.Show();
         }
     }
 }
