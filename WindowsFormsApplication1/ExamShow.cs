@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class ExamShow : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         //考题对应的课程id
         public static int c_id = -1;
         public ExamShow()
@@ -45,7 +47,7 @@ namespace WindowsFormsApplication1
             for(int i=0; i<questions.Count; i++)
             {
                 var label = new TextBox { Text=questions[i]};
-                label.Font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
+                label.Font = font;
                 label.TextAlign = HorizontalAlignment.Center;
                 label.ReadOnly=true;
                 label.Size = new Size(350,60);
@@ -154,13 +156,11 @@ namespace WindowsFormsApplication1
                     C.Add(ds.Tables["user"].Rows[0][6].ToString());
                     D.Add(ds.Tables["user"].Rows[0][7].ToString());
                 }
-
                 ShowQuestions();
-
             }
             else
             {
-
+                MessageBox.Show("系统错误！");
             }
         }
     }

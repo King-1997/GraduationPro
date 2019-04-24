@@ -29,11 +29,21 @@ namespace WindowsFormsApplication1
             //Wm_cbBUserType.Items.AddRange(new object[] { "系统管理员", "管理员", "员工" });
             Wm_cbBUserType.SelectedIndex = 0;
 
-            String sql = "select g_group from [group]";
-            DataSet ds1 = dc.ExecuteQuery(sql);
+            String select_emp_station = "select station_name from employee_station";
+            DataSet ds1 = dc.ExecuteQuery(select_emp_station);
+            Wm_cbBEmpStation.Items.AddRange(new object[] {"无" });
             for (int i = 0; i < ds1.Tables["user"].Rows.Count; i++)
             {
-                Wm_cbBGroup.Items.Add(ds1.Tables["user"].Rows[i][0]);
+                Wm_cbBEmpStation.Items.Add(ds1.Tables["user"].Rows[i][0]);
+            }
+            //Wm_cbBUserType.Items.AddRange(new object[] { "系统管理员", "管理员", "员工" });
+            Wm_cbBEmpStation.SelectedIndex = 0;
+
+            String sql = "select g_group from [group]";
+            DataSet ds2 = dc.ExecuteQuery(sql);
+            for (int i = 0; i < ds2.Tables["user"].Rows.Count; i++)
+            {
+                Wm_cbBGroup.Items.Add(ds2.Tables["user"].Rows[i][0]);
             }
             //Wm_cbBGroup.Items.AddRange(new object[] { "涂装", "花洒", "人力资源","拉丝"});
             Wm_cbBGroup.SelectedIndex = 0;

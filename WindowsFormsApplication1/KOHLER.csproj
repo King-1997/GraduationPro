@@ -130,6 +130,7 @@
     <Compile Include="ManagePlan.Designer.cs">
       <DependentUpon>ManagePlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Download.cs" />
     <Compile Include="Tools\EmailSend.cs" />
     <Compile Include="ExamForm.cs">
       <SubType>Form</SubType>
@@ -222,12 +223,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataBaseConnection.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Video.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Video.designer.cs">
-      <DependentUpon>Video.cs</DependentUpon>
-    </Compile>
     <Compile Include="Workers_message.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,9 +299,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Video.resx">
-      <DependentUpon>Video.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Workers_message.resx">
       <DependentUpon>Workers_message.cs</DependentUpon>
     </EmbeddedResource>

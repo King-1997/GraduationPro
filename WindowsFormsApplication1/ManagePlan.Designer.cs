@@ -36,6 +36,7 @@
             this.cp_tBx_findkeywords = new System.Windows.Forms.TextBox();
             this.cp_btn_addPlan = new CCWin.SkinControl.SkinButton();
             this.cp_btn_back = new CCWin.SkinControl.SkinButton();
+            this.cp_btn_addPeroid = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // cp_flpClasses
@@ -43,7 +44,7 @@
             this.cp_flpClasses.AutoScroll = true;
             this.cp_flpClasses.Location = new System.Drawing.Point(91, 106);
             this.cp_flpClasses.Name = "cp_flpClasses";
-            this.cp_flpClasses.Size = new System.Drawing.Size(624, 228);
+            this.cp_flpClasses.Size = new System.Drawing.Size(624, 209);
             this.cp_flpClasses.TabIndex = 16;
             // 
             // cp_btn_reset
@@ -101,14 +102,15 @@
             this.cp_btn_addPlan.BackColor = System.Drawing.Color.Transparent;
             this.cp_btn_addPlan.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.cp_btn_addPlan.DownBack = null;
-            this.cp_btn_addPlan.Location = new System.Drawing.Point(641, 54);
+            this.cp_btn_addPlan.Location = new System.Drawing.Point(643, 54);
             this.cp_btn_addPlan.MouseBack = null;
             this.cp_btn_addPlan.Name = "cp_btn_addPlan";
             this.cp_btn_addPlan.NormlBack = null;
-            this.cp_btn_addPlan.Size = new System.Drawing.Size(56, 30);
+            this.cp_btn_addPlan.Size = new System.Drawing.Size(72, 30);
             this.cp_btn_addPlan.TabIndex = 22;
-            this.cp_btn_addPlan.Text = "新增";
+            this.cp_btn_addPlan.Text = "新增计划";
             this.cp_btn_addPlan.UseVisualStyleBackColor = false;
+            this.cp_btn_addPlan.Click += new System.EventHandler(this.cp_btn_addPlan_Click);
             // 
             // cp_btn_back
             // 
@@ -125,11 +127,26 @@
             this.cp_btn_back.UseVisualStyleBackColor = false;
             this.cp_btn_back.Click += new System.EventHandler(this.cp_btn_back_Click);
             // 
+            // cp_btn_addPeroid
+            // 
+            this.cp_btn_addPeroid.BackColor = System.Drawing.Color.Transparent;
+            this.cp_btn_addPeroid.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.cp_btn_addPeroid.DownBack = null;
+            this.cp_btn_addPeroid.Location = new System.Drawing.Point(183, 339);
+            this.cp_btn_addPeroid.MouseBack = null;
+            this.cp_btn_addPeroid.Name = "cp_btn_addPeroid";
+            this.cp_btn_addPeroid.NormlBack = null;
+            this.cp_btn_addPeroid.Size = new System.Drawing.Size(70, 30);
+            this.cp_btn_addPeroid.TabIndex = 24;
+            this.cp_btn_addPeroid.Text = "添加阶段";
+            this.cp_btn_addPeroid.UseVisualStyleBackColor = false;
+            // 
             // ManagePlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 529);
+            this.Controls.Add(this.cp_btn_addPeroid);
             this.Controls.Add(this.cp_btn_back);
             this.Controls.Add(this.cp_btn_addPlan);
             this.Controls.Add(this.cp_btn_reset);
@@ -153,5 +170,6 @@
         private System.Windows.Forms.TextBox cp_tBx_findkeywords;
         private CCWin.SkinControl.SkinButton cp_btn_addPlan;
         private CCWin.SkinControl.SkinButton cp_btn_back;
+        private CCWin.SkinControl.SkinButton cp_btn_addPeroid;
     }
 }

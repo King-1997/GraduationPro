@@ -56,17 +56,22 @@ namespace WindowsFormsApplication1
                 lbl_createTime.Width = 65;
                 lbl_createTime.TextAlign = ContentAlignment.MiddleCenter;
                 
-                //查看计划信息标签
-                var lbl_btn_check = new Label { Text = "" };
+                //编辑学习计划信息标签
+                var lbl_btn_check = new Label { Text = ""};
                 lbl_btn_check.Width = 50;
                 lbl_btn_check.TextAlign = ContentAlignment.MiddleCenter;
 
+                //删除学习计划信息标签
+                var lbl_btn_delete = new Label { Text = "" };
+                lbl_btn_delete.Width = 50;
+                lbl_btn_delete.TextAlign = ContentAlignment.MiddleCenter;
                 cp_flpClasses.Controls.Add(lbl_rb);
                 cp_flpClasses.Controls.Add(lbl_Loadman);
                 cp_flpClasses.Controls.Add(lbl_introducation);
                 cp_flpClasses.Controls.Add(lbl_createTime);
                 cp_flpClasses.Controls.Add(lbl_btn_check);
-                cp_flpClasses.SetFlowBreak(lbl_btn_check, true);
+                cp_flpClasses.Controls.Add(lbl_btn_delete);
+                cp_flpClasses.SetFlowBreak(lbl_btn_delete, true);
                 for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
                 {
                     //课程名
@@ -140,6 +145,11 @@ namespace WindowsFormsApplication1
             this.Owner.Show();
             this.Dispose();
             classes = null;
+        }
+
+        private void cp_btn_addPlan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

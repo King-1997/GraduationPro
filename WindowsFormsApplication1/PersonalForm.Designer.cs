@@ -322,7 +322,7 @@
             this.p_btnEdit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnEdit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnEdit.DownBack = null;
-            this.p_btnEdit.Location = new System.Drawing.Point(577, 533);
+            this.p_btnEdit.Location = new System.Drawing.Point(501, 533);
             this.p_btnEdit.MouseBack = null;
             this.p_btnEdit.Name = "p_btnEdit";
             this.p_btnEdit.NormlBack = null;
@@ -369,7 +369,7 @@
             this.p_btnSubmit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnSubmit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnSubmit.DownBack = null;
-            this.p_btnSubmit.Location = new System.Drawing.Point(501, 533);
+            this.p_btnSubmit.Location = new System.Drawing.Point(577, 533);
             this.p_btnSubmit.MouseBack = null;
             this.p_btnSubmit.Name = "p_btnSubmit";
             this.p_btnSubmit.NormlBack = null;

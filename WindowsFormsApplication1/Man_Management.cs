@@ -154,27 +154,27 @@ namespace WindowsFormsApplication1
                 var lbl_ut = new Label { Text = "员工类型" };
                 lbl_ut.Font = font;
                 lbl_ut.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_ut.Width = 60;
+                lbl_ut.Width = 80;
                 //性别标签
                 var lbl_sex = new Label { Text = "性别" };
                 lbl_sex.Font = font;
                 lbl_sex.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_sex.Width = 30;
+                lbl_sex.Width = 50;
                 //工号标签
                 var lbl_account = new Label { Text = "工号" };
                 lbl_account.Font = font;
-                lbl_account.Width = 100;
+                lbl_account.Width = 80;
                 lbl_account.TextAlign = ContentAlignment.MiddleCenter;
                 //学分标签
                 var lbl_credit = new Label { Text = "学分" };
                 lbl_credit.Font = font;
                 lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_credit.Width = 30;
+                lbl_credit.Width = 50;
                 //电话号码标签
                 var lbl_phone = new Label { Text = "电话号码" };
                 lbl_phone.Font = font;
                 lbl_phone.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_phone.Width = 80;
+                lbl_phone.Width = 100;
                 //编辑按钮标签
                 var lbl_btn_edit = new Label { Text = "" };
                 lbl_btn_edit.Width = 40;
@@ -210,27 +210,27 @@ namespace WindowsFormsApplication1
                     var u_ut = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     u_ut.Font = font;
                     u_ut.TextAlign = ContentAlignment.MiddleCenter;
-                    u_ut.Width = 60;
+                    u_ut.Width = 80;
                     //性别
                     var u_sex = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     u_sex.Font = font;
                     u_sex.TextAlign = ContentAlignment.MiddleCenter;
-                    u_sex.Width = 30;
+                    u_sex.Width = 50;
                     //工号
                     var u_account = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     u_account.Font = font;
-                    u_account.Width = 100;
+                    u_account.Width = 80;
                     u_account.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
                     var u_credit = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
                     u_credit.Font = font;
                     u_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    u_credit.Width = 30;
+                    u_credit.Width = 50;
                     //电话号码
                     var u_phone = new Label { Text = ds.Tables["user"].Rows[i][6].ToString() };
                     u_phone.Font = font;
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
-                    u_phone.Width = 80;
+                    u_phone.Width = 100;
                     //编辑按钮
                     var btn_edit = new Button { Text = "编辑" };                   
                     btn_edit.Name = u_account.Text;

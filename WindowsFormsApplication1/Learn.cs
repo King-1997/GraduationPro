@@ -16,9 +16,11 @@ namespace WindowsFormsApplication1
     {
         public static int c_id = -1;
         private string c_file = null;
+        private string c_name = null;
         private string c_ifExam = null;
         private int c_maxTime = 30;
         private int c_minTime = 20;
+        private string c_credit = null;
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public Learn()
@@ -36,17 +38,22 @@ namespace WindowsFormsApplication1
             //scan(theFolder);
             //根据课程名字查出文件所在地址
             DataBaseConnection dc = new DataBaseConnection();
-            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime from Classes where c_id = " + c_id;
+            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime,c_name,c_credit from Classes where c_id = " + c_id;
             DataSet ds = dc.ExecuteQuery(select_c_file);
             //将文件路径赋值给全局变量c_file
             c_file = ds.Tables["user"].Rows[0][0].ToString();
+            Console.WriteLine("文件路径："+c_file);
+            this.L_lblClassesFile.Text = c_file;
             //将课程是否考试赋值给全局变量c_ifExam
             c_ifExam = ds.Tables["user"].Rows[0][1].ToString();
             //将课程最大学习时间赋值给全局变量c_maxTime
             c_maxTime = (int)ds.Tables["user"].Rows[0][2];
             //将课程最大学习时间赋值给全局变量c_minTime
             c_minTime = (int)ds.Tables["user"].Rows[0][3];
-
+            c_name = ds.Tables["user"].Rows[0][4].ToString();
+            this.L_lblClassesName.Text = c_name;
+            c_credit = ds.Tables["user"].Rows[0][5].ToString();
+            this.L_lblClassesCredit.Text = c_credit;
             L_btnExam.Visible = true;
             if (c_ifExam.Equals("是"))
             {
@@ -57,7 +64,6 @@ namespace WindowsFormsApplication1
                 L_btnExam.Visible = false;
             }
             L_btnExam.Enabled = false;
-
         }
         private void L_btnReturn_Click(object sender, EventArgs e)
         {
@@ -69,7 +75,7 @@ namespace WindowsFormsApplication1
         private int openingtime = 0;//记录页面打开时间
         private int learningtime = 0;//记录学习时间
         public static bool learn = true;//记录当前学习状态
-        public static bool open = true;//记录打开页面的时间
+        public static bool open = false;//记录打开页面的时间
         private void timer1_Tick_1(object sender, EventArgs e)
         {
             if (open == true)
@@ -79,7 +85,7 @@ namespace WindowsFormsApplication1
             else if (learn == true)//如果当前学习状态为学习，则学习时间增加
             {
                 learningtime++;
-            }             
+            }
             //显示当前时间和打开时间
             lbl_timecount.Text = (openingtime / 60).ToString() + "分" + (openingtime % 60).ToString() + "秒";//显示已打开时间
             lbl_learnTime.Text = (learningtime / 60).ToString() + "分" + (learningtime % 60).ToString() + "秒";//显示已学时间
@@ -88,48 +94,64 @@ namespace WindowsFormsApplication1
             L_lblTime.Text = dt.ToString();//显示当前时间
 
             //判断学习状态
-            //if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
-            //{
-            //    learningtime++;
-            //    learn = false;//未回应则设置为不在学习
-            //    lbl_learningState.Text = "不在学习";
-            //    MessageBox.Show("请确认您当前的学习状况！");
-            //    learn = true;//回应成功修改成正在学习
-            //    lbl_learningState.Text = "正在学习";
-            //}
-            //if (learningtime > c_minTime)
-            //    L_btnExam.Enabled = true;
-            //if (openingtime > c_maxTime)
-            //{
-            //    timer1.Stop();
-            //    MessageBox.Show("您已超过学习时间,请重新学习");
-            //    openingtime = 0;
-            //    learningtime = 0;
-            //    //L_btnReturn_Click(sender, e);
-            //}
+            if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
+            {
+                learningtime++;
+                learn = false;//未回应则设置为不在学习
+                lbl_learningState.Text = "不在学习";
+                MessageBox.Show("请确认您当前的学习状况！");
+                learn = true;//回应成功修改成正在学习
+                lbl_learningState.Text = "正在学习";
+            }
+            if (learningtime > c_minTime * 60)
+                L_btnExam.Enabled = true;
+            if (openingtime > c_maxTime * 60)
+            {
+                timer1.Stop();
+                MessageBox.Show("您已超过学习时间,请重新学习");
+                openingtime = 0;
+                learningtime = 0;
+                //L_btnReturn_Click(sender, e);
+            }
 
         }
         private void btn_preview_Click(object sender, EventArgs e)
         {
-            //  c_file  使用数据库中存储的文件路径
-            openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            string fileExtension = Path.GetExtension(c_file);//文件路径及扩展名
+            if (fileExtension == ".pdf")//打开pdf文件
             {
-                //System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
-                string fileExtension = Path.GetExtension(openFileDialog1.FileName);//文件路径及扩展名
-                if (fileExtension == ".pdf")//打开pdf文件
-                {
-                    //this.axAcroPDF1.LoadFile(fileExtension);
-                }
-                else if(fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
-                    fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
-                {
-                    Video video = new Video(fileExtension);
-                    video.Owner = this;
-                    video.ShowDialog();
-                    //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
-                }
+                //this.axAcroPDF1.LoadFile(fileExtension);
             }
+            else if (fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
+                fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
+            {
+                L_player.URL = c_file;
+                open = true;
+                //Video video = new Video(c_file);
+                //video.Owner = this;
+                //video.ShowDialog();
+                //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
+            }
+
+            ////  c_file  使用数据库中存储的文件路径
+            //openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*";
+            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    //System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
+            //    string fileExtension = Path.GetExtension(openFileDialog1.FileName);//文件路径及扩展名
+            //    if (fileExtension == ".pdf")//打开pdf文件
+            //    {
+            //        //this.axAcroPDF1.LoadFile(fileExtension);
+            //    }
+            //    else if(fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
+            //        fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
+            //    {
+            //        Video video = new Video(openFileDialog1.FileName);
+            //        video.Owner = this;
+            //        video.ShowDialog();
+            //        //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
+            //    }
+            //}
         }
         //遍历文件夹    
         private void scan(FileSystemInfo info)
@@ -151,9 +173,9 @@ namespace WindowsFormsApplication1
                     lbl.Font = font;
                     lbl.Anchor = AnchorStyles.None;
                     var button = new Button {Name=lblname,Text = "打开" };
-                    button.Click += new EventHandler(Filesopen);
-                    fLP_filesPreview.Controls.Add(lbl);fLP_filesPreview.Controls.Add(button);
-                    fLP_filesPreview.SetFlowBreak(button, true);
+                    //button.Click += new EventHandler(Filesopen);
+                    //fLP_filesPreview.Controls.Add(lbl);fLP_filesPreview.Controls.Add(button);
+                    //fLP_filesPreview.SetFlowBreak(button, true);
                     //listBox.Items.Add("名字: " + file.Name + ", 创建时间: " + file.CreationTime
                     //    + ", 扩展名: " + file.Extension + ", 上次访问时间: " + file.LastAccessTime);
 
@@ -161,10 +183,10 @@ namespace WindowsFormsApplication1
             }
         }
         //打开指定路径的文件
-        private void Filesopen(object sender, EventArgs e)
+        private void Filesopen(string fileroad)
         {
-            Button button = (Button)sender;
-            string fileroad = "D:\\01 SQL培训\\2.0视频\\第1单元_Select" + button.Name;//文件路径
+            //Button button = (Button)sender;
+            //string fileroad = "D:\\01 SQL培训\\2.0视频\\第1单元_Select" + button.Name;//文件路径
             string fileExtension = Path.GetExtension(fileroad);//即扩展名 
             if(fileExtension==".pdf")//打开pdf文件
             {
@@ -192,6 +214,19 @@ namespace WindowsFormsApplication1
             examForm.Owner = this;
             this.Hide();
             examForm.Show();
+        }
+
+        private void btn_download_Click(object sender, EventArgs e)
+        {
+            string foldPath, filename;
+            FolderBrowserDialog dialog = new FolderBrowserDialog();//新建选择文件夹对话框
+            dialog.Description = "请选择文件路径";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foldPath = dialog.SelectedPath;
+                filename = foldPath + "123.pdf";
+                Tools.Download.DownloadFile(c_file, filename, L_progressBar, L_lbl_pcb);
+            }
         }
     }
 }

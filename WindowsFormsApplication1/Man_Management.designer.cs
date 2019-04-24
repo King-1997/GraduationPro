@@ -48,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.label1.Location = new System.Drawing.Point(101, 54);
+            this.label1.Location = new System.Drawing.Point(94, 58);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 21);
@@ -58,7 +58,7 @@
             // tBx_findkeywords
             // 
             this.tBx_findkeywords.Font = new System.Drawing.Font("宋体", 12F);
-            this.tBx_findkeywords.Location = new System.Drawing.Point(239, 49);
+            this.tBx_findkeywords.Location = new System.Drawing.Point(232, 53);
             this.tBx_findkeywords.Margin = new System.Windows.Forms.Padding(2);
             this.tBx_findkeywords.Name = "tBx_findkeywords";
             this.tBx_findkeywords.Size = new System.Drawing.Size(130, 26);
@@ -66,12 +66,13 @@
             // 
             // fLP_workers
             // 
+            this.fLP_workers.AllowDrop = true;
             this.fLP_workers.AutoScroll = true;
             this.fLP_workers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fLP_workers.Location = new System.Drawing.Point(85, 101);
+            this.fLP_workers.Location = new System.Drawing.Point(62, 105);
             this.fLP_workers.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_workers.Name = "fLP_workers";
-            this.fLP_workers.Size = new System.Drawing.Size(579, 353);
+            this.fLP_workers.Size = new System.Drawing.Size(628, 353);
             this.fLP_workers.TabIndex = 5;
             // 
             // MM_lblFileName
@@ -136,7 +137,7 @@
             this.btn_find.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_find.DownBack = null;
             this.btn_find.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_find.Location = new System.Drawing.Point(511, 48);
+            this.btn_find.Location = new System.Drawing.Point(504, 52);
             this.btn_find.MouseBack = null;
             this.btn_find.Name = "btn_find";
             this.btn_find.NormlBack = null;
@@ -152,7 +153,7 @@
             this.btn_add.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_add.DownBack = null;
             this.btn_add.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_add.Location = new System.Drawing.Point(593, 48);
+            this.btn_add.Location = new System.Drawing.Point(586, 52);
             this.btn_add.MouseBack = null;
             this.btn_add.Name = "btn_add";
             this.btn_add.NormlBack = null;
@@ -167,7 +168,7 @@
             this.cbB_findKey.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbB_findKey.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cbB_findKey.FormattingEnabled = true;
-            this.cbB_findKey.Location = new System.Drawing.Point(389, 50);
+            this.cbB_findKey.Location = new System.Drawing.Point(382, 54);
             this.cbB_findKey.Name = "cbB_findKey";
             this.cbB_findKey.Size = new System.Drawing.Size(110, 24);
             this.cbB_findKey.TabIndex = 17;
@@ -179,7 +180,7 @@
             this.cBx_workerEntryMonth.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cBx_workerEntryMonth.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cBx_workerEntryMonth.FormattingEnabled = true;
-            this.cBx_workerEntryMonth.Location = new System.Drawing.Point(239, 1);
+            this.cBx_workerEntryMonth.Location = new System.Drawing.Point(232, 5);
             this.cBx_workerEntryMonth.Name = "cBx_workerEntryMonth";
             this.cBx_workerEntryMonth.Size = new System.Drawing.Size(130, 24);
             this.cBx_workerEntryMonth.TabIndex = 18;
@@ -190,7 +191,7 @@
             this.cBx_workerEntryYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cBx_workerEntryYear.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cBx_workerEntryYear.FormattingEnabled = true;
-            this.cBx_workerEntryYear.Location = new System.Drawing.Point(239, 25);
+            this.cBx_workerEntryYear.Location = new System.Drawing.Point(232, 29);
             this.cBx_workerEntryYear.Name = "cBx_workerEntryYear";
             this.cBx_workerEntryYear.Size = new System.Drawing.Size(130, 24);
             this.cBx_workerEntryYear.TabIndex = 19;
@@ -201,7 +202,7 @@
             this.cBx_workertype.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cBx_workertype.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cBx_workertype.FormattingEnabled = true;
-            this.cBx_workertype.Location = new System.Drawing.Point(239, 76);
+            this.cBx_workertype.Location = new System.Drawing.Point(232, 80);
             this.cBx_workertype.Name = "cBx_workertype";
             this.cBx_workertype.Size = new System.Drawing.Size(130, 24);
             this.cBx_workertype.TabIndex = 20;
