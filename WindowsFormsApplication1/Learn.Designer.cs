@@ -268,6 +268,7 @@
             this.L_progressBar.Name = "L_progressBar";
             this.L_progressBar.Size = new System.Drawing.Size(114, 23);
             this.L_progressBar.TabIndex = 24;
+            this.L_progressBar.Visible = false;
             // 
             // L_lbl_pcb
             // 
@@ -279,6 +280,7 @@
             this.L_lbl_pcb.Size = new System.Drawing.Size(68, 17);
             this.L_lbl_pcb.TabIndex = 25;
             this.L_lbl_pcb.Text = "进度条显示";
+            this.L_lbl_pcb.Visible = false;
             // 
             // Learn
             // 

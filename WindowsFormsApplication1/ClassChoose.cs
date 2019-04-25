@@ -152,7 +152,7 @@ namespace WindowsFormsApplication1
                     //查看课程信息
                     var btn_check = new Button { Text = "查看" };
                     btn_check.Width = 50;
-                    ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_check.TextAlign = ContentAlignment.MiddleCenter;
                     btn_check.Name = ds.Tables["user"].Rows[count][6].ToString();
                     //Console.WriteLine("button中的c_name："+ btn_check.Name);
                     btn_check.Click += new EventHandler(CheckClassesInfo);

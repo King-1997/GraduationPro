@@ -344,24 +344,22 @@
             // 
             // p_txtBxEmail
             // 
-            this.p_txtBxEmail.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.p_txtBxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.p_txtBxEmail.BackColor = System.Drawing.Color.SkyBlue;
             this.p_txtBxEmail.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p_txtBxEmail.Location = new System.Drawing.Point(182, 298);
             this.p_txtBxEmail.Name = "p_txtBxEmail";
             this.p_txtBxEmail.ReadOnly = true;
-            this.p_txtBxEmail.Size = new System.Drawing.Size(154, 22);
+            this.p_txtBxEmail.Size = new System.Drawing.Size(154, 29);
             this.p_txtBxEmail.TabIndex = 30;
             // 
             // p_txtBxPhone
             // 
-            this.p_txtBxPhone.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.p_txtBxPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.p_txtBxPhone.BackColor = System.Drawing.Color.SkyBlue;
             this.p_txtBxPhone.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.p_txtBxPhone.Location = new System.Drawing.Point(182, 266);
             this.p_txtBxPhone.Name = "p_txtBxPhone";
             this.p_txtBxPhone.ReadOnly = true;
-            this.p_txtBxPhone.Size = new System.Drawing.Size(136, 22);
+            this.p_txtBxPhone.Size = new System.Drawing.Size(136, 29);
             this.p_txtBxPhone.TabIndex = 31;
             // 
             // p_btnSubmit

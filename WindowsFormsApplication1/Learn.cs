@@ -120,6 +120,7 @@ namespace WindowsFormsApplication1
             string fileExtension = Path.GetExtension(c_file);//文件路径及扩展名
             if (fileExtension == ".pdf")//打开pdf文件
             {
+                System.Diagnostics.Process.Start(c_file);//使用第三方软件打开文件
                 //this.axAcroPDF1.LoadFile(fileExtension);
             }
             else if (fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
@@ -127,31 +128,14 @@ namespace WindowsFormsApplication1
             {
                 L_player.URL = c_file;
                 open = true;
-                //Video video = new Video(c_file);
-                //video.Owner = this;
-                //video.ShowDialog();
-                //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
+                L_player.fullScreen = true;//全屏打开文件
+            }
+            else
+            {
+                MessageBox.Show("文件已损坏或者不存在，请联系相关管理人员！");
             }
 
-            ////  c_file  使用数据库中存储的文件路径
-            //openFileDialog1.Filter = "(mp3,wav,mp4,mov,wmv,mpg,pdf)|*.mp3;*.wav;*.mp4;*.mov;*.wmv;*.mpg;*";
-            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    //System.Diagnostics.Process.Start(openFileDialog1.FileName);//用外部程序打开
-            //    string fileExtension = Path.GetExtension(openFileDialog1.FileName);//文件路径及扩展名
-            //    if (fileExtension == ".pdf")//打开pdf文件
-            //    {
-            //        //this.axAcroPDF1.LoadFile(fileExtension);
-            //    }
-            //    else if(fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
-            //        fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
-            //    {
-            //        Video video = new Video(openFileDialog1.FileName);
-            //        video.Owner = this;
-            //        video.ShowDialog();
-            //        //axWindowsMediaPlayer1.URL = openFileDialog1.FileName;
-            //    }
-            //}
+
         }
         //遍历文件夹    
         private void scan(FileSystemInfo info)
@@ -195,9 +179,8 @@ namespace WindowsFormsApplication1
             else if(fileExtension== ".mp3"||fileExtension==".wav"||fileExtension==".mp4"||
                     fileExtension==".mov"||fileExtension==".wmv"||fileExtension==".mpg")//打开视频文件
             {
-                Video video = new Video(fileroad);
-                video.Owner = this;
-                video.ShowDialog();
+                L_player.URL = c_file;
+                open = true;
             }
             else
             {
@@ -227,6 +210,8 @@ namespace WindowsFormsApplication1
                 filename = foldPath + "123.pdf";
                 Tools.Download.DownloadFile(c_file, filename, L_progressBar, L_lbl_pcb);
             }
+            this.L_progressBar.Visible = true;
+            this.L_lbl_pcb.Visible = true;
         }
     }
 }

@@ -124,6 +124,12 @@
     <Compile Include="ClassChoose.designer.cs">
       <DependentUpon>ClassChoose.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPeriod.Designer.cs">
+      <DependentUpon>EditPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagePlan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataBaseConnection.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Tools\LabelTooLong.cs" />
     <Compile Include="Workers_message.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClassChoose.resx">
       <DependentUpon>ClassChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPeriod.resx">
+      <DependentUpon>EditPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePlan.resx">
       <DependentUpon>ManagePlan.cs</DependentUpon>
