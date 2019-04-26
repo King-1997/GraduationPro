@@ -136,6 +136,7 @@
     <Compile Include="ManagePlan.Designer.cs">
       <DependentUpon>ManagePlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Plan_Header.cs" />
     <Compile Include="Tools\Download.cs" />
     <Compile Include="Tools\EmailSend.cs" />
     <Compile Include="ExamForm.cs">

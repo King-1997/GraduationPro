@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
+        private int sp_head_id = -1;
         public static List<string> classes = null;
         public ManagePlan()
         {
@@ -104,13 +105,15 @@ namespace WindowsFormsApplication1
                     var plan_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     plan_name.Font = font;
                     plan_name.Width = 100;
-                    plan_name.Name = ds.Tables["user"].Rows[i][4].ToString();
-                    plan_name.TextAlign = ContentAlignment.MiddleCenter;                                     
+                    plan_name.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    plan_name.TextAlign = ContentAlignment.MiddleCenter;
+                    
                     //计划简介
                     var introducation = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     introducation.Font = font;
                     introducation.Width = 120;
                     introducation.TextAlign = ContentAlignment.MiddleCenter;
+                    
                     //创建人
                     var creater = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     creater.Font = font;
@@ -164,17 +167,50 @@ namespace WindowsFormsApplication1
         //编辑按钮事件处理
         private void editPlanInfo(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            int.TryParse(button.Name, out EditPeriod.sp_head_id);
-            EditPeriod editperiod = new EditPeriod();
-            editperiod.Owner = this;
-            this.Hide();
-            editperiod.Show();
+            //Button button = (Button)sender;
+            //int.TryParse(button.Name, out EditPeriod.sp_head_id);
+            //EditPeriod editperiod = new EditPeriod();
+            //editperiod.Owner = this;
+            //this.Hide();
+            //editperiod.Show();
+            mp_btn_addPlan_Click(sender, e);
+            Button button = (Button)sender;            
+            int.TryParse(button.Name,out sp_head_id);
+            DataBaseConnection dc = new DataBaseConnection();
+            string sql = "select sp_head_name,sp_head_summary,sp_emp_type from study_plan_header where sp_head_id = "+sp_head_id;
+            DataSet ds = dc.ExecuteQuery(sql);
+            this.mp_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            this.mp_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
+            this.mp_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
         }
         //删除按钮事件处理
         private void deletePlan(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("您确定要删除该学习计划吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                Button button = (Button)sender;
+                int.TryParse(button.Name, out sp_head_id);
+                DataBaseConnection dc = new DataBaseConnection();
+                string delete_head_sql = "delete from study_plan_header where sp_head_id = " + sp_head_id;
+                int flag1 = dc.ExecuteUpdate(delete_head_sql);
+                //查询子表中头id为按钮中的id的信息条数
+                string select_line_sql = "select count(1) from study_plan_lines where sp_head_id = " + sp_head_id;
+                DataSet ds = dc.ExecuteQuery(select_line_sql);
+                int count = -1;
+                int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out count);
+                string delete_line_sql = "delete from study_plan_lines where sp_head_id = " + sp_head_id;
+                int flag2 = dc.ExecuteUpdate(delete_line_sql);
+                if (flag1 == 1 && flag2 == count)
+                {
+                    MessageBox.Show("删除计划成功！");
+                    ManagePlan_Load(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("系统错误！");
+                }
+            }
         }
         //返回按钮事件处理
         private void mp_btn_back_Click(object sender, EventArgs e)
@@ -199,6 +235,10 @@ namespace WindowsFormsApplication1
             this.mp_tBx_Head_Summary.Visible = true;
             this.mp_lbl_Emp_Type.Visible = true;
             this.mp_tBx_Emp_type.Visible = true;
+
+            this.mp_tBx_Plan_Name.Text = null;
+            this.mp_tBx_Head_Summary.Text = null;
+            this.mp_tBx_Emp_type.Text = null;
         }
 
         private void mp_btn_reset_Click_1(object sender, EventArgs e)
@@ -210,21 +250,41 @@ namespace WindowsFormsApplication1
 
         private void mp_btn_confirm_Click(object sender, EventArgs e)
         {
+            //修改之前还需询问是否执行修改操作            
             string plan_name = this.mp_tBx_Plan_Name.Text;
             string head_summary = this.mp_tBx_Head_Summary.Text;
             string emp_type = this.mp_tBx_Emp_type.Text;
-
             DataBaseConnection dc = new DataBaseConnection();
-            string insert_sql = "insert into study_plan_header values(next value for study_plan_header_s,'" + plan_name + "','" + head_summary + "','" + Model.User.userName + "',convert(char(10),GetDate(),120),'" + emp_type + "')";
-            int flag = dc.ExecuteUpdate(insert_sql);
-            if (flag != 0)
+            if (sp_head_id == -1)
             {
-                MessageBox.Show("新增学习计划头信息成功！");
-            }
-            else
+                string insert_sql = "insert into study_plan_header values(next value for study_plan_header_s,'" + plan_name + "','" + head_summary + "','" + Model.User.userName + "',convert(char(10),GetDate(),120),'" + emp_type + "')";
+                int flag = dc.ExecuteUpdate(insert_sql);
+                if (flag != 0)
+                {
+                    MessageBox.Show("新增学习计划头信息成功！");
+                }
+                else
+                {
+                    MessageBox.Show("系统错误！");
+                }
+            }else
             {
-                MessageBox.Show("系统错误！");
+                if (MessageBox.Show("您确定要保存该修改吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    string update_sql = "update study_plan_header set sp_head_name = '" + plan_name + "',sp_head_summary = '" + head_summary + "',sp_emp_type = '" + emp_type + "' where sp_head_id =" + sp_head_id;
+                    int flag = dc.ExecuteUpdate(update_sql);
+                    if (flag != 0)
+                    {
+                        MessageBox.Show("修改学习计划头信息成功！");
+                    }
+                    else
+                    {
+                        MessageBox.Show("系统错误！");
+                    }
+                }               
             }
+            ManagePlan_Load(sender,e);
         }
     }
 }

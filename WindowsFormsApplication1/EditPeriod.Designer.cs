@@ -39,6 +39,14 @@
             this.ep_tBx_Emp_type = new System.Windows.Forms.TextBox();
             this.ep_tBx_Plan_Name = new System.Windows.Forms.TextBox();
             this.ep_btn_confirm = new CCWin.SkinControl.SkinButton();
+            this.ep_lbl_Period_Name = new System.Windows.Forms.Label();
+            this.ep_dtp_Start_Time = new System.Windows.Forms.DateTimePicker();
+            this.ep_lbl_Start_Time = new System.Windows.Forms.Label();
+            this.ep_lbl_End_Time = new System.Windows.Forms.Label();
+            this.ep_dtp_End_Time = new System.Windows.Forms.DateTimePicker();
+            this.ep_btn_addClass = new CCWin.SkinControl.SkinButton();
+            this.ep_tBx_Period_Name = new System.Windows.Forms.TextBox();
+            this.ep_btn_addExam = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // ep_lbl_Plan_Name
@@ -80,7 +88,7 @@
             this.ep_btn_addPeroid.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_addPeroid.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_addPeroid.DownBack = null;
-            this.ep_btn_addPeroid.Location = new System.Drawing.Point(46, 419);
+            this.ep_btn_addPeroid.Location = new System.Drawing.Point(522, 192);
             this.ep_btn_addPeroid.MouseBack = null;
             this.ep_btn_addPeroid.Name = "ep_btn_addPeroid";
             this.ep_btn_addPeroid.NormlBack = null;
@@ -161,11 +169,106 @@
             this.ep_btn_confirm.UseVisualStyleBackColor = false;
             this.ep_btn_confirm.Click += new System.EventHandler(this.ep_btn_confirm_Click);
             // 
+            // ep_lbl_Period_Name
+            // 
+            this.ep_lbl_Period_Name.AutoSize = true;
+            this.ep_lbl_Period_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_lbl_Period_Name.Location = new System.Drawing.Point(65, 425);
+            this.ep_lbl_Period_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_lbl_Period_Name.Name = "ep_lbl_Period_Name";
+            this.ep_lbl_Period_Name.Size = new System.Drawing.Size(56, 17);
+            this.ep_lbl_Period_Name.TabIndex = 32;
+            this.ep_lbl_Period_Name.Text = "阶段名：";
+            // 
+            // ep_dtp_Start_Time
+            // 
+            this.ep_dtp_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_dtp_Start_Time.Location = new System.Drawing.Point(130, 465);
+            this.ep_dtp_Start_Time.Name = "ep_dtp_Start_Time";
+            this.ep_dtp_Start_Time.Size = new System.Drawing.Size(144, 23);
+            this.ep_dtp_Start_Time.TabIndex = 33;
+            // 
+            // ep_lbl_Start_Time
+            // 
+            this.ep_lbl_Start_Time.AutoSize = true;
+            this.ep_lbl_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_lbl_Start_Time.Location = new System.Drawing.Point(55, 468);
+            this.ep_lbl_Start_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_lbl_Start_Time.Name = "ep_lbl_Start_Time";
+            this.ep_lbl_Start_Time.Size = new System.Drawing.Size(68, 17);
+            this.ep_lbl_Start_Time.TabIndex = 34;
+            this.ep_lbl_Start_Time.Text = "开始时间：";
+            // 
+            // ep_lbl_End_Time
+            // 
+            this.ep_lbl_End_Time.AutoSize = true;
+            this.ep_lbl_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_lbl_End_Time.Location = new System.Drawing.Point(285, 468);
+            this.ep_lbl_End_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_lbl_End_Time.Name = "ep_lbl_End_Time";
+            this.ep_lbl_End_Time.Size = new System.Drawing.Size(68, 17);
+            this.ep_lbl_End_Time.TabIndex = 36;
+            this.ep_lbl_End_Time.Text = "截止时间：";
+            // 
+            // ep_dtp_End_Time
+            // 
+            this.ep_dtp_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_dtp_End_Time.Location = new System.Drawing.Point(360, 465);
+            this.ep_dtp_End_Time.Name = "ep_dtp_End_Time";
+            this.ep_dtp_End_Time.Size = new System.Drawing.Size(144, 23);
+            this.ep_dtp_End_Time.TabIndex = 35;
+            // 
+            // ep_btn_addClass
+            // 
+            this.ep_btn_addClass.BackColor = System.Drawing.Color.Transparent;
+            this.ep_btn_addClass.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.ep_btn_addClass.DownBack = null;
+            this.ep_btn_addClass.Location = new System.Drawing.Point(308, 420);
+            this.ep_btn_addClass.MouseBack = null;
+            this.ep_btn_addClass.Name = "ep_btn_addClass";
+            this.ep_btn_addClass.NormlBack = null;
+            this.ep_btn_addClass.Size = new System.Drawing.Size(70, 30);
+            this.ep_btn_addClass.TabIndex = 37;
+            this.ep_btn_addClass.Text = "添加课程";
+            this.ep_btn_addClass.UseVisualStyleBackColor = false;
+            // 
+            // ep_tBx_Period_Name
+            // 
+            this.ep_tBx_Period_Name.BackColor = System.Drawing.Color.SkyBlue;
+            this.ep_tBx_Period_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ep_tBx_Period_Name.Location = new System.Drawing.Point(127, 421);
+            this.ep_tBx_Period_Name.Margin = new System.Windows.Forms.Padding(2);
+            this.ep_tBx_Period_Name.Name = "ep_tBx_Period_Name";
+            this.ep_tBx_Period_Name.Size = new System.Drawing.Size(155, 29);
+            this.ep_tBx_Period_Name.TabIndex = 38;
+            // 
+            // ep_btn_addExam
+            // 
+            this.ep_btn_addExam.BackColor = System.Drawing.Color.Transparent;
+            this.ep_btn_addExam.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.ep_btn_addExam.DownBack = null;
+            this.ep_btn_addExam.Location = new System.Drawing.Point(469, 420);
+            this.ep_btn_addExam.MouseBack = null;
+            this.ep_btn_addExam.Name = "ep_btn_addExam";
+            this.ep_btn_addExam.NormlBack = null;
+            this.ep_btn_addExam.Size = new System.Drawing.Size(70, 30);
+            this.ep_btn_addExam.TabIndex = 39;
+            this.ep_btn_addExam.Text = "添加考试";
+            this.ep_btn_addExam.UseVisualStyleBackColor = false;
+            // 
             // EditPeriod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 518);
+            this.Controls.Add(this.ep_btn_addExam);
+            this.Controls.Add(this.ep_tBx_Period_Name);
+            this.Controls.Add(this.ep_btn_addClass);
+            this.Controls.Add(this.ep_lbl_End_Time);
+            this.Controls.Add(this.ep_dtp_End_Time);
+            this.Controls.Add(this.ep_lbl_Start_Time);
+            this.Controls.Add(this.ep_dtp_Start_Time);
+            this.Controls.Add(this.ep_lbl_Period_Name);
             this.Controls.Add(this.ep_btn_confirm);
             this.Controls.Add(this.ep_tBx_Plan_Name);
             this.Controls.Add(this.ep_tBx_Emp_type);
@@ -196,5 +299,13 @@
         private System.Windows.Forms.TextBox ep_tBx_Emp_type;
         private System.Windows.Forms.TextBox ep_tBx_Plan_Name;
         private CCWin.SkinControl.SkinButton ep_btn_confirm;
+        private System.Windows.Forms.Label ep_lbl_Period_Name;
+        private System.Windows.Forms.DateTimePicker ep_dtp_Start_Time;
+        private System.Windows.Forms.Label ep_lbl_Start_Time;
+        private System.Windows.Forms.Label ep_lbl_End_Time;
+        private System.Windows.Forms.DateTimePicker ep_dtp_End_Time;
+        private CCWin.SkinControl.SkinButton ep_btn_addClass;
+        private System.Windows.Forms.TextBox ep_tBx_Period_Name;
+        private CCWin.SkinControl.SkinButton ep_btn_addExam;
     }
 }

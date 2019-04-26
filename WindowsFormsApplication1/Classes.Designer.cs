@@ -148,7 +148,7 @@
             this.c_btnNecessary.BackColor = System.Drawing.Color.Transparent;
             this.c_btnNecessary.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.c_btnNecessary.DownBack = null;
-            this.c_btnNecessary.Location = new System.Drawing.Point(48, 108);
+            this.c_btnNecessary.Location = new System.Drawing.Point(48, 116);
             this.c_btnNecessary.MouseBack = null;
             this.c_btnNecessary.Name = "c_btnNecessary";
             this.c_btnNecessary.NormlBack = null;
@@ -163,7 +163,7 @@
             this.c_btnOptional.BackColor = System.Drawing.Color.Transparent;
             this.c_btnOptional.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.c_btnOptional.DownBack = null;
-            this.c_btnOptional.Location = new System.Drawing.Point(48, 200);
+            this.c_btnOptional.Location = new System.Drawing.Point(48, 199);
             this.c_btnOptional.MouseBack = null;
             this.c_btnOptional.Name = "c_btnOptional";
             this.c_btnOptional.NormlBack = null;
@@ -178,7 +178,7 @@
             this.c_btnAll.BackColor = System.Drawing.Color.Transparent;
             this.c_btnAll.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.c_btnAll.DownBack = null;
-            this.c_btnAll.Location = new System.Drawing.Point(48, 283);
+            this.c_btnAll.Location = new System.Drawing.Point(48, 282);
             this.c_btnAll.MouseBack = null;
             this.c_btnAll.Name = "c_btnAll";
             this.c_btnAll.NormlBack = null;
@@ -193,7 +193,7 @@
             this.btn_chooseLesson.BackColor = System.Drawing.Color.Transparent;
             this.btn_chooseLesson.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_chooseLesson.DownBack = null;
-            this.btn_chooseLesson.Location = new System.Drawing.Point(48, 363);
+            this.btn_chooseLesson.Location = new System.Drawing.Point(48, 368);
             this.btn_chooseLesson.MouseBack = null;
             this.btn_chooseLesson.Name = "btn_chooseLesson";
             this.btn_chooseLesson.NormlBack = null;
@@ -208,7 +208,7 @@
             this.c_btnMine.BackColor = System.Drawing.Color.Transparent;
             this.c_btnMine.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.c_btnMine.DownBack = null;
-            this.c_btnMine.Location = new System.Drawing.Point(614, 108);
+            this.c_btnMine.Location = new System.Drawing.Point(621, 116);
             this.c_btnMine.MouseBack = null;
             this.c_btnMine.Name = "c_btnMine";
             this.c_btnMine.NormlBack = null;
@@ -224,7 +224,7 @@
             this.btn_loadClasses.BackColor = System.Drawing.Color.Transparent;
             this.btn_loadClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_loadClasses.DownBack = null;
-            this.btn_loadClasses.Location = new System.Drawing.Point(614, 200);
+            this.btn_loadClasses.Location = new System.Drawing.Point(621, 199);
             this.btn_loadClasses.MouseBack = null;
             this.btn_loadClasses.Name = "btn_loadClasses";
             this.btn_loadClasses.NormlBack = null;
@@ -240,7 +240,7 @@
             this.btn_PlanArrangement.BackColor = System.Drawing.Color.Transparent;
             this.btn_PlanArrangement.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_PlanArrangement.DownBack = null;
-            this.btn_PlanArrangement.Location = new System.Drawing.Point(614, 363);
+            this.btn_PlanArrangement.Location = new System.Drawing.Point(621, 368);
             this.btn_PlanArrangement.MouseBack = null;
             this.btn_PlanArrangement.Name = "btn_PlanArrangement";
             this.btn_PlanArrangement.NormlBack = null;
@@ -271,7 +271,7 @@
             this.btn_CreatePlan.BackColor = System.Drawing.Color.Transparent;
             this.btn_CreatePlan.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_CreatePlan.DownBack = null;
-            this.btn_CreatePlan.Location = new System.Drawing.Point(614, 283);
+            this.btn_CreatePlan.Location = new System.Drawing.Point(621, 282);
             this.btn_CreatePlan.MouseBack = null;
             this.btn_CreatePlan.Name = "btn_CreatePlan";
             this.btn_CreatePlan.NormlBack = null;
