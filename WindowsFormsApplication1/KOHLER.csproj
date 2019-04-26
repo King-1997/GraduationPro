@@ -130,13 +130,18 @@
     <Compile Include="EditPeriod.Designer.cs">
       <DependentUpon>EditPeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExamChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExamChoose.Designer.cs">
+      <DependentUpon>ExamChoose.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagePlan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManagePlan.Designer.cs">
       <DependentUpon>ManagePlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Plan_Header.cs" />
     <Compile Include="Tools\Download.cs" />
     <Compile Include="Tools\EmailSend.cs" />
     <Compile Include="ExamForm.cs">
@@ -207,7 +212,6 @@
     <Compile Include="Man_Management.designer.cs">
       <DependentUpon>Man_Management.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClassesInfo.cs" />
     <Compile Include="News.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditPeriod.resx">
       <DependentUpon>EditPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExamChoose.resx">
+      <DependentUpon>ExamChoose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagePlan.resx">
       <DependentUpon>ManagePlan.cs</DependentUpon>

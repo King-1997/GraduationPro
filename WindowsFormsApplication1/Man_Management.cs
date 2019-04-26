@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1
                 int.TryParse(cBx_workerEntryMonth.SelectedItem.ToString(), out month);
                 entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");//设置开始时间都为该月1号
                 entryTime2 = jym.judgeYearAndMonth(year, month);
-                sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone " +
+                sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone, u.u_id" +
                     "from [User] u, [group] g, userType ut where u.g_id = g.g_id and " +
                     "u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1+ "' and u.u_entryTime <= '"+ entryTime2+ "'";
             }
@@ -232,13 +232,13 @@ namespace WindowsFormsApplication1
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
                     u_phone.Width = 100;
                     //编辑按钮
-                    var btn_edit = new Button { Text = "编辑" };                   
-                    btn_edit.Name = u_account.Text;
+                    var btn_edit = new Button { Text = "编辑" };
+                    btn_edit.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btn_edit.Width = 40;
                     btn_edit.Click += new EventHandler(Edit_Click);
                     //删除按钮
                     var btn_delete = new Button { Text = "删除" };                   
-                    btn_delete.Name = u_account.Text;
+                    btn_delete.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btn_delete.Width = 40;
                     btn_delete.Click += new EventHandler(Delete_Click);
                     fLP_workers.Controls.Add(u_name);
@@ -269,9 +269,7 @@ namespace WindowsFormsApplication1
         {
             //点击按钮进入员工信息编辑页面，并传入员工工号 
             Button button = (Button)sender;
-            String u_account = button.Name;
-            Console.WriteLine("按钮里的员工工号：" + u_account);
-            Workers_message.u_account = u_account;
+            int.TryParse(button.Name,out Workers_message.u_id);
             Workers_message workers_message = new Workers_message();
             workers_message.Owner = this;
             workers_message.Show();
@@ -281,17 +279,15 @@ namespace WindowsFormsApplication1
         //删除员工信息
         private void Delete_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
+            int u_id = -1;
+            int.TryParse(button.Name, out Workers_message.u_id);
             if (MessageBox.Show("您确定要删除该员工吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
             {
-                //数据库操作
-                Button button = (Button)sender;
-                String u_account = button.Name;
-                //Console.WriteLine("按钮里的员工工号：" + u_account);
-                //确认删除
-                //数据库操作
+                //数据库操作                
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "delete from [User] where u_account = '" + u_account + "'";
+                String sql = "delete from [User] where u_id = '" + u_id + "'";
                 int flag = dc.ExecuteUpdate(sql);
                 if (flag == 1)
                 {
@@ -303,8 +299,7 @@ namespace WindowsFormsApplication1
                     }else
                     {
                         btn_find_Click(sender,e);
-                    }
-                    
+                    }     
                 }
                 else
                 {

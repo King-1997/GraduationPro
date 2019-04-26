@@ -46,16 +46,18 @@ namespace WindowsFormsApplication1
             if (keyword == null)
             {
                 ManagePlan_Load(sender,e);
-            }
-            string select_sql = "select sp_head_name,sp_head_summary,sp_created,sp_created_time,sp_emp_type,sp_head_id from study_plan_header where sp_head_name = '"+keyword+"'";
-            showPlanInfo(select_sql);
+            }else
+            {
+                string select_sql = "select sp_head_name,sp_head_summary,sp_created,sp_created_time,sp_emp_type,sp_head_id from study_plan_header where sp_head_name = '%" + keyword + "%' or sp_head_summary = '%" + keyword + "%' or sp_emp_type = '%" + keyword + "%'";
+                showPlanInfo(select_sql);
+            }           
         }
         private void showPlanInfo(string sql)
         {
             this.mp_flp_PlanInfo.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
-            //在窗口添加课程信息
+            //在窗口添加学习计划信息
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 //计划名称标签
@@ -87,6 +89,10 @@ namespace WindowsFormsApplication1
                 var lbl_btn_edit = new Label { Text = "" };
                 lbl_btn_edit.Width = 50;
                 lbl_btn_edit.TextAlign = ContentAlignment.MiddleCenter;
+                //编辑学习计划阶段信息标签
+                var lbl_btn_edit_period = new Label { Text = "" };
+                lbl_btn_edit_period.Width = 70;
+                lbl_btn_edit_period.TextAlign = ContentAlignment.MiddleCenter;
                 //删除学习计划信息标签
                 var lbl_btn_delete = new Label { Text = "" };
                 lbl_btn_delete.Width = 50;
@@ -97,6 +103,7 @@ namespace WindowsFormsApplication1
                 mp_flp_PlanInfo.Controls.Add(lbl_create_time);
                 mp_flp_PlanInfo.Controls.Add(lbl_btn_emp_type);
                 mp_flp_PlanInfo.Controls.Add(lbl_btn_edit);
+                mp_flp_PlanInfo.Controls.Add(lbl_btn_edit_period);
                 mp_flp_PlanInfo.Controls.Add(lbl_btn_delete);
                 mp_flp_PlanInfo.SetFlowBreak(lbl_btn_delete, true);
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
@@ -135,27 +142,33 @@ namespace WindowsFormsApplication1
                     btn_check.TextAlign = ContentAlignment.MiddleCenter;
                     btn_check.Name = ds.Tables["user"].Rows[i][5].ToString();
                     btn_check.Click += new EventHandler(editPlanInfo);
-
+                    //编辑计划阶段信息
+                    var btn_edit_period = new Button { Text = "阶段信息" };
+                    btn_edit_period.Width = 70;
+                    btn_edit_period.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_edit_period.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    btn_edit_period.Click += new EventHandler(editPeriodInfo);
                     //删除计划
                     var btn_delete = new Button { Text = "删除" };
                     btn_delete.Width = 50;
                     btn_delete.TextAlign = ContentAlignment.MiddleCenter;
                     btn_delete.Name = ds.Tables["user"].Rows[i][5].ToString();
-                    btn_check.Click += new EventHandler(deletePlan);
+                    btn_delete.Click += new EventHandler(deletePlan);
 
                     mp_flp_PlanInfo.Controls.Add(plan_name);                    
                     mp_flp_PlanInfo.Controls.Add(introducation);
                     mp_flp_PlanInfo.Controls.Add(creater);
                     mp_flp_PlanInfo.Controls.Add(create_time);
-                    mp_flp_PlanInfo.Controls.Add(emp_type);                    
+                    mp_flp_PlanInfo.Controls.Add(emp_type);
                     mp_flp_PlanInfo.Controls.Add(btn_check);
+                    mp_flp_PlanInfo.Controls.Add(btn_edit_period);
                     mp_flp_PlanInfo.Controls.Add(btn_delete);
                     mp_flp_PlanInfo.SetFlowBreak(btn_delete, true);
                 }
             }
             else
             {
-                //员工姓名
+                //查询不到数据时提示无数据
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
                 lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
@@ -183,6 +196,17 @@ namespace WindowsFormsApplication1
             this.mp_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
             this.mp_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
         }
+        //编辑阶段信息按钮事件处理
+        private void editPeriodInfo(object sender, EventArgs e)
+        {
+            //打开计划阶段信息界面EditPeriod，隐藏本界面
+            Button button = (Button)sender;
+            int.TryParse(button.Name,out EditPeriod.sp_head_id);
+            EditPeriod editperiod = new EditPeriod();
+            editperiod.Owner = this;
+            this.Hide();
+            editperiod.Show();            
+        }
         //删除按钮事件处理
         private void deletePlan(object sender, EventArgs e)
         {
@@ -204,12 +228,13 @@ namespace WindowsFormsApplication1
                 if (flag1 == 1 && flag2 == count)
                 {
                     MessageBox.Show("删除计划成功！");
-                    ManagePlan_Load(sender, e);
+                    mp_btn_reset_Click_1(sender, e);
                 }
                 else
                 {
                     MessageBox.Show("系统错误！");
                 }
+                sp_head_id = -1;//执行完操作之后需要将sp_head_id置为-1
             }
         }
         //返回按钮事件处理
@@ -222,11 +247,7 @@ namespace WindowsFormsApplication1
         //新增计划按钮事件处理
         private void mp_btn_addPlan_Click(object sender, EventArgs e)
         {
-            ////打开计划阶段信息界面EditPeriod，隐藏本界面
-            //EditPeriod editperiod = new EditPeriod();
-            //editperiod.Owner = this;
-            //editperiod.Show();
-            //this.Hide();
+            
 
             this.mp_flp_PlanInfo.Height = 145;
             this.mp_lbl_Plan_Name.Visible = true;
@@ -276,7 +297,7 @@ namespace WindowsFormsApplication1
                     int flag = dc.ExecuteUpdate(update_sql);
                     if (flag != 0)
                     {
-                        MessageBox.Show("修改学习计划头信息成功！");
+                        MessageBox.Show("修改学习计划头信息成功！");                        
                     }
                     else
                     {
@@ -284,7 +305,8 @@ namespace WindowsFormsApplication1
                     }
                 }               
             }
-            ManagePlan_Load(sender,e);
+            sp_head_id = -1;
+            mp_btn_reset_Click_1(sender, e);            
         }
     }
 }

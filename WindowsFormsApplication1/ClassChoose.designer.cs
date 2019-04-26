@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tBx_findkeywords = new System.Windows.Forms.TextBox();
             this.cbB_findKey = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cc_lbl_keyword = new System.Windows.Forms.Label();
             this.fLP_lessons = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_find = new CCWin.SkinControl.SkinButton();
             this.btn_allClasses = new CCWin.SkinControl.SkinButton();
@@ -58,16 +58,16 @@
             this.cbB_findKey.Size = new System.Drawing.Size(92, 29);
             this.cbB_findKey.TabIndex = 4;
             // 
-            // label1
+            // cc_lbl_keyword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.label1.Location = new System.Drawing.Point(76, 52);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 21);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "请您输入关键字：";
+            this.cc_lbl_keyword.AutoSize = true;
+            this.cc_lbl_keyword.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cc_lbl_keyword.Location = new System.Drawing.Point(76, 52);
+            this.cc_lbl_keyword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.cc_lbl_keyword.Name = "cc_lbl_keyword";
+            this.cc_lbl_keyword.Size = new System.Drawing.Size(138, 21);
+            this.cc_lbl_keyword.TabIndex = 5;
+            this.cc_lbl_keyword.Text = "请您输入关键字：";
             // 
             // fLP_lessons
             // 
@@ -152,7 +152,7 @@
             this.Controls.Add(this.btn_allClasses);
             this.Controls.Add(this.btn_find);
             this.Controls.Add(this.fLP_lessons);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cc_lbl_keyword);
             this.Controls.Add(this.cbB_findKey);
             this.Controls.Add(this.tBx_findkeywords);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -168,7 +168,7 @@
         #endregion
         private System.Windows.Forms.TextBox tBx_findkeywords;
         private System.Windows.Forms.ComboBox cbB_findKey;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label cc_lbl_keyword;
         private System.Windows.Forms.FlowLayoutPanel fLP_lessons;
         private CCWin.SkinControl.SkinButton btn_find;
         private CCWin.SkinControl.SkinButton btn_allClasses;

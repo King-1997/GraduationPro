@@ -21,12 +21,13 @@ namespace WindowsFormsApplication1
             cbB_findKey.Items.AddRange(new object[] { "按课程名", "按学分", "按上传人" ,"按推荐学时"});
             cbB_findKey.SelectedIndex = 0;
         }
-        public int lessonId = -1;//保存选择的课程id信息
+        public string lessonId = null;//保存选择的课程id信息
         public string lessonName = null;//保存选择的课程名信息
         public string lessonTime = null;//保存选择的课程学时信息
 
         private void btn_allClasses_Click(object sender, EventArgs e)
         {
+            this.tBx_findkeywords.Text = null;
             ClassChoose_Load(sender,e);
         }
 
@@ -117,13 +118,9 @@ namespace WindowsFormsApplication1
                     var rb = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
                     rb.Font = font;
                     rb.Width = 100;
-                    rb.Name = ds.Tables["user"].Rows[count][4].ToString();
+                    rb.Name = ds.Tables["user"].Rows[count][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     rb.Click += new EventHandler(btn_oK_Click);
-                    //将课程信息传入ClassesInfo模型中
-                    int.TryParse(ds.Tables["user"].Rows[count][6].ToString(), out Model.ClassesInfo.class_id);
-                    int.TryParse(ds.Tables["user"].Rows[count][4].ToString(), out Model.ClassesInfo.class_time);
-                    Model.ClassesInfo.class_name = ds.Tables["user"].Rows[count][0].ToString();
                     //上传人
                     var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
                     Loadman.Font = font;
@@ -175,13 +172,13 @@ namespace WindowsFormsApplication1
         private void CheckClassesInfo(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            //Console.WriteLine("button里的classesname："+button.Name);
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
             this.Hide();
             classesInfo.Show();
         }
+        //复选框选中事件（设置只选一个）
         private void btn_oK_Click(object sender, EventArgs e)
         {
             //遍历 
@@ -193,21 +190,18 @@ namespace WindowsFormsApplication1
                     {
                         //处理代码
                         lessonName = ctl.Text;
-                        lessonTime = ctl.Name;
+                        lessonId = ctl.Name;
                     }
                 }
             }
             //传递选定的课程
-            LessonArrangement.lesson_name = lessonName;
-            LessonArrangement.lesson_time = lessonTime;
-
+            EditPeriod.lesson_name = lessonName;
+            EditPeriod.c_id = lessonId;            
             //获取上一界面的已选课程窗口
-            LessonArrangement lesson = (LessonArrangement)this.Owner;
-            lesson.LessonsShow();
-
+            EditPeriod editperoid = (EditPeriod)this.Owner;
+            editperoid.showClass_Exam_Info();
             this.Owner.Show();
             this.Dispose();
-
         }
 
         private void ClassChoose_Load(object sender, EventArgs e)

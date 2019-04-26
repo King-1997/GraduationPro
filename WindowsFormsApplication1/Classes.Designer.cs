@@ -46,7 +46,7 @@
             this.btn_loadClasses = new CCWin.SkinControl.SkinButton();
             this.btn_PlanArrangement = new CCWin.SkinControl.SkinButton();
             this.p_btnHome = new CCWin.SkinControl.SkinButton();
-            this.btn_CreatePlan = new CCWin.SkinControl.SkinButton();
+            this.btn_ManagePlan = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // c_lblTitle
@@ -266,21 +266,21 @@
             this.p_btnHome.UseVisualStyleBackColor = false;
             this.p_btnHome.Click += new System.EventHandler(this.p_btnHome_Click);
             // 
-            // btn_CreatePlan
+            // btn_ManagePlan
             // 
-            this.btn_CreatePlan.BackColor = System.Drawing.Color.Transparent;
-            this.btn_CreatePlan.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btn_CreatePlan.DownBack = null;
-            this.btn_CreatePlan.Location = new System.Drawing.Point(621, 282);
-            this.btn_CreatePlan.MouseBack = null;
-            this.btn_CreatePlan.Name = "btn_CreatePlan";
-            this.btn_CreatePlan.NormlBack = null;
-            this.btn_CreatePlan.Size = new System.Drawing.Size(88, 54);
-            this.btn_CreatePlan.TabIndex = 29;
-            this.btn_CreatePlan.Text = "制定学习计划";
-            this.btn_CreatePlan.UseVisualStyleBackColor = false;
-            this.btn_CreatePlan.Visible = false;
-            this.btn_CreatePlan.Click += new System.EventHandler(this.btn_CreatePlan_Click);
+            this.btn_ManagePlan.BackColor = System.Drawing.Color.Transparent;
+            this.btn_ManagePlan.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btn_ManagePlan.DownBack = null;
+            this.btn_ManagePlan.Location = new System.Drawing.Point(621, 282);
+            this.btn_ManagePlan.MouseBack = null;
+            this.btn_ManagePlan.Name = "btn_ManagePlan";
+            this.btn_ManagePlan.NormlBack = null;
+            this.btn_ManagePlan.Size = new System.Drawing.Size(88, 54);
+            this.btn_ManagePlan.TabIndex = 29;
+            this.btn_ManagePlan.Text = "学习计划管理";
+            this.btn_ManagePlan.UseVisualStyleBackColor = false;
+            this.btn_ManagePlan.Visible = false;
+            this.btn_ManagePlan.Click += new System.EventHandler(this.btn_ManagePlan_Click);
             // 
             // Classes
             // 
@@ -288,7 +288,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(754, 577);
-            this.Controls.Add(this.btn_CreatePlan);
+            this.Controls.Add(this.btn_ManagePlan);
             this.Controls.Add(this.p_btnHome);
             this.Controls.Add(this.btn_PlanArrangement);
             this.Controls.Add(this.btn_loadClasses);
@@ -334,6 +334,6 @@
         private CCWin.SkinControl.SkinButton btn_loadClasses;
         private CCWin.SkinControl.SkinButton btn_PlanArrangement;
         private CCWin.SkinControl.SkinButton p_btnHome;
-        private CCWin.SkinControl.SkinButton btn_CreatePlan;
+        private CCWin.SkinControl.SkinButton btn_ManagePlan;
     }
 }

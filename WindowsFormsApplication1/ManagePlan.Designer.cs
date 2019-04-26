@@ -48,9 +48,9 @@
             // mp_flp_PlanInfo
             // 
             this.mp_flp_PlanInfo.AutoScroll = true;
-            this.mp_flp_PlanInfo.Location = new System.Drawing.Point(90, 106);
+            this.mp_flp_PlanInfo.Location = new System.Drawing.Point(60, 106);
             this.mp_flp_PlanInfo.Name = "mp_flp_PlanInfo";
-            this.mp_flp_PlanInfo.Size = new System.Drawing.Size(643, 144);
+            this.mp_flp_PlanInfo.Size = new System.Drawing.Size(683, 144);
             this.mp_flp_PlanInfo.TabIndex = 16;
             // 
             // mp_btn_reset

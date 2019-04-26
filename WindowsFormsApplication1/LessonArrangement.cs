@@ -15,8 +15,8 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-        public static String lesson_name = null;
-        public static String lesson_time = null;
+        public static string lesson_name = null;
+        public static string lesson_time = null;
         public static List<string> people = null;
 
         private int classes_id = Model.ClassesInfo.class_id;
@@ -60,8 +60,8 @@ namespace WindowsFormsApplication1
             //打开选择课程界面classChoose，隐藏本界面
             ClassChoose classChoose = new ClassChoose();
             classChoose.Owner = this;
-            classChoose.Show();
             this.Hide();
+            classChoose.Show();            
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -139,7 +139,6 @@ namespace WindowsFormsApplication1
         {
             PeopleChoose PeopleChoose = new PeopleChoose();
             PeopleChoose.Owner = this;
-
             this.Hide();
             PeopleChoose.Show();
         }

@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
     public partial class Workers_message : CCSkinMain
     {
         public static String u_account = null;
-        public static int u_id = 0;
+        public static int u_id = -1;
         public Workers_message()
         {
             InitializeComponent();
@@ -104,6 +104,14 @@ namespace WindowsFormsApplication1
                 //CheckChinaIDCardNumberFormat(Wm_tbxIDNum.Text);
                 //验证输入的电话号码是否有误
                 //CheckPhoneIsAble(Wm_tbxPhone.Text);
+
+                //默认状态下，DateTimePicker控件只显示日期，如果想更改为显示时间，或日期+时间，需要做以下设置：
+                //控制日期或时间的显示格式
+                this.Wm_dtpEntryTime.CustomFormat = "yyyy-MM-dd";//显示时间则格式为"yyyy-MM-dd HH:mm:ss"，HH表示24小时制，hh则为12小时制
+                //使用自定义格式
+                this.Wm_dtpEntryTime.Format = DateTimePickerFormat.Custom;
+                //时间控件的启用
+                //this.Wm_dtpEntryTime.ShowUpDown = true;
                 if (Wm_tbxAccount.Text == null)
                 {
 
@@ -213,7 +221,7 @@ namespace WindowsFormsApplication1
         private void Workers_message_Load(object sender, EventArgs e)
         {
             Wm_tbxPhone.KeyPress += new KeyPressEventHandler(tBx_KeyPress);
-            if(u_account== null)
+            if(u_id == -1)
             {
                 Wm_btnUpDate.Visible = false;
                 Wm_btnDelete.Text = "确定";
@@ -221,16 +229,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                Console.WriteLine("u_account为：" + u_account);
                 //从数据库读取员工信息
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select * from [User] where u_account = '" + u_account + "'";
-                Console.WriteLine("查询员工信息的sql语句：" + sql);
+                String sql = "select * from [User] where u_id = " + u_id;
+                //Console.WriteLine("查询员工信息的sql语句：" + sql);
                 DataSet ds = dc.ExecuteQuery(sql);
-                Console.WriteLine("查询出来的信息条数：" + ds.Tables["user"].Rows.Count);
+                //Console.WriteLine("查询出来的信息条数：" + ds.Tables["user"].Rows.Count);
                 //修改界面的控件的信息
-                u_id = (int)ds.Tables["user"].Rows[0][0];
-
                 Wm_tbxUserName.Text = ds.Tables["user"].Rows[0][5].ToString();
                 Wm_cbBUserType.SelectedIndex = ((int)ds.Tables["user"].Rows[0][1]) - 1;
                 Wm_cbBGroup.SelectedIndex = ((int)ds.Tables["user"].Rows[0][2]) - 1;
@@ -246,28 +251,24 @@ namespace WindowsFormsApplication1
                 Wm_tbxIDNum.Text = ds.Tables["user"].Rows[0][8].ToString();
                 Wm_tbxPhone.Text = ds.Tables["user"].Rows[0][9].ToString();
                 Wm_dtpEntryTime.Value = Convert.ToDateTime(ds.Tables["user"].Rows[0][10]);
-            }
-            
+            }            
         }
 
         private void Wm_btnUpDate_Click(object sender, EventArgs e)
         {
-           
             if (MessageBox.Show("您确定要修改该员工信息吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
             {
                     DataBaseConnection dc = new DataBaseConnection();
-                    Console.WriteLine("u_id为：" + u_id);
                     int ut_id = Wm_cbBUserType.SelectedIndex + 1;
                     int g_id = Wm_cbBGroup.SelectedIndex + 1;
                     String sex = Wm_cbBSex.SelectedItem.ToString();
-                    Console.WriteLine("时间选择器里的值："+ Wm_dtpEntryTime.Value);
+                    //Console.WriteLine("时间选择器里的值："+ Wm_dtpEntryTime.Value);
 
                     ////验证输入的省份证号码是否有误
                     //CheckChinaIDCardNumberFormat(Wm_tbxIDNum.Text);
                     ////验证输入的电话号码是否有误
                     //CheckPhoneIsAble(Wm_tbxPhone.Text);
-
                     String sql = "update [User] set u_name = N'" + Wm_tbxUserName.Text + "',ut_id =" + ut_id + " ,g_id = " + g_id + ",u_account = '" + Wm_tbxAccount.Text + "',u_sex = N'" + sex + "',u_idNum = '" + Wm_tbxIDNum.Text + "',u_phone = '" + Wm_tbxPhone.Text + "', u_entryTime = '"+ Wm_dtpEntryTime.Value + "' where u_id = " + u_id;
                     Console.WriteLine("更新操作的sql语句：" + sql);
                     int flag = dc.ExecuteUpdate(sql);

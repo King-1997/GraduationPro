@@ -33,7 +33,7 @@
             this.ep_lbl_Plan_Summary = new System.Windows.Forms.Label();
             this.ep_tBx_Head_Summary = new System.Windows.Forms.TextBox();
             this.ep_btn_addPeroid = new CCWin.SkinControl.SkinButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ep_flp_Lines_Info = new System.Windows.Forms.FlowLayoutPanel();
             this.ep_btn_back = new CCWin.SkinControl.SkinButton();
             this.ep_lbl_Emp_Type = new System.Windows.Forms.Label();
             this.ep_tBx_Emp_type = new System.Windows.Forms.TextBox();
@@ -47,6 +47,9 @@
             this.ep_btn_addClass = new CCWin.SkinControl.SkinButton();
             this.ep_tBx_Period_Name = new System.Windows.Forms.TextBox();
             this.ep_btn_addExam = new CCWin.SkinControl.SkinButton();
+            this.ep_lbl_Class_Name = new System.Windows.Forms.Label();
+            this.ep_lbl_Exam_Name = new System.Windows.Forms.Label();
+            this.ep_btn_All_Peroid = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // ep_lbl_Plan_Name
@@ -88,7 +91,7 @@
             this.ep_btn_addPeroid.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_addPeroid.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_addPeroid.DownBack = null;
-            this.ep_btn_addPeroid.Location = new System.Drawing.Point(522, 192);
+            this.ep_btn_addPeroid.Location = new System.Drawing.Point(461, 194);
             this.ep_btn_addPeroid.MouseBack = null;
             this.ep_btn_addPeroid.Name = "ep_btn_addPeroid";
             this.ep_btn_addPeroid.NormlBack = null;
@@ -98,20 +101,20 @@
             this.ep_btn_addPeroid.UseVisualStyleBackColor = false;
             this.ep_btn_addPeroid.Click += new System.EventHandler(this.ep_btn_addPeroid_Click);
             // 
-            // flowLayoutPanel1
+            // ep_flp_Lines_Info
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(46, 238);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(679, 160);
-            this.flowLayoutPanel1.TabIndex = 26;
+            this.ep_flp_Lines_Info.AutoScroll = true;
+            this.ep_flp_Lines_Info.Location = new System.Drawing.Point(46, 238);
+            this.ep_flp_Lines_Info.Name = "ep_flp_Lines_Info";
+            this.ep_flp_Lines_Info.Size = new System.Drawing.Size(773, 160);
+            this.ep_flp_Lines_Info.TabIndex = 26;
             // 
             // ep_btn_back
             // 
             this.ep_btn_back.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_back.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_back.DownBack = null;
-            this.ep_btn_back.Location = new System.Drawing.Point(729, 465);
+            this.ep_btn_back.Location = new System.Drawing.Point(749, 538);
             this.ep_btn_back.MouseBack = null;
             this.ep_btn_back.Name = "ep_btn_back";
             this.ep_btn_back.NormlBack = null;
@@ -159,7 +162,7 @@
             this.ep_btn_confirm.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_confirm.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_confirm.DownBack = null;
-            this.ep_btn_confirm.Location = new System.Drawing.Point(644, 465);
+            this.ep_btn_confirm.Location = new System.Drawing.Point(664, 538);
             this.ep_btn_confirm.MouseBack = null;
             this.ep_btn_confirm.Name = "ep_btn_confirm";
             this.ep_btn_confirm.NormlBack = null;
@@ -231,6 +234,7 @@
             this.ep_btn_addClass.TabIndex = 37;
             this.ep_btn_addClass.Text = "添加课程";
             this.ep_btn_addClass.UseVisualStyleBackColor = false;
+            this.ep_btn_addClass.Click += new System.EventHandler(this.ep_btn_addClass_Click);
             // 
             // ep_tBx_Period_Name
             // 
@@ -247,7 +251,7 @@
             this.ep_btn_addExam.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_addExam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_addExam.DownBack = null;
-            this.ep_btn_addExam.Location = new System.Drawing.Point(469, 420);
+            this.ep_btn_addExam.Location = new System.Drawing.Point(506, 421);
             this.ep_btn_addExam.MouseBack = null;
             this.ep_btn_addExam.Name = "ep_btn_addExam";
             this.ep_btn_addExam.NormlBack = null;
@@ -255,12 +259,53 @@
             this.ep_btn_addExam.TabIndex = 39;
             this.ep_btn_addExam.Text = "添加考试";
             this.ep_btn_addExam.UseVisualStyleBackColor = false;
+            this.ep_btn_addExam.Click += new System.EventHandler(this.ep_btn_addExam_Click);
+            // 
+            // ep_lbl_Class_Name
+            // 
+            this.ep_lbl_Class_Name.AutoSize = true;
+            this.ep_lbl_Class_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_lbl_Class_Name.Location = new System.Drawing.Point(403, 426);
+            this.ep_lbl_Class_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_lbl_Class_Name.Name = "ep_lbl_Class_Name";
+            this.ep_lbl_Class_Name.Size = new System.Drawing.Size(44, 17);
+            this.ep_lbl_Class_Name.TabIndex = 40;
+            this.ep_lbl_Class_Name.Text = "课程名";
+            // 
+            // ep_lbl_Exam_Name
+            // 
+            this.ep_lbl_Exam_Name.AutoSize = true;
+            this.ep_lbl_Exam_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_lbl_Exam_Name.Location = new System.Drawing.Point(602, 427);
+            this.ep_lbl_Exam_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_lbl_Exam_Name.Name = "ep_lbl_Exam_Name";
+            this.ep_lbl_Exam_Name.Size = new System.Drawing.Size(44, 17);
+            this.ep_lbl_Exam_Name.TabIndex = 41;
+            this.ep_lbl_Exam_Name.Text = "试卷名";
+            // 
+            // ep_btn_All_Peroid
+            // 
+            this.ep_btn_All_Peroid.BackColor = System.Drawing.Color.Transparent;
+            this.ep_btn_All_Peroid.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.ep_btn_All_Peroid.DownBack = null;
+            this.ep_btn_All_Peroid.Location = new System.Drawing.Point(555, 194);
+            this.ep_btn_All_Peroid.MouseBack = null;
+            this.ep_btn_All_Peroid.Name = "ep_btn_All_Peroid";
+            this.ep_btn_All_Peroid.NormlBack = null;
+            this.ep_btn_All_Peroid.Size = new System.Drawing.Size(70, 30);
+            this.ep_btn_All_Peroid.TabIndex = 42;
+            this.ep_btn_All_Peroid.Text = "所有阶段";
+            this.ep_btn_All_Peroid.UseVisualStyleBackColor = false;
+            this.ep_btn_All_Peroid.Click += new System.EventHandler(this.ep_btn_All_Peroid_Click);
             // 
             // EditPeriod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 518);
+            this.ClientSize = new System.Drawing.Size(872, 598);
+            this.Controls.Add(this.ep_btn_All_Peroid);
+            this.Controls.Add(this.ep_lbl_Exam_Name);
+            this.Controls.Add(this.ep_lbl_Class_Name);
             this.Controls.Add(this.ep_btn_addExam);
             this.Controls.Add(this.ep_tBx_Period_Name);
             this.Controls.Add(this.ep_btn_addClass);
@@ -274,7 +319,7 @@
             this.Controls.Add(this.ep_tBx_Emp_type);
             this.Controls.Add(this.ep_lbl_Emp_Type);
             this.Controls.Add(this.ep_btn_back);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.ep_flp_Lines_Info);
             this.Controls.Add(this.ep_btn_addPeroid);
             this.Controls.Add(this.ep_tBx_Head_Summary);
             this.Controls.Add(this.ep_lbl_Plan_Summary);
@@ -293,7 +338,7 @@
         private System.Windows.Forms.Label ep_lbl_Plan_Summary;
         private System.Windows.Forms.TextBox ep_tBx_Head_Summary;
         private CCWin.SkinControl.SkinButton ep_btn_addPeroid;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel ep_flp_Lines_Info;
         private CCWin.SkinControl.SkinButton ep_btn_back;
         private System.Windows.Forms.Label ep_lbl_Emp_Type;
         private System.Windows.Forms.TextBox ep_tBx_Emp_type;
@@ -307,5 +352,8 @@
         private CCWin.SkinControl.SkinButton ep_btn_addClass;
         private System.Windows.Forms.TextBox ep_tBx_Period_Name;
         private CCWin.SkinControl.SkinButton ep_btn_addExam;
+        private System.Windows.Forms.Label ep_lbl_Class_Name;
+        private System.Windows.Forms.Label ep_lbl_Exam_Name;
+        private CCWin.SkinControl.SkinButton ep_btn_All_Peroid;
     }
 }
