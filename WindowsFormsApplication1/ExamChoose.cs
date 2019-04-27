@@ -25,6 +25,8 @@ namespace WindowsFormsApplication1
         {
             exam_p_id = null;
             HideControls();
+            string select_sql = "select exam_p_name,(select u_name from [User] where u_id = created) AS created_name,created_time,start_time,end_time,exam_p_id from exam_paper";
+            showExamInfo(select_sql);
         }
         //查询按钮事件处理
         private void ec_btn_find_Click(object sender, EventArgs e)
@@ -32,13 +34,14 @@ namespace WindowsFormsApplication1
             string keyword = this.ec_tBx_findkeywords.Text;
             if (keyword == null)
             {
-                ExamChoose_Load(sender, e);
+                ExamChoose_Load(sender, e);                
             }
             else
             {
-                string select_sql = "select exam_p_name,created,created_time,start_time,end_time,exam_p_id from exam_paper where exam_p_name = '%" + keyword + "%' or created in (select u_id from [User] where u_name = '%" + keyword + "%')";
+                string select_sql = "select exam_p_name,(select u_name from [User] where u_id = created) AS created_name,created_time,start_time,end_time,exam_p_id from exam_paper where exam_p_name = '%" + keyword + "%' or created in (select u_id from [User] where u_name = '%" + keyword + "%')";
                 showExamInfo(select_sql);
             }
+            
         }
         private void showExamInfo(string sql)
         {
@@ -62,83 +65,113 @@ namespace WindowsFormsApplication1
                 //创建时间标签
                 var lbl_introducation = new Label { Text = "创建时间" };
                 lbl_introducation.Font = font;
-                lbl_introducation.Width = 100;
+                lbl_introducation.Width = 90;
                 lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
                 //开始时间标签
                 var lbl_credit = new Label { Text = "开始时间" };
                 lbl_credit.Font = font;
-                lbl_credit.Width = 65;
+                lbl_credit.Width = 90;
                 lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
                 //结束时间标签
                 var lbl_recommendTime = new Label { Text = "结束时间" };
                 lbl_recommendTime.Font = font;
-                lbl_recommendTime.Width = 65;
+                lbl_recommendTime.Width = 90;
                 lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
-                //查看课程信息标签
+                //编辑课程信息标签
+                var lbl_btnedit = new Label { Text = "" };
+                lbl_btnedit.Width = 50;
+                lbl_btnedit.TextAlign = ContentAlignment.MiddleCenter;
+                //查看试题信息标签
                 var lbl_btn_check = new Label { Text = "" };
                 lbl_btn_check.Width = 50;
                 lbl_btn_check.TextAlign = ContentAlignment.MiddleCenter;
-
+                //s删除课程信息标签
+                var lbl_btn_delete = new Label { Text = "" };
+                lbl_btn_delete.Width = 50;
+                lbl_btn_delete.TextAlign = ContentAlignment.MiddleCenter;
                 ec_fLP_Exam_Info.Controls.Add(lbl_rb);
                 ec_fLP_Exam_Info.Controls.Add(lbl_Loadman);
                 ec_fLP_Exam_Info.Controls.Add(lbl_introducation);
                 ec_fLP_Exam_Info.Controls.Add(lbl_credit);
                 ec_fLP_Exam_Info.Controls.Add(lbl_recommendTime);
+                ec_fLP_Exam_Info.Controls.Add(lbl_btnedit); 
                 ec_fLP_Exam_Info.Controls.Add(lbl_btn_check);
-                ec_fLP_Exam_Info.SetFlowBreak(lbl_btn_check, true);
-                for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
+                ec_fLP_Exam_Info.Controls.Add(lbl_btn_delete); 
+                ec_fLP_Exam_Info.SetFlowBreak(lbl_btn_delete, true);
+                for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //考试标题
-                    var rb = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
+                    var rb = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     rb.Font = font;
                     rb.Width = 100;
-                    rb.Name = ds.Tables["user"].Rows[count][5].ToString();
+                    rb.Name = ds.Tables["user"].Rows[i][5].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     rb.Click += new EventHandler(btn_oK_Click);
                     //创建人
-                    var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
+                    var Loadman = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     Loadman.Font = font;
                     Loadman.Width = 50;
                     Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //创建时间
-                    var introducation = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
+                    var introducation = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     introducation.Font = font;
-                    introducation.Width = 100;
+                    introducation.Width = 90;
                     introducation.TextAlign = ContentAlignment.MiddleCenter;
                     //开始时间
-                    var credit = new Label { Text = ds.Tables["user"].Rows[count][3].ToString() };
+                    var credit = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     credit.Font = font;
-                    credit.Width = 65;
+                    credit.Width = 90;
                     credit.TextAlign = ContentAlignment.MiddleCenter;
                     //结束时间
-                    var recommendTime = new Label { Text = ds.Tables["user"].Rows[count][4].ToString() };
+                    var recommendTime = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     recommendTime.Font = font;
-                    recommendTime.Width = 65;
+                    recommendTime.Width = 90;
                     recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                    //查看考试详细信息
+                    var btn_edit = new Button { Text = "编辑" };
+                    btn_edit.Width = 50;
+                    btn_edit.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_edit.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    exam_p_id = btn_edit.Name;
+                    btn_edit.Click += new EventHandler(EditExamInfo);
                     //查看考试详细信息
                     var btn_check = new Button { Text = "查看" };
                     btn_check.Width = 50;
                     btn_check.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_check.Name = ds.Tables["user"].Rows[count][5].ToString();
+                    btn_check.Name = ds.Tables["user"].Rows[i][5].ToString();
                     btn_check.Click += new EventHandler(CheckExamInfo);
-
+                    //删除考试信息
+                    var btn_delete = new Button { Text = "删除" };
+                    btn_delete.Width = 50;
+                    btn_delete.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_delete.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    btn_delete.Click += new EventHandler(deleteExam);
                     ec_fLP_Exam_Info.Controls.Add(rb);
                     ec_fLP_Exam_Info.Controls.Add(Loadman);
                     ec_fLP_Exam_Info.Controls.Add(introducation);
                     ec_fLP_Exam_Info.Controls.Add(credit);
                     ec_fLP_Exam_Info.Controls.Add(recommendTime);
+                    ec_fLP_Exam_Info.Controls.Add(btn_edit);
                     ec_fLP_Exam_Info.Controls.Add(btn_check);
-                    ec_fLP_Exam_Info.SetFlowBreak(btn_check, true);
+                    ec_fLP_Exam_Info.Controls.Add(btn_delete);
+                    ec_fLP_Exam_Info.SetFlowBreak(btn_delete, true);
                 }
             }
             else
             {
-                MessageBox.Show("抱歉，查询不到相关考试信息！");
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                ec_fLP_Exam_Info.Controls.Add(lbl_no_data);
             }
         }
+        //将复选框勾选到的考试信息传到父页面
         private void btn_oK_Click(object sender, EventArgs e)
         {
-            //遍历 
+            //遍历
             foreach (Control ctl in ec_fLP_Exam_Info.Controls)
             {
                 if (ctl is CheckBox)
@@ -160,10 +193,45 @@ namespace WindowsFormsApplication1
             this.Owner.Show();
             this.Dispose();
         }
+        private void EditExamInfo(object sender, EventArgs e)
+        {
+            ShowControls();
+            Button button = (Button)sender;
+            int exam_id = -1;
+            int.TryParse(button.Name, out exam_id);
+            DataBaseConnection dc = new DataBaseConnection();
+            string select_sql = "select exam_p_name,start_time,end_time from exam_paper where exam_p_id ="+ exam_id;
+            DataSet ds = dc.ExecuteQuery(select_sql);
+            this.ec_tBx_Exam_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            this.ec_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][1].ToString();
+            this.ec_dtp_End_Time.Text = ds.Tables["user"].Rows[0][2].ToString();
+        }
         //查看考试详细信息,跳转到详细信息页面
         private void CheckExamInfo(object sender, EventArgs e)
         {
 
+        }
+        private void deleteExam(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int exam_id = -1;
+            int.TryParse(button.Name,out exam_id);
+            DataBaseConnection dc = new DataBaseConnection();
+            if (MessageBox.Show("您确定要修改该阶段信息吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                string delete_sql = "delete from exam_paper where exam_p_id = "+exam_id;
+                int flag = dc.ExecuteUpdate(delete_sql);
+                if (flag == 1)
+                {
+                    MessageBox.Show("删除考试信息成功！");                    
+                }
+                else
+                {
+                    MessageBox.Show("删除考试信息失败，请联系系统管理员！");
+                }
+                ExamChoose_Load(sender, e);
+            }
         }
         //新增考试信息按钮事件处理
         private void ec_btn_Add_Exam_Click(object sender, EventArgs e)
@@ -175,14 +243,14 @@ namespace WindowsFormsApplication1
         private void ShowControls()
         {
             this.ec_fLP_Exam_Info.Height = 290;
-            this.ec_lbl_Exam_Name.Visible = false;
-            this.ec_tBx_Exam_Name.Visible = false;
+            this.ec_lbl_Exam_Name.Visible = true;
+            this.ec_tBx_Exam_Name.Visible = true;
             this.ec_tBx_Exam_Name.Text = null;
-            this.ec_lbl_Start_Time.Visible = false;
-            this.ec_dtp_Start_Time.Visible = false;
+            this.ec_lbl_Start_Time.Visible = true;
+            this.ec_dtp_Start_Time.Visible = true;
             this.ec_dtp_Start_Time.Value = DateTime.Now.Date;
-            this.ec_lbl_End_Time.Visible = false;
-            this.ec_dtp_End_Time.Visible = false;
+            this.ec_lbl_End_Time.Visible = true;
+            this.ec_dtp_End_Time.Visible = true;
             this.ec_dtp_End_Time.Value = DateTime.Now.Date;
         }
         //隐藏新增考试信息的控件

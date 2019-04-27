@@ -326,14 +326,17 @@ namespace WindowsFormsApplication1
             //打开选择课程界面classChoose，隐藏本界面
             ClassChoose classChoose = new ClassChoose();
             classChoose.Owner = this;
-            classChoose.Show();
             this.Hide();
+            classChoose.Show();           
         }
 
         private void ep_btn_addExam_Click(object sender, EventArgs e)
         {
             //打开选择试卷界面examChoose，隐藏本界面
-
+            ExamChoose examChoose = new ExamChoose();
+            examChoose.Owner = this;
+            this.Hide();
+            examChoose.Show();
         }
 
         private void ep_btn_All_Peroid_Click(object sender, EventArgs e)

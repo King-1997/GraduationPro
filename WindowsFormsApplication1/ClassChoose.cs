@@ -166,7 +166,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("抱歉，查询不到相关课程！");
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                fLP_lessons.Controls.Add(lbl_no_data);
             }
         }
         private void CheckClassesInfo(object sender, EventArgs e)

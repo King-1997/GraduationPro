@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         public static string lesson_time = null;
         public static List<string> people = null;
 
-        private int classes_id = Model.ClassesInfo.class_id;
+        private int classes_id = -1;
         private List<int> user_id = new List<int>{1};
 
         private TextBox tbx_cd_time = new TextBox();
@@ -50,8 +50,7 @@ namespace WindowsFormsApplication1
                     DataSet ds = dc.ExecuteQuery(select_u_id);
                     int u_id = -1;
                     int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out u_id);
-                    user_id.Add(u_id);
-                    
+                    user_id.Add(u_id);                    
                 }
             }            
         }

@@ -80,7 +80,7 @@
             this.ec_btn_All_Exam.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_All_Exam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_All_Exam.DownBack = null;
-            this.ec_btn_All_Exam.Location = new System.Drawing.Point(558, 48);
+            this.ec_btn_All_Exam.Location = new System.Drawing.Point(559, 48);
             this.ec_btn_All_Exam.MouseBack = null;
             this.ec_btn_All_Exam.Name = "ec_btn_All_Exam";
             this.ec_btn_All_Exam.NormlBack = null;
@@ -109,10 +109,10 @@
             this.ec_fLP_Exam_Info.AutoScroll = true;
             this.ec_fLP_Exam_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
             this.ec_fLP_Exam_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ec_fLP_Exam_Info.Location = new System.Drawing.Point(121, 99);
+            this.ec_fLP_Exam_Info.Location = new System.Drawing.Point(81, 99);
             this.ec_fLP_Exam_Info.Margin = new System.Windows.Forms.Padding(4);
             this.ec_fLP_Exam_Info.Name = "ec_fLP_Exam_Info";
-            this.ec_fLP_Exam_Info.Size = new System.Drawing.Size(568, 290);
+            this.ec_fLP_Exam_Info.Size = new System.Drawing.Size(663, 290);
             this.ec_fLP_Exam_Info.TabIndex = 17;
             // 
             // ec_lbl_keyword
@@ -154,10 +154,10 @@
             // 
             this.ec_tBx_Exam_Name.BackColor = System.Drawing.Color.SkyBlue;
             this.ec_tBx_Exam_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ec_tBx_Exam_Name.Location = new System.Drawing.Point(185, 409);
+            this.ec_tBx_Exam_Name.Location = new System.Drawing.Point(188, 406);
             this.ec_tBx_Exam_Name.Margin = new System.Windows.Forms.Padding(2);
             this.ec_tBx_Exam_Name.Name = "ec_tBx_Exam_Name";
-            this.ec_tBx_Exam_Name.Size = new System.Drawing.Size(155, 29);
+            this.ec_tBx_Exam_Name.Size = new System.Drawing.Size(165, 29);
             this.ec_tBx_Exam_Name.TabIndex = 48;
             // 
             // ec_lbl_End_Time
@@ -176,7 +176,7 @@
             this.ec_dtp_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.ec_dtp_End_Time.Location = new System.Drawing.Point(188, 491);
             this.ec_dtp_End_Time.Name = "ec_dtp_End_Time";
-            this.ec_dtp_End_Time.Size = new System.Drawing.Size(144, 23);
+            this.ec_dtp_End_Time.Size = new System.Drawing.Size(165, 23);
             this.ec_dtp_End_Time.TabIndex = 45;
             // 
             // ec_lbl_Start_Time
@@ -195,7 +195,7 @@
             this.ec_dtp_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.ec_dtp_Start_Time.Location = new System.Drawing.Point(188, 453);
             this.ec_dtp_Start_Time.Name = "ec_dtp_Start_Time";
-            this.ec_dtp_Start_Time.Size = new System.Drawing.Size(144, 23);
+            this.ec_dtp_Start_Time.Size = new System.Drawing.Size(165, 23);
             this.ec_dtp_Start_Time.TabIndex = 43;
             // 
             // ec_lbl_Exam_Name
