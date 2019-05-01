@@ -170,11 +170,11 @@
     <Compile Include="Learn.Designer.cs">
       <DependentUpon>Learn.cs</DependentUpon>
     </Compile>
-    <Compile Include="LessonArrangement.cs">
+    <Compile Include="PlanArrangement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LessonArrangement.Designer.cs">
-      <DependentUpon>LessonArrangement.cs</DependentUpon>
+    <Compile Include="PlanArrangement.Designer.cs">
+      <DependentUpon>PlanArrangement.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadClasses.cs">
       <SubType>Form</SubType>
@@ -277,8 +277,8 @@
     <EmbeddedResource Include="Learn.resx">
       <DependentUpon>Learn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LessonArrangement.resx">
-      <DependentUpon>LessonArrangement.cs</DependentUpon>
+    <EmbeddedResource Include="PlanArrangement.resx">
+      <DependentUpon>PlanArrangement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadClasses.resx">
       <DependentUpon>LoadClasses.cs</DependentUpon>

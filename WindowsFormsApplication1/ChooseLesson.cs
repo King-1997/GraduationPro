@@ -19,7 +19,8 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-        private List<string> classes = new List<string>();//保存选择的课程信息
+        private List<string> classes = new List<string>();//保存选择的课程id信息
+        private List<string> classes_name = new List<string>();//保存选择的课程Name信息
         private void btn_Finding_Click(object sender, EventArgs e)
         {
             //CL_flpClasses.Controls.Clear();
@@ -30,25 +31,26 @@ namespace WindowsFormsApplication1
             String select_sql = "";
             if (string.IsNullOrEmpty(lesson_owner) && string.IsNullOrEmpty(lesson_name))
             {
-                MessageBox.Show("请输入关键字！");
-            }else
+                //MessageBox.Show("请输入关键字！");
+                ChooseLesson_Load(sender,e);
+            }
+            else
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = "+Model.User.userId+ " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
                 }
                 Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);
-                //在窗口添加课程信息
-                
+                //在窗口添加课程信息                
             }            
            }
         private void ShowLessons(String sql)
@@ -59,32 +61,32 @@ namespace WindowsFormsApplication1
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 //课程名标签
-                var lbl_rb = new Label { Text = string.Concat("课程名称") };
+                var lbl_rb = new Label { Text = "课程名称" };
                 lbl_rb.Font = font;
                 lbl_rb.Width = 100;
                 lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
                 //上传人标签
-                var lbl_Loadman = new Label { Text = string.Concat("上传人") };
+                var lbl_Loadman = new Label { Text = "上传人" };
                 lbl_Loadman.Font = font;
                 lbl_Loadman.Width = 50;
                 lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
                 //课程简介标签
-                var lbl_introducation = new Label { Text = string.Concat("课程简介") };
+                var lbl_introducation = new Label { Text = "课程简介" };
                 lbl_introducation.Font = font;
                 lbl_introducation.Width = 100;
                 lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
                 //课程学分标签
-                var lbl_credit = new Label { Text = string.Concat("课程学分") };
+                var lbl_credit = new Label { Text = "课程学分" };
                 lbl_credit.Font = font;
                 lbl_credit.Width = 65;
                 lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
                 //课程学时标签
-                var lbl_recommendTime = new Label { Text = string.Concat("课程学时") };
+                var lbl_recommendTime = new Label { Text = "课程学时" };
                 lbl_recommendTime.Font = font;
                 lbl_recommendTime.Width = 65;
                 lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                 //是否考试标签
-                var lbl_ifExam = new Label { Text = string.Concat("是否考试") };
+                var lbl_ifExam = new Label { Text = "是否考试" };
                 lbl_ifExam.Font = font;
                 lbl_ifExam.Width = 65;
                 lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
@@ -105,32 +107,33 @@ namespace WindowsFormsApplication1
                 for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
                 {
                     //课程名
-                    var rb = new CheckBox { Text = string.Concat(ds.Tables["user"].Rows[count][0].ToString()) };
+                    var rb = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
                     rb.Font = font;
                     rb.Width = 100;
+                    rb.Name = ds.Tables["user"].Rows[count][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     //上传人
-                    var Loadman = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][1].ToString()) };
+                    var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
                     Loadman.Font = font;
                     Loadman.Width = 50;
                     Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //课程简介
-                    var introducation = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][2].ToString()) };
+                    var introducation = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
                     introducation.Font = font;
                     introducation.Width = 100;
                     introducation.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学分
-                    var credit = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][3].ToString()) };
+                    var credit = new Label { Text = ds.Tables["user"].Rows[count][3].ToString() };
                     credit.Font = font;
                     credit.Width = 65;
                     credit.TextAlign = ContentAlignment.MiddleCenter;
                     //课程学时
-                    var recommendTime = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][4].ToString()) };
+                    var recommendTime = new Label { Text = ds.Tables["user"].Rows[count][4].ToString() };
                     recommendTime.Font = font;
                     recommendTime.Width = 65;
                     recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                     //是否考试
-                    var ifExam = new Label { Text = string.Concat(ds.Tables["user"].Rows[count][5].ToString()) };
+                    var ifExam = new Label { Text = ds.Tables["user"].Rows[count][5].ToString() };
                     ifExam.Font = font;
                     ifExam.Width = 65;
                     ifExam.TextAlign = ContentAlignment.MiddleCenter;
@@ -164,30 +167,27 @@ namespace WindowsFormsApplication1
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
-            this.Hide();
+            Hide();
             classesInfo.Show();
-        }
-
-        private void CheckClasses()
-        {
-
         }
         private void btn_return_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
             
         }
 
         private void ChooseLesson_Load(object sender, EventArgs e)
         {
+            classes = null;
+            classes_name = null;
             btn_AllClasses_Click(sender,e);
         }
 
         private void btn_AllClasses_Click(object sender, EventArgs e)
         {
             //CL_flpClasses.Controls.Clear();
-            String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id and c.c_id not in(select cd.c_id from ClassesDestribute cd where cd.cd_id in (select uc.cd_id from UserClasses uc, [User] u1 where u1.u_id = uc.u_id and u1.u_name =N'" + Model.User.userName + "'))";
+            String sql = "SELECT c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id FROM Classes AS c INNER JOIN [User] AS u ON c.u_id = u.u_id where c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
             ShowLessons(sql);
         }
 
@@ -201,67 +201,63 @@ namespace WindowsFormsApplication1
                     if ((ctl as CheckBox).Checked == true)
                     {
                         //处理代码
-                        classes.Add(ctl.Text);
+                        classes.Add(ctl.Name);
+                        classes_name.Add(ctl.Text);
                     }
                 }
             }
+            DataBaseConnection dc = new DataBaseConnection();
             if (classes.Count > 0)
             {
-                int i = 0,flag1 = 0,flag2 = 0;
-                for (i = 0; i < classes.Count; i++)
+                int i, flag1 = 0, flag2 = 0,flag3 = 0;
+                for (i = 0; i <= classes.Count; i++)
                 {
-                    DataBaseConnection dc = new DataBaseConnection();
-                    String select_sql = "select c.c_id ,c.c_recommendTime,c.c_minTime,c.c_maxTime from Classes c where c.c_name =N'" + classes[i] + "'";
-                    DataSet ds = dc.ExecuteQuery(select_sql);
-                    int c_id = (int)ds.Tables["user"].Rows[0][0];
-                    int c_recommendTime = (int)ds.Tables["user"].Rows[0][1];
-                    int c_minTime = (int)ds.Tables["user"].Rows[0][2];
-                    int c_maxTime = (int)ds.Tables["user"].Rows[0][3];
-                    Console.WriteLine("C_id为：" + c_id + "\n推荐学时为：" + c_recommendTime);
+                    int c_id = -1;
+                    int.TryParse(classes[i], out c_id);
 
-                    String select_dc_sql = "select count(1) from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
+                    //在可选修课程中查找所勾选课程的计划id
+                    string select_dc_sql = "select sp_line_id from study_plan_lines where c_id =" + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')";
                     DataSet ds1 = dc.ExecuteQuery(select_dc_sql);
-                    int count = (int)ds1.Tables["user"].Rows[0][0];
-                    //Console.WriteLine("cd_id为：" + cd_id);
-                    if (count == 0)
+                    int sp_line_id = (int)ds1.Tables["user"].Rows[0][0];
+                    if (ds1.Tables["user"].Rows.Count > 0)
                     {
-                        //使用序列查询出cd_id的下一个值
-                        String select_cd_id = "select next value for ClassesDestribute_s";
-                        DataSet ds2 = dc.ExecuteQuery(select_cd_id);
-                        int cd_id = 0;
-                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(),out cd_id);
-                        //执行insert语句
-                        String insert_dc_sql = "insert into ClassesDestribute values("+cd_id+"," + c_id + "," + Model.User.userId + "," + c_recommendTime + ",N'" + Model.User.userName + "'," + c_minTime + "," + c_maxTime + ")";
-                        flag1 = dc.ExecuteUpdate(insert_dc_sql);                       
-                        String insert_uc_sql = "insert into UserClasses values (next value for UserClasses_s," + Model.User.userId + "," + cd_id + ",0,0,2)";
-                        flag2 = dc.ExecuteUpdate(insert_uc_sql);
-                    }else if(count == 1)
-                    {
-                        String select_cd_id = "select cd_id from ClassesDestribute where c_id =" + c_id + " and u_id = " + Model.User.userId + " and cd_time = " + c_recommendTime + " and cd_name = N'" + Model.User.userName + "'";
-                        DataSet ds3 = dc.ExecuteQuery(select_cd_id);
-                        int cd_id = (int)ds3.Tables["user"].Rows[0][0];
-                        String update_dc_sql = "update ClassesDestribute set c_id = " + c_id + ",u_id = " + Model.User.userId + ",cd_time = " + c_recommendTime + ",cd_name = N'" + Model.User.userName + "',cd_minTime = " + c_minTime + ",cd_maxTime = " + c_maxTime + " where cd_id = "+cd_id;
-                        dc.ExecuteUpdate(update_dc_sql);
-                        String update_uc_sql = "update UserClasses set u_id = " + Model.User.userId + ",uc_status = 0,uc_curTime = 0,uc_property = 2 where cd_id = "+cd_id+"";
-                        dc.ExecuteUpdate(update_uc_sql);
+                        //使用序列查询出pd_id的下一个值
+                        string select_pd_id = "select next value for plan_destribute_s";
+                        DataSet ds2 = dc.ExecuteQuery(select_pd_id);
+                        int pd_id = -1;
+                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out pd_id);
+                        //使用序列查询出up_head_id的下一个值
+                        string select_up_head_id = "select next value for user_plan_header_s";
+                        DataSet ds3 = dc.ExecuteQuery(select_up_head_id);
+                        int up_head_id = -1;
+                        int.TryParse(ds3.Tables["user"].Rows[0][0].ToString(), out up_head_id);
+                        //执行insert语句插入到学习计划分配表
+                        string insert_pd_sql = "insert into plan_destribute values(" + pd_id + "," + Model.User.userId + ",(select sp_head_id from study_plan_header where sp_head_name = '可选修课程'),N'" + Model.User.userId + "',CONVERT(varchar(100), GETDATE(), 20))";
+                        flag1 = dc.ExecuteUpdate(insert_pd_sql);
+                        //执行insert语句插入到用户学习计划头表
+                        string insert_up_head_sql = "insert into user_plan_header values ("+up_head_id+"," + Model.User.userId + "," + pd_id + ",0,0,2,0,null)";
+                        flag2 = dc.ExecuteUpdate(insert_up_head_sql);
+                        //执行insert语句插入到用户学习计划从表
+                        string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s,"+sp_line_id+ "," + up_head_id + ",0,null,0,null)";
+                        flag3 = dc.ExecuteUpdate(insert_up_line_sql);
                     }
-                                       
-                }
-                if (flag1 == 1 && flag2 == 1 && i == classes.Count)
-                {
-                    MessageBox.Show("选课成功！");
-                    this.Owner.Show();
-                    this.Dispose();
-                }
-                else
-                {
-                    MessageBox.Show("系统错误！");
+                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == (classes.Count - 1))
+                    {
+                        MessageBox.Show("选课成功！");
+                        Owner.Show();
+                        Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("系统错误！");
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("您当前未选课！");
-            }           
-        }
+            }
+            ChooseLesson_Load(sender,e);
+            }
     }
 }

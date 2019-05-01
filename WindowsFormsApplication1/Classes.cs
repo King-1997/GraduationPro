@@ -23,15 +23,15 @@ namespace WindowsFormsApplication1
 
         private void p_btnQuit_Click(object sender, EventArgs e)
         {
-            this.Owner.Owner.Show();
-            this.Owner.Dispose();
+            Owner.Owner.Show();
+            Owner.Dispose();
         }
 
         private void p_btnHome_Click(object sender, EventArgs e)
         {
             
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
 
         private void c_btnMine_Click(object sender, EventArgs e)
@@ -41,54 +41,67 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "推荐学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id and u.u_name =N'" + Model.User.userName + "' order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from Classes c,[user] u where u.u_id = c.u_id and u.u_id =" + Model.User.userId + " order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
-            for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
+            if (ds.Tables["user"].Rows.Count > 0)
             {
-                //课程名
-                var lblMineClasses_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
-                lblMineClasses_name.Width = 100;
-                lblMineClasses_name.Font = font;
-                lblMineClasses_name.TextAlign = ContentAlignment.MiddleCenter;
-                //学分
-                var lblMineClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
-                lblMineClasses_credit.Width = 80;
-                lblMineClasses_credit.Font = font;
-                lblMineClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
-                //上传人
-                var lblMineClasses_ifExam = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                lblMineClasses_ifExam.Width = 60;
-                lblMineClasses_ifExam.Font = font;
-                lblMineClasses_ifExam.TextAlign = ContentAlignment.MiddleCenter;
-                //推荐学时
-                var lblMineClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
-                lblMineClasses_recommendTime.Width = 80;
-                lblMineClasses_recommendTime.Font = font;
-                lblMineClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
-                //编辑按钮，点击之后跳转到课程信息编辑页面
-                var btnCom = new Button { Text = "编辑" };
-                btnCom.Width = 50;
-                btnCom.Name = ds.Tables["user"].Rows[i][4].ToString();
-                btnCom.Click += new EventHandler(Edit_ClassesInfo);
-                btnCom.TextAlign = ContentAlignment.MiddleCenter;
+                for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
+                {
+                    //课程名
+                    var lblMineClasses_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
+                    lblMineClasses_name.Width = 100;
+                    lblMineClasses_name.Font = font;
+                    lblMineClasses_name.TextAlign = ContentAlignment.MiddleCenter;
+                    //学分
+                    var lblMineClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
+                    lblMineClasses_credit.Width = 80;
+                    lblMineClasses_credit.Font = font;
+                    lblMineClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
+                    //上传人
+                    var lblMineClasses_ifExam = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
+                    lblMineClasses_ifExam.Width = 60;
+                    lblMineClasses_ifExam.Font = font;
+                    lblMineClasses_ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                    //推荐学时
+                    var lblMineClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
+                    lblMineClasses_recommendTime.Width = 80;
+                    lblMineClasses_recommendTime.Font = font;
+                    lblMineClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                    //编辑按钮，点击之后跳转到课程信息编辑页面
+                    var btnCom = new Button { Text = "编辑" };
+                    btnCom.Width = 50;
+                    btnCom.Name = ds.Tables["user"].Rows[i][4].ToString();
+                    btnCom.Click += new EventHandler(Edit_ClassesInfo);
+                    btnCom.TextAlign = ContentAlignment.MiddleCenter;
 
-                c_flpClasses.Controls.Add(lblMineClasses_name);
-                c_flpClasses.Controls.Add(lblMineClasses_credit);
-                c_flpClasses.Controls.Add(lblMineClasses_ifExam);
-                c_flpClasses.Controls.Add(lblMineClasses_recommendTime);
-                c_flpClasses.Controls.Add(btnCom);
-                c_flpClasses.SetFlowBreak(btnCom, true);
+                    c_flpClasses.Controls.Add(lblMineClasses_name);
+                    c_flpClasses.Controls.Add(lblMineClasses_credit);
+                    c_flpClasses.Controls.Add(lblMineClasses_ifExam);
+                    c_flpClasses.Controls.Add(lblMineClasses_recommendTime);
+                    c_flpClasses.Controls.Add(btnCom);
+                    c_flpClasses.SetFlowBreak(btnCom, true);
+                }
+            }
+            else
+            {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                c_flpClasses.Controls.Add(lbl_no_data);
             }
         }
         private void Edit_ClassesInfo(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            int.TryParse(button.Name, out LoadClasses.c_id);            
+            int.TryParse(button.Name, out LoadClasses.c_id);
             Console.WriteLine("button里的课程id：" + button.Name);
             //选择课程，跳转到课程信息修改页面
             LoadClasses loadClasses = new LoadClasses();
             loadClasses.Owner = this;
-            this.Hide();
+            Hide();
             loadClasses.Show();
         }
         private void Check_ClassesInfo(object sender, EventArgs e)
@@ -99,12 +112,12 @@ namespace WindowsFormsApplication1
             //选择课程，跳转到课程详细信息页面
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
-            this.Hide();
+            Hide();
             classesInfo.Show();
         }
         private void Classes_Load(object sender, EventArgs e)
         {
-            this.p_lblCurPerson.Text = Model.User.userName;//给界面的用户名字段赋值
+            p_lblCurPerson.Text = Model.User.userName;//给界面的用户名字段赋值
             
             if (!Model.User.userType.Equals("员工"))
             {
@@ -115,8 +128,7 @@ namespace WindowsFormsApplication1
             //权限控制：显示课程安排按钮btn_lessonArrangement
                 btn_ManagePlan.Visible = true;
             //权限控制：显示课程安排按钮btn_lessonArrangement
-                btn_PlanArrangement.Visible = true;
-               
+                btn_PlanArrangement.Visible = true;               
             }
             c_btnAll_Click(sender,e);
         }
@@ -127,18 +139,18 @@ namespace WindowsFormsApplication1
             LoadClasses.c_id = -1;
             LoadClasses loadClasses = new LoadClasses();
             loadClasses.Owner = this;
-            this.Hide();
+            Hide();
             loadClasses.Show();
         }
 
         private void c_btnNecessary_Click(object sender, EventArgs e)
         {
-            //刷新显示区域，显示必修课程
+            //刷新显示区域，显示必修学习计划
             c_lblOwner.Text = "课程上传人";
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + Model.User.userName+ "') order by c.c_time desc; ";
+            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 1 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {
@@ -182,27 +194,31 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("您当前还没有必修课程！");
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                c_flpClasses.Controls.Add(lbl_no_data);
             }
             
         }
 
         private void c_btnOptional_Click(object sender, EventArgs e)
-        {
-            
+        {            
             //刷新显示区域，显示选修课程
             c_lblOwner.Text = "课程上传人";
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc,[User] u where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_property = 2) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and c.u_id = u.u_id and uc.u_id in (select u_id from [User] where u_name = N'" + Model.User.userName+ "') order by c.c_time desc;";
+            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId+"))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //课程名
-
                     var lblSelectClasses_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     lblSelectClasses_name.Width = 100;
                     lblSelectClasses_name.Font = font;
@@ -233,9 +249,10 @@ namespace WindowsFormsApplication1
 
                     var btnDeleteClasses = new Button { Text = "退选" };
                     btnDeleteClasses.Width = 40;
-                    btnDeleteClasses.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    btnDeleteClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     Console.WriteLine(btnDeleteClasses.Name);
-                    btnDeleteClasses.Click += new EventHandler(btnDeleteClasses_Click);
+                    //btnDeleteClasses.Click += new EventHandler(btnDeleteClasses_Click);
+
                     c_flpClasses.Controls.Add(lblSelectClasses_name);
                     c_flpClasses.Controls.Add(lblSelectClasses_credit);
                     c_flpClasses.Controls.Add(lblSelectClasses_u_name);
@@ -246,7 +263,13 @@ namespace WindowsFormsApplication1
                 }
             }
             else {
-                MessageBox.Show("您当前还未选修任何课程！");
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                c_flpClasses.Controls.Add(lbl_no_data);
             }
             
         }
@@ -256,25 +279,32 @@ namespace WindowsFormsApplication1
                 MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Button button = (Button)sender;
-                int c_id =0;
+                int c_id = -1;
                 int.TryParse(button.Name, out c_id);
-                Console.WriteLine("按钮里的课程id："+ c_id);
+                //Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                //在用户课程表中查询出相应的记录并删除
-                String select_uc_id = "select uc_id from UserClasses where cd_id in (select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id =" + Model.User.userId+")";
-                DataSet ds1 = dc.ExecuteQuery(select_uc_id);
-                int uc_id = (int)ds1.Tables["user"].Rows[0][0];
-                String delete_uc_sql = "delete from UserClasses where uc_id =" + uc_id;
-                int flag1 = dc.ExecuteUpdate(delete_uc_sql);
-                //在课程分配表中查询出相应的记录并删除
-                String select_cd_id = "select cd_id from ClassesDestribute where c_id  = " + c_id + " and u_id =" + Model.User.userId;
-                DataSet ds = dc.ExecuteQuery(select_cd_id);
-                int cd_id = (int)ds.Tables["user"].Rows[0][0];
-
-                String delete_cd_sql = "delete from ClassesDestribute where cd_id ="+ cd_id;
-                int flag = dc.ExecuteUpdate(delete_cd_sql);
                 
-                if(flag1 != 0 && flag != 0)
+                //删除用户学习计划从表数据
+                string delete_up_line_sql = "delete from user_plan_lines where up_line_id = in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程' and u_id = " + Model.User.userId + "))";
+                int flag1 = dc.ExecuteUpdate(delete_up_line_sql);
+
+                //在用户学习计划头表中查询出相应的记录
+                string select_up_head_id = "select up_head_id,pd_id from user_plan_header where u_id = " + Model.User.userId + " and up_head_id not exists (select sp_head_id from user_plan_lines)";
+                DataSet ds1 = dc.ExecuteQuery(select_up_head_id);
+                //当用户学习计划行表中删除完之后再删除头表记录
+                if (ds1.Tables["user"].Rows.Count > 0)
+                {
+                    int up_head_id = (int)ds1.Tables["user"].Rows[0][0];
+                    int pd_id = (int)ds1.Tables["user"].Rows[0][1];
+                    //删除用户学习计划头表数据
+                    string delete_up_head_id = "delete from user_plan_header where up_head_id =" + up_head_id;
+                    int flag2 = dc.ExecuteUpdate(delete_up_head_id);
+
+                    //删除学习计划分配表数据
+                    string delete_pd_sql = "delete from plan_destribute where pd_id =" + pd_id;
+                    int flag3 = dc.ExecuteUpdate(delete_pd_sql);
+                }
+                if(flag1 == 1)
                 {
                     MessageBox.Show("退选成功！");
                     //刷新选修课程列表
@@ -289,7 +319,7 @@ namespace WindowsFormsApplication1
             //刷新显示区域，显示全部课程
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -330,7 +360,16 @@ namespace WindowsFormsApplication1
                     c_flpClasses.SetFlowBreak(btnAllClasses, true);
 
                 }
-            }            
+            }else
+            {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                c_flpClasses.Controls.Add(lbl_no_data);
+            }
         }
 
         private void btn_studyClass_Click(object sender, EventArgs e)
@@ -340,7 +379,7 @@ namespace WindowsFormsApplication1
             int.TryParse(button.Name, out Learn.c_id);
             Learn learn = new Learn();
             learn.Owner = this;
-            this.Hide();
+            Hide();
             learn.Show();
         }
 
@@ -349,15 +388,15 @@ namespace WindowsFormsApplication1
             ChooseLesson chooseLesson = new ChooseLesson();
             chooseLesson.Owner = this;           
             chooseLesson.Show();
-            this.Hide();
+            Hide();
         }
 
         private void btn_lessonArrangement_Click(object sender, EventArgs e)
         {
             //给组员安排课程，打开课程安排页面
-            LessonArrangement lessonArrangement = new LessonArrangement();
+            PlanArrangement lessonArrangement = new PlanArrangement();
             lessonArrangement.Owner = this;
-            this.Hide();
+            Hide();
             lessonArrangement.Show();
         }
 
@@ -366,7 +405,7 @@ namespace WindowsFormsApplication1
             //给组员安排课程，打开课程安排页面
             ManagePlan createPlan = new ManagePlan();
             createPlan.Owner = this;
-            this.Hide();
+            Hide();
             createPlan.Show();
         }
     }

@@ -60,8 +60,7 @@ namespace WindowsFormsApplication1
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = sqlStr;                
                 iud = cmd.ExecuteNonQuery();
-                con.Close();
-                
+                con.Close();                
             }
             catch (Exception ex)
             {

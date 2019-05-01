@@ -25,24 +25,24 @@ namespace WindowsFormsApplication1
         public EditPeriod()
         {
             InitializeComponent();
-            this.ep_tBx_Plan_Name.Font = font;
-            this.ep_tBx_Head_Summary.Font = font;
-            this.ep_tBx_Emp_type.Font = font;
-            this.ep_tBx_Period_Name.Font = font;
+            ep_tBx_Plan_Name.Font = font;
+            ep_tBx_Head_Summary.Font = font;
+            ep_tBx_Emp_type.Font = font;
+            ep_tBx_Period_Name.Font = font;
             ep_dtp_Start_Time.Value = DateTime.Now.Date;
             //显示时间则格式为"yyyy-MM-dd HH:mm:ss"，HH表示24小时制，hh则为12小时制
-            this.ep_dtp_Start_Time.CustomFormat = "yyyy-MM-dd";
+            ep_dtp_Start_Time.CustomFormat = "yyyy-MM-dd";
             //使用自定义格式
-            this.ep_dtp_Start_Time.Format = DateTimePickerFormat.Custom;
+            ep_dtp_Start_Time.Format = DateTimePickerFormat.Custom;
             //时间控件的启用
-            //this.ep_dtp_Start_Time.ShowUpDown = true;
+            //ep_dtp_Start_Time.ShowUpDown = true;
             ep_dtp_End_Time.Value = DateTime.Now.Date;
             //显示时间则格式为"yyyy-MM-dd HH:mm:ss"，HH表示24小时制，hh则为12小时制
-            this.ep_dtp_End_Time.CustomFormat = "yyyy-MM-dd";
+            ep_dtp_End_Time.CustomFormat = "yyyy-MM-dd";
             //使用自定义格式
-            this.ep_dtp_End_Time.Format = DateTimePickerFormat.Custom;
+            ep_dtp_End_Time.Format = DateTimePickerFormat.Custom;
             //时间控件的启用
-            //this.ep_dtp_End_Time.ShowUpDown = true;
+            //ep_dtp_End_Time.ShowUpDown = true;
         }
         private void EditPeriod_Load(object sender, EventArgs e)
         {
@@ -58,22 +58,22 @@ namespace WindowsFormsApplication1
         }
         public void showClass_Exam_Info()
         {
-            this.ep_lbl_Class_Name.Text = lesson_name;
-            this.ep_lbl_Exam_Name.Text = exam_name;
+            ep_lbl_Class_Name.Text = lesson_name;
+            ep_lbl_Exam_Name.Text = exam_name;
         } 
         //查询学习计划头信息
         private void showHeaderInfo(string sql)
         {
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
-            this.ep_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
-            this.ep_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
-            this.ep_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
+            ep_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            ep_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
+            ep_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
         }
         //查询学习计划行（各个阶段）信息
         private void showLinesInfo(string sql)
         {
-            this.ep_flp_Lines_Info.Controls.Clear();
+            ep_flp_Lines_Info.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
 
@@ -177,9 +177,9 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                //员工姓名
+                //无数据时显示提示
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
-                lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_no_data.Width = 579;
                 lbl_no_data.Height = 150;
@@ -195,11 +195,11 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             string sql = "select spl.sp_peroid,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime from study_plan_lines spl where spl.sp_line_id = " + sp_line_id;
             DataSet ds = dc.ExecuteQuery(sql);
-            this.ep_tBx_Period_Name.Text = ds.Tables["user"].Rows[0][0].ToString();            
-            this.ep_lbl_Class_Name.Text = ds.Tables["user"].Rows[0][1].ToString();
-            this.ep_lbl_Exam_Name.Text = ds.Tables["user"].Rows[0][2].ToString();
-            this.ep_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][3].ToString();
-            this.ep_dtp_End_Time.Text = ds.Tables["user"].Rows[0][4].ToString();
+            ep_tBx_Period_Name.Text = ds.Tables["user"].Rows[0][0].ToString();            
+            ep_lbl_Class_Name.Text = ds.Tables["user"].Rows[0][1].ToString();
+            ep_lbl_Exam_Name.Text = ds.Tables["user"].Rows[0][2].ToString();
+            ep_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][3].ToString();
+            ep_dtp_End_Time.Text = ds.Tables["user"].Rows[0][4].ToString();
         }
         //删除阶段信息
         private void deletePeriod(object sender, EventArgs e)
@@ -226,9 +226,9 @@ namespace WindowsFormsApplication1
         //提交修改或插入的行信息
         private void ep_btn_confirm_Click(object sender, EventArgs e)
         {
-            string peroid_name = this.ep_tBx_Period_Name.Text;
-            DateTime start_time = Convert.ToDateTime(this.ep_dtp_Start_Time.Value);
-            DateTime end_time = Convert.ToDateTime(this.ep_dtp_End_Time.Value);
+            string peroid_name = ep_tBx_Period_Name.Text;
+            DateTime start_time = Convert.ToDateTime(ep_dtp_Start_Time.Value);
+            DateTime end_time = Convert.ToDateTime(ep_dtp_End_Time.Value);
             int class_id = -1,exam_id = -1;
             if (c_id != null)
             {
@@ -276,8 +276,8 @@ namespace WindowsFormsApplication1
         {
             sp_head_id = -1;
             sp_line_id = -1;
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
         //添加新阶段信息，需先将sp_line_id置为-1，不然可能不为-1则会执行update而不是insert
         private void ep_btn_addPeroid_Click(object sender, EventArgs e)
@@ -288,37 +288,37 @@ namespace WindowsFormsApplication1
         //显示添加阶段的控件
         private void ShowControls()
         {
-            this.ep_flp_Lines_Info.Height = 160;
-            this.ep_lbl_Period_Name.Visible = true;
-            this.ep_tBx_Period_Name.Visible = true;
-            this.ep_tBx_Period_Name.Text = null;
-            this.ep_btn_addClass.Visible = true;
-            this.ep_lbl_Class_Name.Visible = true;
-            this.ep_lbl_Class_Name.Text = null;
-            this.ep_btn_addExam.Visible = true;
-            this.ep_lbl_Exam_Name.Visible = true;
-            this.ep_lbl_Exam_Name.Text = null;
-            this.ep_lbl_Start_Time.Visible = true;
-            this.ep_dtp_Start_Time.Visible = true;
-            this.ep_dtp_Start_Time.Value = DateTime.Now.Date;
-            this.ep_lbl_End_Time.Visible = true;
-            this.ep_dtp_End_Time.Visible = true;
-            this.ep_dtp_End_Time.Value = DateTime.Now.Date;
+            ep_flp_Lines_Info.Height = 160;
+            ep_lbl_Period_Name.Visible = true;
+            ep_tBx_Period_Name.Visible = true;
+            ep_tBx_Period_Name.Text = null;
+            ep_btn_addClass.Visible = true;
+            ep_lbl_Class_Name.Visible = true;
+            ep_lbl_Class_Name.Text = null;
+            ep_btn_addExam.Visible = true;
+            ep_lbl_Exam_Name.Visible = true;
+            ep_lbl_Exam_Name.Text = null;
+            ep_lbl_Start_Time.Visible = true;
+            ep_dtp_Start_Time.Visible = true;
+            ep_dtp_Start_Time.Value = DateTime.Now.Date;
+            ep_lbl_End_Time.Visible = true;
+            ep_dtp_End_Time.Visible = true;
+            ep_dtp_End_Time.Value = DateTime.Now.Date;
         }
         //隐藏添加阶段的控件
         private void HideControls()
-        {
-            this.ep_flp_Lines_Info.Height = 200;
-            this.ep_lbl_Period_Name.Visible = false;
-            this.ep_tBx_Period_Name.Visible = false;
-            this.ep_btn_addClass.Visible = false;
-            this.ep_lbl_Class_Name.Visible = false;
-            this.ep_btn_addExam.Visible = false;
-            this.ep_lbl_Exam_Name.Visible = false;
-            this.ep_lbl_Start_Time.Visible = false;
-            this.ep_dtp_Start_Time.Visible = false;
-            this.ep_lbl_End_Time.Visible = false;
-            this.ep_dtp_End_Time.Visible = false;
+        {            
+            ep_lbl_Period_Name.Visible = false;
+            ep_tBx_Period_Name.Visible = false;
+            ep_btn_addClass.Visible = false;
+            ep_lbl_Class_Name.Visible = false;
+            ep_btn_addExam.Visible = false;
+            ep_lbl_Exam_Name.Visible = false;
+            ep_lbl_Start_Time.Visible = false;
+            ep_dtp_Start_Time.Visible = false;
+            ep_lbl_End_Time.Visible = false;
+            ep_dtp_End_Time.Visible = false;
+            ep_flp_Lines_Info.Height = 200;
         }
 
         private void ep_btn_addClass_Click(object sender, EventArgs e)
@@ -326,7 +326,7 @@ namespace WindowsFormsApplication1
             //打开选择课程界面classChoose，隐藏本界面
             ClassChoose classChoose = new ClassChoose();
             classChoose.Owner = this;
-            this.Hide();
+            Hide();
             classChoose.Show();           
         }
 
@@ -335,7 +335,7 @@ namespace WindowsFormsApplication1
             //打开选择试卷界面examChoose，隐藏本界面
             ExamChoose examChoose = new ExamChoose();
             examChoose.Owner = this;
-            this.Hide();
+            Hide();
             examChoose.Show();
         }
 

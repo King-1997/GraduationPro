@@ -16,7 +16,8 @@ namespace WindowsFormsApplication1
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         private string preboxname = null;//保存当前输入框的Name，当下拉框改变时更改
-
+        public List<string> people = new List<string>();//保存选择的员工名字信息
+        public List<string> user_id = new List<string>();//保存选择的员工id信息
         public PeopleChoose()
         {
             //查询下拉框
@@ -69,7 +70,7 @@ namespace WindowsFormsApplication1
             cBx_workerEntryMonth.SelectedIndex = 0;
             cBx_workerEntryMonth.Location = new Point(213, 98);
         }
-        public List<string> people = new List<string>();//保存选择的员工信息
+        
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Owner.Show();
@@ -95,19 +96,19 @@ namespace WindowsFormsApplication1
             if (KeyType.Equals("按组别"))
             {
                 String KeyWord1 = cBx_workertype.SelectedItem.ToString();
-                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and g.g_group = N'" + KeyWord1 + "'";
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and g.g_group = N'" + KeyWord1 + "'";
             }
             else if (KeyType.Equals("按工号"))
             {
-                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and u.u_account = '" + KeyWord + "'";
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.u_account = '" + KeyWord + "'";
             }
             else if (KeyType.Equals("按性别"))
             {
-                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and u.u_sex = N'" + KeyWord + "'";
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.u_sex = N'" + KeyWord + "'";
             }
             else if (KeyType.Equals("按电话号码"))
             {
-                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and u.u_phone = " + KeyWord;
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.u_phone = " + KeyWord;
             }
             else if (KeyType.Equals("按入职时间"))
             {
@@ -115,12 +116,11 @@ namespace WindowsFormsApplication1
                 DateTime entryTime2 = new DateTime(2018, 8, 26);
                 int year = 0;
                 int.TryParse(cBx_workerEntryYear.SelectedItem.ToString(), out year);
-
                 int month = 0;
                 int.TryParse(cBx_workerEntryMonth.SelectedItem.ToString(), out month);
                 entryTime1 = Convert.ToDateTime(year + "-" + month + "-01");//设置开始时间都为该月1号               
                 entryTime2 = jym.judgeYearAndMonth(year,month);
-                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id and u.u_entryTime >= '" + entryTime1 + "' and u.u_entryTime <= '" + entryTime2 + "'";
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.u_entryTime >= '" + entryTime1 + "' and u.u_entryTime <= '" + entryTime2 + "'";
             }
                 Console.WriteLine("查询语句：" + sql);
                 WorkerShow(sql);
@@ -166,30 +166,31 @@ namespace WindowsFormsApplication1
                 fLP_people.Controls.Add(u_phone_lbl);
                 fLP_people.Controls.Add(u_entryTime_lbl);
                 fLP_people.SetFlowBreak(u_entryTime_lbl, true);
-                for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
+                for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //姓名
-                    var u_name = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
+                    var u_name = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     u_name.Font = font;
+                    u_name.Name = ds.Tables["user"].Rows[i][5].ToString();
                     u_name.TextAlign = ContentAlignment.MiddleCenter;
-
+                    u_name.CheckedChanged += ck_child_CheckedChanged;
                     //所在分组
-                    var u_group = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
+                    var u_group = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     u_group.Font = font;
                     u_group.TextAlign = ContentAlignment.MiddleCenter;
 
                     //性别
-                    var u_sex = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
+                    var u_sex = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     u_sex.Font = font;
                     u_sex.TextAlign = ContentAlignment.MiddleCenter;
 
                     //电话号码
-                    var u_phone = new Label { Text = ds.Tables["user"].Rows[count][3].ToString() };
+                    var u_phone = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     u_phone.Font = font;
                     u_phone.TextAlign = ContentAlignment.MiddleCenter;
 
                     //入职时间
-                    var u_entryTime = new Label { Text = ds.Tables["user"].Rows[count][4].ToString() };
+                    var u_entryTime = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     u_entryTime.Font = font;
                     u_entryTime.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -212,6 +213,55 @@ namespace WindowsFormsApplication1
                 fLP_people.Controls.Add(lbl_no_user);
             }
         }
+        //全选复选框的功能实现
+        private void cBx_allSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cBx_allSelect.CheckState == CheckState.Checked)
+            {
+                foreach (Control peo in fLP_people.Controls)
+                {
+                    if (peo is CheckBox)
+                    {
+                        CheckBox ple = (CheckBox)peo;
+                        ple.Checked = true;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control peo in fLP_people.Controls)
+                {
+                    if (peo is CheckBox)
+                    {
+                        CheckBox ple = (CheckBox)peo;
+                        ple.Checked = false;
+                    }
+                }
+            }
+        }
+        //全选框的反选功能实现
+        private void ck_child_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox c = sender as CheckBox;
+            if (c.Checked == true)
+            {
+                foreach (Control ch in fLP_people.Controls)
+                {
+                    if (ch is CheckBox)
+                    {
+                        if ((ch as CheckBox).Checked == false)
+                        {
+                            return;
+                        }
+                    }
+                }
+                cBx_allSelect.Checked = true;
+            }
+            else
+            {
+                cBx_allSelect.Checked = false;
+            }
+        }
         private void btn_oK_Click(object sender, EventArgs e)
         {
             //遍历 
@@ -223,21 +273,26 @@ namespace WindowsFormsApplication1
                     {
                         //处理代码
                         people.Add(ctl.Text);
+                        user_id.Add(ctl.Name);
                     }
                 }
             }
             //传递选定的员工
-            if (LessonArrangement.people == null || people == null)
-                LessonArrangement.people = people;
+            if (PlanArrangement.people == null || people == null)
+            {
+                PlanArrangement.people = people;
+                PlanArrangement.user_id = user_id;
+            }
             else
-                LessonArrangement.people.AddRange(people);
+            {
+                PlanArrangement.people.AddRange(people);
+                PlanArrangement.user_id.AddRange(user_id);
+            }                
             //获取上一界面的已选员工窗口
-            LessonArrangement lesson = (LessonArrangement)this.Owner;
-            lesson.PeopleShow();
-
+            PlanArrangement lesson = (PlanArrangement)this.Owner;
+            lesson.EmpsShow();
             this.Owner.Show();
             this.Dispose();
-
         }
 
         private void PeopleChoose_Load(object sender, EventArgs e)
@@ -245,7 +300,7 @@ namespace WindowsFormsApplication1
             fLP_people.Controls.Clear();
 
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime from [User] u,[group] g where u.g_id = g.g_id";
+            String sql = "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id";
             WorkerShow(sql);
         }
         //cbB_findKey当下拉框值改变时  
@@ -290,30 +345,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void cBx_allSelect_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cBx_allSelect.Checked ==true )
-            {
-                foreach (Control peo in fLP_people.Controls)
-                {
-                    if (peo is CheckBox )
-                    {
-                        CheckBox ple = (CheckBox)peo;
-                        ple.Checked = true;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Control peo in fLP_people.Controls)
-                {
-                    if (peo is CheckBox)
-                    {
-                        CheckBox ple = (CheckBox)peo;
-                        ple.Checked = false;
-                    }
-                }
-            }
-        }
+
     }
 }

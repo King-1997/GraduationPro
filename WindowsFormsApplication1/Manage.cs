@@ -24,12 +24,6 @@ namespace WindowsFormsApplication1
             this.Owner.Show();
             this.Dispose();
         }
-
-        public void UsernameC()
-        {
-
-        }
-
         private void btn_uploadclasses_Click(object sender, EventArgs e)
         {
             LoadClasses classChoose = new LoadClasses();
@@ -47,31 +41,26 @@ namespace WindowsFormsApplication1
         private void m_btnClasses_Click(object sender, EventArgs e)
         {
             //安排课程,打开课程安排页面
-            LessonArrangement lessonArrangement = new LessonArrangement();
-            lessonArrangement.Owner = this;
-            this.Hide();
-            lessonArrangement.Show();
+            PlanArrangement planArrangement = new PlanArrangement();
+            planArrangement.Owner = this;
+            Hide();
+            planArrangement.Show();
         }
         //跳转到人员管理界面Man-ManageMent
         private void m_btnHR_Click(object sender, EventArgs e)
         {
             Man_Management man_ManageMent = new Man_Management();
             man_ManageMent.Owner = this;
+            Hide();
             man_ManageMent.Show();
-            this.Hide();
         }        
-
-        private void btn_avgTime_Click(object sender, EventArgs e)
-        {
-
-        }
         //打开导出学时界面
         private void btn_allTime_Click(object sender, EventArgs e)
         {
             ExcelOutput excelOutput = new ExcelOutput();
             excelOutput.Owner = this;
+            Hide();
             excelOutput.Show();
-            this.Hide();
         }
 
         private void p_btnQuit_Click(object sender, EventArgs e)//注销

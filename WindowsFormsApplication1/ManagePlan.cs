@@ -17,23 +17,25 @@ namespace WindowsFormsApplication1
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         private int sp_head_id = -1;
         public static List<string> classes = null;
+        public string PlanId = null;//保存选择的课程id信息
+        public string PlanName = null;//保存选择的课程名信息
         public ManagePlan()
         {
             InitializeComponent();
             showOrHide();
         }
         private void showOrHide()
-        {
-            this.mp_flp_PlanInfo.Height = 300;
-            this.mp_lbl_Plan_Name.Visible = false;
-            this.mp_tBx_Plan_Name.Visible = false;
-            this.mp_lbl_Head_Summary.Visible = false;
-            this.mp_tBx_Head_Summary.Visible = false;
-            this.mp_lbl_Emp_Type.Visible = false;
-            this.mp_tBx_Emp_type.Visible = false;
-            this.mp_tBx_Plan_Name.Font = font;
-            this.mp_tBx_Head_Summary.Font = font;
-            this.mp_tBx_Emp_type.Font = font;
+        {            
+            mp_lbl_Plan_Name.Visible = false;
+            mp_tBx_Plan_Name.Visible = false;
+            mp_lbl_Head_Summary.Visible = false;
+            mp_tBx_Head_Summary.Visible = false;
+            mp_lbl_Emp_Type.Visible = false;
+            mp_tBx_Emp_type.Visible = false;
+            mp_tBx_Plan_Name.Font = font;
+            mp_tBx_Head_Summary.Font = font;
+            mp_tBx_Emp_type.Font = font;
+            mp_flp_PlanInfo.Height = 300;
         }
         private void ManagePlan_Load(object sender, EventArgs e)
         {
@@ -42,7 +44,7 @@ namespace WindowsFormsApplication1
         }
         private void mp_btn_find_Click(object sender, EventArgs e)
         {
-            string keyword = this.mp_tBx_findkeywords.Text;
+            string keyword = mp_tBx_findkeywords.Text;
             if (keyword == null)
             {
                 ManagePlan_Load(sender,e);
@@ -54,7 +56,7 @@ namespace WindowsFormsApplication1
         }
         private void showPlanInfo(string sql)
         {
-            this.mp_flp_PlanInfo.Controls.Clear();
+            mp_flp_PlanInfo.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
             //在窗口添加学习计划信息
@@ -97,6 +99,7 @@ namespace WindowsFormsApplication1
                 var lbl_btn_delete = new Label { Text = "" };
                 lbl_btn_delete.Width = 50;
                 lbl_btn_delete.TextAlign = ContentAlignment.MiddleCenter;
+
                 mp_flp_PlanInfo.Controls.Add(lbl_plan_name);               
                 mp_flp_PlanInfo.Controls.Add(lbl_introducation);
                 mp_flp_PlanInfo.Controls.Add(lbl_creater);
@@ -109,18 +112,17 @@ namespace WindowsFormsApplication1
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //计划名
-                    var plan_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
+                    var plan_name = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     plan_name.Font = font;
                     plan_name.Width = 100;
-                    plan_name.Name = ds.Tables["user"].Rows[i][0].ToString();
+                    plan_name.Name = ds.Tables["user"].Rows[i][5].ToString();
                     plan_name.TextAlign = ContentAlignment.MiddleCenter;
-                    
+                    plan_name.Click += new EventHandler(btn_OK_Click);
                     //计划简介
                     var introducation = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     introducation.Font = font;
                     introducation.Width = 120;
-                    introducation.TextAlign = ContentAlignment.MiddleCenter;
-                    
+                    introducation.TextAlign = ContentAlignment.MiddleCenter;                    
                     //创建人
                     var creater = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     creater.Font = font;
@@ -177,24 +179,43 @@ namespace WindowsFormsApplication1
                 mp_flp_PlanInfo.Controls.Add(lbl_no_data);
             }
         }
+        //复选框选中事件（设置只选一个）
+        private void btn_OK_Click(object sender, EventArgs e)
+        {
+            //遍历 
+            foreach (Control ctl in mp_flp_PlanInfo.Controls)
+            {
+                if (ctl is CheckBox)
+                {
+                    if ((ctl as CheckBox).Checked == true)
+                    {
+                        //处理代码
+                        PlanName = ctl.Text;
+                        PlanId = ctl.Name;
+                    }
+                }
+            }
+            //传递选定的课程
+            PlanArrangement.plan_name = PlanName;
+            PlanArrangement.plan_id = PlanId;
+            //获取上一界面的已选课程窗口
+            PlanArrangement planArrangement = (PlanArrangement)Owner;
+            planArrangement.PlanShow();
+            Owner.Show();
+            Dispose();
+        }
         //编辑按钮事件处理
         private void editPlanInfo(object sender, EventArgs e)
         {
-            //Button button = (Button)sender;
-            //int.TryParse(button.Name, out EditPeriod.sp_head_id);
-            //EditPeriod editperiod = new EditPeriod();
-            //editperiod.Owner = this;
-            //this.Hide();
-            //editperiod.Show();
             mp_btn_addPlan_Click(sender, e);
             Button button = (Button)sender;            
             int.TryParse(button.Name,out sp_head_id);
             DataBaseConnection dc = new DataBaseConnection();
             string sql = "select sp_head_name,sp_head_summary,sp_emp_type from study_plan_header where sp_head_id = "+sp_head_id;
             DataSet ds = dc.ExecuteQuery(sql);
-            this.mp_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
-            this.mp_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
-            this.mp_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
+            mp_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            mp_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
+            mp_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
         }
         //编辑阶段信息按钮事件处理
         private void editPeriodInfo(object sender, EventArgs e)
@@ -204,7 +225,7 @@ namespace WindowsFormsApplication1
             int.TryParse(button.Name,out EditPeriod.sp_head_id);
             EditPeriod editperiod = new EditPeriod();
             editperiod.Owner = this;
-            this.Hide();
+            Hide();
             editperiod.Show();            
         }
         //删除按钮事件处理
@@ -240,41 +261,38 @@ namespace WindowsFormsApplication1
         //返回按钮事件处理
         private void mp_btn_back_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
             classes = null;
         }
         //新增计划按钮事件处理
         private void mp_btn_addPlan_Click(object sender, EventArgs e)
         {
-            
-
-            this.mp_flp_PlanInfo.Height = 145;
-            this.mp_lbl_Plan_Name.Visible = true;
-            this.mp_tBx_Plan_Name.Visible = true;
-            this.mp_lbl_Head_Summary.Visible = true;
-            this.mp_tBx_Head_Summary.Visible = true;
-            this.mp_lbl_Emp_Type.Visible = true;
-            this.mp_tBx_Emp_type.Visible = true;
-
-            this.mp_tBx_Plan_Name.Text = null;
-            this.mp_tBx_Head_Summary.Text = null;
-            this.mp_tBx_Emp_type.Text = null;
+            mp_flp_PlanInfo.Height = 145;
+            mp_lbl_Plan_Name.Visible = true;
+            mp_tBx_Plan_Name.Visible = true;
+            mp_tBx_Plan_Name.Text = null;
+            mp_lbl_Head_Summary.Visible = true;
+            mp_tBx_Head_Summary.Visible = true;
+            mp_tBx_Head_Summary.Text = null;
+            mp_lbl_Emp_Type.Visible = true;
+            mp_tBx_Emp_type.Visible = true;
+            mp_tBx_Emp_type.Text = null;
         }
 
         private void mp_btn_reset_Click_1(object sender, EventArgs e)
         {
             showOrHide();
-            this.mp_tBx_findkeywords.Text = null;
+            mp_tBx_findkeywords.Text = null;
             ManagePlan_Load(sender, e);
         }
 
         private void mp_btn_confirm_Click(object sender, EventArgs e)
         {
             //修改之前还需询问是否执行修改操作            
-            string plan_name = this.mp_tBx_Plan_Name.Text;
-            string head_summary = this.mp_tBx_Head_Summary.Text;
-            string emp_type = this.mp_tBx_Emp_type.Text;
+            string plan_name = mp_tBx_Plan_Name.Text;
+            string head_summary = mp_tBx_Head_Summary.Text;
+            string emp_type = mp_tBx_Emp_type.Text;
             DataBaseConnection dc = new DataBaseConnection();
             if (sp_head_id == -1)
             {

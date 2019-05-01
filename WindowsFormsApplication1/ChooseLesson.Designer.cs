@@ -44,7 +44,7 @@
             // 
             this.lbl_lessonName.AutoSize = true;
             this.lbl_lessonName.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lbl_lessonName.Location = new System.Drawing.Point(110, 56);
+            this.lbl_lessonName.Location = new System.Drawing.Point(90, 56);
             this.lbl_lessonName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_lessonName.Name = "lbl_lessonName";
             this.lbl_lessonName.Size = new System.Drawing.Size(90, 21);
@@ -55,7 +55,7 @@
             // 
             this.lbl_lessonOwner.AutoSize = true;
             this.lbl_lessonOwner.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lbl_lessonOwner.Location = new System.Drawing.Point(314, 56);
+            this.lbl_lessonOwner.Location = new System.Drawing.Point(294, 56);
             this.lbl_lessonOwner.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_lessonOwner.Name = "lbl_lessonOwner";
             this.lbl_lessonOwner.Size = new System.Drawing.Size(74, 21);
@@ -65,7 +65,7 @@
             // tBx_lessonName
             // 
             this.tBx_lessonName.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.tBx_lessonName.Location = new System.Drawing.Point(201, 52);
+            this.tBx_lessonName.Location = new System.Drawing.Point(181, 52);
             this.tBx_lessonName.Margin = new System.Windows.Forms.Padding(2);
             this.tBx_lessonName.Name = "tBx_lessonName";
             this.tBx_lessonName.Size = new System.Drawing.Size(94, 29);
@@ -74,7 +74,7 @@
             // tBx_lessonOwner
             // 
             this.tBx_lessonOwner.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.tBx_lessonOwner.Location = new System.Drawing.Point(388, 52);
+            this.tBx_lessonOwner.Location = new System.Drawing.Point(368, 52);
             this.tBx_lessonOwner.Margin = new System.Windows.Forms.Padding(2);
             this.tBx_lessonOwner.Name = "tBx_lessonOwner";
             this.tBx_lessonOwner.Size = new System.Drawing.Size(92, 29);
@@ -83,9 +83,9 @@
             // CL_flpClasses
             // 
             this.CL_flpClasses.AutoScroll = true;
-            this.CL_flpClasses.Location = new System.Drawing.Point(104, 103);
+            this.CL_flpClasses.Location = new System.Drawing.Point(79, 98);
             this.CL_flpClasses.Name = "CL_flpClasses";
-            this.CL_flpClasses.Size = new System.Drawing.Size(568, 368);
+            this.CL_flpClasses.Size = new System.Drawing.Size(610, 367);
             this.CL_flpClasses.TabIndex = 7;
             // 
             // btn_Finding
@@ -93,7 +93,7 @@
             this.btn_Finding.BackColor = System.Drawing.Color.Transparent;
             this.btn_Finding.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_Finding.DownBack = null;
-            this.btn_Finding.Location = new System.Drawing.Point(498, 48);
+            this.btn_Finding.Location = new System.Drawing.Point(478, 48);
             this.btn_Finding.MouseBack = null;
             this.btn_Finding.Name = "btn_Finding";
             this.btn_Finding.NormlBack = null;
@@ -108,7 +108,7 @@
             this.btn_AllClasses.BackColor = System.Drawing.Color.Transparent;
             this.btn_AllClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_AllClasses.DownBack = null;
-            this.btn_AllClasses.Location = new System.Drawing.Point(599, 48);
+            this.btn_AllClasses.Location = new System.Drawing.Point(579, 48);
             this.btn_AllClasses.MouseBack = null;
             this.btn_AllClasses.Name = "btn_AllClasses";
             this.btn_AllClasses.NormlBack = null;

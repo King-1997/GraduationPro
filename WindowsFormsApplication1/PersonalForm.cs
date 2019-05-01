@@ -157,7 +157,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("您当前还没有未完成的课程！");
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
         private void btn_studyClass_Click(object sender, EventArgs e)
@@ -258,7 +264,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("您当前还没有未处理的申请！");
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
 
@@ -360,7 +372,13 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("您当前还没有申请！");
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
 
@@ -382,13 +400,13 @@ namespace WindowsFormsApplication1
                 int flag = dc.ExecuteUpdate(update_sql);
                 if (flag != 0)
                 {
-                    MessageBox.Show("修改个人信息成功！");
-                    PersonalForm_Load(sender,e);
+                    MessageBox.Show("修改个人信息成功！");                   
                 }
             }else
             {
                 MessageBox.Show("修改个人信息失败，请重试！");
             }
+            PersonalForm_Load(sender, e);
         }
     }
 }

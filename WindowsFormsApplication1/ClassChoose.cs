@@ -120,7 +120,7 @@ namespace WindowsFormsApplication1
                     rb.Width = 100;
                     rb.Name = ds.Tables["user"].Rows[count][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
-                    rb.Click += new EventHandler(btn_oK_Click);
+                    rb.Click += new EventHandler(btn_OK_Click);
                     //上传人
                     var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
                     Loadman.Font = font;
@@ -168,7 +168,7 @@ namespace WindowsFormsApplication1
             {
                 //查询不到数据时提示无数据
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
-                lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_no_data.Width = 579;
                 lbl_no_data.Height = 150;
@@ -185,7 +185,7 @@ namespace WindowsFormsApplication1
             classesInfo.Show();
         }
         //复选框选中事件（设置只选一个）
-        private void btn_oK_Click(object sender, EventArgs e)
+        private void btn_OK_Click(object sender, EventArgs e)
         {
             //遍历 
             foreach (Control ctl in fLP_lessons.Controls)

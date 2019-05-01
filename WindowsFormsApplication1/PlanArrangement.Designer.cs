@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class LessonArrangement
+    partial class PlanArrangement
     {
         /// <summary>
         /// Required designer variable.
@@ -150,7 +150,7 @@
             this.Name = "LessonArrangement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "课程安排";
-            this.Load += new System.EventHandler(this.LessonArrangement_Load);
+            this.Load += new System.EventHandler(this.PlanArrangement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

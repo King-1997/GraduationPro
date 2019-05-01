@@ -123,7 +123,7 @@
             this.btn_oK.TabIndex = 12;
             this.btn_oK.Text = "确定";
             this.btn_oK.UseVisualStyleBackColor = false;
-            this.btn_oK.Click += new System.EventHandler(this.btn_oK_Click);
+            this.btn_oK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
             // btn_back
             // 
