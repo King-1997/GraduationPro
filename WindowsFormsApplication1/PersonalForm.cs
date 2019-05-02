@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1
 
         private void PersonalForm_Load(object sender, EventArgs e)
         {
+            HideControls();
             if (Model.User.userType.Equals("员工"))
             {
                 Btn_ApplyUndisposed.Enabled = false;
@@ -38,7 +39,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             try
             {
-                String sql = "select u.u_account,g.g_group,u.u_credit,convert(varchar(100),u.u_entryTime,120) as u_entryTime,u.u_phone,u.u_email from [user] u,[group] g where u.u_id = " + Model.User.userId + " and u.g_id = g.g_id";
+                string sql = "select u.u_account,g.g_group,u.u_credit,convert(varchar(100),u.u_entryTime,120) as u_entryTime,u.u_phone,u.u_email from [user] u,[group] g where u.u_id = " + Model.User.userId + " and u.g_id = g.g_id";
                 DataSet ds = dc.ExecuteQuery(sql);
                 if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
                 {
@@ -105,6 +106,9 @@ namespace WindowsFormsApplication1
                 var lbl_false = new Label { Text = "" };
                 lbl_false.Width = 50;
                 lbl_false.Font = font;
+                var lbl_Eva = new Label { Text = "" };
+                lbl_Eva.Width = 50;
+                lbl_Eva.Font = font;
 
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 lblcredit.TextAlign = ContentAlignment.MiddleCenter;
@@ -116,7 +120,8 @@ namespace WindowsFormsApplication1
                 p_flpClasses.Controls.Add(lblu_name);
                 p_flpClasses.Controls.Add(lbltime);
                 p_flpClasses.Controls.Add(lbl_false);
-                p_flpClasses.SetFlowBreak(lbl_false, true);
+                p_flpClasses.Controls.Add(lbl_Eva);                
+                p_flpClasses.SetFlowBreak(lbl_Eva, true);
 
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
@@ -144,15 +149,23 @@ namespace WindowsFormsApplication1
                     var btnCom = new Button { Text = "学习" };
                     btnCom.Width = 50;
                     btnCom.Name = ds.Tables["user"].Rows[i][4].ToString();
-                    btnCom.Click += new EventHandler(btn_studyClass_Click);
                     btnCom.TextAlign = ContentAlignment.MiddleCenter;
+                    btnCom.Click += new EventHandler(btn_studyClass_Click);                    
+
+                    var btnEvaluation = new Button { Text = "评价" };
+                    btnEvaluation.Width = 50;
+                    //需要将up_line_id通过button传到事件方法中
+                    btnEvaluation.Name = ds.Tables["user"].Rows[i][4].ToString();                    
+                    btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
+                    //btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
 
                     p_flpClasses.Controls.Add(lblUFClasses_name);
                     p_flpClasses.Controls.Add(lblUFClasses_credit);
                     p_flpClasses.Controls.Add(lblUFClasses_u_name);
                     p_flpClasses.Controls.Add(lblUFClasses_recommendTime);
                     p_flpClasses.Controls.Add(btnCom);
-                    p_flpClasses.SetFlowBreak(btnCom, true);
+                    p_flpClasses.Controls.Add(btnEvaluation);                    
+                    p_flpClasses.SetFlowBreak(btnEvaluation, true);
                 }
             }
             else
@@ -291,6 +304,46 @@ namespace WindowsFormsApplication1
             displayMyApplication(sql);
         }
 
+        private void btn_Evaluation_Click(object sender, EventArgs e)
+        {
+            //显示评分控件
+            ShowControls();
+            Button button = (Button)sender;
+            int up_line_id = 0;
+            int.TryParse(button.Name,out up_line_id);
+            //获取页面控件输入的值
+            int score = 0;
+            int.TryParse(p_tbx_Score.Text,out score);
+            string prompt = p_tbx_prompt.Text;
+            DataBaseConnection dc = new DataBaseConnection();
+            string update_up_line = "update user_plan_lines set up_line_score = "+score+",up_line_prompt = N'"+prompt+"' where up_line_id = "+up_line_id;
+            int flag = dc.ExecuteUpdate(update_up_line);
+            if (flag == 1)
+            {
+                MessageBox.Show("评价课程成功！");
+            }else
+            {
+                MessageBox.Show("评价课程失败，请联系系统管理员！");
+            }
+        }
+        //隐藏评分相关控件
+        private void HideControls()
+        {            
+            p_lbl_Score.Visible = false;
+            p_tbx_Score.Visible = false;
+            p_lbl_Prompt.Visible = false;
+            p_tbx_prompt.Visible = false;
+            p_flpClasses.Height = 260;
+        }
+        //显示评分相关控件
+        private void ShowControls()
+        {
+            p_flpClasses.Height = 150;
+            p_lbl_Score.Visible = true;
+            p_tbx_Score.Visible = true;
+            p_lbl_Prompt.Visible = true;
+            p_tbx_prompt.Visible = true;
+        }
         private void displayMyApplication(string sql)
         {
             //刷新页面显示

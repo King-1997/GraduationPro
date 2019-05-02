@@ -47,7 +47,7 @@
             this.Btn_classfinished = new CCWin.SkinControl.SkinButton();
             this.btn_classunfinished = new CCWin.SkinControl.SkinButton();
             this.p_btnHome = new CCWin.SkinControl.SkinButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.p_lbl_Apply = new System.Windows.Forms.Label();
             this.Btn_ApplyUndisposed = new CCWin.SkinControl.SkinButton();
             this.Btn_MyApply = new CCWin.SkinControl.SkinButton();
             this.p_lbl_EntryTime = new System.Windows.Forms.Label();
@@ -57,6 +57,10 @@
             this.p_txtBxEmail = new System.Windows.Forms.TextBox();
             this.p_txtBxPhone = new System.Windows.Forms.TextBox();
             this.p_btnSubmit = new CCWin.SkinControl.SkinButton();
+            this.p_lbl_Score = new System.Windows.Forms.Label();
+            this.p_tbx_Score = new System.Windows.Forms.TextBox();
+            this.p_lbl_Prompt = new System.Windows.Forms.Label();
+            this.p_tbx_prompt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -192,7 +196,7 @@
             // 
             this.p_flpClasses.AllowDrop = true;
             this.p_flpClasses.AutoScroll = true;
-            this.p_flpClasses.Location = new System.Drawing.Point(99, 373);
+            this.p_flpClasses.Location = new System.Drawing.Point(99, 382);
             this.p_flpClasses.Name = "p_flpClasses";
             this.p_flpClasses.Size = new System.Drawing.Size(572, 154);
             this.p_flpClasses.TabIndex = 18;
@@ -247,7 +251,7 @@
             this.p_btnHome.BackColor = System.Drawing.Color.Transparent;
             this.p_btnHome.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnHome.DownBack = null;
-            this.p_btnHome.Location = new System.Drawing.Point(653, 533);
+            this.p_btnHome.Location = new System.Drawing.Point(717, 655);
             this.p_btnHome.MouseBack = null;
             this.p_btnHome.Name = "p_btnHome";
             this.p_btnHome.NormlBack = null;
@@ -257,15 +261,15 @@
             this.p_btnHome.UseVisualStyleBackColor = false;
             this.p_btnHome.Click += new System.EventHandler(this.p_btnHome_Click);
             // 
-            // label2
+            // p_lbl_Apply
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label2.Location = new System.Drawing.Point(96, 339);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "请假申请：";
+            this.p_lbl_Apply.AutoSize = true;
+            this.p_lbl_Apply.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_Apply.Location = new System.Drawing.Point(96, 339);
+            this.p_lbl_Apply.Name = "p_lbl_Apply";
+            this.p_lbl_Apply.Size = new System.Drawing.Size(68, 17);
+            this.p_lbl_Apply.TabIndex = 23;
+            this.p_lbl_Apply.Text = "请假申请：";
             // 
             // Btn_ApplyUndisposed
             // 
@@ -322,7 +326,7 @@
             this.p_btnEdit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnEdit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnEdit.DownBack = null;
-            this.p_btnEdit.Location = new System.Drawing.Point(501, 533);
+            this.p_btnEdit.Location = new System.Drawing.Point(565, 655);
             this.p_btnEdit.MouseBack = null;
             this.p_btnEdit.Name = "p_btnEdit";
             this.p_btnEdit.NormlBack = null;
@@ -367,7 +371,7 @@
             this.p_btnSubmit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnSubmit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnSubmit.DownBack = null;
-            this.p_btnSubmit.Location = new System.Drawing.Point(577, 533);
+            this.p_btnSubmit.Location = new System.Drawing.Point(641, 655);
             this.p_btnSubmit.MouseBack = null;
             this.p_btnSubmit.Name = "p_btnSubmit";
             this.p_btnSubmit.NormlBack = null;
@@ -377,14 +381,58 @@
             this.p_btnSubmit.UseVisualStyleBackColor = false;
             this.p_btnSubmit.Click += new System.EventHandler(this.p_btnSubmit_Click);
             // 
+            // p_lbl_Score
+            // 
+            this.p_lbl_Score.AutoSize = true;
+            this.p_lbl_Score.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_Score.Location = new System.Drawing.Point(62, 565);
+            this.p_lbl_Score.Name = "p_lbl_Score";
+            this.p_lbl_Score.Size = new System.Drawing.Size(197, 17);
+            this.p_lbl_Score.TabIndex = 33;
+            this.p_lbl_Score.Text = "评分（请输入1-100之内的数字）：";
+            // 
+            // p_tbx_Score
+            // 
+            this.p_tbx_Score.BackColor = System.Drawing.Color.SkyBlue;
+            this.p_tbx_Score.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p_tbx_Score.Location = new System.Drawing.Point(265, 559);
+            this.p_tbx_Score.Name = "p_tbx_Score";
+            this.p_tbx_Score.Size = new System.Drawing.Size(86, 29);
+            this.p_tbx_Score.TabIndex = 34;
+            // 
+            // p_lbl_Prompt
+            // 
+            this.p_lbl_Prompt.AutoSize = true;
+            this.p_lbl_Prompt.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.p_lbl_Prompt.Location = new System.Drawing.Point(62, 629);
+            this.p_lbl_Prompt.Name = "p_lbl_Prompt";
+            this.p_lbl_Prompt.Size = new System.Drawing.Size(44, 17);
+            this.p_lbl_Prompt.TabIndex = 35;
+            this.p_lbl_Prompt.Text = "备注：";
+            // 
+            // p_tbx_prompt
+            // 
+            this.p_tbx_prompt.BackColor = System.Drawing.Color.SkyBlue;
+            this.p_tbx_prompt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.p_tbx_prompt.Location = new System.Drawing.Point(99, 606);
+            this.p_tbx_prompt.Margin = new System.Windows.Forms.Padding(2);
+            this.p_tbx_prompt.Multiline = true;
+            this.p_tbx_prompt.Name = "p_tbx_prompt";
+            this.p_tbx_prompt.Size = new System.Drawing.Size(318, 63);
+            this.p_tbx_prompt.TabIndex = 36;
+            // 
             // PersonalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(754, 577);
+            this.ClientSize = new System.Drawing.Size(834, 715);
             this.ControlBox = false;
+            this.Controls.Add(this.p_tbx_prompt);
+            this.Controls.Add(this.p_lbl_Prompt);
+            this.Controls.Add(this.p_tbx_Score);
+            this.Controls.Add(this.p_lbl_Score);
             this.Controls.Add(this.p_btnSubmit);
             this.Controls.Add(this.p_txtBxPhone);
             this.Controls.Add(this.p_btnEdit);
@@ -394,7 +442,7 @@
             this.Controls.Add(this.p_lbl_EntryTime);
             this.Controls.Add(this.Btn_MyApply);
             this.Controls.Add(this.Btn_ApplyUndisposed);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.p_lbl_Apply);
             this.Controls.Add(this.p_btnHome);
             this.Controls.Add(this.btn_classunfinished);
             this.Controls.Add(this.Btn_classfinished);
@@ -443,7 +491,7 @@
         private CCWin.SkinControl.SkinButton Btn_classfinished;
         private CCWin.SkinControl.SkinButton btn_classunfinished;
         private CCWin.SkinControl.SkinButton p_btnHome;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label p_lbl_Apply;
         private CCWin.SkinControl.SkinButton Btn_ApplyUndisposed;
         private CCWin.SkinControl.SkinButton Btn_MyApply;
         private System.Windows.Forms.Label p_lbl_EntryTime;
@@ -453,5 +501,9 @@
         private System.Windows.Forms.TextBox p_txtBxEmail;
         private System.Windows.Forms.TextBox p_txtBxPhone;
         private CCWin.SkinControl.SkinButton p_btnSubmit;
+        private System.Windows.Forms.Label p_lbl_Score;
+        private System.Windows.Forms.TextBox p_tbx_Score;
+        private System.Windows.Forms.Label p_lbl_Prompt;
+        private System.Windows.Forms.TextBox p_tbx_prompt;
     }
 }
