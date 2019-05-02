@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1
         private int c_maxTime = 30;
         private int c_minTime = 20;
         private string c_credit = null;
+        private string c_annex = null;
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public Learn()
@@ -30,7 +31,7 @@ namespace WindowsFormsApplication1
         
         private void Learn_Load(object sender, EventArgs e)
         {
-            this.timer1.Start();    //启动定时器
+            timer1.Start();    //启动定时器
             timer1.Interval = 1000;
             L_lblTime.Text = DateTime.Now.ToString("YYYY/MM/DD H24:mm:ss");
             //地址输入
@@ -38,22 +39,14 @@ namespace WindowsFormsApplication1
             //scan(theFolder);
             //根据课程名字查出文件所在地址
             DataBaseConnection dc = new DataBaseConnection();
-            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime,c_name,c_credit from Classes where c_id = " + c_id;
+            String select_c_file = "select c_file,c_ifExam,c_maxTime,c_minTime,c_name,c_credit,c_annex from Classes where c_id = " + c_id;
             DataSet ds = dc.ExecuteQuery(select_c_file);
             //将文件路径赋值给全局变量c_file
             c_file = ds.Tables["user"].Rows[0][0].ToString();
             Console.WriteLine("文件路径："+c_file);
-            this.L_lblClassesFile.Text = c_file;
+            L_lblClassesFile.Text = c_file;
             //将课程是否考试赋值给全局变量c_ifExam
             c_ifExam = ds.Tables["user"].Rows[0][1].ToString();
-            //将课程最大学习时间赋值给全局变量c_maxTime
-            c_maxTime = (int)ds.Tables["user"].Rows[0][2];
-            //将课程最大学习时间赋值给全局变量c_minTime
-            c_minTime = (int)ds.Tables["user"].Rows[0][3];
-            c_name = ds.Tables["user"].Rows[0][4].ToString();
-            this.L_lblClassesName.Text = c_name;
-            c_credit = ds.Tables["user"].Rows[0][5].ToString();
-            this.L_lblClassesCredit.Text = c_credit;
             L_btnExam.Visible = true;
             if (c_ifExam.Equals("是"))
             {
@@ -64,12 +57,23 @@ namespace WindowsFormsApplication1
                 L_btnExam.Visible = false;
             }
             L_btnExam.Enabled = false;
+            //将课程最大学习时间赋值给全局变量c_maxTime
+            c_maxTime = (int)ds.Tables["user"].Rows[0][2];
+            //将课程最大学习时间赋值给全局变量c_minTime
+            c_minTime = (int)ds.Tables["user"].Rows[0][3];
+            c_name = ds.Tables["user"].Rows[0][4].ToString();
+            L_lblClassesName.Text = c_name;
+            c_credit = ds.Tables["user"].Rows[0][5].ToString();
+            L_lblClassesCredit.Text = c_credit;
+
+            //将附件名赋值给全局变量c_annex
+            c_annex = ds.Tables["user"].Rows[0][6].ToString();
         }
         private void L_btnReturn_Click(object sender, EventArgs e)
         {
             timer1.Stop();//关闭计时器
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
         //计时器
         private int openingtime = 0;//记录页面打开时间
@@ -121,7 +125,7 @@ namespace WindowsFormsApplication1
             if (fileExtension == ".pdf")//打开pdf文件
             {
                 System.Diagnostics.Process.Start(c_file);//使用第三方软件打开文件
-                //this.axAcroPDF1.LoadFile(fileExtension);
+                //axAcroPDF1.LoadFile(fileExtension);
             }
             else if (fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
                 fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
@@ -195,7 +199,7 @@ namespace WindowsFormsApplication1
             ExamForm.c_id = c_id;
             ExamForm examForm = new ExamForm();
             examForm.Owner = this;
-            this.Hide();
+            Hide();
             examForm.Show();
         }
 
@@ -208,10 +212,10 @@ namespace WindowsFormsApplication1
             {
                 foldPath = dialog.SelectedPath;
                 filename = foldPath + "123.pdf";
-                Tools.Download.DownloadFile(c_file, filename, L_progressBar, L_lbl_pcb);
+                Tools.Download.DownloadFile(c_annex, filename, L_progressBar, L_lbl_pcb);
             }
-            this.L_progressBar.Visible = true;
-            this.L_lbl_pcb.Visible = true;
+            L_progressBar.Visible = true;
+            L_lbl_pcb.Visible = true;
         }
     }
 }

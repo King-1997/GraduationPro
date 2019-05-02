@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
                 btn_upload.Text = "确定";
                 Console.WriteLine("ClassesInfo里的课程id：" + c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime from [User] u,Classes c where c.u_id = u.u_id and c_id = " + c_id + "";
+                String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime,c_annex from [User] u,Classes c where c.u_id = u.u_id and c_id = " + c_id + "";
                 DataSet ds = dc.ExecuteQuery(sql);
                 lbl_classhanded_show.Text = ds.Tables["user"].Rows[0][1].ToString();
                 txtBx_classname.Text = ds.Tables["user"].Rows[0][0].ToString();
@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1
                 }
                 txtBx_classMinTime.Text = ds.Tables["user"].Rows[0][7].ToString();
                 txtBx_classMaxTime.Text = ds.Tables["user"].Rows[0][8].ToString();
+                lc_txtBxAnnexName.Text = ds.Tables["user"].Rows[0][9].ToString();
             }
         }
         
@@ -63,15 +64,16 @@ namespace WindowsFormsApplication1
         //上传课程
         private void btn_upload_Click(object sender, EventArgs e)
         {
-            String c_name1 = txtBx_classname.Text;
-            String c_introdution = txtBxIntroduce.Text;
-            String c_file = lc_txtBxFileName.Text;
-            String c_credit = txtBx_grade.Text;
-            //String c_time = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            String c_recommendTime = txtBx_classTime.Text;
-            String c_ifExam = LC_cbb_ifExam.SelectedItem.ToString();
-            String c_maxTime = txtBx_classMaxTime.Text;
-            String c_minTime = txtBx_classMinTime.Text;
+            string c_name1 = txtBx_classname.Text;
+            string c_introdution = txtBxIntroduce.Text;
+            string c_file = lc_txtBxFileName.Text;
+            string c_credit = txtBx_grade.Text;
+            //string c_time = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string c_recommendTime = txtBx_classTime.Text;
+            string c_ifExam = LC_cbb_ifExam.SelectedItem.ToString();
+            string c_maxTime = txtBx_classMaxTime.Text;
+            string c_minTime = txtBx_classMinTime.Text;
+            string c_axxex = lc_txtBxAnnexName.Text;
             DataBaseConnection dc = new DataBaseConnection();
             //判断输入是否正确
             if (string.IsNullOrEmpty(c_name1))
@@ -91,7 +93,7 @@ namespace WindowsFormsApplication1
                 //修改课程信息
                 if (btn_upload.Text.Equals("确定"))
                 {                    
-                    String update_sql = "update Classes set c_name = N'" + c_name1 + "',c_introduction = N'" + c_introdution + "',c_file = N'" + c_file + "',c_credit = '"+ c_credit + "',c_recommendTime = '"+ c_recommendTime + "',c_ifExam = N'" + c_ifExam + "',c_maxTime = "+c_maxTime+",c_minTime = "+c_minTime+" where c_id = "+c_id+"";
+                    String update_sql = "update Classes set c_name = N'" + c_name1 + "',c_introduction = N'" + c_introdution + "',c_file = N'" + c_file + "',c_credit = '"+ c_credit + "',c_recommendTime = '"+ c_recommendTime + "',c_ifExam = N'" + c_ifExam + "',c_maxTime = "+c_maxTime+",c_minTime = "+c_minTime+",c_annex = N'"+c_axxex+"' where c_id = "+c_id+"";
                     Console.WriteLine("更新操作的sql语句：" + update_sql);
                     if (dc.ExecuteUpdate(update_sql) != 0)
                     {
@@ -119,7 +121,7 @@ namespace WindowsFormsApplication1
                 {
                     //将课程信息保存到数据库
                     //选择考题信息               
-                    String insert_sql = "insert into Classes values (next value for Classes_s," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+")";
+                    String insert_sql = "insert into Classes values (next value for Classes_s," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+",N'"+c_axxex+"')";
                     Console.WriteLine("SQL:"+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)

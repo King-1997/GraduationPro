@@ -85,7 +85,7 @@
             this.CL_flpClasses.AutoScroll = true;
             this.CL_flpClasses.Location = new System.Drawing.Point(79, 98);
             this.CL_flpClasses.Name = "CL_flpClasses";
-            this.CL_flpClasses.Size = new System.Drawing.Size(610, 367);
+            this.CL_flpClasses.Size = new System.Drawing.Size(610, 375);
             this.CL_flpClasses.TabIndex = 7;
             // 
             // btn_Finding

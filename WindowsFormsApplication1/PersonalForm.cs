@@ -72,12 +72,12 @@ namespace WindowsFormsApplication1
 
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
-            String sql = "select c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = "+ Model.User.userId + ") as u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 1) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and uc.u_id in (select u_id from [User] where u_id = " + Model.User.userId + ")";
+            String sql = "select c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id from Classes c where c.c_id in (select spl.c_id from study_plan_lines spl,study_plan_header sph,user_plan_lines upl,user_plan_header uph where upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and uph.up_head_id = upl.up_head_id and uph.u_id = " + Model.User.userId + " and uph.study_status_id = 2)";
             displayClasses(sql);
         }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
-            String sql = "select c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = "+ Model.User.userId + ") as u_name,c.c_recommendTime,c.c_id from Classes c, ClassesDestribute cd, UserClasses uc where c.c_id in (select cd.c_id from ClassesDestribute cd, UserClasses uc where uc.cd_id = cd.cd_id and uc.uc_status = 0) and uc.cd_id = cd.cd_id and cd.c_id = c.c_id and uc.u_id =" + Model.User.userId + "";
+            String sql = "select c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id from Classes c where c.c_id in (select spl.c_id from study_plan_lines spl,study_plan_header sph,user_plan_lines upl,user_plan_header uph where upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and uph.up_head_id = upl.up_head_id and uph.u_id = " + Model.User.userId+" and uph.study_status_id = 0 or uph.study_status_id = 1)";
             displayClasses(sql);
 
         }

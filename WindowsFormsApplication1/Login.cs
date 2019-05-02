@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
         public Login()
         {
             InitializeComponent();
-            //this.skinEngine1.SkinFile = "DeepCyan.ssk";
+            //skinEngine1.SkinFile = "DeepCyan.ssk";
             DataBaseConnection dc = new DataBaseConnection();
             String select_user_type = "select ut_type from UserType";
             DataSet ds = dc.ExecuteQuery(select_user_type);
@@ -39,8 +39,8 @@ namespace WindowsFormsApplication1
         {
             //1. 获取数据
             //从TextBox中获取用户输入信息
-            string userName = this.textUserName.Text;
-            string userPassword = this.textPassword.Text;
+            string userName = textUserName.Text;
+            string userPassword = textPassword.Text;
             string userType = comboBox1.SelectedItem.ToString();
             Console.WriteLine("下拉框中的值:" + userType);
             //2. 验证数据
@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1
                 {
                     DataBaseConnection sqlCommend = new DataBaseConnection();
                     String sql = "select u.u_account,u.u_password,u_name,ut.ut_type,u.u_id,u.g_id,u.u_email from [User] u,usertype ut where u.ut_id = ut.ut_id and u_account = N'" + userName + "'";//查询语句                    
-                    Console.WriteLine(sql);                    
+                    //Console.WriteLine(sql);                    
                     DataSet ds = new DataSet();
                     ds = sqlCommend.ExecuteQuery(sql);
                     if (ds != null || (ds.Tables.Count == 0) || (ds.Tables.Count == 1 && ds.Tables[0].Rows.Count == 0))
@@ -83,7 +83,7 @@ namespace WindowsFormsApplication1
                             Model.User.email = u_email;
                             main1.Owner = this;
                             main1.Show();
-                            this.Hide();
+                            Hide();
                         }
                         //用户类型选择错误，提示错误。
                         else if (userName.Equals(u_account) && userPassword.Equals(u_password) && !userType.Equals(u_type))
@@ -108,7 +108,7 @@ namespace WindowsFormsApplication1
         {
             Program.isValidUser = false;
 
-            this.Dispose();
+            Dispose();
         }
         private void Login_Load(object sender, EventArgs e)
         {

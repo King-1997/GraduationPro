@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-        private List<string> classes = new List<string>();//保存选择的课程id信息
+        private List<string> classes_id = new List<string>();//保存选择的课程id信息
         private List<string> classes_name = new List<string>();//保存选择的课程Name信息
         private void btn_Finding_Click(object sender, EventArgs e)
         {
@@ -38,15 +38,15 @@ namespace WindowsFormsApplication1
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = "+Model.User.userId+ " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);
@@ -179,15 +179,15 @@ namespace WindowsFormsApplication1
 
         private void ChooseLesson_Load(object sender, EventArgs e)
         {
-            classes = null;
-            classes_name = null;
+            //classes_id = null;
+            //classes_name = null;
             btn_AllClasses_Click(sender,e);
         }
 
         private void btn_AllClasses_Click(object sender, EventArgs e)
         {
             //CL_flpClasses.Controls.Clear();
-            String sql = "SELECT c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id FROM Classes AS c INNER JOIN [User] AS u ON c.u_id = u.u_id where c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程') except select sp_line_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + " and pd_id in (select pd_id from plan_destribute where u_id = " + Model.User.userId + " and sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程'))))";
+            String sql = "SELECT c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id FROM Classes AS c INNER JOIN [User] AS u ON c.u_id = u.u_id where c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
             ShowLessons(sql);
         }
 
@@ -201,19 +201,19 @@ namespace WindowsFormsApplication1
                     if ((ctl as CheckBox).Checked == true)
                     {
                         //处理代码
-                        classes.Add(ctl.Name);
+                        classes_id.Add(ctl.Name);
                         classes_name.Add(ctl.Text);
                     }
                 }
             }
             DataBaseConnection dc = new DataBaseConnection();
-            if (classes.Count > 0)
+            if (classes_id.Count > 0)
             {
                 int i, flag1 = 0, flag2 = 0,flag3 = 0;
-                for (i = 0; i <= classes.Count; i++)
+                for (i = 0; i < classes_id.Count; i++)
                 {
-                    int c_id = -1;
-                    int.TryParse(classes[i], out c_id);
+                    int c_id = 0;
+                    int.TryParse(classes_id[i], out c_id);
 
                     //在可选修课程中查找所勾选课程的计划id
                     string select_dc_sql = "select sp_line_id from study_plan_lines where c_id =" + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')";
@@ -224,12 +224,12 @@ namespace WindowsFormsApplication1
                         //使用序列查询出pd_id的下一个值
                         string select_pd_id = "select next value for plan_destribute_s";
                         DataSet ds2 = dc.ExecuteQuery(select_pd_id);
-                        int pd_id = -1;
+                        int pd_id = 0;
                         int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out pd_id);
                         //使用序列查询出up_head_id的下一个值
                         string select_up_head_id = "select next value for user_plan_header_s";
                         DataSet ds3 = dc.ExecuteQuery(select_up_head_id);
-                        int up_head_id = -1;
+                        int up_head_id = 0;
                         int.TryParse(ds3.Tables["user"].Rows[0][0].ToString(), out up_head_id);
                         //执行insert语句插入到学习计划分配表
                         string insert_pd_sql = "insert into plan_destribute values(" + pd_id + "," + Model.User.userId + ",(select sp_head_id from study_plan_header where sp_head_name = '可选修课程'),N'" + Model.User.userId + "',CONVERT(varchar(100), GETDATE(), 20))";
@@ -241,7 +241,7 @@ namespace WindowsFormsApplication1
                         string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s,"+sp_line_id+ "," + up_head_id + ",0,null,0,null)";
                         flag3 = dc.ExecuteUpdate(insert_up_line_sql);
                     }
-                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == (classes.Count - 1))
+                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == (classes_id.Count - 1))
                     {
                         MessageBox.Show("选课成功！");
                         Owner.Show();

@@ -73,8 +73,8 @@ namespace WindowsFormsApplication1
         
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
 
         private void btn_find_Click(object sender, EventArgs e)
@@ -216,7 +216,7 @@ namespace WindowsFormsApplication1
         //全选复选框的功能实现
         private void cBx_allSelect_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.cBx_allSelect.CheckState == CheckState.Checked)
+            if (cBx_allSelect.CheckState == CheckState.Checked)
             {
                 foreach (Control peo in fLP_people.Controls)
                 {
@@ -289,10 +289,10 @@ namespace WindowsFormsApplication1
                 PlanArrangement.user_id.AddRange(user_id);
             }                
             //获取上一界面的已选员工窗口
-            PlanArrangement lesson = (PlanArrangement)this.Owner;
+            PlanArrangement lesson = (PlanArrangement)Owner;
             lesson.EmpsShow();
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
 
         private void PeopleChoose_Load(object sender, EventArgs e)
@@ -309,16 +309,16 @@ namespace WindowsFormsApplication1
         {
             if (preboxname == "cBx_workertype")
             {
-                this.Controls.Remove(cBx_workertype);
+                Controls.Remove(cBx_workertype);
             }
             else if (preboxname == "cBx_workerentryTime")
             {
-                this.Controls.Remove(cBx_workerEntryYear);
-                this.Controls.Remove(cBx_workerEntryMonth);
+                Controls.Remove(cBx_workerEntryYear);
+                Controls.Remove(cBx_workerEntryMonth);
             }
             else
             {
-                this.Controls.Remove(tBx_findkeywords);
+                Controls.Remove(tBx_findkeywords);
             }
 
             //当下拉框选为“按组别”选择时，输入框变为组别下拉框
@@ -326,22 +326,22 @@ namespace WindowsFormsApplication1
             {
                 //生成新的下拉框
                 preboxname = "cBx_workertype";
-                this.Controls.Add(cBx_workertype);
-                this.Controls.Remove(cBx_workerEntryYear);
-                this.Controls.Remove(cBx_workerEntryMonth);
+                Controls.Add(cBx_workertype);
+                Controls.Remove(cBx_workerEntryYear);
+                Controls.Remove(cBx_workerEntryMonth);
             }
             else if (cbB_findKey.Text == "按入职时间")
             {
                 //生成新的下拉框
                 preboxname = "cBx_workerentryTime";
-                this.Controls.Remove(cBx_workertype);
-                this.Controls.Add(cBx_workerEntryYear);
-                this.Controls.Add(cBx_workerEntryMonth);
+                Controls.Remove(cBx_workertype);
+                Controls.Add(cBx_workerEntryYear);
+                Controls.Add(cBx_workerEntryMonth);
             }
             else
             {
                 preboxname = "tBx_findkeywords";
-                this.Controls.Add(tBx_findkeywords);
+                Controls.Add(tBx_findkeywords);
             }
         }
 

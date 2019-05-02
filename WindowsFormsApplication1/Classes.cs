@@ -251,7 +251,7 @@ namespace WindowsFormsApplication1
                     btnDeleteClasses.Width = 40;
                     btnDeleteClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     Console.WriteLine(btnDeleteClasses.Name);
-                    //btnDeleteClasses.Click += new EventHandler(btnDeleteClasses_Click);
+                    btnDeleteClasses.Click += new EventHandler(btnDeleteClasses_Click);
 
                     c_flpClasses.Controls.Add(lblSelectClasses_name);
                     c_flpClasses.Controls.Add(lblSelectClasses_credit);
@@ -285,11 +285,11 @@ namespace WindowsFormsApplication1
                 DataBaseConnection dc = new DataBaseConnection();
                 
                 //删除用户学习计划从表数据
-                string delete_up_line_sql = "delete from user_plan_lines where up_line_id = in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程' and u_id = " + Model.User.userId + "))";
+                string delete_up_line_sql = "delete from user_plan_lines where sp_line_id in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and up_head_id =(select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")";
                 int flag1 = dc.ExecuteUpdate(delete_up_line_sql);
 
                 //在用户学习计划头表中查询出相应的记录
-                string select_up_head_id = "select up_head_id,pd_id from user_plan_header where u_id = " + Model.User.userId + " and up_head_id not exists (select sp_head_id from user_plan_lines)";
+                string select_up_head_id = "select up_head_id,pd_id from user_plan_header where not exists (select up_head_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where u_id = "+ Model.User.userId + "))";
                 DataSet ds1 = dc.ExecuteQuery(select_up_head_id);
                 //当用户学习计划行表中删除完之后再删除头表记录
                 if (ds1.Tables["user"].Rows.Count > 0)
@@ -297,7 +297,7 @@ namespace WindowsFormsApplication1
                     int up_head_id = (int)ds1.Tables["user"].Rows[0][0];
                     int pd_id = (int)ds1.Tables["user"].Rows[0][1];
                     //删除用户学习计划头表数据
-                    string delete_up_head_id = "delete from user_plan_header where up_head_id =" + up_head_id;
+                    string delete_up_head_id = "delete from user_plan_header where up_head_id =" + up_head_id +" and u_id = " + Model.User.userId;
                     int flag2 = dc.ExecuteUpdate(delete_up_head_id);
 
                     //删除学习计划分配表数据

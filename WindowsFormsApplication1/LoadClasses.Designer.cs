@@ -51,6 +51,9 @@
             this.lc_btnChooceFile = new CCWin.SkinControl.SkinButton();
             this.btn_upload = new CCWin.SkinControl.SkinButton();
             this.btn_return = new CCWin.SkinControl.SkinButton();
+            this.lc_btnChooceAnnex = new CCWin.SkinControl.SkinButton();
+            this.lc_txtBxAnnexName = new System.Windows.Forms.TextBox();
+            this.lbl_annex = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Lal_windowname
@@ -270,7 +273,7 @@
             this.btn_upload.BackColor = System.Drawing.Color.Transparent;
             this.btn_upload.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_upload.DownBack = null;
-            this.btn_upload.Location = new System.Drawing.Point(527, 523);
+            this.btn_upload.Location = new System.Drawing.Point(534, 582);
             this.btn_upload.MouseBack = null;
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.NormlBack = null;
@@ -285,7 +288,7 @@
             this.btn_return.BackColor = System.Drawing.Color.Transparent;
             this.btn_return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_return.DownBack = null;
-            this.btn_return.Location = new System.Drawing.Point(627, 523);
+            this.btn_return.Location = new System.Drawing.Point(634, 582);
             this.btn_return.MouseBack = null;
             this.btn_return.Name = "btn_return";
             this.btn_return.NormlBack = null;
@@ -295,13 +298,52 @@
             this.btn_return.UseVisualStyleBackColor = false;
             this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
             // 
+            // lc_btnChooceAnnex
+            // 
+            this.lc_btnChooceAnnex.BackColor = System.Drawing.Color.Transparent;
+            this.lc_btnChooceAnnex.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.lc_btnChooceAnnex.DownBack = null;
+            this.lc_btnChooceAnnex.Location = new System.Drawing.Point(222, 523);
+            this.lc_btnChooceAnnex.MouseBack = null;
+            this.lc_btnChooceAnnex.Name = "lc_btnChooceAnnex";
+            this.lc_btnChooceAnnex.NormlBack = null;
+            this.lc_btnChooceAnnex.Size = new System.Drawing.Size(83, 32);
+            this.lc_btnChooceAnnex.TabIndex = 39;
+            this.lc_btnChooceAnnex.Text = "选择附件";
+            this.lc_btnChooceAnnex.UseVisualStyleBackColor = false;
+            // 
+            // lc_txtBxAnnexName
+            // 
+            this.lc_txtBxAnnexName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.lc_txtBxAnnexName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lc_txtBxAnnexName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lc_txtBxAnnexName.Location = new System.Drawing.Point(332, 527);
+            this.lc_txtBxAnnexName.Name = "lc_txtBxAnnexName";
+            this.lc_txtBxAnnexName.ReadOnly = true;
+            this.lc_txtBxAnnexName.Size = new System.Drawing.Size(317, 22);
+            this.lc_txtBxAnnexName.TabIndex = 38;
+            // 
+            // lbl_annex
+            // 
+            this.lbl_annex.AutoSize = true;
+            this.lbl_annex.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lbl_annex.Location = new System.Drawing.Point(88, 526);
+            this.lbl_annex.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_annex.Name = "lbl_annex";
+            this.lbl_annex.Size = new System.Drawing.Size(90, 21);
+            this.lbl_annex.TabIndex = 37;
+            this.lbl_annex.Text = "课程附件：";
+            // 
             // LoadClasses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(754, 577);
+            this.ClientSize = new System.Drawing.Size(770, 621);
             this.ControlBox = false;
+            this.Controls.Add(this.lc_btnChooceAnnex);
+            this.Controls.Add(this.lc_txtBxAnnexName);
+            this.Controls.Add(this.lbl_annex);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.btn_upload);
             this.Controls.Add(this.lc_btnChooceFile);
@@ -358,5 +400,8 @@
         private CCWin.SkinControl.SkinButton lc_btnChooceFile;
         private CCWin.SkinControl.SkinButton btn_upload;
         private CCWin.SkinControl.SkinButton btn_return;
+        private CCWin.SkinControl.SkinButton lc_btnChooceAnnex;
+        private System.Windows.Forms.TextBox lc_txtBxAnnexName;
+        private System.Windows.Forms.Label lbl_annex;
     }
 }
