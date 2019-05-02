@@ -40,6 +40,7 @@
             this.btn_find = new CCWin.SkinControl.SkinButton();
             this.btn_cancel = new CCWin.SkinControl.SkinButton();
             this.btn_oK = new CCWin.SkinControl.SkinButton();
+            this.pc_btn_return = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // fLP_people
@@ -168,7 +169,7 @@
             this.btn_oK.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_oK.DownBack = null;
             this.btn_oK.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_oK.Location = new System.Drawing.Point(608, 497);
+            this.btn_oK.Location = new System.Drawing.Point(522, 508);
             this.btn_oK.MouseBack = null;
             this.btn_oK.Name = "btn_oK";
             this.btn_oK.NormlBack = null;
@@ -178,12 +179,29 @@
             this.btn_oK.UseVisualStyleBackColor = false;
             this.btn_oK.Click += new System.EventHandler(this.btn_oK_Click);
             // 
+            // pc_btn_return
+            // 
+            this.pc_btn_return.BackColor = System.Drawing.Color.Transparent;
+            this.pc_btn_return.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.pc_btn_return.DownBack = null;
+            this.pc_btn_return.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.pc_btn_return.Location = new System.Drawing.Point(631, 508);
+            this.pc_btn_return.MouseBack = null;
+            this.pc_btn_return.Name = "pc_btn_return";
+            this.pc_btn_return.NormlBack = null;
+            this.pc_btn_return.Size = new System.Drawing.Size(91, 37);
+            this.pc_btn_return.TabIndex = 28;
+            this.pc_btn_return.Text = "返回";
+            this.pc_btn_return.UseVisualStyleBackColor = false;
+            this.pc_btn_return.Click += new System.EventHandler(this.pc_btn_return_Click);
+            // 
             // PeopleChoose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.pc_btn_return);
             this.Controls.Add(this.btn_oK);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_find);
@@ -217,5 +235,6 @@
         private CCWin.SkinControl.SkinButton btn_find;
         private CCWin.SkinControl.SkinButton btn_cancel;
         private CCWin.SkinControl.SkinButton btn_oK;
+        private CCWin.SkinControl.SkinButton pc_btn_return;
     }
 }

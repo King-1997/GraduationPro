@@ -98,6 +98,8 @@ namespace WindowsFormsApplication1
             //修改数据库
             DataBaseConnection dc = new DataBaseConnection();
             int i = 0;
+            int count = 0;
+            int.TryParse(cBx_passCount.SelectedItem.ToString(),out count);
             for (i = 0;i < questions.Count;i++)
             {
                 String q_title = questions[i];
@@ -107,10 +109,10 @@ namespace WindowsFormsApplication1
                 String q_option3 = C[i];
                 String q_option4 = D[i];
 
-                String insert_sql = "insert into question values("+c_id+",N'"+q_title+ "',N'" + q_answer+ "',N'" + q_option1+ "',N'" + q_option2+ "',N'" + q_option3+ "',N'" + q_option4+"')";
+                String insert_sql = "insert into question values(next value for question_s," + c_id+",N'"+q_title+ "',N'" + q_answer+ "',N'" + q_option1+ "',N'" + q_option2+ "',N'" + q_option3+ "',N'" + q_option4+"')";
                 dc.ExecuteUpdate(insert_sql);
             }
-            String update_sql = "update Classes set c_count = " + cBx_passCount.SelectedItem.ToString() + " where c_id = '"+c_id+"'";
+            String update_sql = "update Classes set c_count = " + count + " where c_id = '"+c_id+"'";
             int flag = dc.ExecuteUpdate(update_sql);
             if (i == questions.Count && flag != 0)
             {
@@ -119,16 +121,16 @@ namespace WindowsFormsApplication1
 
             //返回上一界面
             questions = null;
-            this.Owner.Owner.Show();
-            this.Owner.Dispose();
+            Owner.Owner.Show();
+            Owner.Dispose();
         }
         //取消操作
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             //返回上一界面
             questions = null;
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
         //更新下拉框的选项
         private void click(object sender,EventArgs e)

@@ -77,17 +77,17 @@ namespace WindowsFormsApplication1
                 ExamShow.C.Add(C);
                 ExamShow.D.Add(D);
                 //关闭该界面，刷新考题 
-                ExamShow examShow = (ExamShow)this.Owner;
+                ExamShow examShow = (ExamShow)Owner;
                 examShow.ShowQuestions();
-                this.Dispose();
+                Dispose();
             }
-
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             //关闭该界面
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
 
         private void LoadExam_Load(object sender, EventArgs e)

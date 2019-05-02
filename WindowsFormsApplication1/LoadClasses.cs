@@ -50,15 +50,15 @@ namespace WindowsFormsApplication1
         
         private void ClassChoose_Load(object sender, EventArgs e)
         {
-            this.lbl_classhanded_show.Text = Model.User.userName;
+            lbl_classhanded_show.Text = Model.User.userName;
            
         }
         //取消操作，返回上一界面
         private void btn_return_Click(object sender, EventArgs e)
         {
             
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
        
         //上传课程
@@ -109,13 +109,13 @@ namespace WindowsFormsApplication1
                         ExamShow.c_id = c_id;
                         ExamShow examShow = new ExamShow();
                         examShow.Owner = this;
-                        this.Hide();
+                        Hide();
                         examShow.Show();
                     }
                     else
                     {
-                        this.Owner.Show();
-                        this.Dispose();
+                        Owner.Show();
+                        Dispose();
                     }
                 }else if (btn_upload.Text.Equals("上传"))
                 {
@@ -133,13 +133,13 @@ namespace WindowsFormsApplication1
                             ExamShow.c_id = c_id;
                             ExamShow examShow = new ExamShow();
                             examShow.Owner = this;
-                            this.Hide();
+                            Hide();
                             examShow.Show();
                         }
                         else
                         {
-                            this.Owner.Show();
-                            this.Dispose();
+                            Owner.Show();
+                            Dispose();
                         }
                     }
                     else
@@ -160,7 +160,7 @@ namespace WindowsFormsApplication1
             {
                 string FileName = ofd.FileName;//FileName就是要打开的文件路径
                                                //下边可以添加用户代码
-                this.lc_txtBxFileName.Visible = true;
+                lc_txtBxFileName.Visible = true;
                 lc_txtBxFileName.Text = FileName;               
             }            
         }

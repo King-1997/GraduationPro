@@ -29,61 +29,64 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tBx_fileadd = new System.Windows.Forms.TextBox();
+            this.eo_tBx_fileadd = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.tBx_fileName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_preview = new CCWin.SkinControl.SkinButton();
+            this.eo_tBx_fileName = new System.Windows.Forms.TextBox();
+            this.eo_lbl_fileName = new System.Windows.Forms.Label();
+            this.eo_btn_preview = new CCWin.SkinControl.SkinButton();
             this.btn_Y = new CCWin.SkinControl.SkinButton();
             this.EO_btnRetnru = new CCWin.SkinControl.SkinButton();
+            this.eo_lbl_group = new System.Windows.Forms.Label();
+            this.eo_ccb_group = new CCWin.SkinControl.SkinComboBox();
+            this.eo_lbl_tip = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // tBx_fileadd
+            // eo_tBx_fileadd
             // 
-            this.tBx_fileadd.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.tBx_fileadd.Location = new System.Drawing.Point(217, 106);
-            this.tBx_fileadd.Margin = new System.Windows.Forms.Padding(2);
-            this.tBx_fileadd.Name = "tBx_fileadd";
-            this.tBx_fileadd.ReadOnly = true;
-            this.tBx_fileadd.Size = new System.Drawing.Size(380, 23);
-            this.tBx_fileadd.TabIndex = 0;
+            this.eo_tBx_fileadd.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.eo_tBx_fileadd.Location = new System.Drawing.Point(255, 273);
+            this.eo_tBx_fileadd.Margin = new System.Windows.Forms.Padding(2);
+            this.eo_tBx_fileadd.Name = "eo_tBx_fileadd";
+            this.eo_tBx_fileadd.ReadOnly = true;
+            this.eo_tBx_fileadd.Size = new System.Drawing.Size(293, 23);
+            this.eo_tBx_fileadd.TabIndex = 0;
             // 
-            // tBx_fileName
+            // eo_tBx_fileName
             // 
-            this.tBx_fileName.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.tBx_fileName.Location = new System.Drawing.Point(217, 174);
-            this.tBx_fileName.Margin = new System.Windows.Forms.Padding(2);
-            this.tBx_fileName.Name = "tBx_fileName";
-            this.tBx_fileName.Size = new System.Drawing.Size(380, 23);
-            this.tBx_fileName.TabIndex = 3;
-            this.tBx_fileName.Text = "请输入文件名：";
-            this.tBx_fileName.Click += new System.EventHandler(this.tBx_fileName_Click);
+            this.eo_tBx_fileName.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.eo_tBx_fileName.Location = new System.Drawing.Point(255, 346);
+            this.eo_tBx_fileName.Margin = new System.Windows.Forms.Padding(2);
+            this.eo_tBx_fileName.Name = "eo_tBx_fileName";
+            this.eo_tBx_fileName.Size = new System.Drawing.Size(293, 23);
+            this.eo_tBx_fileName.TabIndex = 3;
+            this.eo_tBx_fileName.Text = "请输入文件名：";
+            this.eo_tBx_fileName.Click += new System.EventHandler(this.tBx_fileName_Click);
             // 
-            // label1
+            // eo_lbl_fileName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.label1.Location = new System.Drawing.Point(128, 176);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 21);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "文件名：";
+            this.eo_lbl_fileName.AutoSize = true;
+            this.eo_lbl_fileName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.eo_lbl_fileName.Location = new System.Drawing.Point(166, 348);
+            this.eo_lbl_fileName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.eo_lbl_fileName.Name = "eo_lbl_fileName";
+            this.eo_lbl_fileName.Size = new System.Drawing.Size(74, 21);
+            this.eo_lbl_fileName.TabIndex = 4;
+            this.eo_lbl_fileName.Text = "文件名：";
             // 
-            // btn_preview
+            // eo_btn_preview
             // 
-            this.btn_preview.BackColor = System.Drawing.Color.Transparent;
-            this.btn_preview.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btn_preview.DownBack = null;
-            this.btn_preview.Location = new System.Drawing.Point(125, 97);
-            this.btn_preview.MouseBack = null;
-            this.btn_preview.Name = "btn_preview";
-            this.btn_preview.NormlBack = null;
-            this.btn_preview.Size = new System.Drawing.Size(69, 38);
-            this.btn_preview.TabIndex = 6;
-            this.btn_preview.Text = "浏览";
-            this.btn_preview.UseVisualStyleBackColor = false;
-            this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
+            this.eo_btn_preview.BackColor = System.Drawing.Color.Transparent;
+            this.eo_btn_preview.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.eo_btn_preview.DownBack = null;
+            this.eo_btn_preview.Location = new System.Drawing.Point(163, 264);
+            this.eo_btn_preview.MouseBack = null;
+            this.eo_btn_preview.Name = "eo_btn_preview";
+            this.eo_btn_preview.NormlBack = null;
+            this.eo_btn_preview.Size = new System.Drawing.Size(69, 38);
+            this.eo_btn_preview.TabIndex = 6;
+            this.eo_btn_preview.Text = "浏览";
+            this.eo_btn_preview.UseVisualStyleBackColor = false;
+            this.eo_btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
             // 
             // btn_Y
             // 
@@ -115,17 +118,53 @@
             this.EO_btnRetnru.UseVisualStyleBackColor = false;
             this.EO_btnRetnru.Click += new System.EventHandler(this.EO_btnRetnru_Click);
             // 
+            // eo_lbl_group
+            // 
+            this.eo_lbl_group.AutoSize = true;
+            this.eo_lbl_group.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.eo_lbl_group.Location = new System.Drawing.Point(95, 82);
+            this.eo_lbl_group.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.eo_lbl_group.Name = "eo_lbl_group";
+            this.eo_lbl_group.Size = new System.Drawing.Size(74, 21);
+            this.eo_lbl_group.TabIndex = 9;
+            this.eo_lbl_group.Text = "按部门：";
+            // 
+            // eo_ccb_group
+            // 
+            this.eo_ccb_group.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.eo_ccb_group.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.eo_ccb_group.FormattingEnabled = true;
+            this.eo_ccb_group.Location = new System.Drawing.Point(174, 80);
+            this.eo_ccb_group.Name = "eo_ccb_group";
+            this.eo_ccb_group.Size = new System.Drawing.Size(138, 27);
+            this.eo_ccb_group.TabIndex = 12;
+            this.eo_ccb_group.WaterText = "";
+            // 
+            // eo_lbl_tip
+            // 
+            this.eo_lbl_tip.AutoSize = true;
+            this.eo_lbl_tip.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.eo_lbl_tip.ForeColor = System.Drawing.Color.IndianRed;
+            this.eo_lbl_tip.Location = new System.Drawing.Point(252, 310);
+            this.eo_lbl_tip.Name = "eo_lbl_tip";
+            this.eo_lbl_tip.Size = new System.Drawing.Size(417, 17);
+            this.eo_lbl_tip.TabIndex = 13;
+            this.eo_lbl_tip.Text = "温馨提示：最好选择C盘以外的路径，因为有些电脑C盘没有更改数据的权限~";
+            // 
             // ExcelOutput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.eo_lbl_tip);
+            this.Controls.Add(this.eo_ccb_group);
+            this.Controls.Add(this.eo_lbl_group);
             this.Controls.Add(this.EO_btnRetnru);
             this.Controls.Add(this.btn_Y);
-            this.Controls.Add(this.btn_preview);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tBx_fileName);
-            this.Controls.Add(this.tBx_fileadd);
+            this.Controls.Add(this.eo_btn_preview);
+            this.Controls.Add(this.eo_lbl_fileName);
+            this.Controls.Add(this.eo_tBx_fileName);
+            this.Controls.Add(this.eo_tBx_fileadd);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ExcelOutput";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -138,12 +177,15 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tBx_fileadd;
+        private System.Windows.Forms.TextBox eo_tBx_fileadd;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.TextBox tBx_fileName;
-        private System.Windows.Forms.Label label1;
-        private CCWin.SkinControl.SkinButton btn_preview;
+        private System.Windows.Forms.TextBox eo_tBx_fileName;
+        private System.Windows.Forms.Label eo_lbl_fileName;
+        private CCWin.SkinControl.SkinButton eo_btn_preview;
         private CCWin.SkinControl.SkinButton btn_Y;
         private CCWin.SkinControl.SkinButton EO_btnRetnru;
+        private System.Windows.Forms.Label eo_lbl_group;
+        private CCWin.SkinControl.SkinComboBox eo_ccb_group;
+        private System.Windows.Forms.Label eo_lbl_tip;
     }
 }
