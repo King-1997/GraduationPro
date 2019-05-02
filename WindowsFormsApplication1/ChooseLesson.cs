@@ -232,16 +232,16 @@ namespace WindowsFormsApplication1
                         int up_head_id = 0;
                         int.TryParse(ds3.Tables["user"].Rows[0][0].ToString(), out up_head_id);
                         //执行insert语句插入到学习计划分配表
-                        string insert_pd_sql = "insert into plan_destribute values(" + pd_id + "," + Model.User.userId + ",(select sp_head_id from study_plan_header where sp_head_name = '可选修课程'),N'" + Model.User.userId + "',CONVERT(varchar(100), GETDATE(), 20))";
+                        string insert_pd_sql = "insert into plan_destribute values(" + pd_id + "," + Model.User.userId + ",(select sp_head_id from study_plan_header where sp_head_name = '可选修课程'),N'" + Model.User.userId + "',CONVERT(varchar(100),GETDATE(),20))";
                         flag1 = dc.ExecuteUpdate(insert_pd_sql);
                         //执行insert语句插入到用户学习计划头表
-                        string insert_up_head_sql = "insert into user_plan_header values ("+up_head_id+"," + Model.User.userId + "," + pd_id + ",0,0,2,0,null)";
+                        string insert_up_head_sql = "insert into user_plan_header values ("+up_head_id+"," + Model.User.userId + "," + pd_id + ",0,0,2)";
                         flag2 = dc.ExecuteUpdate(insert_up_head_sql);
                         //执行insert语句插入到用户学习计划从表
                         string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s,"+sp_line_id+ "," + up_head_id + ",0,null,0,null)";
                         flag3 = dc.ExecuteUpdate(insert_up_line_sql);
                     }
-                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == (classes_id.Count - 1))
+                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == classes_id.Count)
                     {
                         MessageBox.Show("选课成功！");
                         Owner.Show();

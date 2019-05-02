@@ -62,48 +62,59 @@ namespace WindowsFormsApplication1
             } 
             else
             {
-                int sp_head_id = -1,flag1 = -1,flag2 = -1,flag3 = -1;
+                int sp_head_id = 0,flag1 = 0,flag2 = 0,flag3 = 0;
                 int.TryParse(plan_id,out sp_head_id);
                 //将数据存储于数据库
                 DataBaseConnection dc = new DataBaseConnection();
-                for (i = 1; i <= user_id.Count; i++)
+                
+                for (i = 0; i < user_id.Count; i++)
                 {
-                    //查询plan_destribute_s序列的下一个值，作为cd_id
-                    String select_cd_id = "select next value for plan_destribute_s";
-                    DataSet ds = dc.ExecuteQuery(select_cd_id);
-                    int pd_id = (int)ds.Tables["user"].Rows[0][0];
-
-                    //查询plan_destribute_s序列的下一个值，作为cd_id
-                    String select_up_head_id = "select next value for user_plan_header_s";
-                    DataSet ds1 = dc.ExecuteQuery(select_up_head_id);
-                    int up_head_id = (int)ds1.Tables["user"].Rows[0][0];
-
                     //获取出选择的员工id
-                    int u_id = -1;
+                    int u_id = 0;
+                    //Console.WriteLine("user_id中的值为：" + user_id[i]);
                     int.TryParse(user_id[i], out u_id);
-                    //插入学习计划分配表
-                    string insert_cd_sql = "insert into plan_destribute values (" + pd_id + "," + sp_head_id + "," + u_id + ",N'" + Model.User.userName + "',CONVERT(varchar(100), GETDATE(), 20))";
-                    flag1 = dc.ExecuteUpdate(insert_cd_sql);
-                    //插入用户学习计划头表
-                    string insert_uc_sql = "insert into user_plan_header values (" + up_head_id +","+u_id+"," + pd_id + ",0,0,1，null)";
-                    flag2 = dc.ExecuteUpdate(insert_uc_sql);
-                    //查询学习计划行信息id
-                    string select_line_id = "select sp_line_id from study_plan_lines where sp_head_id = " + sp_head_id;
-                    DataSet ds2 = dc.ExecuteQuery(select_line_id);
-                    if(ds2.Tables["user"].Rows.Count > 0)
+                    string select_sp_head_id = "select sp_head_id from plan_destribute where pd_id in (select pd_id from user_plan_header where u_id = " + u_id + ") and sp_head_id = "+sp_head_id;
+                    DataSet dss = dc.ExecuteQuery(select_sp_head_id);
+                    if (dss.Tables["user"].Rows.Count == 0)
                     {
-                        for (int j = 1; j <= ds2.Tables["user"].Rows.Count; j++)
+                        //查询plan_destribute_s序列的下一个值，作为cd_id
+                        string select_cd_id = "select next value for plan_destribute_s";
+                        DataSet ds = dc.ExecuteQuery(select_cd_id);
+                        int pd_id = 0;
+                        int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out pd_id);
+                        //查询plan_destribute_s序列的下一个值，作为cd_id
+                        string select_up_head_id = "select next value for user_plan_header_s";
+                        DataSet ds1 = dc.ExecuteQuery(select_up_head_id);
+                        int up_head_id = 0;
+                        int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out up_head_id);
+
+                        //插入学习计划分配表
+                        string insert_cd_sql = "insert into plan_destribute values (" + pd_id + "," + u_id + "," + sp_head_id + ",N'" + Model.User.userId + "',CONVERT(varchar(100), GETDATE(), 20))";
+                        flag1 = dc.ExecuteUpdate(insert_cd_sql);
+                        //插入用户学习计划头表
+                        string insert_uc_sql = "insert into user_plan_header values (" + up_head_id + "," + u_id + "," + pd_id + ",0,0,1)";
+                        flag2 = dc.ExecuteUpdate(insert_uc_sql);
+                        //查询学习计划行信息id
+                        string select_line_id = "select sp_line_id from study_plan_lines where sp_head_id = " + sp_head_id;
+                        DataSet ds2 = dc.ExecuteQuery(select_line_id);
+                        if (ds2.Tables["user"].Rows.Count > 0)
                         {
-                            sp_line_id = (int)ds2.Tables["user"].Rows[j][0];
-                            //插入用户学习计划行表
-                            string insert_up_lines = "insert into user_plan_lines values(next value for user_plan_lines_s," + sp_line_id + "," + up_head_id + ",0,null,0,null)";
-                            flag3 = dc.ExecuteUpdate(insert_up_lines);
+                            for (int j = 0; j < ds2.Tables["user"].Rows.Count; j++)
+                            {
+                                sp_line_id = (int)ds2.Tables["user"].Rows[j][0];
+                                //插入用户学习计划行表
+                                string insert_up_lines = "insert into user_plan_lines values(next value for user_plan_lines_s," + sp_line_id + "," + up_head_id + ",0,null,0,null)";
+                                flag3 = dc.ExecuteUpdate(insert_up_lines);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("该学习计划中没有阶段内容，请联系系统管理员！");
                         }
                     }else
                     {
-                        MessageBox.Show("该学习计划中没有阶段内容，请联系系统管理员！");
-                    }
-                    
+                        MessageBox.Show("该学习计划已被安排给员工，请核对！");
+                    }                    
                 }
                 if (i == user_id.Count && flag1 == 1 && flag2 == 1 && flag3 == 1)
                 {

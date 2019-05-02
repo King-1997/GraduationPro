@@ -42,7 +42,6 @@ namespace WindowsFormsApplication1
             string userName = textUserName.Text;
             string userPassword = textPassword.Text;
             string userType = comboBox1.SelectedItem.ToString();
-            Console.WriteLine("下拉框中的值:" + userType);
             //2. 验证数据
             // 验证用户输入是否为空，若为空，提示用户信息
             if (userName.Equals("") || userPassword.Equals(""))
@@ -73,7 +72,7 @@ namespace WindowsFormsApplication1
                         //用户名和密码验证正确，提示成功，并执行跳转界面。
                         if (userName.Equals(u_account) && userPassword.Equals(u_password) && userType.Equals(u_type))
                         {
-                            MessageBox.Show("登录成功！");
+                            //MessageBox.Show("登录成功！");
                             //跳转主界面
                             Mainmenu main1 = new Mainmenu();
                             Model.User.userName = u_name;//记录用户名
@@ -107,12 +106,7 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             Program.isValidUser = false;
-
             Dispose();
-        }
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
 
     }
