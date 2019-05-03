@@ -55,8 +55,7 @@ namespace WindowsFormsApplication1
         }
         //取消操作，返回上一界面
         private void btn_return_Click(object sender, EventArgs e)
-        {
-            
+        {            
             Owner.Show();
             Dispose();
         }

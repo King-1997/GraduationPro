@@ -61,6 +61,7 @@
             this.p_tbx_Score = new System.Windows.Forms.TextBox();
             this.p_lbl_Prompt = new System.Windows.Forms.Label();
             this.p_tbx_prompt = new System.Windows.Forms.TextBox();
+            this.p_btn_Submit = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -421,6 +422,21 @@
             this.p_tbx_prompt.Size = new System.Drawing.Size(318, 63);
             this.p_tbx_prompt.TabIndex = 36;
             // 
+            // p_btn_Submit
+            // 
+            this.p_btn_Submit.BackColor = System.Drawing.Color.Transparent;
+            this.p_btn_Submit.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.p_btn_Submit.DownBack = null;
+            this.p_btn_Submit.Location = new System.Drawing.Point(443, 581);
+            this.p_btn_Submit.MouseBack = null;
+            this.p_btn_Submit.Name = "p_btn_Submit";
+            this.p_btn_Submit.NormlBack = null;
+            this.p_btn_Submit.Size = new System.Drawing.Size(70, 37);
+            this.p_btn_Submit.TabIndex = 37;
+            this.p_btn_Submit.Text = "提交";
+            this.p_btn_Submit.UseVisualStyleBackColor = false;
+            this.p_btn_Submit.Click += new System.EventHandler(this.p_btn_Submit_Click);
+            // 
             // PersonalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -429,6 +445,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(834, 715);
             this.ControlBox = false;
+            this.Controls.Add(this.p_btn_Submit);
             this.Controls.Add(this.p_tbx_prompt);
             this.Controls.Add(this.p_lbl_Prompt);
             this.Controls.Add(this.p_tbx_Score);
@@ -505,5 +522,6 @@
         private System.Windows.Forms.TextBox p_tbx_Score;
         private System.Windows.Forms.Label p_lbl_Prompt;
         private System.Windows.Forms.TextBox p_tbx_prompt;
+        private CCWin.SkinControl.SkinButton p_btn_Submit;
     }
 }
