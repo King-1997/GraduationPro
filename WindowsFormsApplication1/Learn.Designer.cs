@@ -156,7 +156,7 @@
             this.L_btnExam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btnExam.DownBack = null;
             this.L_btnExam.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.L_btnExam.Location = new System.Drawing.Point(805, 670);
+            this.L_btnExam.Location = new System.Drawing.Point(831, 670);
             this.L_btnExam.MouseBack = null;
             this.L_btnExam.Name = "L_btnExam";
             this.L_btnExam.NormlBack = null;
@@ -172,7 +172,7 @@
             this.L_btnReturn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btnReturn.DownBack = null;
             this.L_btnReturn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.L_btnReturn.Location = new System.Drawing.Point(933, 670);
+            this.L_btnReturn.Location = new System.Drawing.Point(937, 670);
             this.L_btnReturn.MouseBack = null;
             this.L_btnReturn.Name = "L_btnReturn";
             this.L_btnReturn.NormlBack = null;
@@ -287,7 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1062, 727);
+            this.ClientSize = new System.Drawing.Size(1067, 727);
             this.Controls.Add(this.L_lbl_pcb);
             this.Controls.Add(this.L_progressBar);
             this.Controls.Add(this.btn_download);

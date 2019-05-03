@@ -44,7 +44,7 @@
             this.m_lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.m_lblTitle.Enabled = false;
             this.m_lblTitle.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold);
-            this.m_lblTitle.Location = new System.Drawing.Point(336, 74);
+            this.m_lblTitle.Location = new System.Drawing.Point(334, 74);
             this.m_lblTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.m_lblTitle.Name = "m_lblTitle";
             this.m_lblTitle.Size = new System.Drawing.Size(304, 53);
@@ -170,7 +170,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Mainmenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "南昌科勒公司学习系统";
+            this.Text = "员工学习管理系统";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

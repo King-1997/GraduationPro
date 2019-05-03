@@ -130,6 +130,12 @@
     <Compile Include="EditPeriod.Designer.cs">
       <DependentUpon>EditPeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Emp_Comment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Emp_Comment.Designer.cs">
+      <DependentUpon>Emp_Comment.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExamChoose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditPeriod.resx">
       <DependentUpon>EditPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emp_Comment.resx">
+      <DependentUpon>Emp_Comment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExamChoose.resx">
       <DependentUpon>ExamChoose.cs</DependentUpon>

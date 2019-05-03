@@ -132,7 +132,7 @@ namespace WindowsFormsApplication1
             {
                 L_player.URL = c_file;
                 open = true;
-                L_player.fullScreen = true;//全屏打开文件
+                //L_player.fullScreen = true;//全屏打开文件
             }
             else
             {

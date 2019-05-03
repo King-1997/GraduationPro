@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
         private string preboxname = null;//保存当前输入框的Name，当下拉框改变时更改
         private void Man_Management_Load(object sender, EventArgs e)
         {
-            String sql = "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone from [User] u, [group] g, userType ut where u.g_id = g.g_id and u.ut_id = ut.ut_id and u.ut_id != 1";
+            string sql = "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone,u.u_id from [User] u, [group] g, userType ut where u.g_id = g.g_id and u.ut_id = ut.ut_id and u.ut_id != 1";
             WorkerShow(sql);
         }
         public Man_Management()
