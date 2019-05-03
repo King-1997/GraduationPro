@@ -24,17 +24,21 @@ namespace WindowsFormsApplication1
                 str.Add(line.ToString());
             }
         }
-        public void Sendemail(string type,string name/*,string mailaddress*/)
+        public void Sendemail(string type,string name,string mailaddress)
         {
+            Read();
             //发送
             SmtpClient client = new SmtpClient("smtp.qq.com");   //设置邮件协议
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;//这一句得写前面
             client.DeliveryMethod = SmtpDeliveryMethod.Network; //通过网络发送到Smtp服务器
-            client.Credentials = new NetworkCredential("1597595060@qq.com", "xtpobxhzhyglgecb"); //邮箱  和 授权码
+            //client.Credentials = new NetworkCredential("1597595060@qq.com", "nnikfgqtbbdkhcfj"); //邮箱  和 授权码
             ////使用txt文件来读取发件人邮箱和授权码
-            //client.Credentials = new NetworkCredential(str[0], str[1]); //qq邮箱  和 授权码
-            MailMessage mmsg = new MailMessage(new MailAddress(/*str[0]/*使用txt文件操作时*/"1597595060@qq.com"), new MailAddress("mailaddress")); //发件人和收件人的邮箱地址
+            client.Credentials = new NetworkCredential(str[0], str[1]); //qq邮箱  和 授权码
+            /*str[0]/*使用txt文件操作时*/
+            MailMessage mmsg = new MailMessage(new MailAddress(str[0]), new MailAddress(mailaddress)); //发件人和收件人的邮箱地址
+            //MailMessage mmsg = new MailMessage(new MailAddress("1597595060@qq.com"), new MailAddress(mailaddress)); //发件人和收件人的邮箱地址
+            mmsg.Subject = name + "向您发送了一条请假申请，请及时处理！";      //邮件主题
             mmsg.Subject = name+"向您发送了一条请假申请，请及时处理！";      //邮件主题
             mmsg.SubjectEncoding = Encoding.UTF8;   //主题编码
             mmsg.Body = name + "向您发送了一条请假申请，请假事由为：" + type + "申请，请您进入签批系统个人中心进行处理。";         //邮件正文
@@ -44,7 +48,7 @@ namespace WindowsFormsApplication1
             try
             {
                 client.Send(mmsg);
-                MessageBox.Show("邮件已发成功");
+                MessageBox.Show("邮件已发送成功！");
             }
             catch (Exception ex)
             {
@@ -52,8 +56,9 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void sendFeedBackEmail(string name/*,string mailaddress*/)
+        public void sendFeedBackEmail(string name,string mailaddress)
         {
+            Read();
             //发送
             SmtpClient client = new SmtpClient("smtp.qq.com");   //设置邮件协议
             client.EnableSsl = true;
@@ -61,8 +66,10 @@ namespace WindowsFormsApplication1
             client.DeliveryMethod = SmtpDeliveryMethod.Network; //通过网络发送到Smtp服务器
             client.Credentials = new NetworkCredential("1597595060@qq.com", "xtpobxhzhyglgecb"); //qq邮箱  和 授权码
             ////使用txt文件来读取发件人邮箱和授权码
-            //client.Credentials = new NetworkCredential(str[0], str[1]); //qq邮箱  和 授权码
-            MailMessage mmsg = new MailMessage(new MailAddress(/*str[0]/*使用txt文件操作时*/"1597595060@qq.com"), new MailAddress("mailaddress")); //发件人和收件人的邮箱地址
+            client.Credentials = new NetworkCredential(str[0], str[1]); //qq邮箱  和 授权码
+            MailMessage mmsg = new MailMessage(new MailAddress(str[0]), new MailAddress(mailaddress)); //发件人和收件人的邮箱地址
+            /*str[0]/*使用txt文件操作时*/
+            //MailMessage mmsg = new MailMessage(new MailAddress("1597595060@qq.com"), new MailAddress(mailaddress)); //发件人和收件人的邮箱地址
             mmsg.Subject = name + "向您发送了一条反馈";      //邮件主题
             mmsg.SubjectEncoding = Encoding.UTF8;   //主题编码
             mmsg.Body = name + "向您发送了一条反馈，您所提交的申请已经处理完成，请您进入签批系统个人中心进行处理。";         //邮件正文

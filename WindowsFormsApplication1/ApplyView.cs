@@ -60,7 +60,7 @@ namespace WindowsFormsApplication1
             {
                 //连接数据库
                 DataBaseConnection dc = new DataBaseConnection();
-                String insert_sql = "insert into SignRecord values ("+ Model.User.userId+",'"+type+"','"+nowTime+"','"+startTime+"','"+endTime+"','"+reason+ "',null,null,null,null,null,null,null,null,null)";
+                String insert_sql = "insert into SignRecord values (next value for SignRecord_s," + Model.User.userId+",'"+type+"','"+nowTime+"','"+startTime+"','"+endTime+"','"+reason+ "',null,null,null,null,null,null,null,null,null,null,null,null)";
                 int flag = dc.ExecuteUpdate(insert_sql);
                 //查询当前分组主管邮箱地址
                 String select_sql = "select u_email from [User] where ut_id in (select g_id from [UserType] where ut_type = '主管')";
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("申请成功！");
                     EmailSend es = new EmailSend();
-                    es.Sendemail(type, Model.User.userName/*,email*/);
+                    es.Sendemail(type, Model.User.userName,email);
                     Return_button_Click(sender,e);
                 }
                 else

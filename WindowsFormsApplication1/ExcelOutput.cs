@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
                 string sql = "select u.u_name'员工姓名',u.u_account'员工工号',uph.study_status_id'课程状态（已完成为1/未完成为0）',uph.up_property'课程属性（必修为1/选修为2）',c.c_name'课程名' from user_plan_header uph,user_plan_lines upl,[User] u,Classes c,study_plan_lines spl where uph.up_head_id = upl.up_head_id and uph.u_id = uph.u_id and upl.sp_line_id = spl.sp_line_id and spl.c_id = c.c_id";
                 if (group_name != "不选择部门")
                 {
-                    sql += "and u.g_id = (select g_id from [group] where g_group = '" + group_name + "') order by u.u_id";
+                    sql += " and u.g_id = (select g_id from [group] where g_group = '" + group_name + "') order by u.u_id";
                 }else
                 {
                     sql += " order by u.u_id";
