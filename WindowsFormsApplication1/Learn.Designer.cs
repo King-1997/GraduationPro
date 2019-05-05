@@ -51,6 +51,7 @@
             this.btn_download = new CCWin.SkinControl.SkinButton();
             this.L_progressBar = new System.Windows.Forms.ProgressBar();
             this.L_lbl_pcb = new System.Windows.Forms.Label();
+            this.L_btn_discuss = new CCWin.SkinControl.SkinButton();
             ((System.ComponentModel.ISupportInitialize)(this.L_player)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,12 +156,12 @@
             this.L_btnExam.BackColor = System.Drawing.Color.Transparent;
             this.L_btnExam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btnExam.DownBack = null;
-            this.L_btnExam.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.L_btnExam.Location = new System.Drawing.Point(831, 670);
+            this.L_btnExam.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.L_btnExam.Location = new System.Drawing.Point(858, 670);
             this.L_btnExam.MouseBack = null;
             this.L_btnExam.Name = "L_btnExam";
             this.L_btnExam.NormlBack = null;
-            this.L_btnExam.Size = new System.Drawing.Size(91, 37);
+            this.L_btnExam.Size = new System.Drawing.Size(73, 37);
             this.L_btnExam.TabIndex = 15;
             this.L_btnExam.Text = "考试";
             this.L_btnExam.UseVisualStyleBackColor = false;
@@ -171,12 +172,12 @@
             this.L_btnReturn.BackColor = System.Drawing.Color.Transparent;
             this.L_btnReturn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btnReturn.DownBack = null;
-            this.L_btnReturn.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.L_btnReturn.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.L_btnReturn.Location = new System.Drawing.Point(937, 670);
             this.L_btnReturn.MouseBack = null;
             this.L_btnReturn.Name = "L_btnReturn";
             this.L_btnReturn.NormlBack = null;
-            this.L_btnReturn.Size = new System.Drawing.Size(91, 37);
+            this.L_btnReturn.Size = new System.Drawing.Size(73, 37);
             this.L_btnReturn.TabIndex = 16;
             this.L_btnReturn.Text = "返回";
             this.L_btnReturn.UseVisualStyleBackColor = false;
@@ -282,12 +283,29 @@
             this.L_lbl_pcb.Text = "进度条显示";
             this.L_lbl_pcb.Visible = false;
             // 
+            // L_btn_discuss
+            // 
+            this.L_btn_discuss.BackColor = System.Drawing.Color.Transparent;
+            this.L_btn_discuss.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.L_btn_discuss.DownBack = null;
+            this.L_btn_discuss.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.L_btn_discuss.Location = new System.Drawing.Point(893, 470);
+            this.L_btn_discuss.MouseBack = null;
+            this.L_btn_discuss.Name = "L_btn_discuss";
+            this.L_btn_discuss.NormlBack = null;
+            this.L_btn_discuss.Size = new System.Drawing.Size(73, 37);
+            this.L_btn_discuss.TabIndex = 26;
+            this.L_btn_discuss.Text = "讨论";
+            this.L_btn_discuss.UseVisualStyleBackColor = false;
+            this.L_btn_discuss.Click += new System.EventHandler(this.L_btn_discuss_Click);
+            // 
             // Learn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1067, 727);
+            this.Controls.Add(this.L_btn_discuss);
             this.Controls.Add(this.L_lbl_pcb);
             this.Controls.Add(this.L_progressBar);
             this.Controls.Add(this.btn_download);
@@ -340,5 +358,6 @@
         private CCWin.SkinControl.SkinButton btn_download;
         private System.Windows.Forms.ProgressBar L_progressBar;
         private System.Windows.Forms.Label L_lbl_pcb;
+        private CCWin.SkinControl.SkinButton L_btn_discuss;
     }
 }

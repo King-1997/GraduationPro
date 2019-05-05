@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         private string c_name = null;
         private string c_ifExam = null;
         private int c_maxTime = 30;
-        private int c_minTime = 20;
+        private int c_minTime = 10;
         private string c_credit = null;
         private string c_annex = null;
         //设置窗体显示字体格式
@@ -216,6 +216,17 @@ namespace WindowsFormsApplication1
             }
             L_progressBar.Visible = true;
             L_lbl_pcb.Visible = true;
+        }
+
+        private void L_btn_discuss_Click(object sender, EventArgs e)
+        {
+            learn = false;
+            open = false;
+            Emp_Comment.c_id = c_id;
+            Emp_Comment emp_comment = new Emp_Comment();
+            emp_comment.Owner = this;
+            Hide();
+            emp_comment.Show();
         }
     }
 }

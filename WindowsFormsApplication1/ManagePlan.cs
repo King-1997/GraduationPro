@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1
                 mp_flp_PlanInfo.Controls.Add(lbl_btn_edit_period);
                 mp_flp_PlanInfo.Controls.Add(lbl_btn_delete);
                 mp_flp_PlanInfo.SetFlowBreak(lbl_btn_delete, true);
-                for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
+                for (int i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //计划名
                     var plan_name = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
@@ -171,7 +171,7 @@ namespace WindowsFormsApplication1
             else
             {
                 //查询不到数据时提示无数据
-                var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_no_data.Width = 579;

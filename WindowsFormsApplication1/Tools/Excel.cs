@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1
                 workbook.DocumentSummaryInformation = dsi;
 
                 SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-                si.Author = "";
+                si.Author = "zhouzhikai";
                 si.ApplicationName = "";
                 si.LastAuthor = "";
                 si.Comments = "";
@@ -104,7 +104,8 @@ namespace WindowsFormsApplication1
                         font.Boldweight = 700;
                         headStyle.SetFont(font);
                         headerRow.GetCell(0).CellStyle = headStyle;
-                        sheet.AddMergedRegion(new CellRangeAddress(0, 0, 0, dt.Columns.Count - 1));
+                        sheet.AddMergedRegion
+                            (new CellRangeAddress(0, 0, 0, dt.Columns.Count - 1));
                     }
                     #endregion
 
