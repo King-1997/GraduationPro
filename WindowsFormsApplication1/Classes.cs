@@ -15,25 +15,20 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
-
         public Classes()
         {
             InitializeComponent();
         }
-
         private void p_btnQuit_Click(object sender, EventArgs e)
         {
             Owner.Owner.Show();
             Owner.Dispose();
         }
-
         private void p_btnHome_Click(object sender, EventArgs e)
-        {
-            
+        {            
             Owner.Show();
             Dispose();
         }
-
         private void c_btnMine_Click(object sender, EventArgs e)
         {
             //刷新显示区域，显示我上传的课程

@@ -14,6 +14,8 @@ namespace WindowsFormsApplication1
     
     public partial class Mainmenu : CCSkinMain
     {
+        //设置窗体显示字体格式
+        Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public Mainmenu()
         {
             InitializeComponent();
@@ -31,14 +33,64 @@ namespace WindowsFormsApplication1
             if (!Model.User.userType.Equals("员工"))
             {
                 this.m_btnManage.Visible = true;
-
             }else
             {
                 this.m_btnSign.Location = this.m_btnManage.Location;
                 this.Width = 900;
             }
+            string select_announcement = "select a.a_text,a.a_datetime from [User] u,announcement a where u.u_id = a.u_id order by a_datetime desc";
+            showAnnouncement(select_announcement);
         }
+        private void showAnnouncement(string sql)
+        {
+            mm_flp_announcement.Controls.Clear();
+            DataBaseConnection dc = new DataBaseConnection();
+            DataSet ds = dc.ExecuteQuery(sql);
+            if (ds.Tables["user"].Rows.Count > 0)
+            {
+                ////公告正文标签
+                //var lbl_text = new Label { Text = "公告正文" };
+                //lbl_text.Font = font;
+                //lbl_text.Width = 200;
+                //lbl_text.TextAlign = ContentAlignment.MiddleCenter;
+                ////发布时间标签
+                //var lbl_time = new Label { Text = "发布时间" };
+                //lbl_time.Font = font;
+                //lbl_time.Width = 80;
+                //lbl_time.TextAlign = ContentAlignment.MiddleCenter;
 
+                //mm_flp_announcement.Controls.Add(lbl_text);
+                //mm_flp_announcement.Controls.Add(lbl_time);
+                //mm_flp_announcement.SetFlowBreak(lbl_time, true);
+                for (int i = 0; i < ds.Tables["user"].Rows.Count; i++)
+                {
+                    //公告正文
+                    var ann_text = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
+                    ann_text.Font = font;
+                    ann_text.Width = 200;
+                    //ann_text.TextAlign = ContentAlignment.MiddleCenter;
+                    //发布时间
+                    var create_time = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
+                    create_time.Font = font;
+                    create_time.Width = 80;
+                    //create_time.TextAlign = ContentAlignment.MiddleCenter;
+
+                    mm_flp_announcement.Controls.Add(ann_text);
+                    mm_flp_announcement.Controls.Add(create_time);
+                    mm_flp_announcement.SetFlowBreak(create_time, true);
+                }
+            }
+            else
+            {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 400;
+                lbl_no_data.Height = 150;
+                mm_flp_announcement.Controls.Add(lbl_no_data);
+            }
+        }
         private void p_btnQuit_Click_1(object sender, EventArgs e)
         {
             this.Owner.Show();//注销，返回登陆界面

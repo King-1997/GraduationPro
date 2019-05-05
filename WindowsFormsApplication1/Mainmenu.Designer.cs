@@ -37,6 +37,8 @@
             this.m_btnClass = new CCWin.SkinControl.SkinButton();
             this.m_btnManage = new CCWin.SkinControl.SkinButton();
             this.m_btnSign = new CCWin.SkinControl.SkinButton();
+            this.mm_lbl_ann = new System.Windows.Forms.Label();
+            this.mm_flp_announcement = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // m_lblTitle
@@ -94,7 +96,7 @@
             this.m_btnPersonal.BackColor = System.Drawing.Color.Transparent;
             this.m_btnPersonal.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btnPersonal.DownBack = null;
-            this.m_btnPersonal.Location = new System.Drawing.Point(136, 255);
+            this.m_btnPersonal.Location = new System.Drawing.Point(136, 288);
             this.m_btnPersonal.MouseBack = null;
             this.m_btnPersonal.Name = "m_btnPersonal";
             this.m_btnPersonal.NormlBack = null;
@@ -109,7 +111,7 @@
             this.m_btnClass.BackColor = System.Drawing.Color.Transparent;
             this.m_btnClass.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btnClass.DownBack = null;
-            this.m_btnClass.Location = new System.Drawing.Point(350, 255);
+            this.m_btnClass.Location = new System.Drawing.Point(350, 288);
             this.m_btnClass.MouseBack = null;
             this.m_btnClass.Name = "m_btnClass";
             this.m_btnClass.NormlBack = null;
@@ -124,7 +126,7 @@
             this.m_btnManage.BackColor = System.Drawing.Color.Transparent;
             this.m_btnManage.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btnManage.DownBack = null;
-            this.m_btnManage.Location = new System.Drawing.Point(566, 255);
+            this.m_btnManage.Location = new System.Drawing.Point(566, 288);
             this.m_btnManage.MouseBack = null;
             this.m_btnManage.Name = "m_btnManage";
             this.m_btnManage.NormlBack = null;
@@ -140,7 +142,7 @@
             this.m_btnSign.BackColor = System.Drawing.Color.Transparent;
             this.m_btnSign.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btnSign.DownBack = null;
-            this.m_btnSign.Location = new System.Drawing.Point(776, 255);
+            this.m_btnSign.Location = new System.Drawing.Point(776, 288);
             this.m_btnSign.MouseBack = null;
             this.m_btnSign.Name = "m_btnSign";
             this.m_btnSign.NormlBack = null;
@@ -150,6 +152,25 @@
             this.m_btnSign.UseVisualStyleBackColor = false;
             this.m_btnSign.Click += new System.EventHandler(this.m_btnSign_Click);
             // 
+            // mm_lbl_ann
+            // 
+            this.mm_lbl_ann.AutoSize = true;
+            this.mm_lbl_ann.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mm_lbl_ann.Location = new System.Drawing.Point(110, 132);
+            this.mm_lbl_ann.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mm_lbl_ann.Name = "mm_lbl_ann";
+            this.mm_lbl_ann.Size = new System.Drawing.Size(90, 21);
+            this.mm_lbl_ann.TabIndex = 39;
+            this.mm_lbl_ann.Text = "公告信息：";
+            // 
+            // mm_flp_announcement
+            // 
+            this.mm_flp_announcement.AutoScroll = true;
+            this.mm_flp_announcement.Location = new System.Drawing.Point(108, 166);
+            this.mm_flp_announcement.Name = "mm_flp_announcement";
+            this.mm_flp_announcement.Size = new System.Drawing.Size(418, 99);
+            this.mm_flp_announcement.TabIndex = 38;
+            // 
             // Mainmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 21F);
@@ -158,6 +179,8 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1024, 627);
             this.ControlBox = false;
+            this.Controls.Add(this.mm_lbl_ann);
+            this.Controls.Add(this.mm_flp_announcement);
             this.Controls.Add(this.m_btnSign);
             this.Controls.Add(this.m_btnManage);
             this.Controls.Add(this.m_btnClass);
@@ -186,5 +209,7 @@
         private CCWin.SkinControl.SkinButton m_btnClass;
         private CCWin.SkinControl.SkinButton m_btnManage;
         private CCWin.SkinControl.SkinButton m_btnSign;
+        private System.Windows.Forms.Label mm_lbl_ann;
+        private System.Windows.Forms.FlowLayoutPanel mm_flp_announcement;
     }
 }

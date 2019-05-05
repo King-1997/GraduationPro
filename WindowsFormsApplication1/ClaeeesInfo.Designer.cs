@@ -45,6 +45,11 @@
             this.CI_lbl_Classes_Time = new System.Windows.Forms.Label();
             this.CI_lbl_ClassesTime = new System.Windows.Forms.Label();
             this.CI_btnReturn = new CCWin.SkinControl.SkinButton();
+            this.CI_lbl_Annex = new System.Windows.Forms.Label();
+            this.CI_lblIfAnnex = new System.Windows.Forms.Label();
+            this.CI_lbl_pcb = new System.Windows.Forms.Label();
+            this.CI_progressBar = new System.Windows.Forms.ProgressBar();
+            this.CI_btn_download = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // CI_lblTitle
@@ -160,7 +165,7 @@
             this.CI_lblClassesFile.Name = "CI_lblClassesFile";
             this.CI_lblClassesFile.Size = new System.Drawing.Size(68, 17);
             this.CI_lblClassesFile.TabIndex = 12;
-            this.CI_lblClassesFile.Text = "课程附件：";
+            this.CI_lblClassesFile.Text = "课程文件：";
             // 
             // CI_lbl_Classes_File
             // 
@@ -195,7 +200,7 @@
             this.CI_btnReturn.BackColor = System.Drawing.Color.Transparent;
             this.CI_btnReturn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.CI_btnReturn.DownBack = null;
-            this.CI_btnReturn.Location = new System.Drawing.Point(606, 397);
+            this.CI_btnReturn.Location = new System.Drawing.Point(672, 463);
             this.CI_btnReturn.MouseBack = null;
             this.CI_btnReturn.Name = "CI_btnReturn";
             this.CI_btnReturn.NormlBack = null;
@@ -205,12 +210,71 @@
             this.CI_btnReturn.UseVisualStyleBackColor = false;
             this.CI_btnReturn.Click += new System.EventHandler(this.CI_btnReturn_Click);
             // 
+            // CI_lbl_Annex
+            // 
+            this.CI_lbl_Annex.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CI_lbl_Annex.Location = new System.Drawing.Point(175, 405);
+            this.CI_lbl_Annex.Name = "CI_lbl_Annex";
+            this.CI_lbl_Annex.Size = new System.Drawing.Size(100, 23);
+            this.CI_lbl_Annex.TabIndex = 18;
+            this.CI_lbl_Annex.Text = "ClassesAnnex";
+            // 
+            // CI_lblIfAnnex
+            // 
+            this.CI_lblIfAnnex.AutoSize = true;
+            this.CI_lblIfAnnex.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CI_lblIfAnnex.Location = new System.Drawing.Point(79, 405);
+            this.CI_lblIfAnnex.Name = "CI_lblIfAnnex";
+            this.CI_lblIfAnnex.Size = new System.Drawing.Size(68, 17);
+            this.CI_lblIfAnnex.TabIndex = 17;
+            this.CI_lblIfAnnex.Text = "课程附件：";
+            // 
+            // CI_lbl_pcb
+            // 
+            this.CI_lbl_pcb.AutoSize = true;
+            this.CI_lbl_pcb.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CI_lbl_pcb.Location = new System.Drawing.Point(504, 404);
+            this.CI_lbl_pcb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CI_lbl_pcb.Name = "CI_lbl_pcb";
+            this.CI_lbl_pcb.Size = new System.Drawing.Size(68, 17);
+            this.CI_lbl_pcb.TabIndex = 28;
+            this.CI_lbl_pcb.Text = "进度条显示";
+            this.CI_lbl_pcb.Visible = false;
+            // 
+            // CI_progressBar
+            // 
+            this.CI_progressBar.Location = new System.Drawing.Point(367, 400);
+            this.CI_progressBar.Name = "CI_progressBar";
+            this.CI_progressBar.Size = new System.Drawing.Size(114, 23);
+            this.CI_progressBar.TabIndex = 27;
+            this.CI_progressBar.Visible = false;
+            // 
+            // CI_btn_download
+            // 
+            this.CI_btn_download.BackColor = System.Drawing.Color.Transparent;
+            this.CI_btn_download.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.CI_btn_download.DownBack = null;
+            this.CI_btn_download.Location = new System.Drawing.Point(281, 397);
+            this.CI_btn_download.MouseBack = null;
+            this.CI_btn_download.Name = "CI_btn_download";
+            this.CI_btn_download.NormlBack = null;
+            this.CI_btn_download.Size = new System.Drawing.Size(53, 31);
+            this.CI_btn_download.TabIndex = 26;
+            this.CI_btn_download.Text = "下载";
+            this.CI_btn_download.UseVisualStyleBackColor = false;
+            this.CI_btn_download.Click += new System.EventHandler(this.CI_btn_download_Click);
+            // 
             // ClaeeesInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(742, 460);
+            this.ClientSize = new System.Drawing.Size(799, 530);
+            this.Controls.Add(this.CI_lbl_pcb);
+            this.Controls.Add(this.CI_progressBar);
+            this.Controls.Add(this.CI_btn_download);
+            this.Controls.Add(this.CI_lbl_Annex);
+            this.Controls.Add(this.CI_lblIfAnnex);
             this.Controls.Add(this.CI_btnReturn);
             this.Controls.Add(this.CI_lbl_Classes_Time);
             this.Controls.Add(this.CI_lbl_ClassesTime);
@@ -253,5 +317,10 @@
         private System.Windows.Forms.Label CI_lbl_Classes_Time;
         private System.Windows.Forms.Label CI_lbl_ClassesTime;
         private CCWin.SkinControl.SkinButton CI_btnReturn;
+        private System.Windows.Forms.Label CI_lbl_Annex;
+        private System.Windows.Forms.Label CI_lblIfAnnex;
+        private System.Windows.Forms.Label CI_lbl_pcb;
+        private System.Windows.Forms.ProgressBar CI_progressBar;
+        private CCWin.SkinControl.SkinButton CI_btn_download;
     }
 }
