@@ -56,6 +56,7 @@ namespace WindowsFormsApplication1
         }
         private void showPlanInfo(string sql)
         {
+            //清除之前的数据
             mp_flp_PlanInfo.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);

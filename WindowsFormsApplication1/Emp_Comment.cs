@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
         }
         private void loadInfo(string sql)
         {
+            //清除之前的数据
             ec_flp_comment.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
