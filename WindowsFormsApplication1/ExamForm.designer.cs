@@ -33,6 +33,8 @@
             this.fLP_ExamShow = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_cancel = new CCWin.SkinControl.SkinButton();
             this.btn_hand = new CCWin.SkinControl.SkinButton();
+            this.ef_timer = new System.Windows.Forms.Timer(this.components);
+            this.ef_lbl_curTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_Lesson_Name
@@ -42,9 +44,9 @@
             this.lbl_Lesson_Name.Location = new System.Drawing.Point(33, 38);
             this.lbl_Lesson_Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Lesson_Name.Name = "lbl_Lesson_Name";
-            this.lbl_Lesson_Name.Size = new System.Drawing.Size(146, 41);
+            this.lbl_Lesson_Name.Size = new System.Drawing.Size(82, 41);
             this.lbl_Lesson_Name.TabIndex = 0;
-            this.lbl_Lesson_Name.Text = "考试课程";
+            this.lbl_Lesson_Name.Text = "考题";
             // 
             // fLP_ExamShow
             // 
@@ -86,11 +88,26 @@
             this.btn_hand.UseVisualStyleBackColor = false;
             this.btn_hand.Click += new System.EventHandler(this.btn_hand_Click);
             // 
+            // ef_timer
+            // 
+            this.ef_timer.Tick += new System.EventHandler(this.ef_timer_Tick);
+            // 
+            // ef_lbl_curTime
+            // 
+            this.ef_lbl_curTime.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ef_lbl_curTime.Location = new System.Drawing.Point(530, 47);
+            this.ef_lbl_curTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ef_lbl_curTime.Name = "ef_lbl_curTime";
+            this.ef_lbl_curTime.Size = new System.Drawing.Size(174, 32);
+            this.ef_lbl_curTime.TabIndex = 6;
+            this.ef_lbl_curTime.Text = "YYYY/MM/dd HH:mm:ss";
+            // 
             // ExamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.ef_lbl_curTime);
             this.Controls.Add(this.btn_hand);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.fLP_ExamShow);
@@ -111,5 +128,7 @@
         private System.Windows.Forms.FlowLayoutPanel fLP_ExamShow;
         private CCWin.SkinControl.SkinButton btn_cancel;
         private CCWin.SkinControl.SkinButton btn_hand;
+        private System.Windows.Forms.Timer ef_timer;
+        private System.Windows.Forms.Label ef_lbl_curTime;
     }
 }

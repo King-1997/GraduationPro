@@ -52,13 +52,18 @@
             this.L_progressBar = new System.Windows.Forms.ProgressBar();
             this.L_lbl_pcb = new System.Windows.Forms.Label();
             this.L_btn_discuss = new CCWin.SkinControl.SkinButton();
+            this.L_lbl_v_time = new System.Windows.Forms.Label();
+            this.l_btn_pause = new CCWin.SkinControl.SkinButton();
+            this.l_btn_play = new CCWin.SkinControl.SkinButton();
+            this.L_lbl_vtime = new System.Windows.Forms.Label();
+            this.l_lbl_position = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.L_player)).BeginInit();
             this.SuspendLayout();
             // 
             // L_lblTime
             // 
             this.L_lblTime.Font = new System.Drawing.Font("微软雅黑", 10.5F);
-            this.L_lblTime.Location = new System.Drawing.Point(764, 31);
+            this.L_lblTime.Location = new System.Drawing.Point(772, 31);
             this.L_lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblTime.Name = "L_lblTime";
             this.L_lblTime.Size = new System.Drawing.Size(174, 32);
@@ -73,7 +78,7 @@
             // 
             this.L_lblClasses_Name.AutoSize = true;
             this.L_lblClasses_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_lblClasses_Name.Location = new System.Drawing.Point(59, 81);
+            this.L_lblClasses_Name.Location = new System.Drawing.Point(34, 81);
             this.L_lblClasses_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClasses_Name.Name = "L_lblClasses_Name";
             this.L_lblClasses_Name.Size = new System.Drawing.Size(56, 17);
@@ -95,7 +100,7 @@
             // 
             this.L_lblClasses_File.AutoSize = true;
             this.L_lblClasses_File.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_lblClasses_File.Location = new System.Drawing.Point(58, 123);
+            this.L_lblClasses_File.Location = new System.Drawing.Point(33, 123);
             this.L_lblClasses_File.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClasses_File.Name = "L_lblClasses_File";
             this.L_lblClasses_File.Size = new System.Drawing.Size(68, 17);
@@ -108,9 +113,9 @@
             this.lbl_timecount.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lbl_timecount.Location = new System.Drawing.Point(829, 63);
             this.lbl_timecount.Name = "lbl_timecount";
-            this.lbl_timecount.Size = new System.Drawing.Size(44, 17);
+            this.lbl_timecount.Size = new System.Drawing.Size(80, 17);
             this.lbl_timecount.TabIndex = 7;
-            this.lbl_timecount.Text = "计时器";
+            this.lbl_timecount.Text = "打开文件时间";
             // 
             // openFileDialog1
             // 
@@ -120,7 +125,7 @@
             // 
             this.lbl_learningState.AutoSize = true;
             this.lbl_learningState.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lbl_learningState.Location = new System.Drawing.Point(824, 89);
+            this.lbl_learningState.Location = new System.Drawing.Point(830, 89);
             this.lbl_learningState.Name = "lbl_learningState";
             this.lbl_learningState.Size = new System.Drawing.Size(56, 17);
             this.lbl_learningState.TabIndex = 12;
@@ -130,18 +135,18 @@
             // 
             this.lbl_learnTime.AutoSize = true;
             this.lbl_learnTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.lbl_learnTime.Location = new System.Drawing.Point(829, 113);
+            this.lbl_learnTime.Location = new System.Drawing.Point(830, 113);
             this.lbl_learnTime.Name = "lbl_learnTime";
-            this.lbl_learnTime.Size = new System.Drawing.Size(44, 17);
+            this.lbl_learnTime.Size = new System.Drawing.Size(56, 17);
             this.lbl_learnTime.TabIndex = 13;
-            this.lbl_learnTime.Text = "计时器";
+            this.lbl_learnTime.Text = "已学时间";
             // 
             // btn_preview
             // 
             this.btn_preview.BackColor = System.Drawing.Color.Transparent;
             this.btn_preview.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_preview.DownBack = null;
-            this.btn_preview.Location = new System.Drawing.Point(584, 123);
+            this.btn_preview.Location = new System.Drawing.Point(359, 125);
             this.btn_preview.MouseBack = null;
             this.btn_preview.Name = "btn_preview";
             this.btn_preview.NormlBack = null;
@@ -230,7 +235,7 @@
             // 
             this.L_lblClasses_Annex.AutoSize = true;
             this.L_lblClasses_Annex.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_lblClasses_Annex.Location = new System.Drawing.Point(59, 178);
+            this.L_lblClasses_Annex.Location = new System.Drawing.Point(34, 179);
             this.L_lblClasses_Annex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClasses_Annex.Name = "L_lblClasses_Annex";
             this.L_lblClasses_Annex.Size = new System.Drawing.Size(68, 17);
@@ -240,7 +245,7 @@
             // L_lblClassesAnnex
             // 
             this.L_lblClassesAnnex.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_lblClassesAnnex.Location = new System.Drawing.Point(148, 178);
+            this.L_lblClassesAnnex.Location = new System.Drawing.Point(148, 179);
             this.L_lblClassesAnnex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClassesAnnex.Name = "L_lblClassesAnnex";
             this.L_lblClassesAnnex.Size = new System.Drawing.Size(193, 17);
@@ -256,7 +261,7 @@
             this.btn_download.MouseBack = null;
             this.btn_download.Name = "btn_download";
             this.btn_download.NormlBack = null;
-            this.btn_download.Size = new System.Drawing.Size(53, 31);
+            this.btn_download.Size = new System.Drawing.Size(64, 31);
             this.btn_download.TabIndex = 23;
             this.btn_download.Text = "下载";
             this.btn_download.UseVisualStyleBackColor = false;
@@ -298,12 +303,80 @@
             this.L_btn_discuss.UseVisualStyleBackColor = false;
             this.L_btn_discuss.Click += new System.EventHandler(this.L_btn_discuss_Click);
             // 
+            // L_lbl_v_time
+            // 
+            this.L_lbl_v_time.AutoSize = true;
+            this.L_lbl_v_time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.L_lbl_v_time.Location = new System.Drawing.Point(148, 151);
+            this.L_lbl_v_time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.L_lbl_v_time.Name = "L_lbl_v_time";
+            this.L_lbl_v_time.Size = new System.Drawing.Size(80, 17);
+            this.L_lbl_v_time.TabIndex = 27;
+            this.L_lbl_v_time.Text = "课程文件时长";
+            // 
+            // l_btn_pause
+            // 
+            this.l_btn_pause.BackColor = System.Drawing.Color.Transparent;
+            this.l_btn_pause.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.l_btn_pause.DownBack = null;
+            this.l_btn_pause.Location = new System.Drawing.Point(893, 294);
+            this.l_btn_pause.MouseBack = null;
+            this.l_btn_pause.Name = "l_btn_pause";
+            this.l_btn_pause.NormlBack = null;
+            this.l_btn_pause.Size = new System.Drawing.Size(64, 31);
+            this.l_btn_pause.TabIndex = 28;
+            this.l_btn_pause.Text = "暂停";
+            this.l_btn_pause.UseVisualStyleBackColor = false;
+            this.l_btn_pause.Click += new System.EventHandler(this.l_btn_pause_Click);
+            // 
+            // l_btn_play
+            // 
+            this.l_btn_play.BackColor = System.Drawing.Color.Transparent;
+            this.l_btn_play.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.l_btn_play.DownBack = null;
+            this.l_btn_play.Location = new System.Drawing.Point(893, 341);
+            this.l_btn_play.MouseBack = null;
+            this.l_btn_play.Name = "l_btn_play";
+            this.l_btn_play.NormlBack = null;
+            this.l_btn_play.Size = new System.Drawing.Size(64, 31);
+            this.l_btn_play.TabIndex = 29;
+            this.l_btn_play.Text = "播放";
+            this.l_btn_play.UseVisualStyleBackColor = false;
+            this.l_btn_play.Click += new System.EventHandler(this.l_btn_play_Click);
+            // 
+            // L_lbl_vtime
+            // 
+            this.L_lbl_vtime.AutoSize = true;
+            this.L_lbl_vtime.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.L_lbl_vtime.Location = new System.Drawing.Point(33, 151);
+            this.L_lbl_vtime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.L_lbl_vtime.Name = "L_lbl_vtime";
+            this.L_lbl_vtime.Size = new System.Drawing.Size(92, 17);
+            this.L_lbl_vtime.TabIndex = 30;
+            this.L_lbl_vtime.Text = "课程文件时长：";
+            // 
+            // l_lbl_position
+            // 
+            this.l_lbl_position.AutoSize = true;
+            this.l_lbl_position.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.l_lbl_position.Location = new System.Drawing.Point(884, 235);
+            this.l_lbl_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.l_lbl_position.Name = "l_lbl_position";
+            this.l_lbl_position.Size = new System.Drawing.Size(80, 17);
+            this.l_lbl_position.TabIndex = 31;
+            this.l_lbl_position.Text = "课程文件时长";
+            // 
             // Learn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1067, 727);
+            this.Controls.Add(this.l_lbl_position);
+            this.Controls.Add(this.L_lbl_vtime);
+            this.Controls.Add(this.l_btn_play);
+            this.Controls.Add(this.l_btn_pause);
+            this.Controls.Add(this.L_lbl_v_time);
             this.Controls.Add(this.L_btn_discuss);
             this.Controls.Add(this.L_lbl_pcb);
             this.Controls.Add(this.L_progressBar);
@@ -358,5 +431,10 @@
         private System.Windows.Forms.ProgressBar L_progressBar;
         private System.Windows.Forms.Label L_lbl_pcb;
         private CCWin.SkinControl.SkinButton L_btn_discuss;
+        private System.Windows.Forms.Label L_lbl_v_time;
+        private CCWin.SkinControl.SkinButton l_btn_pause;
+        private CCWin.SkinControl.SkinButton l_btn_play;
+        private System.Windows.Forms.Label L_lbl_vtime;
+        private System.Windows.Forms.Label l_lbl_position;
     }
 }

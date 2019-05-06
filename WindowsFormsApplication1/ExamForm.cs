@@ -21,8 +21,7 @@ namespace WindowsFormsApplication1
         public ExamForm()
         {
             InitializeComponent();
-        }
-        
+        }        
         //提交答案
         private void btn_hand_Click(object sender, EventArgs e)
         {
@@ -35,31 +34,28 @@ namespace WindowsFormsApplication1
                     {
                         MessageBox.Show("请完成所有题目！");
                         break;
-                    }                    
+                    }
                     else
                     {
                         //保存用户的答案，然后与数据库中的做对比
                         selected.Add(CBx.Text);
-                    }
-                    
+                    }                    
                 }
             }
             //判断是否通过考试
             if(selected!=null)
             {
                 int realCount = 0;//保存对比之后实际通过题数
-                for (int i = 0;i< answer.Count; i++)
+                for (int i = 0;i < answer.Count; i++)
                 {
                     if (selected[i].Equals(answer[i]))
                     {
                         realCount++;
                     }
-                }
-            
+                }           
                 DataBaseConnection dc = new DataBaseConnection();
                 String sql = "select c_count from Classes where c_id = " + c_id;
                 DataSet ds = dc.ExecuteQuery(sql);
-
                 int passCount = (int)ds.Tables["user"].Rows[0][0];//读取通过题数
                 if (realCount>=passCount)
                 {
@@ -74,13 +70,13 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("您未通过考试，请重新学习本课程！");
                 }
             }
-
         }
         //初始化界面，显示考题
         private void ExamForm_Load(object sender, EventArgs e)
         {
+            ef_lbl_curTime.Text = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");//显示当前时间
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select * from question where c_id in (select c_id from Classes where c_id =" + c_id+")";
+            String sql = "select * from question where c_id =" + c_id;
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count>0)
             {
@@ -89,10 +85,8 @@ namespace WindowsFormsApplication1
                     int q_num = i + 1;
                     SingleExamShow(q_num+"、" + ds.Tables["user"].Rows[i][2].ToString(), ds.Tables["user"].Rows[i][4].ToString(), ds.Tables["user"].Rows[i][5].ToString(), ds.Tables["user"].Rows[i][6].ToString(), ds.Tables["user"].Rows[i][7].ToString());
                     answer.Add(ds.Tables["user"].Rows[i][3].ToString());
-                }
-                
+                }                
             }
-            
         }
         //单个考题的显示
         private void SingleExamShow(String title,String optionA,String optionB,String optionC,String optionD)
@@ -146,8 +140,12 @@ namespace WindowsFormsApplication1
         {
             Learn.learn = true;
             Learn.open = true;
-            this.Owner.Show();
-            this.Close();
+            Owner.Show();
+            Close();
+        }
+        private void ef_timer_Tick(object sender, EventArgs e)
+        {
+            ef_lbl_curTime.Text = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");//显示当前时间
         }
     }
 }
