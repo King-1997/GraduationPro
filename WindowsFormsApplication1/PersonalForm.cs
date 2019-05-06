@@ -21,7 +21,6 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-
         private void PersonalForm_Load(object sender, EventArgs e)
         {
             up_line_id = 0;
@@ -185,8 +184,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 550;
+                lbl_no_data.Height = 100;
                 p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
@@ -323,8 +322,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 550;
+                lbl_no_data.Height = 100;
                 p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
@@ -451,8 +450,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 550;
+                lbl_no_data.Height = 100;
                 p_flpClasses.Controls.Add(lbl_no_data);
             }
         }

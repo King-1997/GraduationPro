@@ -219,7 +219,7 @@
             // L_player
             // 
             this.L_player.Enabled = true;
-            this.L_player.Location = new System.Drawing.Point(129, 239);
+            this.L_player.Location = new System.Drawing.Point(180, 224);
             this.L_player.Margin = new System.Windows.Forms.Padding(2);
             this.L_player.Name = "L_player";
             this.L_player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("L_player.OcxState")));
@@ -239,12 +239,11 @@
             // 
             // L_lblClassesAnnex
             // 
-            this.L_lblClassesAnnex.AutoSize = true;
             this.L_lblClassesAnnex.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.L_lblClassesAnnex.Location = new System.Drawing.Point(148, 178);
             this.L_lblClassesAnnex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClassesAnnex.Name = "L_lblClassesAnnex";
-            this.L_lblClassesAnnex.Size = new System.Drawing.Size(68, 17);
+            this.L_lblClassesAnnex.Size = new System.Drawing.Size(193, 17);
             this.L_lblClassesAnnex.TabIndex = 22;
             this.L_lblClassesAnnex.Text = "课程附件名";
             // 
@@ -289,7 +288,7 @@
             this.L_btn_discuss.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btn_discuss.DownBack = null;
             this.L_btn_discuss.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_btn_discuss.Location = new System.Drawing.Point(893, 470);
+            this.L_btn_discuss.Location = new System.Drawing.Point(921, 442);
             this.L_btn_discuss.MouseBack = null;
             this.L_btn_discuss.Name = "L_btn_discuss";
             this.L_btn_discuss.NormlBack = null;

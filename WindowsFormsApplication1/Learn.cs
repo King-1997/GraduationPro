@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1
             //将文件路径赋值给全局变量c_file
             c_file = ds.Tables["user"].Rows[0][0].ToString();
             Console.WriteLine("文件路径："+c_file);
-            L_lblClassesFile.Text = c_file;
+            L_lblClassesFile.Text = c_file.Substring(c_file.LastIndexOf("\\") + 1);
             //将课程是否考试赋值给全局变量c_ifExam
             c_ifExam = ds.Tables["user"].Rows[0][1].ToString();
             L_btnExam.Visible = true;
@@ -68,6 +68,10 @@ namespace WindowsFormsApplication1
 
             //将附件名赋值给全局变量c_annex
             c_annex = ds.Tables["user"].Rows[0][6].ToString();
+            Console.WriteLine("附件路径："+c_annex);
+            Console.WriteLine(c_annex.LastIndexOf("\\")+1);
+            Console.WriteLine("附件名："+c_annex.Substring(c_annex.LastIndexOf("\\")+1));
+            L_lblClassesAnnex.Text = c_annex.Substring(c_annex.LastIndexOf("\\")+1);
         }
         private void L_btnReturn_Click(object sender, EventArgs e)
         {

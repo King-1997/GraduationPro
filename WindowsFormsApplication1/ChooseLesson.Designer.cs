@@ -87,7 +87,7 @@
             this.CL_flpClasses.AutoScroll = true;
             this.CL_flpClasses.Location = new System.Drawing.Point(79, 98);
             this.CL_flpClasses.Name = "CL_flpClasses";
-            this.CL_flpClasses.Size = new System.Drawing.Size(610, 218);
+            this.CL_flpClasses.Size = new System.Drawing.Size(610, 258);
             this.CL_flpClasses.TabIndex = 7;
             // 
             // btn_Finding
@@ -152,7 +152,7 @@
             // 
             // cl_flp_recommend_c
             // 
-            this.cl_flp_recommend_c.Location = new System.Drawing.Point(79, 372);
+            this.cl_flp_recommend_c.Location = new System.Drawing.Point(79, 408);
             this.cl_flp_recommend_c.Name = "cl_flp_recommend_c";
             this.cl_flp_recommend_c.Size = new System.Drawing.Size(610, 130);
             this.cl_flp_recommend_c.TabIndex = 33;
@@ -161,7 +161,7 @@
             // 
             this.cl_lbl_recommend_c.AutoSize = true;
             this.cl_lbl_recommend_c.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cl_lbl_recommend_c.Location = new System.Drawing.Point(90, 333);
+            this.cl_lbl_recommend_c.Location = new System.Drawing.Point(90, 369);
             this.cl_lbl_recommend_c.Name = "cl_lbl_recommend_c";
             this.cl_lbl_recommend_c.Size = new System.Drawing.Size(90, 21);
             this.cl_lbl_recommend_c.TabIndex = 32;

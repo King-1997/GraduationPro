@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1.Tools
                     }
                     osize = st.Read(by, 0, (int)by.Length);
                     percent = (float)totalDownloadedByte / (float)totalBytes * 100;
-                    label1.Text = "当前补丁下载进度" + percent.ToString() + "%";
+                    label1.Text = "当前附件下载进度" + percent.ToString() + "%";
                     System.Windows.Forms.Application.DoEvents(); //必须加注这句代码，否则label1将因为循环执行太快而来不及显示信息
                 }
                 so.Close();

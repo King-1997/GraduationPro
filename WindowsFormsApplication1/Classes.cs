@@ -134,14 +134,26 @@ namespace WindowsFormsApplication1
             string u_id = Model.User.userId.ToString();
             //运行推荐算法文件，获取推荐课程id
             string c_ids = Tools.ConnectLongDistanceDesk.RunCmd(u_id);
-            c_ids = c_ids.Substring(0, c_ids.Length - 1);
-            string[] res = c_ids.Split(',');            
-            foreach (string id in res)
+            if (c_ids.Length > 0)
             {
-                Console.WriteLine("推荐课程的id:" + id);
-                string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
-                
-                showRecClassInfo(select_c_info);
+                c_ids = c_ids.Substring(0, c_ids.Length - 1);
+                string[] res = c_ids.Split(',');
+                foreach (string id in res)
+                {
+                    Console.WriteLine("推荐课程的id:" + id);
+                    string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
+
+                    showRecClassInfo(select_c_info);
+                }
+            }else
+            {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 450;
+                lbl_no_data.Height = 100;
+                c_flp_recommend_c.Controls.Add(lbl_no_data);
             }
         }
         private void showRecClassInfo(string sql)
@@ -223,8 +235,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 450;
+                lbl_no_data.Height = 100;
                 c_flp_recommend_c.Controls.Add(lbl_no_data);
             }
         }
@@ -292,8 +304,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 450;
+                lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
             
@@ -361,8 +373,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 450;
+                lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
             
@@ -459,8 +471,8 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 450;
+                lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
         }

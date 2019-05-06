@@ -178,6 +178,6 @@ for row in dataset:
 
 # print(ratings)
 
-demo = CF(problems, ratings, k=10, n=3)
+demo = CF(problems, ratings, k=10, n=5)#n为推荐列表中取出的数量
 userId = sys.argv[1]
 demo.recommendByUser(userId)

@@ -41,7 +41,7 @@
             // 
             this.fLP_showQuestions.AutoScroll = true;
             this.fLP_showQuestions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fLP_showQuestions.Location = new System.Drawing.Point(54, 52);
+            this.fLP_showQuestions.Location = new System.Drawing.Point(64, 50);
             this.fLP_showQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_showQuestions.Name = "fLP_showQuestions";
             this.fLP_showQuestions.Size = new System.Drawing.Size(503, 374);
@@ -75,7 +75,7 @@
             this.btn_addQuestions.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_addQuestions.DownBack = null;
             this.btn_addQuestions.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_addQuestions.Location = new System.Drawing.Point(602, 195);
+            this.btn_addQuestions.Location = new System.Drawing.Point(609, 222);
             this.btn_addQuestions.MouseBack = null;
             this.btn_addQuestions.Name = "btn_addQuestions";
             this.btn_addQuestions.NormlBack = null;

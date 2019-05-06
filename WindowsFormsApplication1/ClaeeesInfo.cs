@@ -34,12 +34,13 @@ namespace WindowsFormsApplication1
             CI_lbl_Classes_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
             CI_lbl_Classes_Owner.Text = ds.Tables["user"].Rows[0][1].ToString();
             CI_lbl_Classes_Intrudition.Text = ds.Tables["user"].Rows[0][2].ToString();
-            CI_lbl_Classes_File.Text = ds.Tables["user"].Rows[0][3].ToString();
+            string c_file = ds.Tables["user"].Rows[0][3].ToString();
+            CI_lbl_Classes_File.Text = c_file.Substring(c_file.LastIndexOf("\\") + 1);
             CI_lbl_Classes_Credit.Text = ds.Tables["user"].Rows[0][4].ToString();
             CI_lbl_Classes_Time.Text = ds.Tables["user"].Rows[0][5].ToString();
-            CI_lbl_Classes_IfExam.Text = ds.Tables["user"].Rows[0][6].ToString();
-            CI_lbl_Annex.Text = ds.Tables["user"].Rows[0][7].ToString();
+            CI_lbl_Classes_IfExam.Text = ds.Tables["user"].Rows[0][6].ToString();            
             c_annex = ds.Tables["user"].Rows[0][7].ToString();
+            CI_lbl_Annex.Text = c_annex.Substring(c_annex.LastIndexOf("\\") + 1);
         }
 
         private void CI_btn_download_Click(object sender, EventArgs e)
