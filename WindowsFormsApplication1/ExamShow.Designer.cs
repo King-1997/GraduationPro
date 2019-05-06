@@ -39,8 +39,9 @@
             // 
             // fLP_showQuestions
             // 
+            this.fLP_showQuestions.AutoScroll = true;
             this.fLP_showQuestions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fLP_showQuestions.Location = new System.Drawing.Point(42, 52);
+            this.fLP_showQuestions.Location = new System.Drawing.Point(54, 52);
             this.fLP_showQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_showQuestions.Name = "fLP_showQuestions";
             this.fLP_showQuestions.Size = new System.Drawing.Size(503, 374);

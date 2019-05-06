@@ -38,6 +38,8 @@
             this.btn_AllClasses = new CCWin.SkinControl.SkinButton();
             this.btn_deteminal = new CCWin.SkinControl.SkinButton();
             this.btn_return = new CCWin.SkinControl.SkinButton();
+            this.cl_flp_recommend_c = new System.Windows.Forms.FlowLayoutPanel();
+            this.cl_lbl_recommend_c = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_lessonName
@@ -85,7 +87,7 @@
             this.CL_flpClasses.AutoScroll = true;
             this.CL_flpClasses.Location = new System.Drawing.Point(79, 98);
             this.CL_flpClasses.Name = "CL_flpClasses";
-            this.CL_flpClasses.Size = new System.Drawing.Size(610, 375);
+            this.CL_flpClasses.Size = new System.Drawing.Size(610, 218);
             this.CL_flpClasses.TabIndex = 7;
             // 
             // btn_Finding
@@ -123,11 +125,11 @@
             this.btn_deteminal.BackColor = System.Drawing.Color.Transparent;
             this.btn_deteminal.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_deteminal.DownBack = null;
-            this.btn_deteminal.Location = new System.Drawing.Point(548, 508);
+            this.btn_deteminal.Location = new System.Drawing.Point(579, 563);
             this.btn_deteminal.MouseBack = null;
             this.btn_deteminal.Name = "btn_deteminal";
             this.btn_deteminal.NormlBack = null;
-            this.btn_deteminal.Size = new System.Drawing.Size(85, 32);
+            this.btn_deteminal.Size = new System.Drawing.Size(74, 32);
             this.btn_deteminal.TabIndex = 12;
             this.btn_deteminal.Text = "确定";
             this.btn_deteminal.UseVisualStyleBackColor = false;
@@ -138,15 +140,32 @@
             this.btn_return.BackColor = System.Drawing.Color.Transparent;
             this.btn_return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_return.DownBack = null;
-            this.btn_return.Location = new System.Drawing.Point(639, 508);
+            this.btn_return.Location = new System.Drawing.Point(659, 563);
             this.btn_return.MouseBack = null;
             this.btn_return.Name = "btn_return";
             this.btn_return.NormlBack = null;
-            this.btn_return.Size = new System.Drawing.Size(85, 32);
+            this.btn_return.Size = new System.Drawing.Size(74, 32);
             this.btn_return.TabIndex = 13;
             this.btn_return.Text = "返回";
             this.btn_return.UseVisualStyleBackColor = false;
             this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
+            // cl_flp_recommend_c
+            // 
+            this.cl_flp_recommend_c.Location = new System.Drawing.Point(79, 372);
+            this.cl_flp_recommend_c.Name = "cl_flp_recommend_c";
+            this.cl_flp_recommend_c.Size = new System.Drawing.Size(610, 130);
+            this.cl_flp_recommend_c.TabIndex = 33;
+            // 
+            // cl_lbl_recommend_c
+            // 
+            this.cl_lbl_recommend_c.AutoSize = true;
+            this.cl_lbl_recommend_c.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cl_lbl_recommend_c.Location = new System.Drawing.Point(90, 333);
+            this.cl_lbl_recommend_c.Name = "cl_lbl_recommend_c";
+            this.cl_lbl_recommend_c.Size = new System.Drawing.Size(90, 21);
+            this.cl_lbl_recommend_c.TabIndex = 32;
+            this.cl_lbl_recommend_c.Text = "推荐课程：";
             // 
             // ChooseLesson
             // 
@@ -154,7 +173,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(754, 577);
+            this.ClientSize = new System.Drawing.Size(778, 618);
+            this.Controls.Add(this.cl_flp_recommend_c);
+            this.Controls.Add(this.cl_lbl_recommend_c);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.btn_deteminal);
             this.Controls.Add(this.btn_AllClasses);
@@ -185,5 +206,7 @@
         private CCWin.SkinControl.SkinButton btn_AllClasses;
         private CCWin.SkinControl.SkinButton btn_deteminal;
         private CCWin.SkinControl.SkinButton btn_return;
+        private System.Windows.Forms.FlowLayoutPanel cl_flp_recommend_c;
+        private System.Windows.Forms.Label cl_lbl_recommend_c;
     }
 }

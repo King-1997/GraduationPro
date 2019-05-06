@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1
                 {
                     select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
-                Console.WriteLine("查询语句：" + select_sql);
+                //Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);
                 //在窗口添加课程信息                
             }            
@@ -142,7 +142,6 @@ namespace WindowsFormsApplication1
                     btn_check.Width = 50;
                     ifExam.TextAlign = ContentAlignment.MiddleCenter;
                     btn_check.Name = ds.Tables["user"].Rows[count][6].ToString();
-                    Console.WriteLine("button中的c_name：" + btn_check.Name);
                     btn_check.Click += new EventHandler(CheckClassesInfo);
 
                     CL_flpClasses.Controls.Add(rb);
@@ -157,13 +156,19 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                MessageBox.Show("未查询到相应的结果！");
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                CL_flpClasses.Controls.Add(lbl_no_data);
             }
         }
         private void CheckClassesInfo(object sender , EventArgs e)
         {
             Button button = (Button)sender;
-            Console.WriteLine("button里的classesname："+button.Name);
+            //Console.WriteLine("button里的classesname："+button.Name);
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
@@ -182,8 +187,135 @@ namespace WindowsFormsApplication1
             //classes_id = null;
             //classes_name = null;
             btn_AllClasses_Click(sender,e);
+            showRecommendInfo();
         }
+        private void showRecommendInfo()
+        {
+            string u_id = Model.User.userId.ToString();
+            //运行推荐算法文件，获取推荐课程id
+            string c_ids = Tools.ConnectLongDistanceDesk.RunCmd(u_id);
+            c_ids = c_ids.Substring(0, c_ids.Length - 1);
+            string[] res = c_ids.Split(',');
+            foreach (string id in res)
+            {
+                //Console.WriteLine("推荐课程的id:" + id);
+                string select_c_info = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
+                ShowRecInfo(select_c_info);
+            }
+        }
+        private void ShowRecInfo(String sql)
+        {
+            cl_flp_recommend_c.Controls.Clear();
+            DataBaseConnection dc = new DataBaseConnection();
+            DataSet ds = dc.ExecuteQuery(sql);
+            if (ds.Tables["user"].Rows.Count > 0)
+            {
+                //课程名标签
+                var lbl_rb = new Label { Text = "课程名称" };
+                lbl_rb.Font = font;
+                lbl_rb.Width = 100;
+                lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
+                //上传人标签
+                var lbl_Loadman = new Label { Text = "上传人" };
+                lbl_Loadman.Font = font;
+                lbl_Loadman.Width = 50;
+                lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
+                //课程简介标签
+                var lbl_introducation = new Label { Text = "课程简介" };
+                lbl_introducation.Font = font;
+                lbl_introducation.Width = 100;
+                lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
+                //课程学分标签
+                var lbl_credit = new Label { Text = "课程学分" };
+                lbl_credit.Font = font;
+                lbl_credit.Width = 65;
+                lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
+                //课程学时标签
+                var lbl_recommendTime = new Label { Text = "课程学时" };
+                lbl_recommendTime.Font = font;
+                lbl_recommendTime.Width = 65;
+                lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                //是否考试标签
+                var lbl_ifExam = new Label { Text = "是否考试" };
+                lbl_ifExam.Font = font;
+                lbl_ifExam.Width = 65;
+                lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                //查看课程信息标签
+                var lbl_btn_check = new Label { Text = "" };
+                lbl_btn_check.Width = 50;
+                lbl_btn_check.TextAlign = ContentAlignment.MiddleCenter;
 
+                cl_flp_recommend_c.Controls.Add(lbl_rb);
+                cl_flp_recommend_c.Controls.Add(lbl_Loadman);
+                cl_flp_recommend_c.Controls.Add(lbl_introducation);
+                cl_flp_recommend_c.Controls.Add(lbl_credit);
+                cl_flp_recommend_c.Controls.Add(lbl_recommendTime);
+                cl_flp_recommend_c.Controls.Add(lbl_ifExam);
+                cl_flp_recommend_c.Controls.Add(lbl_btn_check);
+                cl_flp_recommend_c.SetFlowBreak(lbl_btn_check, true);
+
+                for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
+                {
+                    //课程名
+                    var rb = new CheckBox { Text = ds.Tables["user"].Rows[count][0].ToString() };
+                    rb.Font = font;
+                    rb.Width = 100;
+                    rb.Name = ds.Tables["user"].Rows[count][6].ToString();
+                    rb.TextAlign = ContentAlignment.MiddleCenter;
+                    //上传人
+                    var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
+                    Loadman.Font = font;
+                    Loadman.Width = 50;
+                    Loadman.TextAlign = ContentAlignment.MiddleCenter;
+                    //课程简介
+                    var introducation = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
+                    introducation.Font = font;
+                    introducation.Width = 100;
+                    introducation.TextAlign = ContentAlignment.MiddleCenter;
+                    //课程学分
+                    var credit = new Label { Text = ds.Tables["user"].Rows[count][3].ToString() };
+                    credit.Font = font;
+                    credit.Width = 65;
+                    credit.TextAlign = ContentAlignment.MiddleCenter;
+                    //课程学时
+                    var recommendTime = new Label { Text = ds.Tables["user"].Rows[count][4].ToString() };
+                    recommendTime.Font = font;
+                    recommendTime.Width = 65;
+                    recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                    //是否考试
+                    var ifExam = new Label { Text = ds.Tables["user"].Rows[count][5].ToString() };
+                    ifExam.Font = font;
+                    ifExam.Width = 65;
+                    ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                    //查看课程信息
+                    var btn_check = new Button { Text = "查看" };
+                    btn_check.Width = 50;
+                    ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_check.Name = ds.Tables["user"].Rows[count][6].ToString();
+                    //Console.WriteLine("button中的c_name：" + btn_check.Name);
+                    btn_check.Click += new EventHandler(CheckClassesInfo);
+
+                    cl_flp_recommend_c.Controls.Add(rb);
+                    cl_flp_recommend_c.Controls.Add(Loadman);
+                    cl_flp_recommend_c.Controls.Add(introducation);
+                    cl_flp_recommend_c.Controls.Add(credit);
+                    cl_flp_recommend_c.Controls.Add(recommendTime);
+                    cl_flp_recommend_c.Controls.Add(ifExam);
+                    cl_flp_recommend_c.Controls.Add(btn_check);
+                    cl_flp_recommend_c.SetFlowBreak(btn_check, true);
+                }
+            }
+            else
+            {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 579;
+                lbl_no_data.Height = 150;
+                cl_flp_recommend_c.Controls.Add(lbl_no_data);
+            }
+        }
         private void btn_AllClasses_Click(object sender, EventArgs e)
         {
             //CL_flpClasses.Controls.Clear();
@@ -206,6 +338,8 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+            classes_id = classes_id.Distinct().ToList();
+            classes_name = classes_name.Distinct().ToList();
             DataBaseConnection dc = new DataBaseConnection();
             if (classes_id.Count > 0)
             {
