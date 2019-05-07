@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,7 +158,7 @@ namespace WindowsFormsApplication1
         {
             OpenFileDialog ofd = new OpenFileDialog();//新建打开文件对话框
             ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//设置初始文件目录
-            ofd.Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";//设置打开文件类型
+            ofd.Filter = "所有文件(*.*)|*.*";//设置打开文件类型
             if (ofd.ShowDialog(this) == DialogResult.OK)
             {
                 string FileName = ofd.FileName;//FileName就是要打开的文件路径
@@ -167,5 +168,10 @@ namespace WindowsFormsApplication1
             }            
         }
 
+        private void lc_btn_upload_Click(object sender, EventArgs e)
+        {
+            //Tools.Upload upload = new Tools.Upload();
+            //upload.Upload_Request(lc_txtBxFileName.Text, Path.GetFileName(lc_txtBxFileName.Text), lc_pro_file,lc_lbl_time,lc_lbl_speed,lc_lbl_state,lc_lbl_size);
+        }
     }
 }

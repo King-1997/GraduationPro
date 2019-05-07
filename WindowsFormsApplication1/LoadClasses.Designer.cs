@@ -54,6 +54,12 @@
             this.lc_btnChooceAnnex = new CCWin.SkinControl.SkinButton();
             this.lc_txtBxAnnexName = new System.Windows.Forms.TextBox();
             this.lbl_annex = new System.Windows.Forms.Label();
+            this.lc_btn_upload = new CCWin.SkinControl.SkinButton();
+            this.lc_lbl_time = new System.Windows.Forms.Label();
+            this.lc_lbl_speed = new System.Windows.Forms.Label();
+            this.lc_lbl_state = new System.Windows.Forms.Label();
+            this.lc_lbl_size = new System.Windows.Forms.Label();
+            this.lc_pro_file = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // Lal_windowname
@@ -189,7 +195,7 @@
             this.lc_txtBxFileName.Location = new System.Drawing.Point(330, 269);
             this.lc_txtBxFileName.Name = "lc_txtBxFileName";
             this.lc_txtBxFileName.ReadOnly = true;
-            this.lc_txtBxFileName.Size = new System.Drawing.Size(317, 22);
+            this.lc_txtBxFileName.Size = new System.Drawing.Size(297, 22);
             this.lc_txtBxFileName.TabIndex = 26;
             // 
             // lbl_classIfExam
@@ -334,6 +340,78 @@
             this.lbl_annex.TabIndex = 37;
             this.lbl_annex.Text = "课程附件：";
             // 
+            // lc_btn_upload
+            // 
+            this.lc_btn_upload.BackColor = System.Drawing.Color.Transparent;
+            this.lc_btn_upload.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.lc_btn_upload.DownBack = null;
+            this.lc_btn_upload.Location = new System.Drawing.Point(646, 265);
+            this.lc_btn_upload.MouseBack = null;
+            this.lc_btn_upload.Name = "lc_btn_upload";
+            this.lc_btn_upload.NormlBack = null;
+            this.lc_btn_upload.Size = new System.Drawing.Size(62, 32);
+            this.lc_btn_upload.TabIndex = 40;
+            this.lc_btn_upload.Text = "上传";
+            this.lc_btn_upload.UseVisualStyleBackColor = false;
+            this.lc_btn_upload.Visible = false;
+            this.lc_btn_upload.Click += new System.EventHandler(this.lc_btn_upload_Click);
+            // 
+            // lc_lbl_time
+            // 
+            this.lc_lbl_time.AutoSize = true;
+            this.lc_lbl_time.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lc_lbl_time.Location = new System.Drawing.Point(643, 361);
+            this.lc_lbl_time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lc_lbl_time.Name = "lc_lbl_time";
+            this.lc_lbl_time.Size = new System.Drawing.Size(33, 17);
+            this.lc_lbl_time.TabIndex = 41;
+            this.lc_lbl_time.Text = "time";
+            this.lc_lbl_time.Visible = false;
+            // 
+            // lc_lbl_speed
+            // 
+            this.lc_lbl_speed.AutoSize = true;
+            this.lc_lbl_speed.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lc_lbl_speed.Location = new System.Drawing.Point(643, 392);
+            this.lc_lbl_speed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lc_lbl_speed.Name = "lc_lbl_speed";
+            this.lc_lbl_speed.Size = new System.Drawing.Size(44, 17);
+            this.lc_lbl_speed.TabIndex = 42;
+            this.lc_lbl_speed.Text = "speed";
+            this.lc_lbl_speed.Visible = false;
+            // 
+            // lc_lbl_state
+            // 
+            this.lc_lbl_state.AutoSize = true;
+            this.lc_lbl_state.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lc_lbl_state.Location = new System.Drawing.Point(643, 424);
+            this.lc_lbl_state.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lc_lbl_state.Name = "lc_lbl_state";
+            this.lc_lbl_state.Size = new System.Drawing.Size(36, 17);
+            this.lc_lbl_state.TabIndex = 43;
+            this.lc_lbl_state.Text = "state";
+            this.lc_lbl_state.Visible = false;
+            // 
+            // lc_lbl_size
+            // 
+            this.lc_lbl_size.AutoSize = true;
+            this.lc_lbl_size.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.lc_lbl_size.Location = new System.Drawing.Point(644, 455);
+            this.lc_lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lc_lbl_size.Name = "lc_lbl_size";
+            this.lc_lbl_size.Size = new System.Drawing.Size(30, 17);
+            this.lc_lbl_size.TabIndex = 44;
+            this.lc_lbl_size.Text = "size";
+            this.lc_lbl_size.Visible = false;
+            // 
+            // lc_pro_file
+            // 
+            this.lc_pro_file.Location = new System.Drawing.Point(617, 319);
+            this.lc_pro_file.Name = "lc_pro_file";
+            this.lc_pro_file.Size = new System.Drawing.Size(100, 23);
+            this.lc_pro_file.TabIndex = 45;
+            this.lc_pro_file.Visible = false;
+            // 
             // LoadClasses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -341,6 +419,12 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(770, 621);
             this.ControlBox = false;
+            this.Controls.Add(this.lc_pro_file);
+            this.Controls.Add(this.lc_lbl_size);
+            this.Controls.Add(this.lc_lbl_state);
+            this.Controls.Add(this.lc_lbl_speed);
+            this.Controls.Add(this.lc_lbl_time);
+            this.Controls.Add(this.lc_btn_upload);
             this.Controls.Add(this.lc_btnChooceAnnex);
             this.Controls.Add(this.lc_txtBxAnnexName);
             this.Controls.Add(this.lbl_annex);
@@ -403,5 +487,11 @@
         private CCWin.SkinControl.SkinButton lc_btnChooceAnnex;
         private System.Windows.Forms.TextBox lc_txtBxAnnexName;
         private System.Windows.Forms.Label lbl_annex;
+        private CCWin.SkinControl.SkinButton lc_btn_upload;
+        private System.Windows.Forms.Label lc_lbl_time;
+        private System.Windows.Forms.Label lc_lbl_speed;
+        private System.Windows.Forms.Label lc_lbl_state;
+        private System.Windows.Forms.Label lc_lbl_size;
+        private System.Windows.Forms.ProgressBar lc_pro_file;
     }
 }

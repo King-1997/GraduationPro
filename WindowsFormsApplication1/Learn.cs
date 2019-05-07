@@ -19,6 +19,8 @@ namespace WindowsFormsApplication1
         private string c_file = null;
         private string v_time = null;//获取当前视频文件时长string
         private double v_time_d = 0;//获取当前视频文件时长double
+        private string v_position = null;
+        private double v_position_d = 0;
         private string c_name = null;
         private string c_ifExam = null;
         private int c_maxTime = 30;
@@ -98,6 +100,13 @@ namespace WindowsFormsApplication1
             {
                 learningtime++;
             }
+            v_time = L_player.currentMedia.durationString;
+            L_lbl_v_time.Text = v_time;
+            v_time_d = L_player.currentMedia.duration;
+            //实时刷新当前进度
+            v_position = L_player.Ctlcontrols.currentPositionString;
+            v_position_d = L_player.Ctlcontrols.currentPosition;
+            l_lbl_position.Text = "当前视频进度为：" + v_position;
             //显示当前时间和打开时间
             lbl_timecount.Text = (openingtime / 60).ToString() + "分" + (openingtime % 60).ToString() + "秒";//显示已打开时间
             lbl_learnTime.Text = (learningtime / 60).ToString() + "分" + (learningtime % 60).ToString() + "秒";//显示已学时间
@@ -125,7 +134,6 @@ namespace WindowsFormsApplication1
                 learningtime = 0;
                 //L_btnReturn_Click(sender, e);
             }
-
         }
         private void btn_preview_Click(object sender, EventArgs e)
         {
@@ -141,13 +149,13 @@ namespace WindowsFormsApplication1
                 L_player.URL = c_file;
                 open = true;
                 L_player.Ctlcontrols.play();
-                v_time = L_player.currentMedia.durationString;
-                v_time_d = L_player.currentMedia.duration;
-                double v_position = L_player.Ctlcontrols.currentPosition;
-                Console.WriteLine("视频播放进度：" + v_position);
-                Console.WriteLine("视频文件时长string："+v_time);
-                Console.WriteLine("视频文件时长double：" + v_time_d);
-                L_lbl_v_time.Text = v_time;
+                //v_time = L_player.currentMedia.durationString;
+                //v_time_d = L_player.currentMedia.duration;
+                //v_position = L_player.Ctlcontrols.currentPosition;
+                //Console.WriteLine("视频播放进度：" + v_position);
+                //Console.WriteLine("视频文件时长string："+v_time);
+                //Console.WriteLine("视频文件时长double：" + v_time_d);
+                //L_lbl_v_time.Text = v_time;
                 //启动定时器
                 timer1.Start();
                 timer1.Interval = 1000;
@@ -165,19 +173,24 @@ namespace WindowsFormsApplication1
         private void l_btn_pause_Click(object sender, EventArgs e)
         {
             L_player.Ctlcontrols.pause();
-            double v_position = L_player.Ctlcontrols.currentPosition;
-            l_lbl_position.Text = "当前视频进度为：" + v_position;
+            learn = false;//未回应则设置为不在学习
+            lbl_learningState.Text = "不在学习";
+            //v_time = L_player.currentMedia.durationString;
+            //v_position = L_player.Ctlcontrols.currentPosition;
+            //l_lbl_position.Text = "当前视频进度为：" + v_position;
         }
         //播放按钮事件处理
         public void l_btn_play_Click(object sender, EventArgs e)
         {
             L_player.Ctlcontrols.play();
-            v_time = L_player.currentMedia.durationString;
-            double v_position = L_player.Ctlcontrols.currentPosition;
-            l_lbl_position.Text = "当前视频进度为：" + v_position;
-            Console.WriteLine("视频播放进度：" + v_position);
-            Console.WriteLine("视频文件时长：" + v_time);
-            L_lbl_v_time.Text = v_time;
+            learn = true;//回应成功修改成正在学习
+            lbl_learningState.Text = "正在学习";
+            //v_time = L_player.currentMedia.durationString;
+            //v_position = L_player.Ctlcontrols.currentPosition;
+            //l_lbl_position.Text = "当前视频进度为：" + v_position;
+            //Console.WriteLine("视频播放进度：" + v_position);
+            //Console.WriteLine("视频文件时长：" + v_time);
+            //L_lbl_v_time.Text = v_time;
         }
         //遍历文件夹    
         private void scan(FileSystemInfo info)
@@ -229,17 +242,34 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("不支持该文件类型！");
             }
         }
-
+        //考试按钮事件处理
         private void L_btnExam_Click(object sender, EventArgs e)
         {
-            learn = false;
-            open = false;
-            l_btn_pause_Click(sender,e);
-            ExamForm.c_id = c_id;
-            ExamForm examForm = new ExamForm();
-            examForm.Owner = this;
-            Hide();
-            examForm.Show();
+            if (v_position_d < v_time_d)//将当前视频进度与视频总长度进行对比
+            {
+                if (MessageBox.Show("检测到您未完成该视频的学习，确定直接进入考试吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    learn = false;
+                    open = false;
+                    l_btn_pause_Click(sender, e);
+                    ExamForm.c_id = c_id;
+                    ExamForm examForm = new ExamForm();
+                    examForm.Owner = this;
+                    Hide();
+                    examForm.Show();
+                }
+            }else//当前视频播放进度等于视频总长度时也可以直接进入考试界面进入
+            {
+                learn = false;
+                open = false;
+                l_btn_pause_Click(sender, e);
+                ExamForm.c_id = c_id;
+                ExamForm examForm = new ExamForm();
+                examForm.Owner = this;
+                Hide();
+                examForm.Show();
+            }
         }
 
         private void btn_download_Click(object sender, EventArgs e)
@@ -251,10 +281,10 @@ namespace WindowsFormsApplication1
             {
                 foldPath = dialog.SelectedPath;
                 filename = foldPath + "123.pdf";
-                Tools.Download.DownloadFile(c_annex, filename, L_progressBar, L_lbl_pcb);
+                //Tools.Download.DownloadFile(c_annex, filename, L_progressBar, L_lbl_pcb);
             }
-            L_progressBar.Visible = true;
-            L_lbl_pcb.Visible = true;
+            //L_progressBar.Visible = true;
+            //L_lbl_pcb.Visible = true;
         }
 
         private void L_btn_discuss_Click(object sender, EventArgs e)

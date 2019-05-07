@@ -293,7 +293,7 @@
             this.L_btn_discuss.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.L_btn_discuss.DownBack = null;
             this.L_btn_discuss.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.L_btn_discuss.Location = new System.Drawing.Point(921, 442);
+            this.L_btn_discuss.Location = new System.Drawing.Point(906, 467);
             this.L_btn_discuss.MouseBack = null;
             this.L_btn_discuss.Name = "L_btn_discuss";
             this.L_btn_discuss.NormlBack = null;
@@ -319,7 +319,7 @@
             this.l_btn_pause.BackColor = System.Drawing.Color.Transparent;
             this.l_btn_pause.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.l_btn_pause.DownBack = null;
-            this.l_btn_pause.Location = new System.Drawing.Point(893, 294);
+            this.l_btn_pause.Location = new System.Drawing.Point(911, 294);
             this.l_btn_pause.MouseBack = null;
             this.l_btn_pause.Name = "l_btn_pause";
             this.l_btn_pause.NormlBack = null;
@@ -334,7 +334,7 @@
             this.l_btn_play.BackColor = System.Drawing.Color.Transparent;
             this.l_btn_play.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.l_btn_play.DownBack = null;
-            this.l_btn_play.Location = new System.Drawing.Point(893, 341);
+            this.l_btn_play.Location = new System.Drawing.Point(911, 341);
             this.l_btn_play.MouseBack = null;
             this.l_btn_play.Name = "l_btn_play";
             this.l_btn_play.NormlBack = null;

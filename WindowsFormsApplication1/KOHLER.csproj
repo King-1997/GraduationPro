@@ -94,6 +94,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Announce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Announce.Designer.cs">
+      <DependentUpon>Announce.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplyView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,12 +248,16 @@
     <Compile Include="DataBaseConnection.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Tools\LabelTooLong.cs" />
+    <Compile Include="Tools\Upload.cs" />
     <Compile Include="Workers_message.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Workers_message.Designer.cs">
       <DependentUpon>Workers_message.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Announce.resx">
+      <DependentUpon>Announce.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApplyView.resx">
       <DependentUpon>ApplyView.cs</DependentUpon>
     </EmbeddedResource>

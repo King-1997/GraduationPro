@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
                 this.m_btnSign.Location = this.m_btnManage.Location;
                 this.Width = 900;
             }
-            string select_announcement = "select a.a_text,a.a_datetime from [User] u,announcement a where u.u_id = a.u_id order by a_datetime desc";
+            string select_announcement = "select a.a_text,a.a_datetime,a.a_id from [User] u,announcement a where u.u_id = a.u_id order by a_datetime desc";
             showAnnouncement(select_announcement);
         }
         private void showAnnouncement(string sql)
@@ -68,6 +68,8 @@ namespace WindowsFormsApplication1
                     var ann_text = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     ann_text.Font = font;
                     ann_text.Width = 200;
+                    ann_text.Name = ds.Tables["user"].Rows[i][2].ToString();
+                    ann_text.Click += new System.EventHandler(lb_Click);
                     //ann_text.TextAlign = ContentAlignment.MiddleCenter;
                     //发布时间
                     var create_time = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
@@ -86,10 +88,21 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 400;
-                lbl_no_data.Height = 150;
+                lbl_no_data.Width = 380;
+                lbl_no_data.Height = 80;
                 mm_flp_announcement.Controls.Add(lbl_no_data);
             }
+        }
+        private void lb_Click(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            int a_id = -1;
+            int.TryParse(lbl.Name, out a_id);
+            Announce.a_id = a_id;
+            Announce announce = new Announce();
+            announce.Owner = this;
+            Hide();
+            announce.Show();
         }
         private void p_btnQuit_Click_1(object sender, EventArgs e)
         {

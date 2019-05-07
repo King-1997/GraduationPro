@@ -87,11 +87,13 @@ namespace WindowsFormsApplication1
                     ann_user.Font = font;
                     ann_user.Width = 60;
                     ann_user.TextAlign = ContentAlignment.MiddleCenter;
-                    //公告正文
+                    //公告标题
                     var ann_text = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     ann_text.Font = font;
                     ann_text.Width = 200;
+                    ann_text.Name = ds.Tables["user"].Rows[i][3].ToString();
                     ann_text.TextAlign = ContentAlignment.MiddleCenter;
+                    ann_text.Click += new System.EventHandler(lb_Click);                    
                     //发布时间
                     var create_time = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     create_time.Font = font;
@@ -129,15 +131,26 @@ namespace WindowsFormsApplication1
                 m_flp_announcement.Controls.Add(lbl_no_data);
             }
         }
+        private void lb_Click(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            int.TryParse(lbl.Name, out a_id);
+            Announce.a_id = a_id;
+            Announce announce = new Announce();
+            announce.Owner = this;
+            Hide();
+            announce.Show();
+        }
         private void editAnnInfo(object sender,EventArgs e)
         {
             showOrHide(true);
             Button button = (Button)sender;
             int.TryParse(button.Name,out a_id);
             DataBaseConnection dc = new DataBaseConnection();
-            string select_ann = "select a_text from announcement where a_id = "+a_id;
+            string select_ann = "select a_text,a_prompt from announcement where a_id = "+a_id;
             DataSet ds = dc.ExecuteQuery(select_ann);
-            m_tBx_announcement.Text = ds.Tables["user"].Rows[0][0].ToString();
+            m_tbx_title.Text = ds.Tables["user"].Rows[0][0].ToString();
+            m_tBx_announcement.Text = ds.Tables["user"].Rows[0][1].ToString();
         }        
         private void deleteAnn(object sender, EventArgs e)
         {
@@ -197,11 +210,16 @@ namespace WindowsFormsApplication1
             createPlan.Show();
         }
         private void m_btn_Announce_Click(object sender, EventArgs e)
-        {
+        {            
             showOrHide(true);            
         }
         private void showOrHide(Boolean flag)
         {
+            a_id = -1;
+            m_tbx_title.Text = null;
+            m_tBx_announcement.Text = null;
+            m_lbl_title.Visible = flag;
+            m_tbx_title.Visible = flag;
             m_lbl_announcement.Visible = flag;
             m_tBx_announcement.Visible = flag;
             m_btn_release.Visible = flag;
@@ -209,21 +227,22 @@ namespace WindowsFormsApplication1
         //发布按钮事件处理
         private void m_btn_release_Click(object sender, EventArgs e)
         {
+            string title = m_tbx_title.Text;
             string announcement = m_tBx_announcement.Text;
             DataBaseConnection dc = new DataBaseConnection();
             int flag = 0;
             if(a_id == -1)
             {
-                string insert_sql = "insert into announcement values(next value for announcement_s,"+Model.User.userId+",'"+announcement+ "',CONVERT(varchar(100), GETDATE(), 20))";
+                string insert_sql = "insert into announcement values(next value for announcement_s,"+Model.User.userId+",'"+ title + "','"+announcement+ "',CONVERT(varchar(100), GETDATE(), 20))";
                 flag = dc.ExecuteUpdate(insert_sql);
             }else
             {
                 if (MessageBox.Show("您确定要修改吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    string update_sql = "update announcement set a_text = N'" + announcement + "' where a_id = " + a_id;
+                    string update_sql = "update announcement set a_prompt = N'"+ title + "', a_text = N'" + announcement + "' where a_id = " + a_id;
                     flag = dc.ExecuteUpdate(update_sql);
-                }                    
+                }
             }
             if (flag == 1)
             {
