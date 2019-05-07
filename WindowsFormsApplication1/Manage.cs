@@ -234,5 +234,13 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("操作失败，请联系系统管理员！");
             }
         }
+
+        private void m_btn_load_question_Click(object sender, EventArgs e)
+        {
+            ExamShow examShow = new ExamShow();
+            examShow.Owner = this;
+            Hide();
+            examShow.Show();
+        }
     }
 }

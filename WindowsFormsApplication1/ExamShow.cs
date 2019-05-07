@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
+    //输入试题信息之后返回显示不出ExamShow界面，待修复
     public partial class ExamShow : CCSkinMain
     {
         //设置窗体显示字体格式
@@ -28,12 +29,22 @@ namespace WindowsFormsApplication1
         public static List<string> B = new List<string>();
         public static List<string> C = new List<string>();
         public static List<string> D = new List<string>();
+        private void setNull()
+        {
+            questions.Clear();
+            answer.Clear();
+            A.Clear();
+            B.Clear();
+            C.Clear();
+            D.Clear();
+        }
         //增加考题，跳转到上传考题界面，返回后显示在窗口fLP_showQuestions上
         private void btn_addQuestions_Click(object sender, EventArgs e)
         {
             LoadExam.Question_index = null;
             LoadExam loadExam = new LoadExam();
             loadExam.Owner = this;
+            Hide();
             loadExam.ShowDialog();
         }
         public void ShowQuestions()
@@ -44,28 +55,39 @@ namespace WindowsFormsApplication1
             //清屏
             fLP_showQuestions.Controls.Clear();
             //预览
-            for(int i=0; i<questions.Count; i++)
-            {
-                var label = new TextBox { Text=questions[i]};
-                label.Font = font;
-                label.TextAlign = HorizontalAlignment.Center;
-                label.ReadOnly=true;
-                label.Size = new Size(350,60);
-                //删除button的name为对应label的Text，实现对应
-                var btn_delete = new Button { Text = "删除", Name = label.Text };
-                btn_delete.Width = 50;
-                btn_delete.Click += new EventHandler(Deletequestion);
+            if (questions != null) {
+                for (int i = 0; i < questions.Count; i++)
+                {
+                    var q_title = new TextBox { Text = questions[i] };
+                    q_title.Font = font;
+                    q_title.TextAlign = HorizontalAlignment.Center;
+                    q_title.ReadOnly = true;
+                    q_title.Size = new Size(350, 60);
+                    //删除button的name为对应label的Text，实现对应
+                    var btn_delete = new Button { Text = "删除" };
+                    btn_delete.Width = 50;
+                    btn_delete.Name = questions[i];
+                    btn_delete.Click += new EventHandler(Deletequestion);
 
-                var btn_Edit = new Button { Text = "编辑", Name = i.ToString() };
-                btn_Edit.Width = 50;
-                btn_Edit.Click += new EventHandler(EditQuestion);
+                    var btn_Edit = new Button { Text = "编辑" };
+                    btn_Edit.Width = 50;
+                    btn_Edit.Name = i.ToString();
+                    btn_Edit.Click += new EventHandler(EditQuestion);
 
-                fLP_showQuestions.Controls.Add(label);
-                fLP_showQuestions.Controls.Add(btn_delete);
-                fLP_showQuestions.Controls.Add(btn_Edit);
-                fLP_showQuestions.SetFlowBreak(btn_Edit, true);
-            }
-            
+                    fLP_showQuestions.Controls.Add(q_title);
+                    fLP_showQuestions.Controls.Add(btn_delete);
+                    fLP_showQuestions.Controls.Add(btn_Edit);
+                    fLP_showQuestions.SetFlowBreak(btn_Edit, true);
+                }
+            } else {
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 490;
+                lbl_no_data.Height = 150;
+                fLP_showQuestions.Controls.Add(lbl_no_data);
+            }            
         }
         private void Deletequestion(object sender,EventArgs e)
         {
@@ -73,24 +95,23 @@ namespace WindowsFormsApplication1
                MessageBoxIcon.Question) == DialogResult.OK)
             {
                 Button button = (Button)sender;
-            string words = button.Name;
-            //找到删除位置下标
-            int Index = questions.FindIndex(questions => questions.Equals(words));
-            //删除该下标位置的值
-            questions.RemoveAt(Index);
-            //刷新显示窗口
-            ShowQuestions();
+                string words = button.Name;
+                //找到删除位置下标
+                int Index = questions.FindIndex(questions => questions.Equals(words));
+                //删除该下标位置的值
+                questions.RemoveAt(Index);
+                //刷新显示窗口
+                ShowQuestions();
             }
         }
         //编辑已添加的试题信息
         private void EditQuestion(object sender, EventArgs e)
         {            
-                Button button = (Button)sender;
-                LoadExam.Question_index = button.Name;
-
-                LoadExam loadExam = new LoadExam();
-                loadExam.Owner = this;
-                loadExam.ShowDialog();
+            Button button = (Button)sender;
+            LoadExam.Question_index = button.Name;
+            LoadExam loadExam = new LoadExam();
+            loadExam.Owner = this;
+            loadExam.ShowDialog();
         }
         //确定试题信息上传
         private void btn_choose_Click(object sender, EventArgs e)
@@ -102,17 +123,17 @@ namespace WindowsFormsApplication1
             int.TryParse(cBx_passCount.SelectedItem.ToString(),out count);
             for (i = 0;i < questions.Count;i++)
             {
-                String q_title = questions[i];
-                String q_answer = answer[i];
-                String q_option1 = A[i];
-                String q_option2 = B[i];
-                String q_option3 = C[i];
-                String q_option4 = D[i];
-
-                String insert_sql = "insert into question values(next value for question_s," + c_id+",N'"+q_title+ "',N'" + q_answer+ "',N'" + q_option1+ "',N'" + q_option2+ "',N'" + q_option3+ "',N'" + q_option4+"')";
+                string q_title = questions[i];
+                string q_answer = answer[i];
+                string q_option1 = A[i];
+                string q_option2 = B[i];
+                string q_option3 = C[i];
+                string q_option4 = D[i];
+                //无课程id时需要将c_id置为null
+                string insert_sql = "insert into question values(next value for question_s," + c_id+",N'"+q_title+ "',N'" + q_answer+ "',N'" + q_option1+ "',N'" + q_option2+ "',N'" + q_option3+ "',N'" + q_option4+"')";
                 dc.ExecuteUpdate(insert_sql);
             }
-            String update_sql = "update Classes set c_count = " + count + " where c_id = '"+c_id+"'";
+            string update_sql = "update Classes set c_count = " + count + " where c_id = '"+c_id+"'";
             int flag = dc.ExecuteUpdate(update_sql);
             if (i == questions.Count && flag != 0)
             {
@@ -120,7 +141,7 @@ namespace WindowsFormsApplication1
             }
 
             //返回上一界面
-            questions = null;
+            setNull();
             Owner.Owner.Show();
             Owner.Dispose();
         }
@@ -128,7 +149,7 @@ namespace WindowsFormsApplication1
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             //返回上一界面
-            questions = null;
+            setNull();
             Owner.Show();
             Dispose();
         }
@@ -143,26 +164,46 @@ namespace WindowsFormsApplication1
         }
         private void ExamShow_Load(object sender, EventArgs e)
         {
+            setNull();
             cBx_passCount.Click += new EventHandler(click);
             DataBaseConnection dc = new DataBaseConnection();
-            String select_question = "select q.c_id,q.c_id,q.q_title,q.q_answer,q.q_option1,q.q_option2,q.q_option2,q.q_option3,q.q_option4 from question q where c_id = " + c_id+"";
-            DataSet ds = dc.ExecuteQuery(select_question);
-            if(ds.Tables["user"].Rows.Count != 0)
+            if (c_id == -1)
             {
-                for(int i =0;i< ds.Tables["user"].Rows.Count; i++)
-                {
-                    questions.Add(ds.Tables["user"].Rows[i][2].ToString());
-                    answer.Add(ds.Tables["user"].Rows[i][3].ToString());
-                    A.Add(ds.Tables["user"].Rows[0][4].ToString());
-                    B.Add(ds.Tables["user"].Rows[0][5].ToString());
-                    C.Add(ds.Tables["user"].Rows[0][6].ToString());
-                    D.Add(ds.Tables["user"].Rows[0][7].ToString());
-                }
-                ShowQuestions();
+                //无数据时显示提示
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 490;
+                lbl_no_data.Height = 150;
+                fLP_showQuestions.Controls.Add(lbl_no_data);
             }
             else
             {
-                MessageBox.Show("系统错误！");
+                string select_question = "select q.c_id,q.c_id,q.q_title,q.q_answer,q.q_option1,q.q_option2,q.q_option2,q.q_option3,q.q_option4 from question q where c_id = " + c_id + "";
+                DataSet ds = dc.ExecuteQuery(select_question);
+                if (ds.Tables["user"].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables["user"].Rows.Count; i++)
+                    {
+                        questions.Add(ds.Tables["user"].Rows[i][2].ToString());
+                        answer.Add(ds.Tables["user"].Rows[i][3].ToString());
+                        A.Add(ds.Tables["user"].Rows[0][4].ToString());
+                        B.Add(ds.Tables["user"].Rows[0][5].ToString());
+                        C.Add(ds.Tables["user"].Rows[0][6].ToString());
+                        D.Add(ds.Tables["user"].Rows[0][7].ToString());
+                    }
+                    ShowQuestions();
+                }
+                else
+                {
+                    //无数据时显示提示
+                    var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                    lbl_no_data.Font = font;
+                    lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl_no_data.Width = 490;
+                    lbl_no_data.Height = 150;
+                    fLP_showQuestions.Controls.Add(lbl_no_data);
+                }
             }
         }
     }

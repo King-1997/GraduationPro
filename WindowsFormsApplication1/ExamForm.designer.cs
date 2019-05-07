@@ -62,13 +62,13 @@
             this.btn_cancel.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_cancel.DownBack = null;
             this.btn_cancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_cancel.Location = new System.Drawing.Point(92, 489);
+            this.btn_cancel.Location = new System.Drawing.Point(646, 517);
             this.btn_cancel.MouseBack = null;
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.NormlBack = null;
             this.btn_cancel.Size = new System.Drawing.Size(76, 37);
             this.btn_cancel.TabIndex = 4;
-            this.btn_cancel.Text = "取消";
+            this.btn_cancel.Text = "返回";
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
@@ -78,7 +78,7 @@
             this.btn_hand.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_hand.DownBack = null;
             this.btn_hand.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_hand.Location = new System.Drawing.Point(594, 489);
+            this.btn_hand.Location = new System.Drawing.Point(564, 517);
             this.btn_hand.MouseBack = null;
             this.btn_hand.Name = "btn_hand";
             this.btn_hand.NormlBack = null;

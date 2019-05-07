@@ -119,8 +119,11 @@ namespace WindowsFormsApplication1
                 }else if (btn_upload.Text.Equals("上传"))
                 {
                     //将课程信息保存到数据库
-                    //选择考题信息               
-                    String insert_sql = "insert into Classes values (next value for Classes_s," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+",N'"+c_axxex+"')";
+                    //选择考题信息
+                    string select_c_id = "select next value for Classes_s";
+                    DataSet ds = dc.ExecuteQuery(select_c_id);
+                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(),out c_id);
+                    string insert_sql = "insert into Classes values ("+ c_id + "," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+",N'"+c_axxex+"')";
                     Console.WriteLine("SQL:"+insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)

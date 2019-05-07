@@ -45,6 +45,7 @@
             this.m_lbl_announcement = new System.Windows.Forms.Label();
             this.m_btn_release = new CCWin.SkinControl.SkinButton();
             this.m_lbl_ann = new System.Windows.Forms.Label();
+            this.m_btn_load_question = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -261,6 +262,22 @@
             this.m_lbl_ann.TabIndex = 37;
             this.m_lbl_ann.Text = "公告信息：";
             // 
+            // m_btn_load_question
+            // 
+            this.m_btn_load_question.BackColor = System.Drawing.Color.Transparent;
+            this.m_btn_load_question.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.m_btn_load_question.DownBack = null;
+            this.m_btn_load_question.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.m_btn_load_question.Location = new System.Drawing.Point(670, 404);
+            this.m_btn_load_question.MouseBack = null;
+            this.m_btn_load_question.Name = "m_btn_load_question";
+            this.m_btn_load_question.NormlBack = null;
+            this.m_btn_load_question.Size = new System.Drawing.Size(89, 46);
+            this.m_btn_load_question.TabIndex = 38;
+            this.m_btn_load_question.Text = "上传试题";
+            this.m_btn_load_question.UseVisualStyleBackColor = false;
+            this.m_btn_load_question.Click += new System.EventHandler(this.m_btn_load_question_Click);
+            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -268,6 +285,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(817, 618);
             this.ControlBox = false;
+            this.Controls.Add(this.m_btn_load_question);
             this.Controls.Add(this.m_lbl_ann);
             this.Controls.Add(this.m_btn_release);
             this.Controls.Add(this.m_lbl_announcement);
@@ -311,5 +329,6 @@
         private System.Windows.Forms.Label m_lbl_announcement;
         private CCWin.SkinControl.SkinButton m_btn_release;
         private System.Windows.Forms.Label m_lbl_ann;
+        private CCWin.SkinControl.SkinButton m_btn_load_question;
     }
 }

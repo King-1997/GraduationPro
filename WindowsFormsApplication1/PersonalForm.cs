@@ -23,6 +23,8 @@ namespace WindowsFormsApplication1
         }
         private void PersonalForm_Load(object sender, EventArgs e)
         {
+            //控制评分输入框只能输入数字
+            p_tbx_Score.KeyPress += new KeyPressEventHandler(tBx_KeyPress);
             up_line_id = 0;
             HideControls();
             if (Model.User.userType.Equals("员工"))
@@ -201,6 +203,17 @@ namespace WindowsFormsApplication1
             DataSet ds = dc.ExecuteQuery(select_info);
             p_tbx_Score.Text = ds.Tables["user"].Rows[0][0].ToString();
             p_tbx_prompt.Text = ds.Tables["user"].Rows[0][1].ToString();
+        }
+        //评分输入控制，只允许数字
+        private void tBx_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')//这是允许输入退格键  
+            {
+                if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
+                {
+                    e.Handled = true;
+                }
+            }
         }
         private void p_btn_Submit_Click(object sender, EventArgs e)
         {

@@ -169,7 +169,7 @@ namespace WindowsFormsApplication1
             l_lbl_position.Text = "当前视频进度为：" + v_position;
         }
         //播放按钮事件处理
-        private void l_btn_play_Click(object sender, EventArgs e)
+        public void l_btn_play_Click(object sender, EventArgs e)
         {
             L_player.Ctlcontrols.play();
             v_time = L_player.currentMedia.durationString;
@@ -234,6 +234,7 @@ namespace WindowsFormsApplication1
         {
             learn = false;
             open = false;
+            l_btn_pause_Click(sender,e);
             ExamForm.c_id = c_id;
             ExamForm examForm = new ExamForm();
             examForm.Owner = this;
@@ -260,6 +261,7 @@ namespace WindowsFormsApplication1
         {
             learn = false;
             open = false;
+            l_btn_pause_Click(sender,e);
             Emp_Comment.c_id = c_id;
             Emp_Comment emp_comment = new Emp_Comment();
             emp_comment.Owner = this;

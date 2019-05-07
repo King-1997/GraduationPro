@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
 
         private void btn_allClasses_Click(object sender, EventArgs e)
         {
-            this.tBx_findkeywords.Text = null;
+            tBx_findkeywords.Text = null;
             ClassChoose_Load(sender,e);
         }
 
@@ -181,7 +181,7 @@ namespace WindowsFormsApplication1
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
-            this.Hide();
+            Hide();
             classesInfo.Show();
         }
         //复选框选中事件（设置只选一个）
@@ -204,10 +204,10 @@ namespace WindowsFormsApplication1
             EditPeriod.lesson_name = lessonName;
             EditPeriod.c_id = lessonId;            
             //获取上一界面的已选课程窗口
-            EditPeriod editperoid = (EditPeriod)this.Owner;
+            EditPeriod editperoid = (EditPeriod)Owner;
             editperoid.showClass_Exam_Info();
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
 
         private void ClassChoose_Load(object sender, EventArgs e)
@@ -220,8 +220,8 @@ namespace WindowsFormsApplication1
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Dispose();
+            Owner.Show();
+            Dispose();
         }
     }
 }

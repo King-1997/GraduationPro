@@ -77,8 +77,9 @@ namespace WindowsFormsApplication1
                 ExamShow.C.Add(C);
                 ExamShow.D.Add(D);
                 //关闭该界面，刷新考题 
-                ExamShow examShow = (ExamShow)Owner;
+                ExamShow examShow = (ExamShow)Owner;               
                 examShow.ShowQuestions();
+                examShow.Show();
                 Dispose();
             }
         }

@@ -23,7 +23,6 @@ namespace WindowsFormsApplication1
         private List<string> classes_name = new List<string>();//保存选择的课程Name信息
         private void btn_Finding_Click(object sender, EventArgs e)
         {
-            //CL_flpClasses.Controls.Clear();
             //查找对应的课程，默认搜索所有课程
             String lesson_name = tBx_lessonName.Text;
             String lesson_owner = tBx_lessonOwner.Text;
@@ -55,6 +54,7 @@ namespace WindowsFormsApplication1
            }
         private void ShowLessons(String sql)
         {
+            //在新增数据时先将原有数据清空
             CL_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
@@ -178,14 +178,13 @@ namespace WindowsFormsApplication1
         private void btn_return_Click(object sender, EventArgs e)
         {
             Owner.Show();
-            Dispose();
-            
+            Dispose();            
         }
 
         private void ChooseLesson_Load(object sender, EventArgs e)
         {
-            //classes_id = null;
-            //classes_name = null;
+            classes_id.Clear();
+            classes_name.Clear();
             btn_AllClasses_Click(sender,e);
             showRecommendInfo();
         }

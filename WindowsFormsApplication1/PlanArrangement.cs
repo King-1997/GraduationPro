@@ -30,8 +30,8 @@ namespace WindowsFormsApplication1
         {
             plan_name = null;
             plan_id = null;
-            people = null;
-            user_id = null;
+            people.Clear();
+            user_id.Clear();
             sp_line_id = -1;
         }
         private void btn_addLesson_Click(object sender, EventArgs e)
