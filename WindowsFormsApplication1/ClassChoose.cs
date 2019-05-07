@@ -202,7 +202,7 @@ namespace WindowsFormsApplication1
             }
             //传递选定的课程
             EditPeriod.lesson_name = lessonName;
-            EditPeriod.c_id = lessonId;            
+            EditPeriod.c_id = lessonId;
             //获取上一界面的已选课程窗口
             EditPeriod editperoid = (EditPeriod)Owner;
             editperoid.showClass_Exam_Info();

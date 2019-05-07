@@ -193,13 +193,15 @@ namespace WindowsFormsApplication1
             Button button = (Button)sender;
             int.TryParse(button.Name, out sp_line_id);
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select spl.sp_peroid,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime from study_plan_lines spl where spl.sp_line_id = " + sp_line_id;
+            string sql = "select spl.sp_peroid,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.c_id,spl.exam_p_id from study_plan_lines spl where spl.sp_line_id = " + sp_line_id;
             DataSet ds = dc.ExecuteQuery(sql);
             ep_tBx_Period_Name.Text = ds.Tables["user"].Rows[0][0].ToString();            
             ep_lbl_Class_Name.Text = ds.Tables["user"].Rows[0][1].ToString();
             ep_lbl_Exam_Name.Text = ds.Tables["user"].Rows[0][2].ToString();
             ep_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][3].ToString();
             ep_dtp_End_Time.Text = ds.Tables["user"].Rows[0][4].ToString();
+            c_id = ds.Tables["user"].Rows[0][5].ToString();
+            exam_p_id = ds.Tables["user"].Rows[0][6].ToString();
         }
         //删除阶段信息
         private void deletePeriod(object sender, EventArgs e)

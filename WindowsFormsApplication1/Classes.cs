@@ -140,9 +140,8 @@ namespace WindowsFormsApplication1
                 string[] res = c_ids.Split(',');
                 foreach (string id in res)
                 {
-                    Console.WriteLine("推荐课程的id:" + id);
+                    //Console.WriteLine("推荐课程的id:" + id);
                     string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
-
                     showRecClassInfo(select_c_info);
                 }
             }else
@@ -187,6 +186,7 @@ namespace WindowsFormsApplication1
                 lbl_false.Width = 50;
                 lbl_false.Font = font;
                 lbl_false.TextAlign = ContentAlignment.MiddleCenter;
+
                 c_flp_recommend_c.Controls.Add(lbl_c_name);
                 c_flp_recommend_c.Controls.Add(lbl_c_credit);
                 c_flp_recommend_c.Controls.Add(lbl_load_name);
@@ -476,7 +476,6 @@ namespace WindowsFormsApplication1
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
         }
-
         private void btn_studyClass_Click(object sender, EventArgs e)
         {
             //选择课程，跳转到学习页面
