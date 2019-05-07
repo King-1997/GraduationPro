@@ -207,7 +207,7 @@ namespace WindowsFormsApplication1
         //评分输入控制，只允许数字
         private void tBx_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            if (e.KeyChar != '\b')//这是允许输入退格键  
+            if (e.KeyChar != '\b')//这是允许输入退格键
             {
                 if ((e.KeyChar < '0') || (e.KeyChar > '9'))//这是允许输入0-9数字  
                 {

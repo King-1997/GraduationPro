@@ -388,16 +388,16 @@ namespace WindowsFormsApplication1
                         string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s,"+sp_line_id+ "," + up_head_id + ",0,null,0,null)";
                         flag3 = dc.ExecuteUpdate(insert_up_line_sql);
                     }
-                    if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == classes_id.Count)
-                    {
-                        MessageBox.Show("选课成功！");
-                        Owner.Show();
-                        Dispose();
-                    }
-                    else
-                    {
-                        MessageBox.Show("系统错误！");
-                    }
+                }
+                if (flag1 == 1 && flag2 == 1 && flag3 == 1 && i == classes_id.Count)
+                {
+                    MessageBox.Show("选课成功！");
+                    Owner.Show();
+                    Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("系统错误！");
                 }
             }
             else

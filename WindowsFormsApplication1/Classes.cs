@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1
             Owner.Dispose();
         }
         private void p_btnHome_Click(object sender, EventArgs e)
-        {            
+        {
             Owner.Show();
             Dispose();
         }
