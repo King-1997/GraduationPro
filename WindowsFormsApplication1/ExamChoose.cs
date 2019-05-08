@@ -209,7 +209,13 @@ namespace WindowsFormsApplication1
         //查看考试详细信息,跳转到详细信息页面
         private void CheckExamInfo(object sender, EventArgs e)
         {
-
+            //选择考试，跳转到考试详情页面
+            Button button = (Button)sender;
+            int.TryParse(button.Name, out ManageExam.exam_p_id);
+            ManageExam manageExam = new ManageExam();
+            manageExam.Owner = this;
+            Hide();
+            manageExam.Show();
         }
         private void deleteExam(object sender, EventArgs e)
         {

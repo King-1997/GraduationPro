@@ -30,7 +30,8 @@ namespace WindowsFormsApplication1
             if (Model.User.userType.Equals("员工"))
             {
                 Btn_ApplyUndisposed.Enabled = false;
-            }else
+            }
+            else
             {
                 Btn_ApplyUndisposed.Enabled = true;
             }
@@ -75,20 +76,21 @@ namespace WindowsFormsApplication1
 
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
-            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId+" and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 2";
+            HideControls();
+            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 2";
             displayClasses(sql);
         }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
+            HideControls();
             string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 0 or uph.study_status_id = 1";
             displayClasses(sql);
-
         }
         private void displayClasses(string sql)
         {
             //刷新页面显示
             p_flpClasses.Controls.Clear();
-            DataBaseConnection dc = new DataBaseConnection();            
+            DataBaseConnection dc = new DataBaseConnection();
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -124,15 +126,15 @@ namespace WindowsFormsApplication1
                 var lbl_Eva = new Label { Text = "" };
                 lbl_Eva.Width = 50;
                 lbl_Eva.Font = font;
-                lbl_Eva.TextAlign = ContentAlignment.MiddleCenter;                
+                lbl_Eva.TextAlign = ContentAlignment.MiddleCenter;
                 p_flpClasses.Controls.Add(lbl_plan_name);
-                p_flpClasses.Controls.Add(lbl_peroid_name); 
+                p_flpClasses.Controls.Add(lbl_peroid_name);
                 p_flpClasses.Controls.Add(lblname);
                 p_flpClasses.Controls.Add(lblcredit);
                 p_flpClasses.Controls.Add(lblu_name);
                 p_flpClasses.Controls.Add(lbltime);
                 p_flpClasses.Controls.Add(lbl_false);
-                p_flpClasses.Controls.Add(lbl_Eva);                
+                p_flpClasses.Controls.Add(lbl_Eva);
                 p_flpClasses.SetFlowBreak(lbl_Eva, true);
 
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
@@ -172,22 +174,22 @@ namespace WindowsFormsApplication1
                     btn_learn.Width = 50;
                     btn_learn.Name = ds.Tables["user"].Rows[i][6].ToString();
                     btn_learn.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_learn.Click += new EventHandler(btn_studyClass_Click);                    
+                    btn_learn.Click += new EventHandler(btn_studyClass_Click);
 
                     var btnEvaluation = new Button { Text = "评价" };
                     btnEvaluation.Width = 50;
                     btnEvaluation.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
                     btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
-                    
+
                     p_flpClasses.Controls.Add(lbl_planname);
-                    p_flpClasses.Controls.Add(lbl_peroidname); 
+                    p_flpClasses.Controls.Add(lbl_peroidname);
                     p_flpClasses.Controls.Add(lblUFClasses_name);
                     p_flpClasses.Controls.Add(lblUFClasses_credit);
                     p_flpClasses.Controls.Add(lblUFClasses_u_name);
                     p_flpClasses.Controls.Add(lblUFClasses_recommendTime);
                     p_flpClasses.Controls.Add(btn_learn);
-                    p_flpClasses.Controls.Add(btnEvaluation);                    
+                    p_flpClasses.Controls.Add(btnEvaluation);
                     p_flpClasses.SetFlowBreak(btnEvaluation, true);
                 }
             }
@@ -207,10 +209,10 @@ namespace WindowsFormsApplication1
         {
             //显示评分控件
             ShowControls();
-            Button button = (Button)sender;            
+            Button button = (Button)sender;
             int.TryParse(button.Name, out up_line_id);
             DataBaseConnection dc = new DataBaseConnection();
-            string select_info = "select up_line_score,up_line_prompt from user_plan_lines where up_line_id = "+ up_line_id;
+            string select_info = "select up_line_score,up_line_prompt from user_plan_lines where up_line_id = " + up_line_id;
             DataSet ds = dc.ExecuteQuery(select_info);
             p_tbx_Score.Text = ds.Tables["user"].Rows[0][0].ToString();
             p_tbx_prompt.Text = ds.Tables["user"].Rows[0][1].ToString();
@@ -258,20 +260,21 @@ namespace WindowsFormsApplication1
         }
         private void Btn_ApplyUndisposed_Click(object sender, EventArgs e)
         {
+            HideControls();
             //从数据库中查找未处理的申请
             string u_type = Model.User.userType;
             string sql = "";
 
-                if (u_type.Equals("主管"))
-                {
-                    sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is null and  sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
-                }
-                else if (u_type.Equals("系统管理员"))
-                {
-                    sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is not null and sr.sr_person2 is null and sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
-                }
-                displayNews(sql);
-            
+            if (u_type.Equals("主管"))
+            {
+                sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is null and  sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
+            }
+            else if (u_type.Equals("系统管理员"))
+            {
+                sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is not null and sr.sr_person2 is null and sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
+            }
+            displayNews(sql);
+
         }
 
         private void displayNews(string sql)
@@ -325,7 +328,7 @@ namespace WindowsFormsApplication1
                     var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     lblUFClasses_u_name.Width = 160;
                     lblUFClasses_u_name.Font = font;
-                    lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;                    
+                    lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //处理按钮
                     var btnHandle = new Button { Text = "处理" };
                     btnHandle.Width = 50;
@@ -365,13 +368,14 @@ namespace WindowsFormsApplication1
 
         private void Btn_MyApply_Click(object sender, EventArgs e)
         {
-            String sql = "select sr_type,sr_time,isnull(sr_person1,'无'),isnull(sr_result1,'无'),isnull(convert(varchar(100),sr_handleTime1,120),'无') from SignRecord where u_id  = " + Model.User.userId;
+            HideControls();
+            string sql = "select sr_type,sr_time,isnull(sr_person1,'无'),isnull(sr_result1,'无'),isnull(convert(varchar(100),sr_handleTime1,120),'无') from SignRecord where u_id  = " + Model.User.userId;
             displayMyApplication(sql);
         }
 
         //隐藏评分相关控件
         private void HideControls()
-        {            
+        {
             p_lbl_Score.Visible = false;
             p_tbx_Score.Visible = false;
             p_lbl_Prompt.Visible = false;
@@ -400,7 +404,7 @@ namespace WindowsFormsApplication1
                 //申请类型标签
                 var lblname = new Label { Text = "申请类型" };
                 lblname.Width = 80;
-                lblname.Font = font;              
+                lblname.Font = font;
                 //申请时间标签
                 var lbldatetime = new Label { Text = "申请时间" };
                 lbldatetime.Width = 150;
@@ -416,7 +420,7 @@ namespace WindowsFormsApplication1
                 //处理时间标签
                 var lbl_handletime = new Label { Text = "处理时间" };
                 lbl_handletime.Width = 150;
-                lbl_handletime.Font = font;               
+                lbl_handletime.Font = font;
 
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 lbldatetime.TextAlign = ContentAlignment.MiddleCenter;
@@ -479,13 +483,11 @@ namespace WindowsFormsApplication1
                 p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
-
         private void p_btnEdit_Click(object sender, EventArgs e)
         {
             p_txtBxPhone.ReadOnly = false;
             p_txtBxEmail.ReadOnly = false;
         }
-
         private void p_btnSubmit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("您确定要修改吗", "判断", MessageBoxButtons.OKCancel,
@@ -494,13 +496,14 @@ namespace WindowsFormsApplication1
                 string phone_number = p_txtBxPhone.Text;
                 string email = p_txtBxEmail.Text;
                 DataBaseConnection dc = new DataBaseConnection();
-                string update_sql = "update [User] set u_phone = '" + phone_number + "',u_email = '" + email + "' where u_id = "+Model.User.userId+"";
+                string update_sql = "update [User] set u_phone = '" + phone_number + "',u_email = '" + email + "' where u_id = " + Model.User.userId + "";
                 int flag = dc.ExecuteUpdate(update_sql);
                 if (flag != 0)
                 {
-                    MessageBox.Show("修改个人信息成功！");                   
+                    MessageBox.Show("修改个人信息成功！");
                 }
-            }else
+            }
+            else
             {
                 MessageBox.Show("修改个人信息失败，请重试！");
             }

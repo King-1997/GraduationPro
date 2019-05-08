@@ -16,19 +16,20 @@ namespace WindowsFormsApplication1
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         public static int c_id = -1;
-        private List<String> answer = new List<string>();
-        private List<String> selected = new List<string>();
+        private List<string> answer = new List<string>();
+        private List<string> selected = new List<string>();
+        private List<int> goal = new List<int>();
         public ExamForm()
         {
             InitializeComponent();
-        }        
+        }
         //提交答案
         private void btn_hand_Click(object sender, EventArgs e)
         {
             foreach (Control CBx in fLP_ExamShow.Controls)
             {
                 //查找到用户选择的答案
-                if(CBx is ComboBox)
+                if (CBx is ComboBox)
                 {
                     if (CBx.Text == "" || CBx.Text == null)
                     {
@@ -39,35 +40,35 @@ namespace WindowsFormsApplication1
                     {
                         //保存用户的答案，然后与数据库中的做对比
                         selected.Add(CBx.Text);
-                    }                    
-                }
-            }
-            //判断是否通过考试
-            if(selected!=null)
-            {
-                int realCount = 0;//保存对比之后实际通过题数
-                for (int i = 0;i < answer.Count; i++)
-                {
-                    if (selected[i].Equals(answer[i]))
-                    {
-                        realCount++;
+                        //判断是否通过考试
+                        if (selected != null)
+                        {
+                            int realCount = 0;//保存对比之后实际通过题数
+                            for (int i = 0; i < answer.Count; i++)
+                            {
+                                if (selected[i].Equals(answer[i]))
+                                {
+                                    realCount++;
+                                }
+                            }
+                            DataBaseConnection dc = new DataBaseConnection();
+                            String sql = "select c_count from Classes where c_id = " + c_id;
+                            DataSet ds = dc.ExecuteQuery(sql);
+                            int passCount = (int)ds.Tables["user"].Rows[0][0];//读取该门课程通过题数
+                            if (realCount >= passCount)
+                            {
+                                //通过，课程状态设置为已完成
+                                MessageBox.Show("恭喜您已完成该课程！");
+                                String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_id =  " + c_id + "))";
+                                dc.ExecuteUpdate(update_sql);
+                            }
+                            else
+                            {
+                                //没有通过，重新学习该课程
+                                MessageBox.Show("您未通过本次考试，请重新学习本课程！");
+                            }
+                        }
                     }
-                }           
-                DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select c_count from Classes where c_id = " + c_id;
-                DataSet ds = dc.ExecuteQuery(sql);
-                int passCount = (int)ds.Tables["user"].Rows[0][0];//读取该门课程通过题数
-                if (realCount>=passCount)
-                {
-                    //通过，课程状态设置为已完成
-                    MessageBox.Show("恭喜您已完成该课程！");
-                    String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_id =  " + c_id+"))";
-                    dc.ExecuteUpdate(update_sql);
-                }
-                else
-                {
-                    //没有通过，重新学习该课程
-                    MessageBox.Show("您未通过本次考试，请重新学习本课程！");
                 }
             }
         }
@@ -95,28 +96,29 @@ namespace WindowsFormsApplication1
                     //考题
                     var que = new Label();
                     que.Font = font;
-                    que.Text = q_num + "、" + ds.Tables["user"].Rows[i][2].ToString();
+                    que.Text = q_num + "、" + ds.Tables["user"].Rows[i][3].ToString();
+                    que.Width = 200;
                     fLP_ExamShow.Controls.Add(que);
                     fLP_ExamShow.SetFlowBreak(que, true);
                     //选项ABCD
                     var lbl_A = new Label();
                     lbl_A.Font = font;
-                    lbl_A.Text = "A：" + ds.Tables["user"].Rows[i][4].ToString();
+                    lbl_A.Text = "A：" + ds.Tables["user"].Rows[i][5].ToString();
                     fLP_ExamShow.Controls.Add(lbl_A);
                     var lbl_B = new Label();
                     lbl_B.Font = font;
-                    lbl_B.Text = "B：" + ds.Tables["user"].Rows[i][5].ToString();
+                    lbl_B.Text = "B：" + ds.Tables["user"].Rows[i][6].ToString();
                     fLP_ExamShow.Controls.Add(lbl_B);
                     var lbl_C = new Label();
                     lbl_C.Font = font;
-                    lbl_C.Text = "C：" + ds.Tables["user"].Rows[i][6].ToString();
+                    lbl_C.Text = "C：" + ds.Tables["user"].Rows[i][7].ToString();
                     fLP_ExamShow.Controls.Add(lbl_C);
                     var lbl_D = new Label();
                     lbl_D.Font = font;
-                    lbl_D.Text = "D：" + ds.Tables["user"].Rows[i][7].ToString();
+                    lbl_D.Text = "D：" + ds.Tables["user"].Rows[i][8].ToString();
                     fLP_ExamShow.Controls.Add(lbl_D);
                     fLP_ExamShow.SetFlowBreak(lbl_D, true);
-
+                    answer.Add(ds.Tables["user"].Rows[i][4].ToString());
                     //答案 
                     var ans = new ComboBox();
                     ans.Font = font;
@@ -125,7 +127,7 @@ namespace WindowsFormsApplication1
                     ans.Items.Add("C");
                     ans.Items.Add("D");
                     fLP_ExamShow.Controls.Add(ans);
-                    fLP_ExamShow.SetFlowBreak(ans,true);
+                    fLP_ExamShow.SetFlowBreak(ans, true);
                 }
             }
             else
@@ -148,7 +150,7 @@ namespace WindowsFormsApplication1
                 Learn.learn = true;
                 Learn.open = true;
                 Learn learn = (Learn)Owner;
-                learn.l_btn_play_Click(sender,e);
+                learn.l_btn_play_Click(sender, e);
                 Owner.Show();
                 Dispose();
             }
