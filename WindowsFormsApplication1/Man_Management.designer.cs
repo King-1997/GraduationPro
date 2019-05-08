@@ -42,6 +42,7 @@
             this.cBx_workerEntryMonth = new CCWin.SkinControl.SkinComboBox();
             this.cBx_workerEntryYear = new CCWin.SkinControl.SkinComboBox();
             this.cBx_workertype = new CCWin.SkinControl.SkinComboBox();
+            this.mm_btn_all = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // label1
@@ -143,7 +144,7 @@
             this.btn_find.MouseBack = null;
             this.btn_find.Name = "btn_find";
             this.btn_find.NormlBack = null;
-            this.btn_find.Size = new System.Drawing.Size(65, 27);
+            this.btn_find.Size = new System.Drawing.Size(53, 27);
             this.btn_find.TabIndex = 15;
             this.btn_find.Text = "查询";
             this.btn_find.UseVisualStyleBackColor = false;
@@ -155,11 +156,11 @@
             this.btn_add.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_add.DownBack = null;
             this.btn_add.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_add.Location = new System.Drawing.Point(586, 52);
+            this.btn_add.Location = new System.Drawing.Point(639, 53);
             this.btn_add.MouseBack = null;
             this.btn_add.Name = "btn_add";
             this.btn_add.NormlBack = null;
-            this.btn_add.Size = new System.Drawing.Size(65, 27);
+            this.btn_add.Size = new System.Drawing.Size(51, 27);
             this.btn_add.TabIndex = 16;
             this.btn_add.Text = "新增";
             this.btn_add.UseVisualStyleBackColor = false;
@@ -210,11 +211,28 @@
             this.cBx_workertype.TabIndex = 20;
             this.cBx_workertype.WaterText = "";
             // 
+            // mm_btn_all
+            // 
+            this.mm_btn_all.BackColor = System.Drawing.Color.Transparent;
+            this.mm_btn_all.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.mm_btn_all.DownBack = null;
+            this.mm_btn_all.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.mm_btn_all.Location = new System.Drawing.Point(573, 52);
+            this.mm_btn_all.MouseBack = null;
+            this.mm_btn_all.Name = "mm_btn_all";
+            this.mm_btn_all.NormlBack = null;
+            this.mm_btn_all.Size = new System.Drawing.Size(50, 27);
+            this.mm_btn_all.TabIndex = 21;
+            this.mm_btn_all.Text = "重置";
+            this.mm_btn_all.UseVisualStyleBackColor = false;
+            this.mm_btn_all.Click += new System.EventHandler(this.mm_btn_all_Click);
+            // 
             // Man_Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.mm_btn_all);
             this.Controls.Add(this.cBx_workertype);
             this.Controls.Add(this.cBx_workerEntryYear);
             this.Controls.Add(this.cBx_workerEntryMonth);
@@ -253,5 +271,6 @@
         private CCWin.SkinControl.SkinComboBox cBx_workerEntryMonth;
         private CCWin.SkinControl.SkinComboBox cBx_workerEntryYear;
         private CCWin.SkinControl.SkinComboBox cBx_workertype;
+        private CCWin.SkinControl.SkinButton mm_btn_all;
     }
 }

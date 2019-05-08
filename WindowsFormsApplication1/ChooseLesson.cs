@@ -26,12 +26,12 @@ namespace WindowsFormsApplication1
             //查找对应的课程，默认搜索所有课程
             String lesson_name = tBx_lessonName.Text;
             String lesson_owner = tBx_lessonOwner.Text;
-            
+
             String select_sql = "";
             if (string.IsNullOrEmpty(lesson_owner) && string.IsNullOrEmpty(lesson_name))
             {
                 //MessageBox.Show("请输入关键字！");
-                ChooseLesson_Load(sender,e);
+                ChooseLesson_Load(sender, e);
             }
             else
             {
@@ -50,8 +50,8 @@ namespace WindowsFormsApplication1
                 //Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);
                 //在窗口添加课程信息                
-            }            
-           }
+            }
+        }
         private void ShowLessons(String sql)
         {
             //在新增数据时先将原有数据清空
@@ -165,7 +165,7 @@ namespace WindowsFormsApplication1
                 CL_flpClasses.Controls.Add(lbl_no_data);
             }
         }
-        private void CheckClassesInfo(object sender , EventArgs e)
+        private void CheckClassesInfo(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             //Console.WriteLine("button里的classesname："+button.Name);
@@ -178,14 +178,14 @@ namespace WindowsFormsApplication1
         private void btn_return_Click(object sender, EventArgs e)
         {
             Owner.Show();
-            Dispose();            
+            Dispose();
         }
 
         private void ChooseLesson_Load(object sender, EventArgs e)
         {
             classes_id.Clear();
             classes_name.Clear();
-            btn_AllClasses_Click(sender,e);
+            btn_AllClasses_Click(sender, e);
             showRecommendInfo();
         }
         private void showRecommendInfo()
@@ -356,7 +356,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             if (classes_id.Count > 0)
             {
-                int i, flag1 = 0, flag2 = 0,flag3 = 0;
+                int i, flag1 = 0, flag2 = 0, flag3 = 0;
                 for (i = 0; i < classes_id.Count; i++)
                 {
                     int c_id = 0;
@@ -382,10 +382,10 @@ namespace WindowsFormsApplication1
                         string insert_pd_sql = "insert into plan_destribute values(" + pd_id + "," + Model.User.userId + ",(select sp_head_id from study_plan_header where sp_head_name = '可选修课程'),N'" + Model.User.userId + "',CONVERT(varchar(100),GETDATE(),20))";
                         flag1 = dc.ExecuteUpdate(insert_pd_sql);
                         //执行insert语句插入到用户学习计划头表
-                        string insert_up_head_sql = "insert into user_plan_header values ("+up_head_id+"," + Model.User.userId + "," + pd_id + ",0,0,2)";
+                        string insert_up_head_sql = "insert into user_plan_header values (" + up_head_id + "," + Model.User.userId + "," + pd_id + ",0,0,2)";
                         flag2 = dc.ExecuteUpdate(insert_up_head_sql);
                         //执行insert语句插入到用户学习计划从表
-                        string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s,"+sp_line_id+ "," + up_head_id + ",0,null,0,null)";
+                        string insert_up_line_sql = "insert into user_plan_lines values (next value for user_plan_lines_s," + sp_line_id + "," + up_head_id + ",0,null,0,null)";
                         flag3 = dc.ExecuteUpdate(insert_up_line_sql);
                     }
                 }
@@ -404,7 +404,7 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("您当前未选课！");
             }
-            ChooseLesson_Load(sender,e);
-            }
+            ChooseLesson_Load(sender, e);
+        }
     }
 }

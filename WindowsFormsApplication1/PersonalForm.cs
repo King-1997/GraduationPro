@@ -75,12 +75,12 @@ namespace WindowsFormsApplication1
 
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
-            string sql = "select sph.sp_head_name,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = "+Model.User.userId+" and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 2";
+            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId+" and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 2";
             displayClasses(sql);
         }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
-            string sql = "select sph.sp_head_name,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 0 or uph.study_status_id = 1";
+            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 0 or uph.study_status_id = 1";
             displayClasses(sql);
 
         }
@@ -96,6 +96,10 @@ namespace WindowsFormsApplication1
                 var lbl_plan_name = new Label { Text = "所属学习计划" };
                 lbl_plan_name.Width = 100;
                 lbl_plan_name.Font = font;
+                //标签栏目
+                var lbl_peroid_name = new Label { Text = "阶段名" };
+                lbl_peroid_name.Width = 100;
+                lbl_peroid_name.Font = font;
                 //标签栏目
                 var lblname = new Label { Text = "课程名" };
                 lblname.Width = 100;
@@ -122,6 +126,7 @@ namespace WindowsFormsApplication1
                 lbl_Eva.Font = font;
                 lbl_Eva.TextAlign = ContentAlignment.MiddleCenter;                
                 p_flpClasses.Controls.Add(lbl_plan_name);
+                p_flpClasses.Controls.Add(lbl_peroid_name); 
                 p_flpClasses.Controls.Add(lblname);
                 p_flpClasses.Controls.Add(lblcredit);
                 p_flpClasses.Controls.Add(lblu_name);
@@ -132,45 +137,51 @@ namespace WindowsFormsApplication1
 
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
-                    //课程名
+                    //学习计划名
                     var lbl_planname = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     lbl_planname.Width = 100;
                     lbl_planname.Font = font;
                     lbl_planname.TextAlign = ContentAlignment.MiddleCenter;
+                    //学习阶段名
+                    var lbl_peroidname = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
+                    lbl_peroidname.Width = 100;
+                    lbl_peroidname.Font = font;
+                    lbl_peroidname.TextAlign = ContentAlignment.MiddleCenter;
                     //课程名
-                    var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
+                    var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
                     lblUFClasses_name.Width = 100;
                     lblUFClasses_name.Font = font;
                     lblUFClasses_name.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
-                    var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
+                    var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     lblUFClasses_credit.Width = 80;
                     lblUFClasses_credit.Font = font;
                     lblUFClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
                     //上传人
-                    var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
+                    var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     lblUFClasses_u_name.Width = 60;
                     lblUFClasses_u_name.Font = font;
                     lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
-                    var lblUFClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
+                    var lblUFClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
                     lblUFClasses_recommendTime.Width = 80;
                     lblUFClasses_recommendTime.Font = font;
                     lblUFClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
 
                     var btn_learn = new Button { Text = "学习" };
                     btn_learn.Width = 50;
-                    btn_learn.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    btn_learn.Name = ds.Tables["user"].Rows[i][6].ToString();
                     btn_learn.TextAlign = ContentAlignment.MiddleCenter;
                     btn_learn.Click += new EventHandler(btn_studyClass_Click);                    
 
                     var btnEvaluation = new Button { Text = "评价" };
                     btnEvaluation.Width = 50;
-                    btnEvaluation.Name = ds.Tables["user"].Rows[i][6].ToString();
+                    btnEvaluation.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
                     btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
                     
                     p_flpClasses.Controls.Add(lbl_planname);
+                    p_flpClasses.Controls.Add(lbl_peroidname); 
                     p_flpClasses.Controls.Add(lblUFClasses_name);
                     p_flpClasses.Controls.Add(lblUFClasses_credit);
                     p_flpClasses.Controls.Add(lblUFClasses_u_name);

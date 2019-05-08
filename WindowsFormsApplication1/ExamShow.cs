@@ -304,9 +304,12 @@ namespace WindowsFormsApplication1
                         select_sql = "select isnull(count(1),0),isnull(q_id,-1) from question where q_title = N'" + q_title + "'and q_answer = '" + q_answer + "' and q_option1 = N'" + q_a + "' and q_option2 = N'" + q_b + "' and q_option3 = N'" + q_c + "' and q_option4 = '" + q_d + "' and q_goal = " + q_goal + " group by q_id";
                         DataSet ds1 = dc.ExecuteQuery(select_sql);
                         int count_e = 0;
-                        int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out count_e);
                         int q_id = -1;
-                        int.TryParse(ds1.Tables["user"].Rows[0][1].ToString(), out q_id);
+                        if (ds1.Tables["user"].Rows.Count > 0)
+                        {
+                            int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out count_e);
+                            int.TryParse(ds1.Tables["user"].Rows[0][1].ToString(), out q_id);
+                        }
                         if (count_e == 1)
                         {
                             //存在则执行update操作

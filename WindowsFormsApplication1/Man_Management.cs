@@ -121,8 +121,7 @@ namespace WindowsFormsApplication1
         private void btn_add_Click(object sender, EventArgs e)
         {
             //打开员工信息界面Workers'mwssage，隐藏本界面
-            Workers_message.u_account = null;
-            Workers_message.u_id = 0;
+            //Workers_message.u_account = null;
             Workers_message workers_message = new Workers_message();
             workers_message.Owner = this;
             workers_message.Show();
@@ -417,9 +416,12 @@ namespace WindowsFormsApplication1
                         select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = " + g_id + " and u.u_account = '" + u_account + "' and  u.u_name = '" + u_name + "' and u.u_sex = '" + u_sex + "' and u.u_idNum = '" + u_idNum + "' and u.u_phone = '" + u_phone + "' group by u.u_id";
                         DataSet ds2 = dc.ExecuteQuery(select_sql);
                         int count_e = 0;
-                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
                         int u_id = -1;
-                        int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
+                        if (ds2.Tables["user"].Rows.Count > 0)
+                        {
+                            int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
+                            int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
+                        }
                         if (count_e == 1)
                         {
                             //update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '" + u_entryTime + "' where u_account = '" + u_account + "' where u_id = " + u_id;
@@ -476,6 +478,12 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("请选择文件！");
             }
+        }
+
+        private void mm_btn_all_Click(object sender, EventArgs e)
+        {
+            tBx_findkeywords.Text = null;
+            Man_Management_Load(sender,e);
         }
     }
 }

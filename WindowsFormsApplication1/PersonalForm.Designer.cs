@@ -197,9 +197,9 @@
             // 
             this.p_flpClasses.AllowDrop = true;
             this.p_flpClasses.AutoScroll = true;
-            this.p_flpClasses.Location = new System.Drawing.Point(99, 382);
+            this.p_flpClasses.Location = new System.Drawing.Point(65, 382);
             this.p_flpClasses.Name = "p_flpClasses";
-            this.p_flpClasses.Size = new System.Drawing.Size(572, 154);
+            this.p_flpClasses.Size = new System.Drawing.Size(691, 154);
             this.p_flpClasses.TabIndex = 18;
             // 
             // p_btnQuit

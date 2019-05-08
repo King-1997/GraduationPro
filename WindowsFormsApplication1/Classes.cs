@@ -103,7 +103,7 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
-            Console.WriteLine("button里的课程id："+ button.Name);
+            Console.WriteLine("button里的课程id：" + button.Name);
             //选择课程，跳转到课程详细信息页面
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
@@ -113,19 +113,19 @@ namespace WindowsFormsApplication1
         private void Classes_Load(object sender, EventArgs e)
         {
             p_lblCurPerson.Text = Model.User.userName;//给界面的用户名字段赋值
-            
+
             if (!Model.User.userType.Equals("员工"))
             {
-            //权限控制：显示上传按钮loadClasses
+                //权限控制：显示上传按钮loadClasses
                 btn_loadClasses.Visible = true;
-            //权限控制：显示我上传的课程按钮c_btnMine
+                //权限控制：显示我上传的课程按钮c_btnMine
                 c_btnMine.Visible = true;
-            //权限控制：显示课程安排按钮btn_lessonArrangement
+                //权限控制：显示课程安排按钮btn_lessonArrangement
                 btn_ManagePlan.Visible = true;
-            //权限控制：显示课程安排按钮btn_lessonArrangement
-                btn_PlanArrangement.Visible = true;               
+                //权限控制：显示课程安排按钮btn_lessonArrangement
+                btn_PlanArrangement.Visible = true;
             }
-            c_btnAll_Click(sender,e);
+            c_btnAll_Click(sender, e);
             showRecommendInfo();
         }
 
@@ -144,7 +144,8 @@ namespace WindowsFormsApplication1
                     string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
                     showRecClassInfo(select_c_info);
                 }
-            }else
+            }
+            else
             {
                 //无数据时显示提示
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
@@ -191,7 +192,7 @@ namespace WindowsFormsApplication1
                 c_flp_recommend_c.Controls.Add(lbl_c_credit);
                 c_flp_recommend_c.Controls.Add(lbl_load_name);
                 c_flp_recommend_c.Controls.Add(lbl_c_recommendTime);
-                c_flp_recommend_c.Controls.Add(lbl_false);                
+                c_flp_recommend_c.Controls.Add(lbl_false);
                 c_flp_recommend_c.SetFlowBreak(lbl_false, true);
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
@@ -258,7 +259,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 1 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
-            if (ds.Tables["user"].Rows.Count>0)
+            if (ds.Tables["user"].Rows.Count > 0)
             {
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
@@ -308,17 +309,17 @@ namespace WindowsFormsApplication1
                 lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
-            
+
         }
 
         private void c_btnOptional_Click(object sender, EventArgs e)
-        {            
+        {
             //刷新显示区域，显示选修课程
             c_lblOwner.Text = "课程上传人";
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId+"))) order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -368,7 +369,8 @@ namespace WindowsFormsApplication1
                     c_flpClasses.SetFlowBreak(btnDeleteClasses, true);
                 }
             }
-            else {
+            else
+            {
                 //无数据时显示提示
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
@@ -377,7 +379,7 @@ namespace WindowsFormsApplication1
                 lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
-            
+
         }
         private void btnDeleteClasses_Click(object sender, EventArgs e)
         {
@@ -389,13 +391,13 @@ namespace WindowsFormsApplication1
                 int.TryParse(button.Name, out c_id);
                 //Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                
+
                 //删除用户学习计划从表数据
-                string delete_up_line_sql = "delete from user_plan_lines where sp_line_id in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and up_head_id =(select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")";
+                string delete_up_line_sql = "delete from user_plan_lines where sp_line_id in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")";
                 int flag1 = dc.ExecuteUpdate(delete_up_line_sql);
 
                 //在用户学习计划头表中查询出相应的记录
-                string select_up_head_id = "select up_head_id,pd_id from user_plan_header where not exists (select up_head_id from user_plan_lines where up_head_id = (select up_head_id from user_plan_header where u_id = "+ Model.User.userId + "))";
+                string select_up_head_id = "select up_head_id,pd_id from user_plan_header where not exists (select up_head_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + "))";
                 DataSet ds1 = dc.ExecuteQuery(select_up_head_id);
                 //当用户学习计划行表中删除完之后再删除头表记录
                 if (ds1.Tables["user"].Rows.Count > 0)
@@ -403,21 +405,21 @@ namespace WindowsFormsApplication1
                     int up_head_id = (int)ds1.Tables["user"].Rows[0][0];
                     int pd_id = (int)ds1.Tables["user"].Rows[0][1];
                     //删除用户学习计划头表数据
-                    string delete_up_head_id = "delete from user_plan_header where up_head_id =" + up_head_id +" and u_id = " + Model.User.userId;
+                    string delete_up_head_id = "delete from user_plan_header where up_head_id =" + up_head_id + " and u_id = " + Model.User.userId;
                     int flag2 = dc.ExecuteUpdate(delete_up_head_id);
 
                     //删除学习计划分配表数据
                     string delete_pd_sql = "delete from plan_destribute where pd_id =" + pd_id;
                     int flag3 = dc.ExecuteUpdate(delete_pd_sql);
                 }
-                if(flag1 == 1)
+                if (flag1 == 1)
                 {
                     MessageBox.Show("退选成功！");
                     //刷新选修课程列表
                     c_btnOptional_Click(sender, e);
                 }
             }
-            } 
+        }
         private void c_btnAll_Click(object sender, EventArgs e)
         {
             c_lblOwner.Text = "课程上传人";
@@ -465,7 +467,8 @@ namespace WindowsFormsApplication1
                     c_flpClasses.Controls.Add(btnAllClasses);
                     c_flpClasses.SetFlowBreak(btnAllClasses, true);
                 }
-            }else
+            }
+            else
             {
                 //无数据时显示提示
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
@@ -490,7 +493,7 @@ namespace WindowsFormsApplication1
         private void btn_chooseLesson_Click(object sender, EventArgs e)
         {
             ChooseLesson chooseLesson = new ChooseLesson();
-            chooseLesson.Owner = this;           
+            chooseLesson.Owner = this;
             chooseLesson.Show();
             Hide();
         }
