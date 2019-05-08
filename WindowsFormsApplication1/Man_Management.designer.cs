@@ -81,10 +81,12 @@
             this.MM_lblFileName.BackColor = System.Drawing.Color.Transparent;
             this.MM_lblFileName.BorderColor = System.Drawing.Color.White;
             this.MM_lblFileName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.MM_lblFileName.ForeColor = System.Drawing.Color.Brown;
             this.MM_lblFileName.Location = new System.Drawing.Point(190, 477);
             this.MM_lblFileName.Name = "MM_lblFileName";
-            this.MM_lblFileName.Size = new System.Drawing.Size(0, 17);
+            this.MM_lblFileName.Size = new System.Drawing.Size(68, 17);
             this.MM_lblFileName.TabIndex = 11;
+            this.MM_lblFileName.Text = "请选择文件";
             // 
             // MM_btnInput
             // 

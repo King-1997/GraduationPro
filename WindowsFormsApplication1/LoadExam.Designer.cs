@@ -44,6 +44,8 @@
             this.cBx_answer = new CCWin.SkinControl.SkinComboBox();
             this.btn_load = new CCWin.SkinControl.SkinButton();
             this.btn_cancel = new CCWin.SkinControl.SkinButton();
+            this.le_lbl_goal = new System.Windows.Forms.Label();
+            this.tbx_Goal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbx_questions
@@ -96,12 +98,12 @@
             // 
             this.lbl_questiions.AutoSize = true;
             this.lbl_questiions.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lbl_questiions.Location = new System.Drawing.Point(55, 40);
+            this.lbl_questiions.Location = new System.Drawing.Point(59, 57);
             this.lbl_questiions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_questiions.Name = "lbl_questiions";
-            this.lbl_questiions.Size = new System.Drawing.Size(42, 21);
+            this.lbl_questiions.Size = new System.Drawing.Size(58, 21);
             this.lbl_questiions.TabIndex = 7;
-            this.lbl_questiions.Text = "考题";
+            this.lbl_questiions.Text = "题目：";
             // 
             // lbl_A
             // 
@@ -110,9 +112,9 @@
             this.lbl_A.Location = new System.Drawing.Point(57, 125);
             this.lbl_A.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_A.Name = "lbl_A";
-            this.lbl_A.Size = new System.Drawing.Size(53, 21);
+            this.lbl_A.Size = new System.Drawing.Size(69, 21);
             this.lbl_A.TabIndex = 8;
-            this.lbl_A.Text = "选项A";
+            this.lbl_A.Text = "选项A：";
             // 
             // lbl_B
             // 
@@ -121,9 +123,9 @@
             this.lbl_B.Location = new System.Drawing.Point(57, 183);
             this.lbl_B.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_B.Name = "lbl_B";
-            this.lbl_B.Size = new System.Drawing.Size(52, 21);
+            this.lbl_B.Size = new System.Drawing.Size(68, 21);
             this.lbl_B.TabIndex = 9;
-            this.lbl_B.Text = "选项B";
+            this.lbl_B.Text = "选项B：";
             // 
             // lbl_C
             // 
@@ -132,9 +134,9 @@
             this.lbl_C.Location = new System.Drawing.Point(57, 234);
             this.lbl_C.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_C.Name = "lbl_C";
-            this.lbl_C.Size = new System.Drawing.Size(53, 21);
+            this.lbl_C.Size = new System.Drawing.Size(69, 21);
             this.lbl_C.TabIndex = 10;
-            this.lbl_C.Text = "选项C";
+            this.lbl_C.Text = "选项C：";
             // 
             // lbl_D
             // 
@@ -143,20 +145,20 @@
             this.lbl_D.Location = new System.Drawing.Point(59, 291);
             this.lbl_D.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_D.Name = "lbl_D";
-            this.lbl_D.Size = new System.Drawing.Size(54, 21);
+            this.lbl_D.Size = new System.Drawing.Size(70, 21);
             this.lbl_D.TabIndex = 11;
-            this.lbl_D.Text = "选项D";
+            this.lbl_D.Text = "选项D：";
             // 
             // lbl_answer
             // 
             this.lbl_answer.AutoSize = true;
             this.lbl_answer.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lbl_answer.Location = new System.Drawing.Point(58, 350);
+            this.lbl_answer.Location = new System.Drawing.Point(59, 344);
             this.lbl_answer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_answer.Name = "lbl_answer";
-            this.lbl_answer.Size = new System.Drawing.Size(47, 21);
+            this.lbl_answer.Size = new System.Drawing.Size(58, 21);
             this.lbl_answer.TabIndex = 12;
-            this.lbl_answer.Text = "答 案";
+            this.lbl_answer.Text = "答案：";
             // 
             // cBx_answer
             // 
@@ -167,7 +169,7 @@
             "B",
             "C",
             "D"});
-            this.cBx_answer.Location = new System.Drawing.Point(140, 350);
+            this.cBx_answer.Location = new System.Drawing.Point(140, 343);
             this.cBx_answer.Name = "cBx_answer";
             this.cBx_answer.Size = new System.Drawing.Size(121, 22);
             this.cBx_answer.TabIndex = 14;
@@ -205,6 +207,26 @@
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
+            // le_lbl_goal
+            // 
+            this.le_lbl_goal.AutoSize = true;
+            this.le_lbl_goal.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.le_lbl_goal.Location = new System.Drawing.Point(59, 387);
+            this.le_lbl_goal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.le_lbl_goal.Name = "le_lbl_goal";
+            this.le_lbl_goal.Size = new System.Drawing.Size(58, 21);
+            this.le_lbl_goal.TabIndex = 18;
+            this.le_lbl_goal.Text = "分值：";
+            // 
+            // tbx_Goal
+            // 
+            this.tbx_Goal.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.tbx_Goal.Location = new System.Drawing.Point(140, 387);
+            this.tbx_Goal.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_Goal.Name = "tbx_Goal";
+            this.tbx_Goal.Size = new System.Drawing.Size(121, 23);
+            this.tbx_Goal.TabIndex = 17;
+            // 
             // LoadExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -212,6 +234,8 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(639, 430);
             this.ControlBox = false;
+            this.Controls.Add(this.le_lbl_goal);
+            this.Controls.Add(this.tbx_Goal);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_load);
             this.Controls.Add(this.cBx_answer);
@@ -252,5 +276,7 @@
         private CCWin.SkinControl.SkinComboBox cBx_answer;
         private CCWin.SkinControl.SkinButton btn_load;
         private CCWin.SkinControl.SkinButton btn_cancel;
+        private System.Windows.Forms.Label le_lbl_goal;
+        private System.Windows.Forms.TextBox tbx_Goal;
     }
 }

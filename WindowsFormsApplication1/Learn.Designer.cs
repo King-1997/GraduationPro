@@ -206,9 +206,9 @@
             this.L_lblClassesName.Location = new System.Drawing.Point(148, 81);
             this.L_lblClassesName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.L_lblClassesName.Name = "L_lblClassesName";
-            this.L_lblClassesName.Size = new System.Drawing.Size(56, 17);
+            this.L_lblClassesName.Size = new System.Drawing.Size(44, 17);
             this.L_lblClassesName.TabIndex = 18;
-            this.L_lblClassesName.Text = "课程名：";
+            this.L_lblClassesName.Text = "课程名";
             // 
             // L_lblClassesFile
             // 

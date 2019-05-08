@@ -12,11 +12,11 @@ class CF:
         self.k = k
         # 推荐个数
         self.n = n
-        # 用户对题目的评分
-        # 数据格式{'UserID：用户ID':[(ProblemID：题目ID,Rating：用户对题目的评分)]}
+        # 用户对课程的评分
+        # 数据格式{'UserID：用户ID':[(ProblemID：课程ID,Rating：用户对课程的评分)]}
         self.userDict = {}
-        # 对某题目评分的用户
-        # 数据格式：{'ProblemID：题目ID',[UserID：用户ID]}
+        # 对某课程评分的用户
+        # 数据格式：{'ProblemID：课程ID',[UserID：用户ID]}
         # {'1',[1,2,3..],...}
         self.ItemUser = {}
         # 邻居的信息
@@ -26,7 +26,7 @@ class CF:
         self.cost = 0.0
 
     # 基于用户的推荐
-    # 根据对题目的评分计算用户之间的相似度
+    # 根据对课程的评分计算用户之间的相似度
     def recommendByUser(self, userId):
         self.formatRate()
         self.getNearestNeighbor(userId)
@@ -77,7 +77,7 @@ class CF:
     def getNearestNeighbor(self, userId):
         neighbors = []
         self.neighbors = []
-        # 获取userId评分的题目都有那些用户也评过分
+        # 获取userId评分的课程都有那些用户也评过分
         for i in self.userDict[userId]:
             for j in self.ItemUser[i[0]]:
                 if (j != userId and j not in neighbors):
@@ -104,8 +104,8 @@ class CF:
 
     # 计算余弦距离
     def getCost(self, userId, l):
-        # 获取用户userId和l评分题目的并集
-        # {'题目ID'：[userId的评分，l的评分]} 没有评分为0
+        # 获取用户userId和l评分课程的并集
+        # {'课程ID'：[userId的评分，l的评分]} 没有评分为0
         user = self.formatuserDict(userId, l)
         x = 0.0
         y = 0.0
@@ -154,19 +154,18 @@ db = pymssql.connect("localhost", "sa", "123456", "KOHLER")
 # cursor()创建游标
 cursor = db.cursor()
 
-# 使用 execute()  方法执行 SQL 查询
+# 使用 execute() 方法执行 SQL 查询
 cursor.execute("select c_id from classes")
 
 # 使用 fetchall() 方法获取所有结果数据.
 dataset = cursor.fetchall()
 
 problems = []
-# 遍历结果集构造题目数据
+# 遍历结果集构造课程数据
 for row in dataset:
     problems.append([str(row[0])])
 
 # print(problems)
-
 ratings = []
 cursor.execute("select uph.u_id, spl.c_id, upl.up_line_score from user_plan_lines upl,user_plan_header uph,study_plan_lines spl where uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id")
 
@@ -174,10 +173,9 @@ dataset = cursor.fetchall()
 
 # 遍历结果集构造评分数据
 for row in dataset:
-    ratings.append([str(row[0])+"\t"+str(row[1])+"\t"+str(row[2])])
+    ratings.append([str(row[0]) + "\t" + str(row[1]) + "\t" + str(row[2])])
 
 # print(ratings)
-
 demo = CF(problems, ratings, k=10, n=5)#n为推荐列表中取出的数量
 userId = sys.argv[1]
 demo.recommendByUser(userId)

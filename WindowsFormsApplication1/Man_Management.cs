@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             //查询下拉框
-            cbB_findKey.Items.AddRange(new object[] { "按组别", "按姓名", "按工号","按入职时间" });
+            cbB_findKey.Items.AddRange(new object[] { "按组别", "按姓名", "按工号", "按入职时间" });
             cbB_findKey.SelectedIndex = 0;
             //查询组别下拉框
 
@@ -46,20 +46,20 @@ namespace WindowsFormsApplication1
             //Console.WriteLine("最大入职时间：" + maxTime);
             //Console.WriteLine("最小入职时间：" + minTime);
             int maxYear = 0;
-            int.TryParse(maxTime.Substring(0,4), out maxYear);
+            int.TryParse(maxTime.Substring(0, 4), out maxYear);
             int minYear = 0;
             int.TryParse(minTime.Substring(0, 4), out minYear);
-            for (int i = minYear;i<=maxYear;i++)
+            for (int i = minYear; i <= maxYear; i++)
             {
                 cBx_workerEntryYear.Items.Add(i);
-            }            
+            }
             cBx_workerEntryYear.SelectedIndex = 0;
             cBx_workerEntryYear.Location = tBx_findkeywords.Location;
 
-            for(int j = 1; j < 13; j++)
+            for (int j = 1; j < 13; j++)
             {
                 String month = "";
-                if (j<10)
+                if (j < 10)
                 {
                     month = "0" + j;
                 }
@@ -92,16 +92,17 @@ namespace WindowsFormsApplication1
             }
             else if (KeyType.Equals("按组别"))
             {
-               String keyword1 = cBx_workertype.SelectedItem.ToString();
+                String keyword1 = cBx_workertype.SelectedItem.ToString();
                 sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone from [User] u, [group] g, userType ut where u.g_id = g.g_id and u.ut_id = ut.ut_id and u.ut_id != 1 and g.g_group = N'" + keyword1 + "'";
             }
             else if (KeyType.Equals("按工号"))
             {
                 sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone from [User] u, [group] g, userType ut where u.g_id = g.g_id and u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_account = '" + keyword + "'";
-            }else if (KeyType.Equals("按入职时间"))
+            }
+            else if (KeyType.Equals("按入职时间"))
             {
-                DateTime entryTime1 = new DateTime(2018,8,25);
-                DateTime entryTime2 = new DateTime(2018,8,26);
+                DateTime entryTime1 = new DateTime(2018, 8, 25);
+                DateTime entryTime2 = new DateTime(2018, 8, 26);
                 int year = 0;
                 int.TryParse(cBx_workerEntryYear.SelectedItem.ToString(), out year);
 
@@ -111,7 +112,7 @@ namespace WindowsFormsApplication1
                 entryTime2 = jym.judgeYearAndMonth(year, month);
                 sql += "select u.u_name,g.g_group,ut.ut_type,u.u_sex,u.u_account,u.u_credit, u.u_phone, u.u_id" +
                     "from [User] u, [group] g, userType ut where u.g_id = g.g_id and " +
-                    "u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1+ "' and u.u_entryTime <= '"+ entryTime2+ "'";
+                    "u.ut_id = ut.ut_id and u.ut_id != 1 and u.u_entryTime >= '" + entryTime1 + "' and u.u_entryTime <= '" + entryTime2 + "'";
             }
             Console.WriteLine("查询语句：" + sql);
             WorkerShow(sql);
@@ -237,13 +238,13 @@ namespace WindowsFormsApplication1
                     btn_edit.Width = 40;
                     btn_edit.Click += new EventHandler(Edit_Click);
                     //删除按钮
-                    var btn_delete = new Button { Text = "删除" };                   
+                    var btn_delete = new Button { Text = "删除" };
                     btn_delete.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btn_delete.Width = 40;
                     btn_delete.Click += new EventHandler(Delete_Click);
                     fLP_workers.Controls.Add(u_name);
                     fLP_workers.Controls.Add(u_group);
-                    fLP_workers.Controls.Add(u_ut); 
+                    fLP_workers.Controls.Add(u_ut);
                     fLP_workers.Controls.Add(u_sex);
                     fLP_workers.Controls.Add(u_account);
                     fLP_workers.Controls.Add(u_credit);
@@ -262,14 +263,14 @@ namespace WindowsFormsApplication1
                 lbl_no_user.Width = 579;
                 lbl_no_user.Height = 150;
                 fLP_workers.Controls.Add(lbl_no_user);
-            }         
+            }
         }
         //编辑员工信息
         private void Edit_Click(object sender, EventArgs e)
         {
             //点击按钮进入员工信息编辑页面，并传入员工工号 
             Button button = (Button)sender;
-            int.TryParse(button.Name,out Workers_message.u_id);
+            int.TryParse(button.Name, out Workers_message.u_id);
             Workers_message workers_message = new Workers_message();
             workers_message.Owner = this;
             workers_message.Show();
@@ -296,10 +297,11 @@ namespace WindowsFormsApplication1
                     if (string.IsNullOrEmpty(tBx_findkeywords.Text))
                     {
                         Man_Management_Load(sender, e);
-                    }else
+                    }
+                    else
                     {
-                        btn_find_Click(sender,e);
-                    }     
+                        btn_find_Click(sender, e);
+                    }
                 }
                 else
                 {
@@ -320,8 +322,8 @@ namespace WindowsFormsApplication1
             if (preboxname == "cBx_workertype")
             {
                 this.Controls.Remove(cBx_workertype);
-            }                
-            else if(preboxname == "cBx_workerentryTime")
+            }
+            else if (preboxname == "cBx_workerentryTime")
             {
                 this.Controls.Remove(cBx_workerEntryYear);
                 this.Controls.Remove(cBx_workerEntryMonth);
@@ -330,7 +332,7 @@ namespace WindowsFormsApplication1
             {
                 this.Controls.Remove(tBx_findkeywords);
             }
-                
+
             //当下拉框选为“按组别”选择时，输入框变为组别下拉框
             if (cbB_findKey.Text == "按组别")
             {
@@ -340,7 +342,7 @@ namespace WindowsFormsApplication1
                 this.Controls.Remove(cBx_workerEntryYear);
                 this.Controls.Remove(cBx_workerEntryMonth);
             }
-            else if(cbB_findKey.Text == "按入职时间")
+            else if (cbB_findKey.Text == "按入职时间")
             {
                 //生成新的下拉框
                 preboxname = "cBx_workerentryTime";
@@ -373,24 +375,23 @@ namespace WindowsFormsApplication1
         {
             DataTable dt = new DataTable();
             DataBaseConnection dc = new DataBaseConnection();
-            String usertype,usergroup,u_account,u_password,u_name,u_sex,u_idNum,u_phone;
+            string usertype, usergroup, u_account, u_password, u_name, u_sex, u_idNum, u_phone;
             DateTime u_entryTime = new DateTime(2018, 8, 25);
-            int ut_id = 0,g_id = 0,count=0,flag=0;
-            String select_ut_id, select_g_id, insert_user, select_sql, update_sql;
-            String fileAdd = this.MM_lblFileName.Text;
+            int ut_id = 0, g_id = 0, count = 0, flag = 0;
+            string select_ut_id, select_g_id, insert_user, select_sql/*, update_sql*/;
+            string fileAdd = MM_lblFileName.Text;
             Console.WriteLine("文件路径" + fileAdd);
             if (!string.IsNullOrEmpty(fileAdd))
             {
                 dt = Excel.ImportExcelFile(fileAdd);
-
                 //遍历datatable
-                if (dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     for (int i = 1; i < dt.Rows.Count; i++)
                     {
                         usertype = dt.Rows[i][1].ToString();
                         select_ut_id = "select ut_id from usertype where ut_type ='" + usertype + "'";
-                        Console.WriteLine(select_ut_id);
+                        //Console.WriteLine(select_ut_id);
                         DataSet ds = dc.ExecuteQuery(select_ut_id);
                         //ut_id = Convert.ToInt32(ds.Tables["user"].Rows[0][0].ToString());
                         int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out ut_id);//将查出来的ut_id转换成int类型
@@ -399,7 +400,7 @@ namespace WindowsFormsApplication1
                         select_g_id = "select g_id from [group] where g_group = '" + usergroup + "'";
                         Console.WriteLine(select_g_id);
                         DataSet ds1 = dc.ExecuteQuery(select_g_id);
-                        Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
+                        //Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
                         //g_id = Convert.ToInt32(ds1.Tables["user"].Rows[0][0].ToString());
                         int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out g_id);
 
@@ -413,24 +414,24 @@ namespace WindowsFormsApplication1
                         //Console.WriteLine("u_entryTime:"+u_entryTime);
 
                         //在表中查询存不存在该条员工数据，存在则更新，不存在则插入
-                        select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = "+g_id+" and u.u_account = '"+u_account+"' and  u.u_name = '"+u_name+"' and u.u_sex = '"+u_sex+"' and u.u_idNum = '"+u_idNum+"' and u.u_phone = '"+u_phone+"' group by u.u_id";
+                        select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = " + g_id + " and u.u_account = '" + u_account + "' and  u.u_name = '" + u_name + "' and u.u_sex = '" + u_sex + "' and u.u_idNum = '" + u_idNum + "' and u.u_phone = '" + u_phone + "' group by u.u_id";
                         DataSet ds2 = dc.ExecuteQuery(select_sql);
                         int count_e = 0;
-                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(),out count_e);
+                        int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
                         int u_id = -1;
                         int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
-                        if (count_e == 1) 
+                        if (count_e == 1)
                         {
-                            update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '"+u_entryTime+"' where u_account = '" + u_account +"' where u_id = "+ u_id;
-                            flag = dc.ExecuteUpdate(update_sql);
-                            if (flag != 0)
-                            {
+                            //update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '" + u_entryTime + "' where u_account = '" + u_account + "' where u_id = " + u_id;
+                            //flag = dc.ExecuteUpdate(update_sql);
+                            //if (flag == 1)
+                            //{
                                 count++;
-                            }
-                            usertype = "";
-                            usergroup = "";
-                            ut_id = 0;
-                            g_id = 0;
+                            //}
+                            //usertype = "";
+                            //usergroup = "";
+                            //ut_id = 0;
+                            //g_id = 0;
                         }
                         else if (count_e == 0)
                         {
@@ -438,7 +439,7 @@ namespace WindowsFormsApplication1
                             insert_user = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "')";
                             //Console.WriteLine(insert_user);
                             flag = dc.ExecuteUpdate(insert_user);
-                            if (flag != 0)
+                            if (flag == 1)
                             {
                                 count++;
                             }
@@ -450,7 +451,7 @@ namespace WindowsFormsApplication1
                         else
                         {
                             MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
-                        }                                                                
+                        }
                     }
                     if (count == dt.Rows.Count - 1)
                     {
@@ -470,7 +471,6 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("Excel表中无数据！");
                 }
-                
             }
             else
             {

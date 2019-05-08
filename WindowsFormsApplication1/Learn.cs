@@ -217,7 +217,6 @@ namespace WindowsFormsApplication1
                     //fLP_filesPreview.SetFlowBreak(button, true);
                     //listBox.Items.Add("名字: " + file.Name + ", 创建时间: " + file.CreationTime
                     //    + ", 扩展名: " + file.Extension + ", 上次访问时间: " + file.LastAccessTime);
-
                 }
             }
         }
@@ -250,7 +249,7 @@ namespace WindowsFormsApplication1
                 if (MessageBox.Show("检测到您未完成该视频的学习，确定直接进入考试吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    learn = false;
+                    //learn = false;
                     open = false;
                     l_btn_pause_Click(sender, e);
                     ExamForm.c_id = c_id;
@@ -261,7 +260,7 @@ namespace WindowsFormsApplication1
                 }
             }else//当前视频播放进度等于视频总长度时也可以直接进入考试界面进入
             {
-                learn = false;
+                //learn = false;
                 open = false;
                 l_btn_pause_Click(sender, e);
                 ExamForm.c_id = c_id;
@@ -289,7 +288,7 @@ namespace WindowsFormsApplication1
 
         private void L_btn_discuss_Click(object sender, EventArgs e)
         {
-            learn = false;
+            //learn = false;
             open = false;
             l_btn_pause_Click(sender,e);
             Emp_Comment.c_id = c_id;

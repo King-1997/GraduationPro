@@ -13,18 +13,19 @@ namespace WindowsFormsApplication1
 {
     public partial class LoadExam : CCSkinMain
     {
-        public static String Question_index = null;
+        public static string Question_index = null;
+        public static int i = 0;
         public LoadExam()
         {
             InitializeComponent();
         }
-        private string questions;
-        private string answer;
-        private string A;
-        private string B;
-        private string C;
-        private string D;
-        
+        private string questions = null;
+        private string answer = null;
+        private string A = null;
+        private string B = null;
+        private string C = null;
+        private string D = null;
+        private int Goal = -1;
         //新增考题
         private void btn_load_Click(object sender, EventArgs e)
         {
@@ -40,25 +41,30 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("请输入答案！！！");
             }
             //判断选项A
-            else if (tbx_A == null || tbx_A.Text == "")
+            else if (tbx_A.Text == null || tbx_A.Text == "")
             {
                 MessageBox.Show("请输入选项A！！！");
 
             }
             //判断选项B
-            else if (tbx_B == null || tbx_B.Text == "")
+            else if (tbx_B.Text == null || tbx_B.Text == "")
             {
                 MessageBox.Show("请输入选项B！！！");
             }
             //判断选项C
-            else if (tbx_C == null || tbx_C.Text == "")
+            else if (tbx_C.Text == null || tbx_C.Text == "")
             {
                 MessageBox.Show("请输入选项C！！！");
             }
             //判断选项D
-            else if (tbx_D == null || tbx_D.Text == "")
+            else if (tbx_D.Text == null || tbx_D.Text == "")
             {
                 MessageBox.Show("请输入选项D！！！");
+            }
+            //判断分值
+            else if (tbx_Goal.Text == null || tbx_Goal.Text == "")
+            {
+                MessageBox.Show("请输入分值！！！");
             }
             else
             {
@@ -69,13 +75,28 @@ namespace WindowsFormsApplication1
                 B = tbx_B.Text;
                 C = tbx_C.Text;
                 D = tbx_D.Text;
-                //传递
-                ExamShow.questions.Add(questions);
-                ExamShow.answer.Add(answer);
-                ExamShow.A.Add(A);
-                ExamShow.B.Add(B);
-                ExamShow.C.Add(C);
-                ExamShow.D.Add(D);
+                int.TryParse(tbx_Goal.Text,out Goal);
+                if (i == -1)
+                {
+                    //传递
+                    ExamShow.questions.Add(questions);
+                    ExamShow.answer.Add(answer);
+                    ExamShow.A.Add(A);
+                    ExamShow.B.Add(B);
+                    ExamShow.C.Add(C);
+                    ExamShow.D.Add(D);
+                    ExamShow.Goal.Add(Goal);
+                }
+                else if (i <= ExamShow.questions.Count -1)
+                {
+                    ExamShow.questions[i] = questions;
+                    ExamShow.answer[i] = answer;
+                    ExamShow.A[i] = A;
+                    ExamShow.B[i] = B;
+                    ExamShow.C[i] = C;
+                    ExamShow.D[i] = D;
+                    ExamShow.Goal[i] = Goal;
+                }                
                 //关闭该界面，刷新考题 
                 ExamShow examShow = (ExamShow)Owner;               
                 examShow.ShowQuestions();
@@ -83,7 +104,6 @@ namespace WindowsFormsApplication1
                 Dispose();
             }
         }
-
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             //关闭该界面
@@ -94,7 +114,7 @@ namespace WindowsFormsApplication1
         private void LoadExam_Load(object sender, EventArgs e)
         {
             cBx_answer.SelectedIndex = 0;
-            int i = 0;
+            
             if (Question_index != null)
             {
                 int.TryParse(Question_index, out i);
@@ -104,6 +124,7 @@ namespace WindowsFormsApplication1
                 tbx_B.Text = ExamShow.B[i];
                 tbx_C.Text = ExamShow.C[i];
                 tbx_D.Text = ExamShow.D[i];
+                tbx_Goal.Text = ExamShow.Goal[i].ToString();
             }
         }
     }

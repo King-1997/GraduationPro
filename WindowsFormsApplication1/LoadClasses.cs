@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
-{ 
+{
     public partial class LoadClasses : CCSkinMain
     {
         public static int c_id = -1;
@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
             {
                 Lal_windowname.Text = "课程信息修改";
                 btn_upload.Text = "确定";
-                Console.WriteLine("ClassesInfo里的课程id：" + c_id);
+                //Console.WriteLine("ClassesInfo里的课程id：" + c_id);
                 DataBaseConnection dc = new DataBaseConnection();
                 String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime,c_annex from [User] u,Classes c where c.u_id = u.u_id and c_id = " + c_id + "";
                 DataSet ds = dc.ExecuteQuery(sql);
@@ -39,7 +39,8 @@ namespace WindowsFormsApplication1
                 if (ds.Tables["user"].Rows[0][6].ToString().Equals("是"))
                 {
                     LC_cbb_ifExam.SelectedIndex = 0;
-                }else if (ds.Tables["user"].Rows[0][6].ToString().Equals("否"))
+                }
+                else if (ds.Tables["user"].Rows[0][6].ToString().Equals("否"))
                 {
                     LC_cbb_ifExam.SelectedIndex = 1;
                 }
@@ -48,19 +49,19 @@ namespace WindowsFormsApplication1
                 lc_txtBxAnnexName.Text = ds.Tables["user"].Rows[0][9].ToString();
             }
         }
-        
+
         private void ClassChoose_Load(object sender, EventArgs e)
         {
             lbl_classhanded_show.Text = Model.User.userName;
-           
+
         }
         //取消操作，返回上一界面
         private void btn_return_Click(object sender, EventArgs e)
-        {            
+        {
             Owner.Show();
             Dispose();
         }
-       
+
         //上传课程
         private void btn_upload_Click(object sender, EventArgs e)
         {
@@ -86,14 +87,14 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("请选择要上传的课件！！！");
             else if (string.IsNullOrEmpty(c_credit))
                 MessageBox.Show("请选择该课程具有的学分！！！");
-            else if(string.IsNullOrEmpty(c_maxTime) || string.IsNullOrEmpty(c_minTime))
+            else if (string.IsNullOrEmpty(c_maxTime) || string.IsNullOrEmpty(c_minTime))
                 MessageBox.Show("请输入最大或最小学习时间！！！");
             else
             {
                 //修改课程信息
                 if (btn_upload.Text.Equals("确定"))
-                {                    
-                    String update_sql = "update Classes set c_name = N'" + c_name1 + "',c_introduction = N'" + c_introdution + "',c_file = N'" + c_file + "',c_credit = '"+ c_credit + "',c_recommendTime = '"+ c_recommendTime + "',c_ifExam = N'" + c_ifExam + "',c_maxTime = "+c_maxTime+",c_minTime = "+c_minTime+",c_annex = N'"+c_axxex+"' where c_id = "+c_id+"";
+                {
+                    String update_sql = "update Classes set c_name = N'" + c_name1 + "',c_introduction = N'" + c_introdution + "',c_file = N'" + c_file + "',c_credit = '" + c_credit + "',c_recommendTime = '" + c_recommendTime + "',c_ifExam = N'" + c_ifExam + "',c_maxTime = " + c_maxTime + ",c_minTime = " + c_minTime + ",c_annex = N'" + c_axxex + "' where c_id = " + c_id + "";
                     Console.WriteLine("更新操作的sql语句：" + update_sql);
                     if (dc.ExecuteUpdate(update_sql) != 0)
                     {
@@ -105,6 +106,7 @@ namespace WindowsFormsApplication1
                     }
                     if (c_ifExam.Equals("是"))
                     {
+                        MessageBox.Show("将进入试题界面继续修改数据！");
                         //用户选择确认上传考题的操作
                         ExamShow.c_id = c_id;
                         ExamShow examShow = new ExamShow();
@@ -117,15 +119,16 @@ namespace WindowsFormsApplication1
                         Owner.Show();
                         Dispose();
                     }
-                }else if (btn_upload.Text.Equals("上传"))
+                }
+                else if (btn_upload.Text.Equals("上传"))
                 {
                     //将课程信息保存到数据库
                     //选择考题信息
                     string select_c_id = "select next value for Classes_s";
                     DataSet ds = dc.ExecuteQuery(select_c_id);
-                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(),out c_id);
-                    string insert_sql = "insert into Classes values ("+ c_id + "," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0,"+c_minTime+","+c_maxTime+",N'"+c_axxex+"')";
-                    Console.WriteLine("SQL:"+insert_sql);
+                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out c_id);
+                    string insert_sql = "insert into Classes values (" + c_id + "," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0," + c_minTime + "," + c_maxTime + ",N'" + c_axxex + "')";
+                    //Console.WriteLine("SQL:" + insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)
                     {
@@ -149,8 +152,7 @@ namespace WindowsFormsApplication1
                     {
                         MessageBox.Show("系统错误！");
                     }
-                    
-                }                                
+                }
             }
         }
         //选择上传文件，获取其路径
@@ -164,14 +166,28 @@ namespace WindowsFormsApplication1
                 string FileName = ofd.FileName;//FileName就是要打开的文件路径
                                                //下边可以添加用户代码
                 lc_txtBxFileName.Visible = true;
-                lc_txtBxFileName.Text = FileName;               
-            }            
+                lc_txtBxFileName.Text = FileName;
+            }
         }
 
         private void lc_btn_upload_Click(object sender, EventArgs e)
         {
             //Tools.Upload upload = new Tools.Upload();
             //upload.Upload_Request(lc_txtBxFileName.Text, Path.GetFileName(lc_txtBxFileName.Text), lc_pro_file,lc_lbl_time,lc_lbl_speed,lc_lbl_state,lc_lbl_size);
+        }
+
+        private void lc_btnChooceAnnex_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();//新建打开文件对话框
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);//设置初始文件目录
+            ofd.Filter = "所有文件(*.*)|*.*";//设置打开文件类型
+            if (ofd.ShowDialog(this) == DialogResult.OK)
+            {
+                string FileName = ofd.FileName;//FileName就是要打开的文件路径
+                                               //下边可以添加用户代码
+                lc_txtBxAnnexName.Visible = true;
+                lc_txtBxAnnexName.Text = FileName;
+            }
         }
     }
 }

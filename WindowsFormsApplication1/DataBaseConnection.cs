@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = sqlStr;                
+                cmd.CommandText = sqlStr;
                 iud = cmd.ExecuteNonQuery();
                 con.Close();                
             }

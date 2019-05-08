@@ -31,13 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.ep_lbl_Plan_Name = new System.Windows.Forms.Label();
             this.ep_lbl_Plan_Summary = new System.Windows.Forms.Label();
-            this.ep_tBx_Head_Summary = new System.Windows.Forms.TextBox();
             this.ep_btn_addPeroid = new CCWin.SkinControl.SkinButton();
             this.ep_flp_Lines_Info = new System.Windows.Forms.FlowLayoutPanel();
             this.ep_btn_back = new CCWin.SkinControl.SkinButton();
             this.ep_lbl_Emp_Type = new System.Windows.Forms.Label();
-            this.ep_tBx_Emp_type = new System.Windows.Forms.TextBox();
-            this.ep_tBx_Plan_Name = new System.Windows.Forms.TextBox();
             this.ep_btn_confirm = new CCWin.SkinControl.SkinButton();
             this.ep_lbl_Period_Name = new System.Windows.Forms.Label();
             this.ep_dtp_Start_Time = new System.Windows.Forms.DateTimePicker();
@@ -50,6 +47,9 @@
             this.ep_lbl_Class_Name = new System.Windows.Forms.Label();
             this.ep_lbl_Exam_Name = new System.Windows.Forms.Label();
             this.ep_btn_All_Peroid = new CCWin.SkinControl.SkinButton();
+            this.ep_tBx_Plan_Name = new System.Windows.Forms.Label();
+            this.ep_tBx_Head_Summary = new System.Windows.Forms.Label();
+            this.ep_tBx_Emp_type = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ep_lbl_Plan_Name
@@ -67,24 +67,12 @@
             // 
             this.ep_lbl_Plan_Summary.AutoSize = true;
             this.ep_lbl_Plan_Summary.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_Plan_Summary.Location = new System.Drawing.Point(43, 123);
+            this.ep_lbl_Plan_Summary.Location = new System.Drawing.Point(43, 126);
             this.ep_lbl_Plan_Summary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ep_lbl_Plan_Summary.Name = "ep_lbl_Plan_Summary";
             this.ep_lbl_Plan_Summary.Size = new System.Drawing.Size(92, 17);
             this.ep_lbl_Plan_Summary.TabIndex = 5;
             this.ep_lbl_Plan_Summary.Text = "学习计划简介：";
-            // 
-            // ep_tBx_Head_Summary
-            // 
-            this.ep_tBx_Head_Summary.BackColor = System.Drawing.Color.SkyBlue;
-            this.ep_tBx_Head_Summary.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ep_tBx_Head_Summary.Location = new System.Drawing.Point(141, 93);
-            this.ep_tBx_Head_Summary.Margin = new System.Windows.Forms.Padding(2);
-            this.ep_tBx_Head_Summary.Multiline = true;
-            this.ep_tBx_Head_Summary.Name = "ep_tBx_Head_Summary";
-            this.ep_tBx_Head_Summary.ReadOnly = true;
-            this.ep_tBx_Head_Summary.Size = new System.Drawing.Size(350, 78);
-            this.ep_tBx_Head_Summary.TabIndex = 11;
             // 
             // ep_btn_addPeroid
             // 
@@ -134,28 +122,6 @@
             this.ep_lbl_Emp_Type.Size = new System.Drawing.Size(92, 17);
             this.ep_lbl_Emp_Type.TabIndex = 28;
             this.ep_lbl_Emp_Type.Text = "针对员工类型：";
-            // 
-            // ep_tBx_Emp_type
-            // 
-            this.ep_tBx_Emp_type.BackColor = System.Drawing.Color.SkyBlue;
-            this.ep_tBx_Emp_type.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ep_tBx_Emp_type.Location = new System.Drawing.Point(141, 193);
-            this.ep_tBx_Emp_type.Margin = new System.Windows.Forms.Padding(2);
-            this.ep_tBx_Emp_type.Name = "ep_tBx_Emp_type";
-            this.ep_tBx_Emp_type.ReadOnly = true;
-            this.ep_tBx_Emp_type.Size = new System.Drawing.Size(219, 29);
-            this.ep_tBx_Emp_type.TabIndex = 29;
-            // 
-            // ep_tBx_Plan_Name
-            // 
-            this.ep_tBx_Plan_Name.BackColor = System.Drawing.Color.SkyBlue;
-            this.ep_tBx_Plan_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ep_tBx_Plan_Name.Location = new System.Drawing.Point(141, 45);
-            this.ep_tBx_Plan_Name.Margin = new System.Windows.Forms.Padding(2);
-            this.ep_tBx_Plan_Name.Name = "ep_tBx_Plan_Name";
-            this.ep_tBx_Plan_Name.ReadOnly = true;
-            this.ep_tBx_Plan_Name.Size = new System.Drawing.Size(219, 29);
-            this.ep_tBx_Plan_Name.TabIndex = 30;
             // 
             // ep_btn_confirm
             // 
@@ -298,11 +264,47 @@
             this.ep_btn_All_Peroid.UseVisualStyleBackColor = false;
             this.ep_btn_All_Peroid.Click += new System.EventHandler(this.ep_btn_All_Peroid_Click);
             // 
+            // ep_tBx_Plan_Name
+            // 
+            this.ep_tBx_Plan_Name.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ep_tBx_Plan_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_tBx_Plan_Name.Location = new System.Drawing.Point(145, 47);
+            this.ep_tBx_Plan_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_tBx_Plan_Name.Name = "ep_tBx_Plan_Name";
+            this.ep_tBx_Plan_Name.Size = new System.Drawing.Size(212, 30);
+            this.ep_tBx_Plan_Name.TabIndex = 43;
+            this.ep_tBx_Plan_Name.Text = "学习计划名";
+            // 
+            // ep_tBx_Head_Summary
+            // 
+            this.ep_tBx_Head_Summary.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ep_tBx_Head_Summary.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_tBx_Head_Summary.Location = new System.Drawing.Point(145, 101);
+            this.ep_tBx_Head_Summary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_tBx_Head_Summary.Name = "ep_tBx_Head_Summary";
+            this.ep_tBx_Head_Summary.Size = new System.Drawing.Size(321, 72);
+            this.ep_tBx_Head_Summary.TabIndex = 44;
+            this.ep_tBx_Head_Summary.Text = "学习计划简介";
+            // 
+            // ep_tBx_Emp_type
+            // 
+            this.ep_tBx_Emp_type.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ep_tBx_Emp_type.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ep_tBx_Emp_type.Location = new System.Drawing.Point(147, 194);
+            this.ep_tBx_Emp_type.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ep_tBx_Emp_type.Name = "ep_tBx_Emp_type";
+            this.ep_tBx_Emp_type.Size = new System.Drawing.Size(212, 30);
+            this.ep_tBx_Emp_type.TabIndex = 45;
+            this.ep_tBx_Emp_type.Text = "针对员工类型";
+            // 
             // EditPeriod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(872, 598);
+            this.Controls.Add(this.ep_tBx_Emp_type);
+            this.Controls.Add(this.ep_tBx_Head_Summary);
+            this.Controls.Add(this.ep_tBx_Plan_Name);
             this.Controls.Add(this.ep_btn_All_Peroid);
             this.Controls.Add(this.ep_lbl_Exam_Name);
             this.Controls.Add(this.ep_lbl_Class_Name);
@@ -315,13 +317,10 @@
             this.Controls.Add(this.ep_dtp_Start_Time);
             this.Controls.Add(this.ep_lbl_Period_Name);
             this.Controls.Add(this.ep_btn_confirm);
-            this.Controls.Add(this.ep_tBx_Plan_Name);
-            this.Controls.Add(this.ep_tBx_Emp_type);
             this.Controls.Add(this.ep_lbl_Emp_Type);
             this.Controls.Add(this.ep_btn_back);
             this.Controls.Add(this.ep_flp_Lines_Info);
             this.Controls.Add(this.ep_btn_addPeroid);
-            this.Controls.Add(this.ep_tBx_Head_Summary);
             this.Controls.Add(this.ep_lbl_Plan_Summary);
             this.Controls.Add(this.ep_lbl_Plan_Name);
             this.Name = "EditPeriod";
@@ -336,13 +335,10 @@
 
         private System.Windows.Forms.Label ep_lbl_Plan_Name;
         private System.Windows.Forms.Label ep_lbl_Plan_Summary;
-        private System.Windows.Forms.TextBox ep_tBx_Head_Summary;
         private CCWin.SkinControl.SkinButton ep_btn_addPeroid;
         private System.Windows.Forms.FlowLayoutPanel ep_flp_Lines_Info;
         private CCWin.SkinControl.SkinButton ep_btn_back;
         private System.Windows.Forms.Label ep_lbl_Emp_Type;
-        private System.Windows.Forms.TextBox ep_tBx_Emp_type;
-        private System.Windows.Forms.TextBox ep_tBx_Plan_Name;
         private CCWin.SkinControl.SkinButton ep_btn_confirm;
         private System.Windows.Forms.Label ep_lbl_Period_Name;
         private System.Windows.Forms.DateTimePicker ep_dtp_Start_Time;
@@ -355,5 +351,8 @@
         private System.Windows.Forms.Label ep_lbl_Class_Name;
         private System.Windows.Forms.Label ep_lbl_Exam_Name;
         private CCWin.SkinControl.SkinButton ep_btn_All_Peroid;
+        private System.Windows.Forms.Label ep_tBx_Plan_Name;
+        private System.Windows.Forms.Label ep_tBx_Head_Summary;
+        private System.Windows.Forms.Label ep_tBx_Emp_type;
     }
 }
