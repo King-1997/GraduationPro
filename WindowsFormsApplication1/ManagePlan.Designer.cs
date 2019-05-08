@@ -48,6 +48,7 @@
             // mp_flp_PlanInfo
             // 
             this.mp_flp_PlanInfo.AutoScroll = true;
+            this.mp_flp_PlanInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mp_flp_PlanInfo.Location = new System.Drawing.Point(60, 106);
             this.mp_flp_PlanInfo.Name = "mp_flp_PlanInfo";
             this.mp_flp_PlanInfo.Size = new System.Drawing.Size(683, 144);

@@ -194,6 +194,7 @@
             // m_flp_announcement
             // 
             this.m_flp_announcement.AutoScroll = true;
+            this.m_flp_announcement.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.m_flp_announcement.Location = new System.Drawing.Point(152, 131);
             this.m_flp_announcement.Name = "m_flp_announcement";
             this.m_flp_announcement.Size = new System.Drawing.Size(492, 265);

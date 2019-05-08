@@ -279,7 +279,7 @@ namespace WindowsFormsApplication1
 
         private void MM_btnInput_Click(object sender, EventArgs e)
         {
-            //批量上传考题功能，待实现
+            //批量上传考题功能
             DataTable dt = new DataTable();
             DataBaseConnection dc = new DataBaseConnection();
             string q_title, q_answer, q_a, q_b, q_c, q_d;

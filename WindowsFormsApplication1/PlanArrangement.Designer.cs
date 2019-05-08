@@ -52,7 +52,7 @@
             // fLP_lessonesAdd
             // 
             this.fLP_lessonesAdd.AutoScroll = true;
-            this.fLP_lessonesAdd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fLP_lessonesAdd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_lessonesAdd.Location = new System.Drawing.Point(143, 107);
             this.fLP_lessonesAdd.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_lessonesAdd.Name = "fLP_lessonesAdd";
@@ -62,7 +62,7 @@
             // fLP_peopleChoosed
             // 
             this.fLP_peopleChoosed.AutoScroll = true;
-            this.fLP_peopleChoosed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fLP_peopleChoosed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_peopleChoosed.Location = new System.Drawing.Point(143, 313);
             this.fLP_peopleChoosed.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_peopleChoosed.Name = "fLP_peopleChoosed";
@@ -133,7 +133,7 @@
             this.btn_cancel.UseVisualStyleBackColor = false;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // LessonArrangement
+            // PlanArrangement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,7 +147,7 @@
             this.Controls.Add(this.fLP_lessonesAdd);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "LessonArrangement";
+            this.Name = "PlanArrangement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "课程安排";
             this.Load += new System.EventHandler(this.PlanArrangement_Load);

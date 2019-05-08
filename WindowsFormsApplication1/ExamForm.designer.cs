@@ -50,6 +50,7 @@
             // 
             // fLP_ExamShow
             // 
+            this.fLP_ExamShow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_ExamShow.Location = new System.Drawing.Point(92, 100);
             this.fLP_ExamShow.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_ExamShow.Name = "fLP_ExamShow";

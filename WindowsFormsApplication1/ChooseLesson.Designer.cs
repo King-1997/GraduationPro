@@ -85,6 +85,7 @@
             // CL_flpClasses
             // 
             this.CL_flpClasses.AutoScroll = true;
+            this.CL_flpClasses.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.CL_flpClasses.Location = new System.Drawing.Point(79, 98);
             this.CL_flpClasses.Name = "CL_flpClasses";
             this.CL_flpClasses.Size = new System.Drawing.Size(610, 258);
@@ -152,6 +153,7 @@
             // 
             // cl_flp_recommend_c
             // 
+            this.cl_flp_recommend_c.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.cl_flp_recommend_c.Location = new System.Drawing.Point(79, 408);
             this.cl_flp_recommend_c.Name = "cl_flp_recommend_c";
             this.cl_flp_recommend_c.Size = new System.Drawing.Size(610, 130);

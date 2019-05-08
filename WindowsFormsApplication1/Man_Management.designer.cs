@@ -69,7 +69,7 @@
             // 
             this.fLP_workers.AllowDrop = true;
             this.fLP_workers.AutoScroll = true;
-            this.fLP_workers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fLP_workers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_workers.Location = new System.Drawing.Point(62, 105);
             this.fLP_workers.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_workers.Name = "fLP_workers";

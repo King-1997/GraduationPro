@@ -46,7 +46,7 @@
             // fLP_people
             // 
             this.fLP_people.AutoScroll = true;
-            this.fLP_people.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fLP_people.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_people.Location = new System.Drawing.Point(86, 146);
             this.fLP_people.Margin = new System.Windows.Forms.Padding(4);
             this.fLP_people.Name = "fLP_people";

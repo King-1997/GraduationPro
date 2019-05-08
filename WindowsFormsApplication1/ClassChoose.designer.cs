@@ -45,14 +45,14 @@
             this.tBx_findkeywords.Location = new System.Drawing.Point(214, 48);
             this.tBx_findkeywords.Margin = new System.Windows.Forms.Padding(2);
             this.tBx_findkeywords.Name = "tBx_findkeywords";
-            this.tBx_findkeywords.Size = new System.Drawing.Size(219, 29);
+            this.tBx_findkeywords.Size = new System.Drawing.Size(207, 29);
             this.tBx_findkeywords.TabIndex = 3;
             // 
             // cbB_findKey
             // 
             this.cbB_findKey.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.cbB_findKey.FormattingEnabled = true;
-            this.cbB_findKey.Location = new System.Drawing.Point(438, 48);
+            this.cbB_findKey.Location = new System.Drawing.Point(429, 49);
             this.cbB_findKey.Margin = new System.Windows.Forms.Padding(2);
             this.cbB_findKey.Name = "cbB_findKey";
             this.cbB_findKey.Size = new System.Drawing.Size(92, 29);
@@ -73,7 +73,7 @@
             // 
             this.fLP_lessons.AutoScroll = true;
             this.fLP_lessons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
-            this.fLP_lessons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fLP_lessons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fLP_lessons.Location = new System.Drawing.Point(87, 114);
             this.fLP_lessons.Margin = new System.Windows.Forms.Padding(4);
             this.fLP_lessons.Name = "fLP_lessons";
@@ -85,7 +85,7 @@
             this.btn_find.BackColor = System.Drawing.Color.Transparent;
             this.btn_find.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_find.DownBack = null;
-            this.btn_find.Location = new System.Drawing.Point(535, 47);
+            this.btn_find.Location = new System.Drawing.Point(528, 47);
             this.btn_find.MouseBack = null;
             this.btn_find.Name = "btn_find";
             this.btn_find.NormlBack = null;
@@ -100,7 +100,7 @@
             this.btn_allClasses.BackColor = System.Drawing.Color.Transparent;
             this.btn_allClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_allClasses.DownBack = null;
-            this.btn_allClasses.Location = new System.Drawing.Point(597, 47);
+            this.btn_allClasses.Location = new System.Drawing.Point(590, 47);
             this.btn_allClasses.MouseBack = null;
             this.btn_allClasses.Name = "btn_allClasses";
             this.btn_allClasses.NormlBack = null;

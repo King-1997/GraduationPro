@@ -108,7 +108,7 @@
             // 
             this.ec_fLP_Exam_Info.AutoScroll = true;
             this.ec_fLP_Exam_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
-            this.ec_fLP_Exam_Info.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ec_fLP_Exam_Info.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ec_fLP_Exam_Info.Location = new System.Drawing.Point(81, 99);
             this.ec_fLP_Exam_Info.Margin = new System.Windows.Forms.Padding(4);
             this.ec_fLP_Exam_Info.Name = "ec_fLP_Exam_Info";

@@ -38,23 +38,24 @@
             this.btn_Input = new CCWin.SkinControl.SkinButton();
             this.MM_btnInput = new CCWin.SkinControl.SkinButton();
             this.MM_lblFileName = new CCWin.SkinControl.SkinLabel();
+            this.es_lbl_title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fLP_showQuestions
             // 
             this.fLP_showQuestions.AutoScroll = true;
-            this.fLP_showQuestions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fLP_showQuestions.Location = new System.Drawing.Point(64, 50);
+            this.fLP_showQuestions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.fLP_showQuestions.Location = new System.Drawing.Point(64, 92);
             this.fLP_showQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_showQuestions.Name = "fLP_showQuestions";
-            this.fLP_showQuestions.Size = new System.Drawing.Size(503, 262);
+            this.fLP_showQuestions.Size = new System.Drawing.Size(503, 272);
             this.fLP_showQuestions.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(48, 350);
+            this.label1.Location = new System.Drawing.Point(112, 397);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 17);
@@ -66,7 +67,7 @@
             this.cBx_passCount.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cBx_passCount.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.cBx_passCount.FormattingEnabled = true;
-            this.cBx_passCount.Location = new System.Drawing.Point(156, 346);
+            this.cBx_passCount.Location = new System.Drawing.Point(220, 393);
             this.cBx_passCount.Name = "cBx_passCount";
             this.cBx_passCount.Size = new System.Drawing.Size(121, 24);
             this.cBx_passCount.TabIndex = 4;
@@ -125,7 +126,7 @@
             this.btn_Input.BackColor = System.Drawing.Color.Transparent;
             this.btn_Input.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_Input.DownBack = null;
-            this.btn_Input.Location = new System.Drawing.Point(64, 411);
+            this.btn_Input.Location = new System.Drawing.Point(114, 458);
             this.btn_Input.MouseBack = null;
             this.btn_Input.Name = "btn_Input";
             this.btn_Input.NormlBack = null;
@@ -140,7 +141,7 @@
             this.MM_btnInput.BackColor = System.Drawing.Color.Transparent;
             this.MM_btnInput.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.MM_btnInput.DownBack = null;
-            this.MM_btnInput.Location = new System.Drawing.Point(385, 413);
+            this.MM_btnInput.Location = new System.Drawing.Point(234, 498);
             this.MM_btnInput.MouseBack = null;
             this.MM_btnInput.Name = "MM_btnInput";
             this.MM_btnInput.NormlBack = null;
@@ -157,17 +158,29 @@
             this.MM_lblFileName.BorderColor = System.Drawing.Color.White;
             this.MM_lblFileName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MM_lblFileName.ForeColor = System.Drawing.Color.Brown;
-            this.MM_lblFileName.Location = new System.Drawing.Point(169, 417);
+            this.MM_lblFileName.Location = new System.Drawing.Point(220, 462);
             this.MM_lblFileName.Name = "MM_lblFileName";
             this.MM_lblFileName.Size = new System.Drawing.Size(68, 17);
             this.MM_lblFileName.TabIndex = 14;
             this.MM_lblFileName.Text = "请选择文件";
+            // 
+            // es_lbl_title
+            // 
+            this.es_lbl_title.AutoSize = true;
+            this.es_lbl_title.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.es_lbl_title.Location = new System.Drawing.Point(61, 51);
+            this.es_lbl_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.es_lbl_title.Name = "es_lbl_title";
+            this.es_lbl_title.Size = new System.Drawing.Size(90, 21);
+            this.es_lbl_title.TabIndex = 17;
+            this.es_lbl_title.Text = "题目预览：";
             // 
             // ExamShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.es_lbl_title);
             this.Controls.Add(this.btn_Input);
             this.Controls.Add(this.MM_btnInput);
             this.Controls.Add(this.MM_lblFileName);
@@ -198,5 +211,6 @@
         private CCWin.SkinControl.SkinButton btn_Input;
         private CCWin.SkinControl.SkinButton MM_btnInput;
         private CCWin.SkinControl.SkinLabel MM_lblFileName;
+        private System.Windows.Forms.Label es_lbl_title;
     }
 }

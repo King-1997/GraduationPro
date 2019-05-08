@@ -92,6 +92,7 @@
             // ep_flp_Lines_Info
             // 
             this.ep_flp_Lines_Info.AutoScroll = true;
+            this.ep_flp_Lines_Info.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ep_flp_Lines_Info.Location = new System.Drawing.Point(46, 238);
             this.ep_flp_Lines_Info.Name = "ep_flp_Lines_Info";
             this.ep_flp_Lines_Info.Size = new System.Drawing.Size(773, 160);
