@@ -126,8 +126,8 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("请输入员工手机号！");
                 }else
                 {
-                    string insert_sql = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + "," + station_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','" + Wm_dtpEntryTime.Value + "')";
-                    Console.WriteLine("新增语句：" + insert_sql);
+                    string insert_sql = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + "," + station_id + ",'" + Wm_tbxAccount.Text + "','" + Wm_tbxAccount.Text + "',N'" + Wm_tbxUserName.Text + "',N'" + Wm_cbBSex.SelectedItem.ToString() + "',0,'" + Wm_tbxIDNum.Text + "','" + Wm_tbxPhone.Text + "','" + Wm_dtpEntryTime.Value + "','1597595060@qq.com')";
+                    //Console.WriteLine("新增语句：" + insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag == 1)
                     {

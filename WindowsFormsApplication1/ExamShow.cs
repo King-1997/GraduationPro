@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1
             {
                 for (int i = 0; i < questions.Count; i++)
                 {
-                    var q_title = new Label { Text = i+1 + "、" +questions[i] };
+                    var q_title = new Label { Text = i + 1 + "、" + questions[i] };
                     q_title.Font = font;
                     q_title.Size = new Size(200, 60);
                     //q_title.BorderStyle.Fixed3D = true;                    
@@ -78,7 +78,7 @@ namespace WindowsFormsApplication1
                     btn_delete.Name = i.ToString();
                     btn_delete.Click += new EventHandler(Deletequestion);
 
-                    fLP_showQuestions.Controls.Add(q_title);                    
+                    fLP_showQuestions.Controls.Add(q_title);
                     fLP_showQuestions.Controls.Add(btn_Edit);
                     fLP_showQuestions.Controls.Add(btn_delete);
                     fLP_showQuestions.SetFlowBreak(btn_delete, true);
@@ -102,22 +102,23 @@ namespace WindowsFormsApplication1
             {
                 Button button = (Button)sender;
                 int index = 0;
-                int.TryParse(button.Name,out index);
+                int.TryParse(button.Name, out index);
                 if (index >= q_id.Count)
                 {
                     //删除该下标位置的值
                     questions.RemoveAt(index);
-                }else
+                }
+                else
                 {
                     int qu_id = q_id[index];
                     DataBaseConnection dc = new DataBaseConnection();
-                    string delete_sql = "delete from question where q_id = "+qu_id;
+                    string delete_sql = "delete from question where q_id = " + qu_id;
                     int flag = dc.ExecuteUpdate(delete_sql);
                     if (flag != 1)
                     {
                         MessageBox.Show("删除失败，请联系系统管理员！");
                     }
-                }                
+                }
                 //刷新显示窗口
                 ShowQuestions();
             }
@@ -137,23 +138,24 @@ namespace WindowsFormsApplication1
         {
             //修改数据库
             DataBaseConnection dc = new DataBaseConnection();
-            int qe_id = 0,i = 0,count_q = 0,count = 0,flag1 = 0,flag2 = 0;
+            int qe_id = 0, i = 0, count_q = 0, count = 0, flag1 = 0, flag2 = 0;
             if (cBx_passCount.SelectedItem == null)
             {
                 MessageBox.Show("请选择通过题目数！");
-            }else
+            }
+            else
             {
                 int.TryParse(cBx_passCount.SelectedItem.ToString(), out count);
                 for (i = 0; i < questions.Count; i++)
                 {
-                    if(q_id.Count > i)//非新增的试题时，获取该试题的q_id
+                    if (q_id.Count > i)//非新增的试题时，获取该试题的q_id
                     {
                         qe_id = q_id[i];
                     }
                     else//新增的试题则置为0
                     {
                         qe_id = 0;
-                    }                    
+                    }
                     string q_title = questions[i];
                     string q_answer = answer[i];
                     string q_option1 = A[i];
@@ -161,9 +163,9 @@ namespace WindowsFormsApplication1
                     string q_option3 = C[i];
                     string q_option4 = D[i];
                     int q_goal = Goal[i];
-                    string select_q_id = "select count(1) from question where q_id ="+qe_id;
+                    string select_q_id = "select count(1) from question where q_id =" + qe_id;
                     DataSet ds = dc.ExecuteQuery(select_q_id);
-                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(),out count_q);
+                    int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out count_q);
                     if (count_q == 0)
                     {
                         //无课程id时需要将c_id置为null
@@ -175,13 +177,14 @@ namespace WindowsFormsApplication1
                         else
                         {
                             insert_sql += "insert into question values(next value for question_s," + c_id + ",null,N'" + q_title + "','" + q_answer + "',N'" + q_option1 + "',N'" + q_option2 + "',N'" + q_option3 + "',N'" + q_option4 + "'," + q_goal + ")";
-                        }                        
+                        }
                         flag1 = dc.ExecuteUpdate(insert_sql);
-                    }else
+                    }
+                    else
                     {
-                        string update_q_sql = "update question set q_title = N'" + q_title + "', q_answer = '" + q_answer + "', q_option1 = N'" + q_option1 + "', q_option2 = N'" + q_option2 + "', q_option3 = N'" + q_option3 + "', q_option4 = '" + q_option4 + "', q_goal = " + q_goal + " where q_id = "+qe_id;
+                        string update_q_sql = "update question set q_title = N'" + q_title + "', q_answer = '" + q_answer + "', q_option1 = N'" + q_option1 + "', q_option2 = N'" + q_option2 + "', q_option3 = N'" + q_option3 + "', q_option4 = '" + q_option4 + "', q_goal = " + q_goal + " where q_id = " + qe_id;
                         flag2 = dc.ExecuteUpdate(update_q_sql);
-                    }                 
+                    }
                 }
                 string update_sql = "update Classes set c_count = " + count + " where c_id = '" + c_id + "'";
                 int flag = dc.ExecuteUpdate(update_sql);
@@ -192,8 +195,8 @@ namespace WindowsFormsApplication1
                     setNull();
                     Owner.Owner.Show();
                     Owner.Dispose();
-                }                
-            }            
+                }
+            }
         }
         //取消操作
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -236,7 +239,7 @@ namespace WindowsFormsApplication1
                     for (int i = 0; i < ds.Tables["user"].Rows.Count; i++)
                     {
                         int que_id = 0;
-                        int.TryParse(ds.Tables["user"].Rows[i][0].ToString(),out que_id);
+                        int.TryParse(ds.Tables["user"].Rows[i][0].ToString(), out que_id);
                         q_id.Add(que_id);
                         questions.Add(ds.Tables["user"].Rows[i][1].ToString());
                         answer.Add(ds.Tables["user"].Rows[i][2].ToString());
@@ -245,7 +248,7 @@ namespace WindowsFormsApplication1
                         C.Add(ds.Tables["user"].Rows[i][5].ToString());
                         D.Add(ds.Tables["user"].Rows[i][6].ToString());
                         int goal = 0;
-                        int.TryParse(ds.Tables["user"].Rows[i][7].ToString(),out goal);
+                        int.TryParse(ds.Tables["user"].Rows[i][7].ToString(), out goal);
                         Goal.Add(goal);
                     }
                     ShowQuestions();
@@ -283,7 +286,7 @@ namespace WindowsFormsApplication1
             DataTable dt = new DataTable();
             DataBaseConnection dc = new DataBaseConnection();
             string q_title, q_answer, q_a, q_b, q_c, q_d;
-            int q_goal, count = 0, flag = 0;
+            int q_goal, count = 0, count_x = 0, flag = 0;
             string insert_user, select_sql/*, update_sql*/;
             string fileAdd = MM_lblFileName.Text;
             if (!string.IsNullOrEmpty(fileAdd))
@@ -329,12 +332,17 @@ namespace WindowsFormsApplication1
                             if (flag == 1)
                             {
                                 count++;
+                                count_x++;
                             }
                         }
                         else
                         {
                             MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
                         }
+                    }
+                    if (count_x != 0)
+                    {
+                        MessageBox.Show("批量导入成功,其中有" + count_x + "条重复试题信息，自动过滤！");
                     }
                     if (count == dt.Rows.Count - 1)
                     {

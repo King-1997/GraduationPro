@@ -271,7 +271,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 513);
+            this.ClientSize = new System.Drawing.Size(762, 528);
             this.Controls.Add(this.Wm_cbBEmpStation);
             this.Controls.Add(this.Wm_lblEmpType);
             this.Controls.Add(this.Wm_cbBSex);

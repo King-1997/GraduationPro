@@ -162,38 +162,38 @@ namespace WindowsFormsApplication1
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
-                //课程名
-                var lbl_c_name = new Label { Text = "课程名" };
-                lbl_c_name.Width = 100;
-                lbl_c_name.Font = font;
-                lbl_c_name.TextAlign = ContentAlignment.MiddleCenter;
-                //学分
-                var lbl_c_credit = new Label { Text = "学分" };
-                lbl_c_credit.Width = 80;
-                lbl_c_credit.Font = font;
-                lbl_c_credit.TextAlign = ContentAlignment.MiddleCenter;
-                //上传人
-                var lbl_load_name = new Label { Text = "上传人" };
-                lbl_load_name.Width = 60;
-                lbl_load_name.Font = font;
-                lbl_load_name.TextAlign = ContentAlignment.MiddleCenter;
-                //推荐学时
-                var lbl_c_recommendTime = new Label { Text = "推荐学时" };
-                lbl_c_recommendTime.Width = 80;
-                lbl_c_recommendTime.Font = font;
-                lbl_c_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
-                //推荐学时
-                var lbl_false = new Label { Text = "" };
-                lbl_false.Width = 50;
-                lbl_false.Font = font;
-                lbl_false.TextAlign = ContentAlignment.MiddleCenter;
+                ////课程名
+                //var lbl_c_name = new Label { Text = "课程名" };
+                //lbl_c_name.Width = 100;
+                //lbl_c_name.Font = font;
+                //lbl_c_name.TextAlign = ContentAlignment.MiddleCenter;
+                ////学分
+                //var lbl_c_credit = new Label { Text = "学分" };
+                //lbl_c_credit.Width = 80;
+                //lbl_c_credit.Font = font;
+                //lbl_c_credit.TextAlign = ContentAlignment.MiddleCenter;
+                ////上传人
+                //var lbl_load_name = new Label { Text = "上传人" };
+                //lbl_load_name.Width = 60;
+                //lbl_load_name.Font = font;
+                //lbl_load_name.TextAlign = ContentAlignment.MiddleCenter;
+                ////推荐学时
+                //var lbl_c_recommendTime = new Label { Text = "推荐学时" };
+                //lbl_c_recommendTime.Width = 80;
+                //lbl_c_recommendTime.Font = font;
+                //lbl_c_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                ////推荐学时
+                //var lbl_false = new Label { Text = "" };
+                //lbl_false.Width = 50;
+                //lbl_false.Font = font;
+                //lbl_false.TextAlign = ContentAlignment.MiddleCenter;
 
-                c_flp_recommend_c.Controls.Add(lbl_c_name);
-                c_flp_recommend_c.Controls.Add(lbl_c_credit);
-                c_flp_recommend_c.Controls.Add(lbl_load_name);
-                c_flp_recommend_c.Controls.Add(lbl_c_recommendTime);
-                c_flp_recommend_c.Controls.Add(lbl_false);
-                c_flp_recommend_c.SetFlowBreak(lbl_false, true);
+                //c_flp_recommend_c.Controls.Add(lbl_c_name);
+                //c_flp_recommend_c.Controls.Add(lbl_c_credit);
+                //c_flp_recommend_c.Controls.Add(lbl_load_name);
+                //c_flp_recommend_c.Controls.Add(lbl_c_recommendTime);
+                //c_flp_recommend_c.Controls.Add(lbl_false);
+                //c_flp_recommend_c.SetFlowBreak(lbl_false, true);
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //课程名

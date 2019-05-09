@@ -223,49 +223,49 @@ namespace WindowsFormsApplication1
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
-                //课程名标签
-                var lbl_rb = new Label { Text = "课程名称" };
-                lbl_rb.Font = font;
-                lbl_rb.Width = 100;
-                lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
-                //上传人标签
-                var lbl_Loadman = new Label { Text = "上传人" };
-                lbl_Loadman.Font = font;
-                lbl_Loadman.Width = 50;
-                lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
-                //课程简介标签
-                var lbl_introducation = new Label { Text = "课程简介" };
-                lbl_introducation.Font = font;
-                lbl_introducation.Width = 100;
-                lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
-                //课程学分标签
-                var lbl_credit = new Label { Text = "课程学分" };
-                lbl_credit.Font = font;
-                lbl_credit.Width = 65;
-                lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
-                //课程学时标签
-                var lbl_recommendTime = new Label { Text = "课程学时" };
-                lbl_recommendTime.Font = font;
-                lbl_recommendTime.Width = 65;
-                lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
-                //是否考试标签
-                var lbl_ifExam = new Label { Text = "是否考试" };
-                lbl_ifExam.Font = font;
-                lbl_ifExam.Width = 65;
-                lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
-                //查看课程信息标签
-                var lbl_btn_check = new Label { Text = "" };
-                lbl_btn_check.Width = 50;
-                lbl_btn_check.TextAlign = ContentAlignment.MiddleCenter;
+                ////课程名标签
+                //var lbl_rb = new Label { Text = "课程名称" };
+                //lbl_rb.Font = font;
+                //lbl_rb.Width = 100;
+                //lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
+                ////上传人标签
+                //var lbl_Loadman = new Label { Text = "上传人" };
+                //lbl_Loadman.Font = font;
+                //lbl_Loadman.Width = 50;
+                //lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
+                ////课程简介标签
+                //var lbl_introducation = new Label { Text = "课程简介" };
+                //lbl_introducation.Font = font;
+                //lbl_introducation.Width = 100;
+                //lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
+                ////课程学分标签
+                //var lbl_credit = new Label { Text = "课程学分" };
+                //lbl_credit.Font = font;
+                //lbl_credit.Width = 65;
+                //lbl_credit.TextAlign = ContentAlignment.MiddleCenter;
+                ////课程学时标签
+                //var lbl_recommendTime = new Label { Text = "课程学时" };
+                //lbl_recommendTime.Font = font;
+                //lbl_recommendTime.Width = 65;
+                //lbl_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                ////是否考试标签
+                //var lbl_ifExam = new Label { Text = "是否考试" };
+                //lbl_ifExam.Font = font;
+                //lbl_ifExam.Width = 65;
+                //lbl_ifExam.TextAlign = ContentAlignment.MiddleCenter;
+                ////查看课程信息标签
+                //var lbl_btn_check = new Label { Text = "" };
+                //lbl_btn_check.Width = 50;
+                //lbl_btn_check.TextAlign = ContentAlignment.MiddleCenter;
 
-                cl_flp_recommend_c.Controls.Add(lbl_rb);
-                cl_flp_recommend_c.Controls.Add(lbl_Loadman);
-                cl_flp_recommend_c.Controls.Add(lbl_introducation);
-                cl_flp_recommend_c.Controls.Add(lbl_credit);
-                cl_flp_recommend_c.Controls.Add(lbl_recommendTime);
-                cl_flp_recommend_c.Controls.Add(lbl_ifExam);
-                cl_flp_recommend_c.Controls.Add(lbl_btn_check);
-                cl_flp_recommend_c.SetFlowBreak(lbl_btn_check, true);
+                //cl_flp_recommend_c.Controls.Add(lbl_rb);
+                //cl_flp_recommend_c.Controls.Add(lbl_Loadman);
+                //cl_flp_recommend_c.Controls.Add(lbl_introducation);
+                //cl_flp_recommend_c.Controls.Add(lbl_credit);
+                //cl_flp_recommend_c.Controls.Add(lbl_recommendTime);
+                //cl_flp_recommend_c.Controls.Add(lbl_ifExam);
+                //cl_flp_recommend_c.Controls.Add(lbl_btn_check);
+                //cl_flp_recommend_c.SetFlowBreak(lbl_btn_check, true);
 
                 for (var count = 0; count < ds.Tables["user"].Rows.Count; count++)
                 {

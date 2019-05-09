@@ -176,6 +176,6 @@ for row in dataset:
     ratings.append([str(row[0]) + "\t" + str(row[1]) + "\t" + str(row[2])])
 
 # print(ratings)
-demo = CF(problems, ratings, k=10, n=5)#n为推荐列表中取出的数量
+demo = CF(problems, ratings, k=10, n=3)#n为推荐列表中取出的数量
 userId = sys.argv[1]
 demo.recommendByUser(userId)

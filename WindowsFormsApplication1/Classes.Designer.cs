@@ -307,10 +307,11 @@
             // 
             // c_flp_recommend_c
             // 
+            this.c_flp_recommend_c.AutoScroll = true;
             this.c_flp_recommend_c.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.c_flp_recommend_c.Location = new System.Drawing.Point(167, 483);
             this.c_flp_recommend_c.Name = "c_flp_recommend_c";
-            this.c_flp_recommend_c.Size = new System.Drawing.Size(450, 130);
+            this.c_flp_recommend_c.Size = new System.Drawing.Size(450, 111);
             this.c_flp_recommend_c.TabIndex = 31;
             // 
             // Classes
