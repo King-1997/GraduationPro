@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name = N'" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name like N'%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name = '" + lesson_owner + "' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name like '%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 //Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);

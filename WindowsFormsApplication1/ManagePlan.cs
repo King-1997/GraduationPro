@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
                 ManagePlan_Load(sender,e);
             }else
             {
-                string select_sql = "select sp_head_name,sp_head_summary,sp_created,sp_created_time,sp_emp_type,sp_head_id from study_plan_header where sp_head_name = '%" + keyword + "%' or sp_head_summary = '%" + keyword + "%' or sp_emp_type = '%" + keyword + "%'";
+                string select_sql = "select sp_head_name,sp_head_summary,sp_created,sp_created_time,sp_emp_type,sp_head_id from study_plan_header where sp_head_name like '%" + keyword + "%' or sp_head_summary like '%" + keyword + "%' or sp_emp_type like '%" + keyword + "%'";
                 showPlanInfo(select_sql);
             }           
         }
