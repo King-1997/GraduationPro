@@ -23,22 +23,22 @@ namespace WindowsFormsApplication1
 
         private void p_btnQuit_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();  //返回父界面登陆界面
-            this.Dispose();
+            Owner.Show();  //返回父界面登陆界面
+            Dispose();
         }
-
         private void Main_Load(object sender, EventArgs e)
         {
-            this.p_lblCurPerson.Text = Model.User.userName;
+            p_lblCurPerson.Text = Model.User.userName;
             if (!Model.User.userType.Equals("员工"))
             {
-                this.m_btnManage.Visible = true;
+                m_btnManage.Visible = true;
             }else
             {
-                this.m_btnSign.Location = this.m_btnManage.Location;
-                this.Width = 900;
+                m_btnSign.Location = m_btnManage.Location;
+                Width = 900;
             }
-            string select_announcement = "select a.a_text,a.a_datetime,a.a_id from [User] u,announcement a where u.u_id = a.u_id order by a_datetime desc";
+            //按照发布时间取最新的三条显示出来
+            string select_announcement = "select a.a_text,a.a_datetime,a.a_id from [User] u,announcement a where u.u_id = a.u_id and a.a_id IN (select top 3 a_id from announcement) order by a_datetime desc";
             showAnnouncement(select_announcement);
         }
         private void showAnnouncement(string sql)
@@ -105,15 +105,15 @@ namespace WindowsFormsApplication1
         }
         private void p_btnQuit_Click_1(object sender, EventArgs e)
         {
-            this.Owner.Show();//注销，返回登陆界面
-            this.Dispose();
+            Owner.Show();//注销，返回登陆界面
+            Dispose();
         }
 
         private void m_btnPersonal_Click(object sender, EventArgs e)
         {
             PersonalForm personalForm = new PersonalForm();
             personalForm.Owner = this;
-            this.Hide();
+            Hide();
             personalForm.Show();//跳转到个人中心
         }
 
@@ -122,7 +122,7 @@ namespace WindowsFormsApplication1
             Classes classes = new Classes();
 
             classes.Owner = this;
-            this.Hide();
+            Hide();
             classes.Show();//跳转到课程中心
         }
 
@@ -134,7 +134,7 @@ namespace WindowsFormsApplication1
                 Manage manage = new Manage();
 
                 manage.Owner = this;
-                this.Hide();
+                Hide();
                 manage.Show();//跳转到管理中心
             //}
             //else
@@ -148,7 +148,7 @@ namespace WindowsFormsApplication1
             ApplyView applyView = new ApplyView();
 
             applyView.Owner = this;
-            this.Hide();
+            Hide();
             applyView.Show();//跳转到申请中心
         }
     }
