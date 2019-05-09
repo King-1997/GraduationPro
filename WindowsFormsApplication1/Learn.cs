@@ -113,7 +113,7 @@ namespace WindowsFormsApplication1
             DateTime dt = System.DateTime.Now;//获取当前时间            
             L_lblTime.Text = dt.ToString("yyyy-MM-dd HH:mm:ss");//显示当前时间
             //判断学习状态
-            if (learningtime % 30 == 0)//每隔一段时间进行弹窗确认学习状态
+            if (learningtime % 10 == 0)//每隔一段时间进行弹窗确认学习状态
             {
                 l_btn_pause_Click(sender,e);
                 learningtime++;

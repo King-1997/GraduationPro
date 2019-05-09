@@ -132,7 +132,7 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("删除评论失败，请重试！");
                 }
                 Emp_Comment_Load(sender, e);
-            }               
+            }
         }
         //显示或隐藏评论区域
         //private void showOrHide(Boolean flag)

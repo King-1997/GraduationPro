@@ -26,48 +26,60 @@ namespace WindowsFormsApplication1
         //提交答案
         private void btn_hand_Click(object sender, EventArgs e)
         {
-            foreach (Control CBx in fLP_ExamShow.Controls)
+            if (MessageBox.Show("确认提交？", "判断", MessageBoxButtons.OKCancel,
+                       MessageBoxIcon.Question) == DialogResult.OK)
             {
-                //查找到用户选择的答案
-                if (CBx is ComboBox)
+                foreach (Control CBx in fLP_ExamShow.Controls)
                 {
-                    if (CBx.Text == "" || CBx.Text == null)
+                    //查找到用户选择的答案
+                    if (CBx is ComboBox)
                     {
-                        MessageBox.Show("请完成所有题目！");
-                        break;
+                        if (CBx.Text == "" || CBx.Text == null)
+                        {
+                            MessageBox.Show("请完成所有题目！");
+                            break;
+                        }
+                        else
+                        {
+                            //保存用户的答案，然后与数据库中的做对比
+                            selected.Add(CBx.Text);
+                        }
+                    }
+                }
+                //foreach (string option in answer)
+                //{
+                //    Console.WriteLine(option);
+                //}
+                //foreach (string option2 in selected)
+                //{
+                //    Console.WriteLine(option2);
+                //}
+                //判断是否通过考试
+                if (selected != null)
+                {
+                    int realCount = 0;//保存对比之后实际通过题数
+                    for (int i = 0; i < answer.Count; i++)
+                    {
+                        if (selected[i].Equals(answer[i]))
+                        {
+                            realCount++;
+                        }
+                    }
+                    DataBaseConnection dc = new DataBaseConnection();
+                    String sql = "select c_count from Classes where c_id = " + c_id;
+                    DataSet ds = dc.ExecuteQuery(sql);
+                    int passCount = (int)ds.Tables["user"].Rows[0][0];//读取该门课程通过题数
+                    if (realCount >= passCount)
+                    {
+                        //通过，课程状态设置为已完成
+                        MessageBox.Show("恭喜您已完成该课程！");
+                        String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_id =  " + c_id + "))";
+                        dc.ExecuteUpdate(update_sql);
                     }
                     else
                     {
-                        //保存用户的答案，然后与数据库中的做对比
-                        selected.Add(CBx.Text);
-                        //判断是否通过考试
-                        if (selected != null)
-                        {
-                            int realCount = 0;//保存对比之后实际通过题数
-                            for (int i = 0; i < answer.Count; i++)
-                            {
-                                if (selected[i].Equals(answer[i]))
-                                {
-                                    realCount++;
-                                }
-                            }
-                            DataBaseConnection dc = new DataBaseConnection();
-                            String sql = "select c_count from Classes where c_id = " + c_id;
-                            DataSet ds = dc.ExecuteQuery(sql);
-                            int passCount = (int)ds.Tables["user"].Rows[0][0];//读取该门课程通过题数
-                            if (realCount >= passCount)
-                            {
-                                //通过，课程状态设置为已完成
-                                MessageBox.Show("恭喜您已完成该课程！");
-                                String update_sql = "update UserClasses set uc_status = 1 where cd_id in (select cd_id from ClassesDestribute where c_id in (select c_id from Classes where c_id =  " + c_id + "))";
-                                dc.ExecuteUpdate(update_sql);
-                            }
-                            else
-                            {
-                                //没有通过，重新学习该课程
-                                MessageBox.Show("您未通过本次考试，请重新学习本课程！");
-                            }
-                        }
+                        //没有通过，重新学习该课程
+                        MessageBox.Show("您未通过本次考试，正确题数为：" + realCount + "，请重新学习本课程！");
                     }
                 }
             }

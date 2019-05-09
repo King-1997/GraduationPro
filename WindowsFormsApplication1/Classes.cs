@@ -83,7 +83,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 150;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
@@ -236,7 +236,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 100;
                 c_flp_recommend_c.Controls.Add(lbl_no_data);
             }
@@ -305,7 +305,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
@@ -375,7 +375,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }
@@ -474,7 +474,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 100;
                 c_flpClasses.Controls.Add(lbl_no_data);
             }

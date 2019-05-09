@@ -55,7 +55,7 @@
             // 
             this.c_lblTitle.AutoSize = true;
             this.c_lblTitle.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold);
-            this.c_lblTitle.Location = new System.Drawing.Point(17, 31);
+            this.c_lblTitle.Location = new System.Drawing.Point(25, 31);
             this.c_lblTitle.Name = "c_lblTitle";
             this.c_lblTitle.Size = new System.Drawing.Size(160, 46);
             this.c_lblTitle.TabIndex = 0;

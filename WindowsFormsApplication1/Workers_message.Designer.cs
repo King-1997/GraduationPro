@@ -50,13 +50,15 @@
             this.Wm_cbBSex = new CCWin.SkinControl.SkinComboBox();
             this.Wm_cbBEmpStation = new CCWin.SkinControl.SkinComboBox();
             this.Wm_lblEmpType = new System.Windows.Forms.Label();
+            this.wm_tbx_email = new System.Windows.Forms.TextBox();
+            this.wm_lbl_email = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Wm_lblUserName
             // 
             this.Wm_lblUserName.AutoSize = true;
             this.Wm_lblUserName.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserName.Location = new System.Drawing.Point(137, 64);
+            this.Wm_lblUserName.Location = new System.Drawing.Point(202, 65);
             this.Wm_lblUserName.Name = "Wm_lblUserName";
             this.Wm_lblUserName.Size = new System.Drawing.Size(44, 17);
             this.Wm_lblUserName.TabIndex = 4;
@@ -66,7 +68,7 @@
             // 
             this.Wm_lblUserType.AutoSize = true;
             this.Wm_lblUserType.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserType.Location = new System.Drawing.Point(137, 102);
+            this.Wm_lblUserType.Location = new System.Drawing.Point(202, 103);
             this.Wm_lblUserType.Name = "Wm_lblUserType";
             this.Wm_lblUserType.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblUserType.TabIndex = 5;
@@ -76,7 +78,7 @@
             // 
             this.Wm_lblUserGroup.AutoSize = true;
             this.Wm_lblUserGroup.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserGroup.Location = new System.Drawing.Point(137, 179);
+            this.Wm_lblUserGroup.Location = new System.Drawing.Point(202, 180);
             this.Wm_lblUserGroup.Name = "Wm_lblUserGroup";
             this.Wm_lblUserGroup.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblUserGroup.TabIndex = 6;
@@ -86,7 +88,7 @@
             // 
             this.Wm_lblUserAccount.AutoSize = true;
             this.Wm_lblUserAccount.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserAccount.Location = new System.Drawing.Point(137, 219);
+            this.Wm_lblUserAccount.Location = new System.Drawing.Point(202, 220);
             this.Wm_lblUserAccount.Name = "Wm_lblUserAccount";
             this.Wm_lblUserAccount.Size = new System.Drawing.Size(44, 17);
             this.Wm_lblUserAccount.TabIndex = 7;
@@ -96,7 +98,7 @@
             // 
             this.Wm_lblUserSex.AutoSize = true;
             this.Wm_lblUserSex.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserSex.Location = new System.Drawing.Point(137, 263);
+            this.Wm_lblUserSex.Location = new System.Drawing.Point(202, 264);
             this.Wm_lblUserSex.Name = "Wm_lblUserSex";
             this.Wm_lblUserSex.Size = new System.Drawing.Size(44, 17);
             this.Wm_lblUserSex.TabIndex = 8;
@@ -106,7 +108,7 @@
             // 
             this.Wm_lblUserIDNum.AutoSize = true;
             this.Wm_lblUserIDNum.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserIDNum.Location = new System.Drawing.Point(137, 306);
+            this.Wm_lblUserIDNum.Location = new System.Drawing.Point(202, 307);
             this.Wm_lblUserIDNum.Name = "Wm_lblUserIDNum";
             this.Wm_lblUserIDNum.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblUserIDNum.TabIndex = 9;
@@ -116,7 +118,7 @@
             // 
             this.Wm_lblUserPhone.AutoSize = true;
             this.Wm_lblUserPhone.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserPhone.Location = new System.Drawing.Point(137, 352);
+            this.Wm_lblUserPhone.Location = new System.Drawing.Point(202, 353);
             this.Wm_lblUserPhone.Name = "Wm_lblUserPhone";
             this.Wm_lblUserPhone.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblUserPhone.TabIndex = 10;
@@ -125,7 +127,7 @@
             // Wm_tbxUserName
             // 
             this.Wm_tbxUserName.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_tbxUserName.Location = new System.Drawing.Point(279, 59);
+            this.Wm_tbxUserName.Location = new System.Drawing.Point(344, 60);
             this.Wm_tbxUserName.Name = "Wm_tbxUserName";
             this.Wm_tbxUserName.Size = new System.Drawing.Size(144, 23);
             this.Wm_tbxUserName.TabIndex = 11;
@@ -133,7 +135,7 @@
             // Wm_tbxAccount
             // 
             this.Wm_tbxAccount.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_tbxAccount.Location = new System.Drawing.Point(279, 216);
+            this.Wm_tbxAccount.Location = new System.Drawing.Point(344, 217);
             this.Wm_tbxAccount.Name = "Wm_tbxAccount";
             this.Wm_tbxAccount.Size = new System.Drawing.Size(144, 23);
             this.Wm_tbxAccount.TabIndex = 12;
@@ -141,7 +143,7 @@
             // Wm_tbxIDNum
             // 
             this.Wm_tbxIDNum.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_tbxIDNum.Location = new System.Drawing.Point(279, 304);
+            this.Wm_tbxIDNum.Location = new System.Drawing.Point(344, 305);
             this.Wm_tbxIDNum.Name = "Wm_tbxIDNum";
             this.Wm_tbxIDNum.Size = new System.Drawing.Size(144, 23);
             this.Wm_tbxIDNum.TabIndex = 14;
@@ -149,7 +151,7 @@
             // Wm_tbxPhone
             // 
             this.Wm_tbxPhone.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_tbxPhone.Location = new System.Drawing.Point(279, 347);
+            this.Wm_tbxPhone.Location = new System.Drawing.Point(344, 348);
             this.Wm_tbxPhone.Name = "Wm_tbxPhone";
             this.Wm_tbxPhone.Size = new System.Drawing.Size(144, 23);
             this.Wm_tbxPhone.TabIndex = 15;
@@ -158,7 +160,7 @@
             // 
             this.Wm_lblUserEntryTime.AutoSize = true;
             this.Wm_lblUserEntryTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblUserEntryTime.Location = new System.Drawing.Point(137, 398);
+            this.Wm_lblUserEntryTime.Location = new System.Drawing.Point(202, 399);
             this.Wm_lblUserEntryTime.Name = "Wm_lblUserEntryTime";
             this.Wm_lblUserEntryTime.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblUserEntryTime.TabIndex = 20;
@@ -167,7 +169,7 @@
             // Wm_dtpEntryTime
             // 
             this.Wm_dtpEntryTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_dtpEntryTime.Location = new System.Drawing.Point(279, 396);
+            this.Wm_dtpEntryTime.Location = new System.Drawing.Point(344, 397);
             this.Wm_dtpEntryTime.Name = "Wm_dtpEntryTime";
             this.Wm_dtpEntryTime.Size = new System.Drawing.Size(144, 23);
             this.Wm_dtpEntryTime.TabIndex = 21;
@@ -177,7 +179,7 @@
             this.Wm_btnUpDate.BackColor = System.Drawing.Color.Transparent;
             this.Wm_btnUpDate.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Wm_btnUpDate.DownBack = null;
-            this.Wm_btnUpDate.Location = new System.Drawing.Point(228, 449);
+            this.Wm_btnUpDate.Location = new System.Drawing.Point(291, 476);
             this.Wm_btnUpDate.MouseBack = null;
             this.Wm_btnUpDate.Name = "Wm_btnUpDate";
             this.Wm_btnUpDate.NormlBack = null;
@@ -192,11 +194,11 @@
             this.Wm_btnDelete.BackColor = System.Drawing.Color.Transparent;
             this.Wm_btnDelete.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Wm_btnDelete.DownBack = null;
-            this.Wm_btnDelete.Location = new System.Drawing.Point(539, 461);
+            this.Wm_btnDelete.Location = new System.Drawing.Point(584, 514);
             this.Wm_btnDelete.MouseBack = null;
             this.Wm_btnDelete.Name = "Wm_btnDelete";
             this.Wm_btnDelete.NormlBack = null;
-            this.Wm_btnDelete.Size = new System.Drawing.Size(85, 32);
+            this.Wm_btnDelete.Size = new System.Drawing.Size(69, 32);
             this.Wm_btnDelete.TabIndex = 23;
             this.Wm_btnDelete.Text = "删除";
             this.Wm_btnDelete.UseVisualStyleBackColor = false;
@@ -207,11 +209,11 @@
             this.Wm_btnReturn.BackColor = System.Drawing.Color.Transparent;
             this.Wm_btnReturn.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.Wm_btnReturn.DownBack = null;
-            this.Wm_btnReturn.Location = new System.Drawing.Point(633, 461);
+            this.Wm_btnReturn.Location = new System.Drawing.Point(674, 514);
             this.Wm_btnReturn.MouseBack = null;
             this.Wm_btnReturn.Name = "Wm_btnReturn";
             this.Wm_btnReturn.NormlBack = null;
-            this.Wm_btnReturn.Size = new System.Drawing.Size(85, 32);
+            this.Wm_btnReturn.Size = new System.Drawing.Size(69, 32);
             this.Wm_btnReturn.TabIndex = 24;
             this.Wm_btnReturn.Text = "返回";
             this.Wm_btnReturn.UseVisualStyleBackColor = false;
@@ -221,7 +223,7 @@
             // 
             this.Wm_cbBUserType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.Wm_cbBUserType.FormattingEnabled = true;
-            this.Wm_cbBUserType.Location = new System.Drawing.Point(279, 98);
+            this.Wm_cbBUserType.Location = new System.Drawing.Point(344, 99);
             this.Wm_cbBUserType.Name = "Wm_cbBUserType";
             this.Wm_cbBUserType.Size = new System.Drawing.Size(144, 22);
             this.Wm_cbBUserType.TabIndex = 25;
@@ -231,7 +233,7 @@
             // 
             this.Wm_cbBGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.Wm_cbBGroup.FormattingEnabled = true;
-            this.Wm_cbBGroup.Location = new System.Drawing.Point(279, 175);
+            this.Wm_cbBGroup.Location = new System.Drawing.Point(344, 176);
             this.Wm_cbBGroup.Name = "Wm_cbBGroup";
             this.Wm_cbBGroup.Size = new System.Drawing.Size(144, 22);
             this.Wm_cbBGroup.TabIndex = 26;
@@ -241,7 +243,7 @@
             // 
             this.Wm_cbBSex.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.Wm_cbBSex.FormattingEnabled = true;
-            this.Wm_cbBSex.Location = new System.Drawing.Point(279, 261);
+            this.Wm_cbBSex.Location = new System.Drawing.Point(344, 262);
             this.Wm_cbBSex.Name = "Wm_cbBSex";
             this.Wm_cbBSex.Size = new System.Drawing.Size(144, 22);
             this.Wm_cbBSex.TabIndex = 27;
@@ -251,7 +253,7 @@
             // 
             this.Wm_cbBEmpStation.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.Wm_cbBEmpStation.FormattingEnabled = true;
-            this.Wm_cbBEmpStation.Location = new System.Drawing.Point(279, 137);
+            this.Wm_cbBEmpStation.Location = new System.Drawing.Point(344, 138);
             this.Wm_cbBEmpStation.Name = "Wm_cbBEmpStation";
             this.Wm_cbBEmpStation.Size = new System.Drawing.Size(144, 22);
             this.Wm_cbBEmpStation.TabIndex = 29;
@@ -261,17 +263,37 @@
             // 
             this.Wm_lblEmpType.AutoSize = true;
             this.Wm_lblEmpType.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Wm_lblEmpType.Location = new System.Drawing.Point(137, 142);
+            this.Wm_lblEmpType.Location = new System.Drawing.Point(202, 143);
             this.Wm_lblEmpType.Name = "Wm_lblEmpType";
             this.Wm_lblEmpType.Size = new System.Drawing.Size(68, 17);
             this.Wm_lblEmpType.TabIndex = 28;
             this.Wm_lblEmpType.Text = "员工岗位：";
             // 
+            // wm_tbx_email
+            // 
+            this.wm_tbx_email.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.wm_tbx_email.Location = new System.Drawing.Point(344, 438);
+            this.wm_tbx_email.Name = "wm_tbx_email";
+            this.wm_tbx_email.Size = new System.Drawing.Size(144, 23);
+            this.wm_tbx_email.TabIndex = 31;
+            // 
+            // wm_lbl_email
+            // 
+            this.wm_lbl_email.AutoSize = true;
+            this.wm_lbl_email.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.wm_lbl_email.Location = new System.Drawing.Point(202, 443);
+            this.wm_lbl_email.Name = "wm_lbl_email";
+            this.wm_lbl_email.Size = new System.Drawing.Size(44, 17);
+            this.wm_lbl_email.TabIndex = 30;
+            this.wm_lbl_email.Text = "邮箱：";
+            // 
             // Workers_message
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 528);
+            this.ClientSize = new System.Drawing.Size(782, 572);
+            this.Controls.Add(this.wm_tbx_email);
+            this.Controls.Add(this.wm_lbl_email);
             this.Controls.Add(this.Wm_cbBEmpStation);
             this.Controls.Add(this.Wm_lblEmpType);
             this.Controls.Add(this.Wm_cbBSex);
@@ -326,5 +348,7 @@
         private CCWin.SkinControl.SkinComboBox Wm_cbBSex;
         private CCWin.SkinControl.SkinComboBox Wm_cbBEmpStation;
         private System.Windows.Forms.Label Wm_lblEmpType;
+        private System.Windows.Forms.TextBox wm_tbx_email;
+        private System.Windows.Forms.Label wm_lbl_email;
     }
 }

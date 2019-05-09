@@ -182,6 +182,7 @@
             this.AV_btn_Logout.BackColor = System.Drawing.Color.Transparent;
             this.AV_btn_Logout.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.AV_btn_Logout.DownBack = null;
+            this.AV_btn_Logout.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.AV_btn_Logout.Location = new System.Drawing.Point(640, 37);
             this.AV_btn_Logout.MouseBack = null;
             this.AV_btn_Logout.Name = "AV_btn_Logout";
@@ -197,7 +198,8 @@
             this.AV_btn_Submit.BackColor = System.Drawing.Color.Transparent;
             this.AV_btn_Submit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.AV_btn_Submit.DownBack = null;
-            this.AV_btn_Submit.Location = new System.Drawing.Point(245, 464);
+            this.AV_btn_Submit.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.AV_btn_Submit.Location = new System.Drawing.Point(613, 496);
             this.AV_btn_Submit.MouseBack = null;
             this.AV_btn_Submit.Name = "AV_btn_Submit";
             this.AV_btn_Submit.NormlBack = null;
@@ -212,7 +214,8 @@
             this.AV_btn_Return.BackColor = System.Drawing.Color.Transparent;
             this.AV_btn_Return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.AV_btn_Return.DownBack = null;
-            this.AV_btn_Return.Location = new System.Drawing.Point(506, 464);
+            this.AV_btn_Return.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.AV_btn_Return.Location = new System.Drawing.Point(713, 496);
             this.AV_btn_Return.MouseBack = null;
             this.AV_btn_Return.Name = "AV_btn_Return";
             this.AV_btn_Return.NormlBack = null;
