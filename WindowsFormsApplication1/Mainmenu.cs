@@ -76,7 +76,6 @@ namespace WindowsFormsApplication1
                     create_time.Font = font;
                     create_time.Width = 80;
                     //create_time.TextAlign = ContentAlignment.MiddleCenter;
-
                     mm_flp_announcement.Controls.Add(ann_text);
                     mm_flp_announcement.Controls.Add(create_time);
                     mm_flp_announcement.SetFlowBreak(create_time, true);

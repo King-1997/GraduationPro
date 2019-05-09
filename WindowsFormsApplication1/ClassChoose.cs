@@ -209,15 +209,13 @@ namespace WindowsFormsApplication1
             Owner.Show();
             Dispose();
         }
-
         private void ClassChoose_Load(object sender, EventArgs e)
         {
             //刷新窗口
             fLP_lessons.Controls.Clear();
             String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c ,[User] u where c.u_id = u.u_id";
-            showClassesInfo(sql);  
+            showClassesInfo(sql);
         }
-
         private void btn_back_Click(object sender, EventArgs e)
         {
             Owner.Show();

@@ -115,19 +115,24 @@ namespace WindowsFormsApplication1
         //删除评论按钮事件处理
         private void deleteComment(object sender,EventArgs e)
         {
-            Button button = (Button)sender;
-            int.TryParse(button.Name, out ed_id);
-            DataBaseConnection dc = new DataBaseConnection();
-            string delete_comment = "delete from emp_discuss where ed_id = "+ed_id;
-            int flag = dc.ExecuteUpdate(delete_comment);
-            if (flag == 1)
+            if (MessageBox.Show("您确定要删除该条讨论吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
             {
-                MessageBox.Show("删除评论成功！");
-            }else
-            {
-                MessageBox.Show("删除评论失败，请重试！");
-            }
-            Emp_Comment_Load(sender, e);
+                Button button = (Button)sender;
+                int.TryParse(button.Name, out ed_id);
+                DataBaseConnection dc = new DataBaseConnection();
+                string delete_comment = "delete from emp_discuss where ed_id = " + ed_id;
+                int flag = dc.ExecuteUpdate(delete_comment);
+                if (flag == 1)
+                {
+                    MessageBox.Show("删除评论成功！");
+                }
+                else
+                {
+                    MessageBox.Show("删除评论失败，请重试！");
+                }
+                Emp_Comment_Load(sender, e);
+            }               
         }
         //显示或隐藏评论区域
         //private void showOrHide(Boolean flag)

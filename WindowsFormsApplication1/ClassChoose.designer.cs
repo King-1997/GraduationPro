@@ -42,7 +42,7 @@
             // tBx_findkeywords
             // 
             this.tBx_findkeywords.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.tBx_findkeywords.Location = new System.Drawing.Point(214, 48);
+            this.tBx_findkeywords.Location = new System.Drawing.Point(214, 49);
             this.tBx_findkeywords.Margin = new System.Windows.Forms.Padding(2);
             this.tBx_findkeywords.Name = "tBx_findkeywords";
             this.tBx_findkeywords.Size = new System.Drawing.Size(207, 29);
