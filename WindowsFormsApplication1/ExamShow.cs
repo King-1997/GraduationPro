@@ -304,7 +304,7 @@ namespace WindowsFormsApplication1
                         q_c = dt.Rows[i][5].ToString();
                         q_d = dt.Rows[i][6].ToString();
                         int.TryParse(dt.Rows[i][7].ToString(), out q_goal);
-                        select_sql = "select isnull(count(1),0),isnull(q_id,-1) from question where q_title = N'" + q_title + "'and q_answer = '" + q_answer + "' and q_option1 = N'" + q_a + "' and q_option2 = N'" + q_b + "' and q_option3 = N'" + q_c + "' and q_option4 = '" + q_d + "' and q_goal = " + q_goal + " group by q_id";
+                        select_sql = "select isnull(count(1),0),isnull(q_id,-1) from question where c_id = " + c_id + " and q_title = N'" + q_title + "'and q_answer = '" + q_answer + "' and q_option1 = N'" + q_a + "' and q_option2 = N'" + q_b + "' and q_option3 = N'" + q_c + "' and q_option4 = '" + q_d + "' and q_goal = " + q_goal + " group by q_id";
                         DataSet ds1 = dc.ExecuteQuery(select_sql);
                         int count_e = 0;
                         int q_id = -1;
@@ -321,18 +321,26 @@ namespace WindowsFormsApplication1
                             //if (flag == 1)
                             //{
                             count++;
+                            count_x++;
                             //}
                         }
                         else if (count_e == 0)
                         {
+                            if (c_id == -1)
+                            {
+                                insert_user = "insert into question values (next value for question_s,null,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                            }
+                            else
+                            {
+                                insert_user = "insert into question values (next value for question_s," + c_id + ",null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                            }
                             //执行插入语句
-                            insert_user = "insert into question values (next value for question_s,null,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+
                             //Console.WriteLine(insert_user);
                             flag = dc.ExecuteUpdate(insert_user);
                             if (flag == 1)
                             {
                                 count++;
-                                count_x++;
                             }
                         }
                         else

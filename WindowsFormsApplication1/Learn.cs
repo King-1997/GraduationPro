@@ -33,7 +33,6 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-        
         private void Learn_Load(object sender, EventArgs e)
         {
             L_lblTime.Font = font;  //设置label1显示字体

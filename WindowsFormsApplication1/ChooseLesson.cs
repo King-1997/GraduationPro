@@ -197,12 +197,17 @@ namespace WindowsFormsApplication1
             {
                 c_ids = c_ids.Substring(0, c_ids.Length - 1);
                 string[] res = c_ids.Split(',');
+                DataBaseConnection dc = new DataBaseConnection();
                 foreach (string id in res)
                 {
-                    Console.WriteLine("推荐课程的id:" + id);
-                    string select_c_info = "select c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
-
-                    ShowRecInfo(select_c_info);
+                    string select_c_id = "select spl.c_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl where uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and uph.u_id = " + Model.User.userId + " and spl.c_id = " + id;
+                    DataSet ds = dc.ExecuteQuery(select_c_id);
+                    if (ds.Tables["user"].Rows.Count == 0)
+                    {
+                        //Console.WriteLine("推荐课程的id:" + id);
+                        string select_c_info = "select c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
+                        ShowRecInfo(select_c_info);
+                    }
                 }
             }
             else
