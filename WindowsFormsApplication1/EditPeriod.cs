@@ -181,7 +181,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
+                lbl_no_data.Width = 400;
                 lbl_no_data.Height = 150;
                 ep_flp_Lines_Info.Controls.Add(lbl_no_data);
             }

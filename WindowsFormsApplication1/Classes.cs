@@ -92,7 +92,7 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             int.TryParse(button.Name, out LoadClasses.c_id);
-            Console.WriteLine("button里的课程id：" + button.Name);
+            //Console.WriteLine("button里的课程id：" + button.Name);
             //选择课程，跳转到课程信息修改页面
             LoadClasses loadClasses = new LoadClasses();
             loadClasses.Owner = this;
@@ -103,7 +103,7 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             int.TryParse(button.Name, out ClaeeesInfo.c_id);
-            Console.WriteLine("button里的课程id：" + button.Name);
+            //Console.WriteLine("button里的课程id：" + button.Name);
             //选择课程，跳转到课程详细信息页面
             ClaeeesInfo classesInfo = new ClaeeesInfo();
             classesInfo.Owner = this;
@@ -363,7 +363,7 @@ namespace WindowsFormsApplication1
                     var btnDeleteClasses = new Button { Text = "退选" };
                     btnDeleteClasses.Width = 40;
                     btnDeleteClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
-                    Console.WriteLine(btnDeleteClasses.Name);
+                    //Console.WriteLine(btnDeleteClasses.Name);
                     btnDeleteClasses.Click += new EventHandler(btnDeleteClasses_Click);
 
                     c_flpClasses.Controls.Add(lblSelectClasses_name);

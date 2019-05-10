@@ -21,20 +21,20 @@ namespace WindowsFormsApplication1
         //注销返回登陆界面
         private void Logout_button_Click(object sender, EventArgs e)
         {
-            this.Owner.Owner.Show();//打开登陆界面
-            this.Owner.Dispose();
+            Owner.Owner.Show();//打开登陆界面
+            Owner.Dispose();
         }
         //返回上一界面
         private void Return_button_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();//打开父界面
-            this.Dispose();
+            Owner.Show();//打开父界面
+            Dispose();
         }
         private void ApplyView_Load(object sender, EventArgs e)
         {
             AV_lbl_User.Text = Model.User.userName;
             AV_dtp_StartTime.MinDate = DateTime.Now;
-            //AV_dtp_EndTime.MinDate = this.AV_dtp_StartTime.Value;
+            //AV_dtp_EndTime.MinDate = AV_dtp_StartTime.Value;
             AV_dtp_EndTime.MinDate = DateTime.Parse(AV_dtp_StartTime.Value.ToString());
             AV_Combx_category.Items.AddRange(new object[] { "事假", "病假", "产假/陪产假", "丧假", "其他" });
             AV_Combx_category.SelectedIndex = 0;
@@ -44,11 +44,11 @@ namespace WindowsFormsApplication1
         private void AV_btn_Submit_Click(object sender, EventArgs e)
         {
             //获取控件中输入的值
-            String type = this.AV_Combx_category.SelectedItem.ToString();
-            String reason = this.AV_txtBx_Reason.Text;
-            DateTime startTime = this.AV_dtp_StartTime.Value;
+            String type = AV_Combx_category.SelectedItem.ToString();
+            String reason = AV_txtBx_Reason.Text;
+            DateTime startTime = AV_dtp_StartTime.Value;
             //Console.WriteLine("开始时间的格式："+startTime);
-            DateTime endTime = this.AV_dtp_EndTime.Value;
+            DateTime endTime = AV_dtp_EndTime.Value;
             //Console.WriteLine("结束时间的格式：" + endTime);
             //Console.WriteLine(endTime.Subtract(startTime).TotalMilliseconds);
             int i = (int)((endTime.Subtract(startTime).TotalMilliseconds) / 43200000) + 1;
@@ -96,13 +96,13 @@ namespace WindowsFormsApplication1
 
         private void AV_btn_Logout_Click(object sender, EventArgs e)
         {
-            this.Owner.Owner.Show();//打开登陆界面
-            this.Owner.Dispose();
+            Owner.Owner.Show();//打开登陆界面
+            Owner.Dispose();
         }
         private void AV_btn_Return_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();//打开父界面
-            this.Dispose();
+            Owner.Show();//打开父界面
+            Dispose();
         }
     }
 }

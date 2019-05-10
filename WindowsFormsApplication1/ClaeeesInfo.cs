@@ -22,8 +22,8 @@ namespace WindowsFormsApplication1
 
         private void CI_btnReturn_Click(object sender, EventArgs e)
         {
-            this.Owner.Show();
-            this.Dispose();            
+            Owner.Show();
+            Dispose();            
         }
 
         private void ClaeeesInfo_Load(object sender, EventArgs e)

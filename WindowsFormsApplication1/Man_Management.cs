@@ -372,125 +372,132 @@ namespace WindowsFormsApplication1
 
         private void MM_btnInput_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            DataBaseConnection dc = new DataBaseConnection();
-            string usertype, usergroup, station_name, u_account, u_password, u_name, u_sex, u_idNum, u_phone, u_email;
-            DateTime u_entryTime = new DateTime(2018, 8, 25);
-            int ut_id = 0, g_id = 0, station_id = 0, count = 0, count_x = 0, flag = 0;
-            string select_ut_id, select_g_id, select_s_id, insert_user, select_sql/*, update_sql*/;
-            string fileAdd = MM_lblFileName.Text;
-            Console.WriteLine("文件路径" + fileAdd);
-            if (!string.IsNullOrEmpty(fileAdd))
+            if (MM_lblFileName.Text == "请选择文件")
             {
-                dt = Excel.ImportExcelFile(fileAdd);
-                //遍历datatable
-                if (dt.Rows.Count > 0)
+                MessageBox.Show("请选择文件！");
+            }
+            else
+            {
+                DataTable dt = new DataTable();
+                DataBaseConnection dc = new DataBaseConnection();
+                string usertype, usergroup, station_name, u_account, u_password, u_name, u_sex, u_idNum, u_phone, u_email;
+                DateTime u_entryTime = new DateTime(2018, 8, 25);
+                int ut_id = 0, g_id = 0, station_id = 0, count = 0, count_x = 0, flag = 0;
+                string select_ut_id, select_g_id, select_s_id, insert_user, select_sql/*, update_sql*/;
+                string fileAdd = MM_lblFileName.Text;
+                Console.WriteLine("文件路径" + fileAdd);
+                if (!string.IsNullOrEmpty(fileAdd))
                 {
-                    for (int i = 1; i < dt.Rows.Count; i++)
+                    dt = Excel.ImportExcelFile(fileAdd);
+                    //遍历datatable
+                    if (dt.Rows.Count > 0)
                     {
-                        usertype = dt.Rows[i][1].ToString();
-                        select_ut_id = "select ut_id from usertype where ut_type ='" + usertype + "'";
-                        //Console.WriteLine(select_ut_id);
-                        DataSet ds = dc.ExecuteQuery(select_ut_id);
-                        //ut_id = Convert.ToInt32(ds.Tables["user"].Rows[0][0].ToString());
-                        int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out ut_id);//将查出来的ut_id转换成int类型
-
-                        usergroup = dt.Rows[i][2].ToString();
-                        select_g_id = "select g_id from [group] where g_group = '" + usergroup + "'";
-                        Console.WriteLine(select_g_id);
-                        DataSet ds1 = dc.ExecuteQuery(select_g_id);
-                        //Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
-                        //g_id = Convert.ToInt32(ds1.Tables["user"].Rows[0][0].ToString());
-                        int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out g_id);
-
-                        station_name = dt.Rows[i][3].ToString();
-                        select_s_id = "select station_id from employee_station where station_name = '" + station_name + "'";
-                        Console.WriteLine(select_s_id);
-                        DataSet ds4 = dc.ExecuteQuery(select_s_id);
-                        //Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
-                        //g_id = Convert.ToInt32(ds1.Tables["user"].Rows[0][0].ToString());
-                        int.TryParse(ds4.Tables["user"].Rows[0][0].ToString(), out station_id);
-
-                        u_account = dt.Rows[i][4].ToString();
-                        u_password = dt.Rows[i][5].ToString();
-                        u_name = dt.Rows[i][6].ToString();
-                        u_sex = dt.Rows[i][7].ToString();
-                        u_idNum = dt.Rows[i][8].ToString();
-                        u_phone = dt.Rows[i][9].ToString();
-                        u_entryTime = Convert.ToDateTime(dt.Rows[i][10].ToString());
-                        u_email = dt.Rows[i][11].ToString();
-                        //Console.WriteLine("u_entryTime:"+u_entryTime);
-
-                        //在表中查询存不存在该条员工数据，存在则更新，不存在则插入
-                        select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = " + g_id + " and u.station_id = " + station_id + " and u.u_account = '" + u_account + "' and  u.u_name = '" + u_name + "' and u.u_sex = '" + u_sex + "' and u.u_idNum = '" + u_idNum + "' and u.u_phone = '" + u_phone + "' and u.u_email = '" + u_email + "' group by u.u_id";
-                        DataSet ds2 = dc.ExecuteQuery(select_sql);
-                        int count_e = 0;
-                        int u_id = -1;
-                        if (ds2.Tables["user"].Rows.Count > 0)
+                        for (int i = 1; i < dt.Rows.Count; i++)
                         {
-                            int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
-                            int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
-                        }
-                        if (count_e == 1)
-                        {
-                            //update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '" + u_entryTime + "' where u_account = '" + u_account + "' where u_id = " + u_id;
-                            //flag = dc.ExecuteUpdate(update_sql);
-                            //if (flag == 1)
-                            //{
-                            count++;
-                            count_x++;
-                            //}
-                            //usertype = "";
-                            //usergroup = "";
-                            //ut_id = 0;
-                            //g_id = 0;
-                        }
-                        else if (count_e == 0)
-                        {
-                            //执行插入语句
-                            insert_user = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + "," + station_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "','" + u_email + "')";
-                            //Console.WriteLine(insert_user);
-                            flag = dc.ExecuteUpdate(insert_user);
-                            if (flag == 1)
+                            usertype = dt.Rows[i][1].ToString();
+                            select_ut_id = "select ut_id from usertype where ut_type ='" + usertype + "'";
+                            //Console.WriteLine(select_ut_id);
+                            DataSet ds = dc.ExecuteQuery(select_ut_id);
+                            //ut_id = Convert.ToInt32(ds.Tables["user"].Rows[0][0].ToString());
+                            int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out ut_id);//将查出来的ut_id转换成int类型
+
+                            usergroup = dt.Rows[i][2].ToString();
+                            select_g_id = "select g_id from [group] where g_group = '" + usergroup + "'";
+                            Console.WriteLine(select_g_id);
+                            DataSet ds1 = dc.ExecuteQuery(select_g_id);
+                            //Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
+                            //g_id = Convert.ToInt32(ds1.Tables["user"].Rows[0][0].ToString());
+                            int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out g_id);
+
+                            station_name = dt.Rows[i][3].ToString();
+                            select_s_id = "select station_id from employee_station where station_name = '" + station_name + "'";
+                            Console.WriteLine(select_s_id);
+                            DataSet ds4 = dc.ExecuteQuery(select_s_id);
+                            //Console.WriteLine("g_id的值：" + ds1.Tables["user"].Rows[0][0].ToString());
+                            //g_id = Convert.ToInt32(ds1.Tables["user"].Rows[0][0].ToString());
+                            int.TryParse(ds4.Tables["user"].Rows[0][0].ToString(), out station_id);
+
+                            u_account = dt.Rows[i][4].ToString();
+                            u_password = dt.Rows[i][5].ToString();
+                            u_name = dt.Rows[i][6].ToString();
+                            u_sex = dt.Rows[i][7].ToString();
+                            u_idNum = dt.Rows[i][8].ToString();
+                            u_phone = dt.Rows[i][9].ToString();
+                            u_entryTime = Convert.ToDateTime(dt.Rows[i][10].ToString());
+                            u_email = dt.Rows[i][11].ToString();
+                            //Console.WriteLine("u_entryTime:"+u_entryTime);
+
+                            //在表中查询存不存在该条员工数据，存在则更新，不存在则插入
+                            select_sql = "select isnull(count(1),0),isnull(u.u_id,-1) from [User] u where u.ut_id = " + ut_id + " and u.g_id = " + g_id + " and u.station_id = " + station_id + " and u.u_account = '" + u_account + "' and  u.u_name = '" + u_name + "' and u.u_sex = '" + u_sex + "' and u.u_idNum = '" + u_idNum + "' and u.u_phone = '" + u_phone + "' and u.u_email = '" + u_email + "' group by u.u_id";
+                            DataSet ds2 = dc.ExecuteQuery(select_sql);
+                            int count_e = 0;
+                            int u_id = -1;
+                            if (ds2.Tables["user"].Rows.Count > 0)
                             {
-                                count++;
+                                int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out count_e);
+                                int.TryParse(ds2.Tables["user"].Rows[0][1].ToString(), out u_id);
                             }
-                            usertype = "";
-                            usergroup = "";
-                            ut_id = 0;
-                            g_id = 0;
+                            if (count_e == 1)
+                            {
+                                //update_sql = "update [User] set u.ut_id = " + ut_id + " , u.g_id = " + g_id + " , u.password = '" + u_password + "' ,  u.u_name = '" + u_name + "' , u.u_sex = '" + u_sex + "' , u.u_idNum = '" + u_idNum + "' , u.u_phone = '" + u_phone + "',u.u_entryTime = '" + u_entryTime + "' where u_account = '" + u_account + "' where u_id = " + u_id;
+                                //flag = dc.ExecuteUpdate(update_sql);
+                                //if (flag == 1)
+                                //{
+                                count++;
+                                count_x++;
+                                //}
+                                //usertype = "";
+                                //usergroup = "";
+                                //ut_id = 0;
+                                //g_id = 0;
+                            }
+                            else if (count_e == 0)
+                            {
+                                //执行插入语句
+                                insert_user = "insert into [User] values (next value for User_s," + ut_id + "," + g_id + "," + station_id + ",'" + u_account + "','" + u_password + "','" + u_name + "','" + u_sex + "',0,'" + u_idNum + "','" + u_phone + "','" + u_entryTime + "','" + u_email + "')";
+                                //Console.WriteLine(insert_user);
+                                flag = dc.ExecuteUpdate(insert_user);
+                                if (flag == 1)
+                                {
+                                    count++;
+                                }
+                                usertype = "";
+                                usergroup = "";
+                                ut_id = 0;
+                                g_id = 0;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
+                            }
                         }
-                        else
+                        if (count_x != 0)
                         {
-                            MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
+                            MessageBox.Show("批量导入成功,其中有" + count_x + "条重复人员信息，自动过滤！");
+                        }
+                        if (count == dt.Rows.Count - 1)
+                        {
+                            MessageBox.Show("批量导入成功！");
+                            //刷新员工信息
+                            if (string.IsNullOrEmpty(tBx_findkeywords.Text))
+                            {
+                                Man_Management_Load(sender, e);
+                            }
+                            else
+                            {
+                                btn_find_Click(sender, e);
+                            }
                         }
                     }
-                    if (count_x != 0)
+                    else
                     {
-                        MessageBox.Show("批量导入成功,其中有" + count_x + "条重复人员信息，自动过滤！");
-                    }
-                    if (count == dt.Rows.Count - 1)
-                    {
-                        MessageBox.Show("批量导入成功！");
-                        //刷新员工信息
-                        if (string.IsNullOrEmpty(tBx_findkeywords.Text))
-                        {
-                            Man_Management_Load(sender, e);
-                        }
-                        else
-                        {
-                            btn_find_Click(sender, e);
-                        }
+                        MessageBox.Show("Excel表中无数据！");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Excel表中无数据！");
+                    MessageBox.Show("请选择文件！");
                 }
-            }
-            else
-            {
-                MessageBox.Show("请选择文件！");
             }
         }
         private void mm_btn_all_Click(object sender, EventArgs e)

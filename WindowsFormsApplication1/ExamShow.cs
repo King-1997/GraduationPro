@@ -128,7 +128,6 @@ namespace WindowsFormsApplication1
         {
             Button button = (Button)sender;
             LoadExam.Question_index = button.Name;
-
             LoadExam loadExam = new LoadExam();
             loadExam.Owner = this;
             loadExam.ShowDialog();
@@ -282,89 +281,96 @@ namespace WindowsFormsApplication1
 
         private void MM_btnInput_Click(object sender, EventArgs e)
         {
-            //批量上传考题功能
-            DataTable dt = new DataTable();
-            DataBaseConnection dc = new DataBaseConnection();
-            string q_title, q_answer, q_a, q_b, q_c, q_d;
-            int q_goal, count = 0, count_x = 0, flag = 0;
-            string insert_user, select_sql/*, update_sql*/;
-            string fileAdd = MM_lblFileName.Text;
-            if (!string.IsNullOrEmpty(fileAdd))
+            if (MM_lblFileName.Text == "请选择文件")
             {
-                dt = Excel.ImportExcelFile(fileAdd);
-                //遍历datatable
-                if (dt.Rows.Count > 0)
+                MessageBox.Show("请选择文件！");
+            }
+            else
+            {
+                //批量上传考题功能
+                DataTable dt = new DataTable();
+                DataBaseConnection dc = new DataBaseConnection();
+                string q_title, q_answer, q_a, q_b, q_c, q_d;
+                int q_goal, count = 0, count_x = 0, flag = 0;
+                string insert_user, select_sql/*, update_sql*/;
+                string fileAdd = MM_lblFileName.Text;
+                if (!string.IsNullOrEmpty(fileAdd))
                 {
-                    for (int i = 1; i < dt.Rows.Count; i++)
+                    dt = Excel.ImportExcelFile(fileAdd);
+                    //遍历datatable
+                    if (dt.Rows.Count > 0)
                     {
-                        q_title = dt.Rows[i][1].ToString();
-                        q_answer = dt.Rows[i][2].ToString();
-                        q_a = dt.Rows[i][3].ToString();
-                        q_b = dt.Rows[i][4].ToString();
-                        q_c = dt.Rows[i][5].ToString();
-                        q_d = dt.Rows[i][6].ToString();
-                        int.TryParse(dt.Rows[i][7].ToString(), out q_goal);
-                        select_sql = "select isnull(count(1),0),isnull(q_id,-1) from question where c_id = " + c_id + " and q_title = N'" + q_title + "'and q_answer = '" + q_answer + "' and q_option1 = N'" + q_a + "' and q_option2 = N'" + q_b + "' and q_option3 = N'" + q_c + "' and q_option4 = '" + q_d + "' and q_goal = " + q_goal + " group by q_id";
-                        DataSet ds1 = dc.ExecuteQuery(select_sql);
-                        int count_e = 0;
-                        int q_id = -1;
-                        if (ds1.Tables["user"].Rows.Count > 0)
+                        for (int i = 1; i < dt.Rows.Count; i++)
                         {
-                            int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out count_e);
-                            int.TryParse(ds1.Tables["user"].Rows[0][1].ToString(), out q_id);
-                        }
-                        if (count_e == 1)
-                        {
-                            //存在则执行update操作
-                            //string update_sql = "update question set q_title = N'" + q_title + "', q_answer = '" + q_answer + "' , q_option1 = N'" + q_a + "' , q_option2 = N'" + q_b + "' , q_option3 = N'" + q_c + "' , q_option4 = '" + q_d + "' , q_goal = " + q_goal + " where q_id = " + q_id;
-                            //flag = dc.ExecuteUpdate(update_sql);
-                            //if (flag == 1)
-                            //{
-                            count++;
-                            count_x++;
-                            //}
-                        }
-                        else if (count_e == 0)
-                        {
-                            if (c_id == -1)
+                            q_title = dt.Rows[i][1].ToString();
+                            q_answer = dt.Rows[i][2].ToString();
+                            q_a = dt.Rows[i][3].ToString();
+                            q_b = dt.Rows[i][4].ToString();
+                            q_c = dt.Rows[i][5].ToString();
+                            q_d = dt.Rows[i][6].ToString();
+                            int.TryParse(dt.Rows[i][7].ToString(), out q_goal);
+                            select_sql = "select isnull(count(1),0),isnull(q_id,-1) from question where c_id = " + c_id + " and q_title = N'" + q_title + "'and q_answer = '" + q_answer + "' and q_option1 = N'" + q_a + "' and q_option2 = N'" + q_b + "' and q_option3 = N'" + q_c + "' and q_option4 = '" + q_d + "' and q_goal = " + q_goal + " group by q_id";
+                            DataSet ds1 = dc.ExecuteQuery(select_sql);
+                            int count_e = 0;
+                            int q_id = -1;
+                            if (ds1.Tables["user"].Rows.Count > 0)
                             {
-                                insert_user = "insert into question values (next value for question_s,null,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                                int.TryParse(ds1.Tables["user"].Rows[0][0].ToString(), out count_e);
+                                int.TryParse(ds1.Tables["user"].Rows[0][1].ToString(), out q_id);
+                            }
+                            if (count_e == 1)
+                            {
+                                //存在则执行update操作
+                                //string update_sql = "update question set q_title = N'" + q_title + "', q_answer = '" + q_answer + "' , q_option1 = N'" + q_a + "' , q_option2 = N'" + q_b + "' , q_option3 = N'" + q_c + "' , q_option4 = '" + q_d + "' , q_goal = " + q_goal + " where q_id = " + q_id;
+                                //flag = dc.ExecuteUpdate(update_sql);
+                                //if (flag == 1)
+                                //{
+                                count++;
+                                count_x++;
+                                //}
+                            }
+                            else if (count_e == 0)
+                            {
+                                if (c_id == -1)
+                                {
+                                    insert_user = "insert into question values (next value for question_s,null,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                                }
+                                else
+                                {
+                                    insert_user = "insert into question values (next value for question_s," + c_id + ",null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                                }
+                                //执行插入语句
+
+                                //Console.WriteLine(insert_user);
+                                flag = dc.ExecuteUpdate(insert_user);
+                                if (flag == 1)
+                                {
+                                    count++;
+                                }
                             }
                             else
                             {
-                                insert_user = "insert into question values (next value for question_s," + c_id + ",null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
-                            }
-                            //执行插入语句
-
-                            //Console.WriteLine(insert_user);
-                            flag = dc.ExecuteUpdate(insert_user);
-                            if (flag == 1)
-                            {
-                                count++;
+                                MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
                             }
                         }
-                        else
+                        if (count_x != 0)
                         {
-                            MessageBox.Show("Excel表数据与数据库已有数据冲突，请仔细核对！");
+                            MessageBox.Show("批量导入成功,其中有" + count_x + "条重复试题信息，自动过滤！");
+                        }
+                        if (count == dt.Rows.Count - 1)
+                        {
+                            MessageBox.Show("批量导入成功！");
                         }
                     }
-                    if (count_x != 0)
+                    else
                     {
-                        MessageBox.Show("批量导入成功,其中有" + count_x + "条重复试题信息，自动过滤！");
-                    }
-                    if (count == dt.Rows.Count - 1)
-                    {
-                        MessageBox.Show("批量导入成功！");
+                        MessageBox.Show("Excel表中无数据！");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Excel表中无数据！");
+                    MessageBox.Show("请选择文件！");
                 }
-            }
-            else
-            {
-                MessageBox.Show("请选择文件！");
             }
         }
     }
