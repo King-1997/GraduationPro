@@ -54,6 +54,10 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\..\Desktop\科勒软件需求\窗体美化\CSkin 16.1.14.2\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
@@ -159,6 +163,12 @@
     </Compile>
     <Compile Include="ManagePlan.Designer.cs">
       <DependentUpon>ManagePlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Study_detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Study_detail.Designer.cs">
+      <DependentUpon>Study_detail.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ConnectLongDistanceDesk.cs" />
     <Compile Include="Tools\Download.cs" />
@@ -346,6 +356,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Study_detail.resx">
+      <DependentUpon>Study_detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Workers_message.resx">
       <DependentUpon>Workers_message.cs</DependentUpon>
     </EmbeddedResource>

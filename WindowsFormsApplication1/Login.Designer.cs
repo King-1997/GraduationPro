@@ -45,7 +45,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(348, 214);
+            this.label1.Location = new System.Drawing.Point(348, 230);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 20);
@@ -56,7 +56,7 @@
             // textUserName
             // 
             this.textUserName.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textUserName.Location = new System.Drawing.Point(442, 211);
+            this.textUserName.Location = new System.Drawing.Point(442, 227);
             this.textUserName.Margin = new System.Windows.Forms.Padding(4);
             this.textUserName.Name = "textUserName";
             this.textUserName.Size = new System.Drawing.Size(132, 23);
@@ -65,7 +65,7 @@
             // textPassword
             // 
             this.textPassword.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textPassword.Location = new System.Drawing.Point(442, 267);
+            this.textPassword.Location = new System.Drawing.Point(442, 299);
             this.textPassword.Margin = new System.Windows.Forms.Padding(4);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
@@ -77,7 +77,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(348, 270);
+            this.label2.Location = new System.Drawing.Point(348, 302);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
@@ -89,12 +89,13 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(348, 328);
+            this.label3.Location = new System.Drawing.Point(345, 357);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "用户类型：";
+            this.label3.Visible = false;
             // 
             // skinLabel1
             // 
@@ -112,10 +113,11 @@
             this.l_cbb_userType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.l_cbb_userType.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.l_cbb_userType.FormattingEnabled = true;
-            this.l_cbb_userType.Location = new System.Drawing.Point(442, 326);
+            this.l_cbb_userType.Location = new System.Drawing.Point(439, 355);
             this.l_cbb_userType.Name = "l_cbb_userType";
             this.l_cbb_userType.Size = new System.Drawing.Size(138, 27);
             this.l_cbb_userType.TabIndex = 11;
+            this.l_cbb_userType.Visible = false;
             this.l_cbb_userType.WaterText = "";
             // 
             // btnLogin
@@ -130,7 +132,7 @@
             this.btnLogin.NormlBack = null;
             this.btnLogin.Size = new System.Drawing.Size(87, 35);
             this.btnLogin.TabIndex = 12;
-            this.btnLogin.Text = "登陆";
+            this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.button1_Click);
             // 

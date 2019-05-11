@@ -18,15 +18,15 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             //skinEngine1.SkinFile = "DeepCyan.ssk";
-            DataBaseConnection dc = new DataBaseConnection();
-            String select_user_type = "select ut_type from UserType";
-            DataSet ds = dc.ExecuteQuery(select_user_type);
-            for(int i = 0;i<ds.Tables["user"].Rows.Count;i++)
-            {
-                l_cbb_userType.Items.Add(ds.Tables["user"].Rows[i][0]);
-            }
-            //comboBox1.Items.AddRange(new object[] { "系统管理员", "管理员", "员工" });
-            l_cbb_userType.SelectedIndex = 0;
+            //DataBaseConnection dc = new DataBaseConnection();
+            //String select_user_type = "select ut_type from UserType";
+            //DataSet ds = dc.ExecuteQuery(select_user_type);
+            //for(int i = 0;i<ds.Tables["user"].Rows.Count;i++)
+            //{
+            //    l_cbb_userType.Items.Add(ds.Tables["user"].Rows[i][0]);
+            //}
+            ////comboBox1.Items.AddRange(new object[] { "系统管理员", "管理员", "员工" });
+            //l_cbb_userType.SelectedIndex = 0;
 
         }
 
@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1
             //从TextBox中获取用户输入信息
             string userName = textUserName.Text;
             string userPassword = textPassword.Text;
-            string userType = l_cbb_userType.SelectedItem.ToString();
+            //string userType = l_cbb_userType.SelectedItem.ToString();
             //2. 验证数据
             // 验证用户输入是否为空，若为空，提示用户信息
             if (userName.Equals("") || userPassword.Equals(""))
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication1
                         int ut_id = (int)ds.Tables["user"].Rows[0][7];
                         int station_id = (int)ds.Tables["user"].Rows[0][8];
                         //用户名和密码验证正确，提示成功，并执行跳转界面。
-                        if (userName.Equals(u_account) && userPassword.Equals(u_password) && userType.Equals(u_type))
+                        if (userName.Equals(u_account) && userPassword.Equals(u_password) /*&& userType.Equals(u_type)*/)
                         {
                             //MessageBox.Show("登录成功！");
                             //跳转主界面
@@ -88,11 +88,11 @@ namespace WindowsFormsApplication1
                             main1.Show();
                             Hide();
                         }
-                        //用户类型选择错误，提示错误。
-                        else if (userName.Equals(u_account) && userPassword.Equals(u_password) && !userType.Equals(u_type))
-                        {
-                            MessageBox.Show("用户类型错误！");
-                        }
+                        ////用户类型选择错误，提示错误。
+                        //else if (userName.Equals(u_account) && userPassword.Equals(u_password) && !userType.Equals(u_type))
+                        //{
+                        //    MessageBox.Show("用户类型错误！");
+                        //}
                         //用户名和密码验证错误，提示错误。
                         else
                         {

@@ -57,12 +57,12 @@
             // 
             this.lbl_lessonOwner.AutoSize = true;
             this.lbl_lessonOwner.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lbl_lessonOwner.Location = new System.Drawing.Point(294, 56);
+            this.lbl_lessonOwner.Location = new System.Drawing.Point(287, 56);
             this.lbl_lessonOwner.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_lessonOwner.Name = "lbl_lessonOwner";
-            this.lbl_lessonOwner.Size = new System.Drawing.Size(74, 21);
+            this.lbl_lessonOwner.Size = new System.Drawing.Size(90, 21);
             this.lbl_lessonOwner.TabIndex = 1;
-            this.lbl_lessonOwner.Text = "上传人：";
+            this.lbl_lessonOwner.Text = "开课部门：";
             // 
             // tBx_lessonName
             // 

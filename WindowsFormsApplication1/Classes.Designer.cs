@@ -115,11 +115,11 @@
             // 
             this.c_lblOwner.AutoSize = true;
             this.c_lblOwner.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.c_lblOwner.Location = new System.Drawing.Point(360, 109);
+            this.c_lblOwner.Location = new System.Drawing.Point(361, 109);
             this.c_lblOwner.Name = "c_lblOwner";
-            this.c_lblOwner.Size = new System.Drawing.Size(68, 17);
+            this.c_lblOwner.Size = new System.Drawing.Size(56, 17);
             this.c_lblOwner.TabIndex = 18;
-            this.c_lblOwner.Text = "课程上传人";
+            this.c_lblOwner.Text = "开课部门";
             // 
             // c_lblPeriod
             // 

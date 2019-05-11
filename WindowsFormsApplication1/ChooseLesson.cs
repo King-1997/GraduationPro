@@ -37,19 +37,19 @@ namespace WindowsFormsApplication1
             {
                 if (string.IsNullOrEmpty(lesson_name) && !string.IsNullOrEmpty(lesson_owner))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and u.u_name like N'%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+                    select_sql += "select c.c_name,g.g_group,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[group] u where c.u_id = g.g_group and u.u_name like N'%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 else if (string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+                    select_sql += "select c.c_name,g.g_group,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[group] u where c.u_id = g.g_group and c.c_name like N'%" + lesson_name + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 else if (!string.IsNullOrEmpty(lesson_owner) && !string.IsNullOrEmpty(lesson_name))
                 {
-                    select_sql += "select c.c_name,u.u_name,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[User] u where c.u_id = u.u_id and c.c_name like N'%" + lesson_name + "%' and u.u_name like '%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+                    select_sql += "select c.c_name,g.g_group,c.c_introduction,c.c_credit,c.c_recommendTime,c.c_ifExam,c.c_id from classes c,[group] u where c.u_id = g.g_group and c.c_name like N'%" + lesson_name + "%' and u.u_name like '%" + lesson_owner + "%' and c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
                 }
                 //Console.WriteLine("查询语句：" + select_sql);
                 ShowLessons(select_sql);
-                //在窗口添加课程信息                
+                //在窗口添加课程信息
             }
         }
         private void ShowLessons(String sql)
@@ -65,10 +65,10 @@ namespace WindowsFormsApplication1
                 lbl_rb.Font = font;
                 lbl_rb.Width = 100;
                 lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
-                //上传人标签
-                var lbl_Loadman = new Label { Text = "上传人" };
+                //开课部门标签
+                var lbl_Loadman = new Label { Text = "开课部门" };
                 lbl_Loadman.Font = font;
-                lbl_Loadman.Width = 50;
+                lbl_Loadman.Width = 80;
                 lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
                 //课程简介标签
                 var lbl_introducation = new Label { Text = "课程简介" };
@@ -112,10 +112,10 @@ namespace WindowsFormsApplication1
                     rb.Width = 100;
                     rb.Name = ds.Tables["user"].Rows[count][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课部门
                     var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
                     Loadman.Font = font;
-                    Loadman.Width = 50;
+                    Loadman.Width = 80;
                     Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //课程简介
                     var introducation = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
@@ -205,7 +205,7 @@ namespace WindowsFormsApplication1
                     if (ds.Tables["user"].Rows.Count == 0)
                     {
                         //Console.WriteLine("推荐课程的id:" + id);
-                        string select_c_info = "select c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
+                        string select_c_info = "select c.c_name, g.g_group, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id from classes c,[group] g where c.u_id = g.g_id and c_id = " + id;
                         ShowRecInfo(select_c_info);
                     }
                 }
@@ -233,10 +233,10 @@ namespace WindowsFormsApplication1
                 //lbl_rb.Font = font;
                 //lbl_rb.Width = 100;
                 //lbl_rb.TextAlign = ContentAlignment.MiddleCenter;
-                ////上传人标签
-                //var lbl_Loadman = new Label { Text = "上传人" };
+                ////开课部门标签
+                //var lbl_Loadman = new Label { Text = "开课部门" };
                 //lbl_Loadman.Font = font;
-                //lbl_Loadman.Width = 50;
+                //lbl_Loadman.Width = 80;
                 //lbl_Loadman.TextAlign = ContentAlignment.MiddleCenter;
                 ////课程简介标签
                 //var lbl_introducation = new Label { Text = "课程简介" };
@@ -280,10 +280,10 @@ namespace WindowsFormsApplication1
                     rb.Width = 100;
                     rb.Name = ds.Tables["user"].Rows[count][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课部门
                     var Loadman = new Label { Text = ds.Tables["user"].Rows[count][1].ToString() };
                     Loadman.Font = font;
-                    Loadman.Width = 50;
+                    Loadman.Width = 80;
                     Loadman.TextAlign = ContentAlignment.MiddleCenter;
                     //课程简介
                     var introducation = new Label { Text = ds.Tables["user"].Rows[count][2].ToString() };
@@ -337,7 +337,7 @@ namespace WindowsFormsApplication1
         private void btn_AllClasses_Click(object sender, EventArgs e)
         {
             //CL_flpClasses.Controls.Clear();
-            String sql = "SELECT c.c_name, u.u_name, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id FROM Classes AS c INNER JOIN [User] AS u ON c.u_id = u.u_id where c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
+            string sql = "SELECT c.c_name, g.g_group, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id FROM Classes AS c INNER JOIN [group] AS g ON c.u_id = g.g_id where c_id in (select c_id from study_plan_lines where sp_head_id = (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and c_id not in(select c_id from study_plan_lines where sp_line_id in(select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")))";
             ShowLessons(sql);
         }
 

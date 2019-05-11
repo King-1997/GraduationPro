@@ -52,9 +52,9 @@ namespace WindowsFormsApplication1
                     lblMineClasses_credit.Width = 80;
                     lblMineClasses_credit.Font = font;
                     lblMineClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课部门
                     var lblMineClasses_ifExam = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    lblMineClasses_ifExam.Width = 60;
+                    lblMineClasses_ifExam.Width = 80;
                     lblMineClasses_ifExam.Font = font;
                     lblMineClasses_ifExam.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication1
         }
 
         private void showRecommendInfo()
-        {
+        { 
             string u_id = Model.User.userId.ToString();
             //运行推荐算法文件，获取推荐课程id
             string c_ids = Tools.ConnectLongDistanceDesk.RunCmd(u_id);
@@ -146,7 +146,7 @@ namespace WindowsFormsApplication1
                     if (ds.Tables["user"].Rows.Count == 0)
                     {
                         //Console.WriteLine("推荐课程的id:" + id);
-                        string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[User] u where c.u_id = u.u_id and c_id = " + id;
+                        string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[group] g where c.u_id = g.g_id and c_id = " + id;
                         showRecClassInfo(select_c_info);
                     }
                 }
@@ -178,9 +178,9 @@ namespace WindowsFormsApplication1
                 //lbl_c_credit.Width = 80;
                 //lbl_c_credit.Font = font;
                 //lbl_c_credit.TextAlign = ContentAlignment.MiddleCenter;
-                ////上传人
-                //var lbl_load_name = new Label { Text = "上传人" };
-                //lbl_load_name.Width = 60;
+                ////开课部门
+                //var lbl_load_name = new Label { Text = "开课部门" };
+                //lbl_load_name.Width = 80;
                 //lbl_load_name.Font = font;
                 //lbl_load_name.TextAlign = ContentAlignment.MiddleCenter;
                 ////推荐学时
@@ -212,9 +212,9 @@ namespace WindowsFormsApplication1
                     c_credit.Width = 80;
                     c_credit.Font = font;
                     c_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课人
                     var load_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    load_name.Width = 60;
+                    load_name.Width = 80;
                     load_name.Font = font;
                     load_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
@@ -259,11 +259,11 @@ namespace WindowsFormsApplication1
         private void c_btnNecessary_Click(object sender, EventArgs e)
         {
             //刷新显示区域，显示必修学习计划
-            c_lblOwner.Text = "课程上传人";
+            c_lblOwner.Text = "开课部门";
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 1 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,(select g_group from [group] where g_id = c.u_id) AS g_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 1 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -279,9 +279,9 @@ namespace WindowsFormsApplication1
                     lblNecClasses_credit.Width = 80;
                     lblNecClasses_credit.Font = font;
                     lblNecClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课人
                     var lblNecClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    lblNecClasses_u_name.Width = 60;
+                    lblNecClasses_u_name.Width = 80;
                     lblNecClasses_u_name.Font = font;
                     lblNecClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
@@ -321,11 +321,11 @@ namespace WindowsFormsApplication1
         private void c_btnOptional_Click(object sender, EventArgs e)
         {
             //刷新显示区域，显示选修课程
-            c_lblOwner.Text = "课程上传人";
+            c_lblOwner.Text = "开课部门";
             c_lblPeriod.Text = "课程学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,(select u_name from [User] where u_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,(select g_group from [group] where g_id = c.u_id) AS u_name,c.c_recommendTime,c.c_id from Classes c where c_id in (select c_id from study_plan_lines where sp_line_id in (select sp_line_id from user_plan_lines where up_head_id in (select up_head_id from user_plan_header where up_property = 2 and u_id = " + Model.User.userId + "))) order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -343,9 +343,9 @@ namespace WindowsFormsApplication1
                     lblSelectClasses_credit.Font = font;
                     lblSelectClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
 
-                    //上传人
+                    //开课部门
                     var lblSelectClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    lblSelectClasses_u_name.Width = 70;
+                    lblSelectClasses_u_name.Width = 80;
                     lblSelectClasses_u_name.Font = font;
                     lblSelectClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
 
@@ -427,12 +427,12 @@ namespace WindowsFormsApplication1
         }
         private void c_btnAll_Click(object sender, EventArgs e)
         {
-            c_lblOwner.Text = "课程上传人";
+            c_lblOwner.Text = "开课部门";
             c_lblPeriod.Text = "课程学时";
             //刷新显示区域，显示全部课程
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[user] u where u.u_id = c.u_id order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,g.g_group,c.c_recommendTime,c.c_id from classes c,[group] g where g.g_id = c.u_id order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {
@@ -448,9 +448,9 @@ namespace WindowsFormsApplication1
                     lblAllClasses_credit.Width = 80;
                     lblAllClasses_credit.Font = font;
                     lblAllClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课部门
                     var lblAllClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    lblAllClasses_u_name.Width = 60;
+                    lblAllClasses_u_name.Width = 80;
                     lblAllClasses_u_name.Font = font;
                     lblAllClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时

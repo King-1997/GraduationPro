@@ -48,6 +48,7 @@
             this.m_btn_load_question = new CCWin.SkinControl.SkinButton();
             this.m_lbl_title = new System.Windows.Forms.Label();
             this.m_tbx_title = new System.Windows.Forms.TextBox();
+            this.m_btn_detail = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -101,7 +102,7 @@
             this.btn_allTime.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_allTime.DownBack = null;
             this.btn_allTime.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.btn_allTime.Location = new System.Drawing.Point(37, 232);
+            this.btn_allTime.Location = new System.Drawing.Point(37, 219);
             this.btn_allTime.MouseBack = null;
             this.btn_allTime.Name = "btn_allTime";
             this.btn_allTime.NormlBack = null;
@@ -133,7 +134,7 @@
             this.m_btnClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btnClasses.DownBack = null;
             this.m_btnClasses.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.m_btnClasses.Location = new System.Drawing.Point(670, 232);
+            this.m_btnClasses.Location = new System.Drawing.Point(670, 219);
             this.m_btnClasses.MouseBack = null;
             this.m_btnClasses.Name = "m_btnClasses";
             this.m_btnClasses.NormlBack = null;
@@ -181,7 +182,7 @@
             this.m_btn_plan_manage.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btn_plan_manage.DownBack = null;
             this.m_btn_plan_manage.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.m_btn_plan_manage.Location = new System.Drawing.Point(670, 321);
+            this.m_btn_plan_manage.Location = new System.Drawing.Point(670, 291);
             this.m_btn_plan_manage.MouseBack = null;
             this.m_btn_plan_manage.Name = "m_btn_plan_manage";
             this.m_btn_plan_manage.NormlBack = null;
@@ -206,7 +207,7 @@
             this.m_btn_Announce.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btn_Announce.DownBack = null;
             this.m_btn_Announce.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.m_btn_Announce.Location = new System.Drawing.Point(37, 321);
+            this.m_btn_Announce.Location = new System.Drawing.Point(37, 362);
             this.m_btn_Announce.MouseBack = null;
             this.m_btn_Announce.Name = "m_btn_Announce";
             this.m_btn_Announce.NormlBack = null;
@@ -271,7 +272,7 @@
             this.m_btn_load_question.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.m_btn_load_question.DownBack = null;
             this.m_btn_load_question.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.m_btn_load_question.Location = new System.Drawing.Point(670, 404);
+            this.m_btn_load_question.Location = new System.Drawing.Point(670, 362);
             this.m_btn_load_question.MouseBack = null;
             this.m_btn_load_question.Name = "m_btn_load_question";
             this.m_btn_load_question.NormlBack = null;
@@ -303,6 +304,22 @@
             this.m_tbx_title.Size = new System.Drawing.Size(290, 32);
             this.m_tbx_title.TabIndex = 40;
             // 
+            // m_btn_detail
+            // 
+            this.m_btn_detail.BackColor = System.Drawing.Color.Transparent;
+            this.m_btn_detail.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.m_btn_detail.DownBack = null;
+            this.m_btn_detail.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.m_btn_detail.Location = new System.Drawing.Point(37, 291);
+            this.m_btn_detail.MouseBack = null;
+            this.m_btn_detail.Name = "m_btn_detail";
+            this.m_btn_detail.NormlBack = null;
+            this.m_btn_detail.Size = new System.Drawing.Size(89, 46);
+            this.m_btn_detail.TabIndex = 41;
+            this.m_btn_detail.Text = "查看学习进度";
+            this.m_btn_detail.UseVisualStyleBackColor = false;
+            this.m_btn_detail.Click += new System.EventHandler(this.m_btn_detail_Click);
+            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -310,6 +327,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(817, 618);
             this.ControlBox = false;
+            this.Controls.Add(this.m_btn_detail);
             this.Controls.Add(this.m_tbx_title);
             this.Controls.Add(this.m_lbl_title);
             this.Controls.Add(this.m_btn_load_question);
@@ -359,5 +377,6 @@
         private CCWin.SkinControl.SkinButton m_btn_load_question;
         private System.Windows.Forms.Label m_lbl_title;
         private System.Windows.Forms.TextBox m_tbx_title;
+        private CCWin.SkinControl.SkinButton m_btn_detail;
     }
 }

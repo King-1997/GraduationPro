@@ -261,5 +261,13 @@ namespace WindowsFormsApplication1
             Hide();
             examShow.Show();
         }
+
+        private void m_btn_detail_Click(object sender, EventArgs e)
+        {
+            Study_detail study_detail = new Study_detail();
+            study_detail.Owner = this;
+            Hide();
+            study_detail.Show();
+        }
     }
 }
