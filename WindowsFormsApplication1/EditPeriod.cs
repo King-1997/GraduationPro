@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
             c_id = null;
             exam_p_id = null;
             HideControls();
-            string select_head_info = "select sp_head_name,sp_head_summary,sp_emp_type from study_plan_header where sp_head_id = "+sp_head_id;
+            string select_head_info = "select sph.sp_head_name,sph.sp_head_summary,g.g_group,ut.ut_type,es.station_name from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sph.sp_head_id = " + sp_head_id;
             showHeaderInfo(select_head_info);
             //根据学习计划界面传head_id过来进行行信息操作
             string select_line_info = "select spl.sp_peroid,c_id,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,exam_p_id,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.sp_line_id from study_plan_lines spl where spl.sp_head_id = " + sp_head_id;
@@ -68,7 +68,7 @@ namespace WindowsFormsApplication1
             DataSet ds = dc.ExecuteQuery(sql);
             ep_tBx_Plan_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
             ep_tBx_Head_Summary.Text = ds.Tables["user"].Rows[0][1].ToString();
-            ep_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString();
+            ep_tBx_Emp_type.Text = ds.Tables["user"].Rows[0][2].ToString() +" "+ ds.Tables["user"].Rows[0][3].ToString() + " " + ds.Tables["user"].Rows[0][4].ToString();
         }
         //查询学习计划行（各个阶段）信息
         private void showLinesInfo(string sql)

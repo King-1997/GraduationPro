@@ -153,7 +153,7 @@
             // ep_dtp_Start_Time
             // 
             this.ep_dtp_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_dtp_Start_Time.Location = new System.Drawing.Point(130, 465);
+            this.ep_dtp_Start_Time.Location = new System.Drawing.Point(130, 479);
             this.ep_dtp_Start_Time.Name = "ep_dtp_Start_Time";
             this.ep_dtp_Start_Time.Size = new System.Drawing.Size(144, 23);
             this.ep_dtp_Start_Time.TabIndex = 33;
@@ -162,7 +162,7 @@
             // 
             this.ep_lbl_Start_Time.AutoSize = true;
             this.ep_lbl_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_Start_Time.Location = new System.Drawing.Point(55, 468);
+            this.ep_lbl_Start_Time.Location = new System.Drawing.Point(55, 482);
             this.ep_lbl_Start_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ep_lbl_Start_Time.Name = "ep_lbl_Start_Time";
             this.ep_lbl_Start_Time.Size = new System.Drawing.Size(68, 17);
@@ -173,7 +173,7 @@
             // 
             this.ep_lbl_End_Time.AutoSize = true;
             this.ep_lbl_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_End_Time.Location = new System.Drawing.Point(285, 468);
+            this.ep_lbl_End_Time.Location = new System.Drawing.Point(285, 482);
             this.ep_lbl_End_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ep_lbl_End_Time.Name = "ep_lbl_End_Time";
             this.ep_lbl_End_Time.Size = new System.Drawing.Size(68, 17);
@@ -183,7 +183,7 @@
             // ep_dtp_End_Time
             // 
             this.ep_dtp_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_dtp_End_Time.Location = new System.Drawing.Point(360, 465);
+            this.ep_dtp_End_Time.Location = new System.Drawing.Point(360, 479);
             this.ep_dtp_End_Time.Name = "ep_dtp_End_Time";
             this.ep_dtp_End_Time.Size = new System.Drawing.Size(144, 23);
             this.ep_dtp_End_Time.TabIndex = 35;

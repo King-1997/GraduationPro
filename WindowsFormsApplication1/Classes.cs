@@ -157,7 +157,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
+                lbl_no_data.Width = 420;
                 lbl_no_data.Height = 100;
                 c_flp_recommend_c.Controls.Add(lbl_no_data);
             }
@@ -295,8 +295,8 @@ namespace WindowsFormsApplication1
                     btnLearnClasses.Name = ds.Tables["user"].Rows[i][4].ToString();
                     //给“学习”按钮添加点击事件，跳转到学习页面
                     btnLearnClasses.Click += new EventHandler(btn_studyClass_Click);
-
                     btnLearnClasses.TextAlign = ContentAlignment.MiddleCenter;
+
                     c_flpClasses.Controls.Add(lblNecClasses_name);
                     c_flpClasses.Controls.Add(lblNecClasses_credit);
                     c_flpClasses.Controls.Add(lblNecClasses_u_name);
@@ -397,7 +397,6 @@ namespace WindowsFormsApplication1
                 int.TryParse(button.Name, out c_id);
                 //Console.WriteLine("按钮里的课程id："+ c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-
                 //删除用户学习计划从表数据
                 string delete_up_line_sql = "delete from user_plan_lines where sp_line_id in (select sp_line_id from study_plan_lines where c_id  = " + c_id + " and sp_head_id in (select sp_head_id from study_plan_header where sp_head_name = N'可选修课程')) and up_head_id in (select up_head_id from user_plan_header where u_id = " + Model.User.userId + ")";
                 int flag1 = dc.ExecuteUpdate(delete_up_line_sql);
@@ -495,7 +494,6 @@ namespace WindowsFormsApplication1
             Hide();
             learn.Show();
         }
-
         private void btn_chooseLesson_Click(object sender, EventArgs e)
         {
             ChooseLesson chooseLesson = new ChooseLesson();
@@ -503,7 +501,6 @@ namespace WindowsFormsApplication1
             chooseLesson.Show();
             Hide();
         }
-
         private void btn_lessonArrangement_Click(object sender, EventArgs e)
         {
             //给组员安排课程，打开课程安排页面

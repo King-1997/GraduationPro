@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
             cbB_findKey.SelectedIndex = 0;
             //查询组别下拉框
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select g_group from [group]";
+            string sql = "select g_group from [group]";
             DataSet ds1 = dc.ExecuteQuery(sql);
             for (int i = 0; i < ds1.Tables["user"].Rows.Count; i++)
             {
@@ -37,10 +37,10 @@ namespace WindowsFormsApplication1
             cBx_workertype.Size = tBx_findkeywords.Size;
             cBx_workertype.Location = tBx_findkeywords.Location;
 
-            String sql_entryTime = "select max(u_entryTime),min(u_entryTime) from [User]";
+            string sql_entryTime = "select max(u_entryTime),min(u_entryTime) from [User]";
             DataSet ds2 = dc.ExecuteQuery(sql_entryTime);
-            String maxTime = ds2.Tables["user"].Rows[0][0].ToString();
-            String minTime = ds2.Tables["user"].Rows[0][1].ToString();
+            string maxTime = ds2.Tables["user"].Rows[0][0].ToString();
+            string minTime = ds2.Tables["user"].Rows[0][1].ToString();
             /*Console.WriteLine("最大入职时间：" + maxTime);
             Console.WriteLine("最小入职时间：" + minTime);*/
             int maxYear = 0;
@@ -91,8 +91,8 @@ namespace WindowsFormsApplication1
             }
             //从数据库查找数据
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "";
-            Console.WriteLine("查询条件：" + KeyType);
+            string sql = "";
+            //Console.WriteLine("查询条件：" + KeyType);
             if (KeyType.Equals("按组别"))
             {
                 String KeyWord1 = cBx_workertype.SelectedItem.ToString();
@@ -122,7 +122,7 @@ namespace WindowsFormsApplication1
                 entryTime2 = jym.judgeYearAndMonth(year,month);
                 sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.u_entryTime >= '" + entryTime1 + "' and u.u_entryTime <= '" + entryTime2 + "'";
             }
-                Console.WriteLine("查询语句：" + sql);
+                //Console.WriteLine("查询语句：" + sql);
                 WorkerShow(sql);
         }
         private void WorkerShow(string sql)
@@ -294,13 +294,18 @@ namespace WindowsFormsApplication1
             Owner.Show();
             Dispose();
         }
-
         private void PeopleChoose_Load(object sender, EventArgs e)
         {
             fLP_people.Controls.Clear();
-
             DataBaseConnection dc = new DataBaseConnection();
-            String sql = "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id";
+            string sql = "";
+            if (Model.User.groupId == 0)
+            {
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id ";
+            }else
+            {
+                sql += "select u.u_name,g.g_group,u.u_sex,u_phone,u_entryTime,u.u_id from [User] u,[group] g where u.g_id = g.g_id and u.g_id =" + Model.User.groupId;
+            }
             WorkerShow(sql);
         }
         //cbB_findKey当下拉框值改变时  

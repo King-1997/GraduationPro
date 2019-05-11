@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
             {
                 foldPath = dialog.SelectedPath;
                 filename = foldPath + "123.pdf";
-                Tools.Download.DownloadFile(c_annex, filename, CI_progressBar, CI_lbl_pcb);
+                //Tools.Download.DownloadFile(c_annex, filename, CI_progressBar, CI_lbl_pcb);
             }
             CI_progressBar.Visible = true;
             CI_lbl_pcb.Visible = true;

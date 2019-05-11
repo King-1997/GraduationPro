@@ -37,21 +37,25 @@
             this.mp_btn_addPlan = new CCWin.SkinControl.SkinButton();
             this.mp_btn_back = new CCWin.SkinControl.SkinButton();
             this.mp_tBx_Plan_Name = new System.Windows.Forms.TextBox();
-            this.mp_tBx_Emp_type = new System.Windows.Forms.TextBox();
-            this.mp_lbl_Emp_Type = new System.Windows.Forms.Label();
+            this.mp_lbl_Emp_dpt = new System.Windows.Forms.Label();
             this.mp_tBx_Head_Summary = new System.Windows.Forms.TextBox();
             this.mp_lbl_Head_Summary = new System.Windows.Forms.Label();
             this.mp_lbl_Plan_Name = new System.Windows.Forms.Label();
             this.mp_btn_confirm = new CCWin.SkinControl.SkinButton();
+            this.mp_lbl_Emp_station = new System.Windows.Forms.Label();
+            this.mp_tbx_Emp_station = new CCWin.SkinControl.SkinComboBox();
+            this.mp_tbx_Emp_dpt = new CCWin.SkinControl.SkinComboBox();
+            this.mp_tbx_Emp_type = new CCWin.SkinControl.SkinComboBox();
+            this.mp_lbl_Emp_type = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mp_flp_PlanInfo
             // 
             this.mp_flp_PlanInfo.AutoScroll = true;
             this.mp_flp_PlanInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.mp_flp_PlanInfo.Location = new System.Drawing.Point(60, 106);
+            this.mp_flp_PlanInfo.Location = new System.Drawing.Point(65, 114);
             this.mp_flp_PlanInfo.Name = "mp_flp_PlanInfo";
-            this.mp_flp_PlanInfo.Size = new System.Drawing.Size(683, 144);
+            this.mp_flp_PlanInfo.Size = new System.Drawing.Size(735, 144);
             this.mp_flp_PlanInfo.TabIndex = 16;
             // 
             // mp_btn_reset
@@ -59,7 +63,7 @@
             this.mp_btn_reset.BackColor = System.Drawing.Color.Transparent;
             this.mp_btn_reset.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.mp_btn_reset.DownBack = null;
-            this.mp_btn_reset.Location = new System.Drawing.Point(562, 54);
+            this.mp_btn_reset.Location = new System.Drawing.Point(580, 59);
             this.mp_btn_reset.MouseBack = null;
             this.mp_btn_reset.Name = "mp_btn_reset";
             this.mp_btn_reset.NormlBack = null;
@@ -74,7 +78,7 @@
             this.mp_btn_find.BackColor = System.Drawing.Color.Transparent;
             this.mp_btn_find.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.mp_btn_find.DownBack = null;
-            this.mp_btn_find.Location = new System.Drawing.Point(484, 54);
+            this.mp_btn_find.Location = new System.Drawing.Point(499, 59);
             this.mp_btn_find.MouseBack = null;
             this.mp_btn_find.Name = "mp_btn_find";
             this.mp_btn_find.NormlBack = null;
@@ -88,7 +92,7 @@
             // 
             this.mp_lbl_keyword.AutoSize = true;
             this.mp_lbl_keyword.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mp_lbl_keyword.Location = new System.Drawing.Point(101, 59);
+            this.mp_lbl_keyword.Location = new System.Drawing.Point(116, 64);
             this.mp_lbl_keyword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.mp_lbl_keyword.Name = "mp_lbl_keyword";
             this.mp_lbl_keyword.Size = new System.Drawing.Size(138, 21);
@@ -98,7 +102,7 @@
             // mp_tBx_findkeywords
             // 
             this.mp_tBx_findkeywords.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mp_tBx_findkeywords.Location = new System.Drawing.Point(239, 55);
+            this.mp_tBx_findkeywords.Location = new System.Drawing.Point(254, 60);
             this.mp_tBx_findkeywords.Margin = new System.Windows.Forms.Padding(2);
             this.mp_tBx_findkeywords.Name = "mp_tBx_findkeywords";
             this.mp_tBx_findkeywords.Size = new System.Drawing.Size(219, 29);
@@ -109,13 +113,13 @@
             this.mp_btn_addPlan.BackColor = System.Drawing.Color.Transparent;
             this.mp_btn_addPlan.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.mp_btn_addPlan.DownBack = null;
-            this.mp_btn_addPlan.Location = new System.Drawing.Point(643, 54);
+            this.mp_btn_addPlan.Location = new System.Drawing.Point(658, 59);
             this.mp_btn_addPlan.MouseBack = null;
             this.mp_btn_addPlan.Name = "mp_btn_addPlan";
             this.mp_btn_addPlan.NormlBack = null;
             this.mp_btn_addPlan.Size = new System.Drawing.Size(72, 30);
             this.mp_btn_addPlan.TabIndex = 22;
-            this.mp_btn_addPlan.Text = "新增计划";
+            this.mp_btn_addPlan.Text = "新增阶段";
             this.mp_btn_addPlan.UseVisualStyleBackColor = false;
             this.mp_btn_addPlan.Click += new System.EventHandler(this.mp_btn_addPlan_Click);
             // 
@@ -124,7 +128,7 @@
             this.mp_btn_back.BackColor = System.Drawing.Color.Transparent;
             this.mp_btn_back.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.mp_btn_back.DownBack = null;
-            this.mp_btn_back.Location = new System.Drawing.Point(674, 462);
+            this.mp_btn_back.Location = new System.Drawing.Point(728, 563);
             this.mp_btn_back.MouseBack = null;
             this.mp_btn_back.Name = "mp_btn_back";
             this.mp_btn_back.NormlBack = null;
@@ -138,72 +142,62 @@
             // 
             this.mp_tBx_Plan_Name.BackColor = System.Drawing.Color.SkyBlue;
             this.mp_tBx_Plan_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mp_tBx_Plan_Name.Location = new System.Drawing.Point(155, 275);
+            this.mp_tBx_Plan_Name.Location = new System.Drawing.Point(191, 283);
             this.mp_tBx_Plan_Name.Margin = new System.Windows.Forms.Padding(2);
             this.mp_tBx_Plan_Name.Name = "mp_tBx_Plan_Name";
-            this.mp_tBx_Plan_Name.Size = new System.Drawing.Size(219, 29);
+            this.mp_tBx_Plan_Name.Size = new System.Drawing.Size(217, 29);
             this.mp_tBx_Plan_Name.TabIndex = 36;
             // 
-            // mp_tBx_Emp_type
+            // mp_lbl_Emp_dpt
             // 
-            this.mp_tBx_Emp_type.BackColor = System.Drawing.Color.SkyBlue;
-            this.mp_tBx_Emp_type.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mp_tBx_Emp_type.Location = new System.Drawing.Point(155, 423);
-            this.mp_tBx_Emp_type.Margin = new System.Windows.Forms.Padding(2);
-            this.mp_tBx_Emp_type.Name = "mp_tBx_Emp_type";
-            this.mp_tBx_Emp_type.Size = new System.Drawing.Size(219, 29);
-            this.mp_tBx_Emp_type.TabIndex = 35;
-            // 
-            // mp_lbl_Emp_Type
-            // 
-            this.mp_lbl_Emp_Type.AutoSize = true;
-            this.mp_lbl_Emp_Type.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.mp_lbl_Emp_Type.Location = new System.Drawing.Point(57, 430);
-            this.mp_lbl_Emp_Type.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.mp_lbl_Emp_Type.Name = "mp_lbl_Emp_Type";
-            this.mp_lbl_Emp_Type.Size = new System.Drawing.Size(92, 17);
-            this.mp_lbl_Emp_Type.TabIndex = 34;
-            this.mp_lbl_Emp_Type.Text = "针对员工类型：";
+            this.mp_lbl_Emp_dpt.AutoSize = true;
+            this.mp_lbl_Emp_dpt.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.mp_lbl_Emp_dpt.Location = new System.Drawing.Point(93, 438);
+            this.mp_lbl_Emp_dpt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mp_lbl_Emp_dpt.Name = "mp_lbl_Emp_dpt";
+            this.mp_lbl_Emp_dpt.Size = new System.Drawing.Size(68, 17);
+            this.mp_lbl_Emp_dpt.TabIndex = 34;
+            this.mp_lbl_Emp_dpt.Text = "针对部门：";
             // 
             // mp_tBx_Head_Summary
             // 
             this.mp_tBx_Head_Summary.BackColor = System.Drawing.Color.SkyBlue;
             this.mp_tBx_Head_Summary.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.mp_tBx_Head_Summary.Location = new System.Drawing.Point(155, 323);
+            this.mp_tBx_Head_Summary.Location = new System.Drawing.Point(191, 331);
             this.mp_tBx_Head_Summary.Margin = new System.Windows.Forms.Padding(2);
             this.mp_tBx_Head_Summary.Multiline = true;
             this.mp_tBx_Head_Summary.Name = "mp_tBx_Head_Summary";
-            this.mp_tBx_Head_Summary.Size = new System.Drawing.Size(350, 78);
+            this.mp_tBx_Head_Summary.Size = new System.Drawing.Size(352, 78);
             this.mp_tBx_Head_Summary.TabIndex = 33;
             // 
             // mp_lbl_Head_Summary
             // 
             this.mp_lbl_Head_Summary.AutoSize = true;
             this.mp_lbl_Head_Summary.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.mp_lbl_Head_Summary.Location = new System.Drawing.Point(57, 353);
+            this.mp_lbl_Head_Summary.Location = new System.Drawing.Point(93, 361);
             this.mp_lbl_Head_Summary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mp_lbl_Head_Summary.Name = "mp_lbl_Head_Summary";
             this.mp_lbl_Head_Summary.Size = new System.Drawing.Size(92, 17);
             this.mp_lbl_Head_Summary.TabIndex = 32;
-            this.mp_lbl_Head_Summary.Text = "学习计划简介：";
+            this.mp_lbl_Head_Summary.Text = "学习阶段简介：";
             // 
             // mp_lbl_Plan_Name
             // 
             this.mp_lbl_Plan_Name.AutoSize = true;
             this.mp_lbl_Plan_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.mp_lbl_Plan_Name.Location = new System.Drawing.Point(57, 282);
+            this.mp_lbl_Plan_Name.Location = new System.Drawing.Point(93, 290);
             this.mp_lbl_Plan_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mp_lbl_Plan_Name.Name = "mp_lbl_Plan_Name";
             this.mp_lbl_Plan_Name.Size = new System.Drawing.Size(80, 17);
             this.mp_lbl_Plan_Name.TabIndex = 31;
-            this.mp_lbl_Plan_Name.Text = "学习计划名：";
+            this.mp_lbl_Plan_Name.Text = "学习阶段名：";
             // 
             // mp_btn_confirm
             // 
             this.mp_btn_confirm.BackColor = System.Drawing.Color.Transparent;
             this.mp_btn_confirm.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.mp_btn_confirm.DownBack = null;
-            this.mp_btn_confirm.Location = new System.Drawing.Point(562, 462);
+            this.mp_btn_confirm.Location = new System.Drawing.Point(616, 563);
             this.mp_btn_confirm.MouseBack = null;
             this.mp_btn_confirm.Name = "mp_btn_confirm";
             this.mp_btn_confirm.NormlBack = null;
@@ -213,15 +207,74 @@
             this.mp_btn_confirm.UseVisualStyleBackColor = false;
             this.mp_btn_confirm.Click += new System.EventHandler(this.mp_btn_confirm_Click);
             // 
+            // mp_lbl_Emp_station
+            // 
+            this.mp_lbl_Emp_station.AutoSize = true;
+            this.mp_lbl_Emp_station.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.mp_lbl_Emp_station.Location = new System.Drawing.Point(93, 523);
+            this.mp_lbl_Emp_station.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mp_lbl_Emp_station.Name = "mp_lbl_Emp_station";
+            this.mp_lbl_Emp_station.Size = new System.Drawing.Size(92, 17);
+            this.mp_lbl_Emp_station.TabIndex = 38;
+            this.mp_lbl_Emp_station.Text = "针对员工岗位：";
+            // 
+            // mp_tbx_Emp_station
+            // 
+            this.mp_tbx_Emp_station.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.mp_tbx_Emp_station.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mp_tbx_Emp_station.FormattingEnabled = true;
+            this.mp_tbx_Emp_station.Location = new System.Drawing.Point(191, 517);
+            this.mp_tbx_Emp_station.Name = "mp_tbx_Emp_station";
+            this.mp_tbx_Emp_station.Size = new System.Drawing.Size(138, 27);
+            this.mp_tbx_Emp_station.TabIndex = 39;
+            this.mp_tbx_Emp_station.WaterText = "";
+            // 
+            // mp_tbx_Emp_dpt
+            // 
+            this.mp_tbx_Emp_dpt.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.mp_tbx_Emp_dpt.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mp_tbx_Emp_dpt.FormattingEnabled = true;
+            this.mp_tbx_Emp_dpt.Location = new System.Drawing.Point(191, 432);
+            this.mp_tbx_Emp_dpt.Name = "mp_tbx_Emp_dpt";
+            this.mp_tbx_Emp_dpt.Size = new System.Drawing.Size(138, 27);
+            this.mp_tbx_Emp_dpt.TabIndex = 40;
+            this.mp_tbx_Emp_dpt.WaterText = "";
+            // 
+            // mp_tbx_Emp_type
+            // 
+            this.mp_tbx_Emp_type.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.mp_tbx_Emp_type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mp_tbx_Emp_type.FormattingEnabled = true;
+            this.mp_tbx_Emp_type.Location = new System.Drawing.Point(191, 475);
+            this.mp_tbx_Emp_type.Name = "mp_tbx_Emp_type";
+            this.mp_tbx_Emp_type.Size = new System.Drawing.Size(138, 27);
+            this.mp_tbx_Emp_type.TabIndex = 42;
+            this.mp_tbx_Emp_type.WaterText = "";
+            // 
+            // mp_lbl_Emp_type
+            // 
+            this.mp_lbl_Emp_type.AutoSize = true;
+            this.mp_lbl_Emp_type.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.mp_lbl_Emp_type.Location = new System.Drawing.Point(93, 481);
+            this.mp_lbl_Emp_type.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mp_lbl_Emp_type.Name = "mp_lbl_Emp_type";
+            this.mp_lbl_Emp_type.Size = new System.Drawing.Size(92, 17);
+            this.mp_lbl_Emp_type.TabIndex = 41;
+            this.mp_lbl_Emp_type.Text = "针对员工类型：";
+            // 
             // ManagePlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 529);
+            this.ClientSize = new System.Drawing.Size(862, 622);
+            this.Controls.Add(this.mp_tbx_Emp_type);
+            this.Controls.Add(this.mp_lbl_Emp_type);
+            this.Controls.Add(this.mp_tbx_Emp_dpt);
+            this.Controls.Add(this.mp_tbx_Emp_station);
+            this.Controls.Add(this.mp_lbl_Emp_station);
             this.Controls.Add(this.mp_btn_confirm);
             this.Controls.Add(this.mp_tBx_Plan_Name);
-            this.Controls.Add(this.mp_tBx_Emp_type);
-            this.Controls.Add(this.mp_lbl_Emp_Type);
+            this.Controls.Add(this.mp_lbl_Emp_dpt);
             this.Controls.Add(this.mp_tBx_Head_Summary);
             this.Controls.Add(this.mp_lbl_Head_Summary);
             this.Controls.Add(this.mp_lbl_Plan_Name);
@@ -249,11 +302,15 @@
         private CCWin.SkinControl.SkinButton mp_btn_addPlan;
         private CCWin.SkinControl.SkinButton mp_btn_back;
         private System.Windows.Forms.TextBox mp_tBx_Plan_Name;
-        private System.Windows.Forms.TextBox mp_tBx_Emp_type;
-        private System.Windows.Forms.Label mp_lbl_Emp_Type;
+        private System.Windows.Forms.Label mp_lbl_Emp_dpt;
         private System.Windows.Forms.TextBox mp_tBx_Head_Summary;
         private System.Windows.Forms.Label mp_lbl_Head_Summary;
         private System.Windows.Forms.Label mp_lbl_Plan_Name;
         private CCWin.SkinControl.SkinButton mp_btn_confirm;
+        private System.Windows.Forms.Label mp_lbl_Emp_station;
+        private CCWin.SkinControl.SkinComboBox mp_tbx_Emp_station;
+        private CCWin.SkinControl.SkinComboBox mp_tbx_Emp_dpt;
+        private CCWin.SkinControl.SkinComboBox mp_tbx_Emp_type;
+        private System.Windows.Forms.Label mp_lbl_Emp_type;
     }
 }

@@ -257,7 +257,7 @@
             this.btn_PlanArrangement.NormlBack = null;
             this.btn_PlanArrangement.Size = new System.Drawing.Size(88, 54);
             this.btn_PlanArrangement.TabIndex = 27;
-            this.btn_PlanArrangement.Text = "安排学习计划";
+            this.btn_PlanArrangement.Text = "安排学习阶段";
             this.btn_PlanArrangement.UseVisualStyleBackColor = false;
             this.btn_PlanArrangement.Visible = false;
             this.btn_PlanArrangement.Click += new System.EventHandler(this.btn_lessonArrangement_Click);
@@ -268,11 +268,11 @@
             this.p_btnHome.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnHome.DownBack = null;
             this.p_btnHome.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_btnHome.Location = new System.Drawing.Point(676, 610);
+            this.p_btnHome.Location = new System.Drawing.Point(686, 610);
             this.p_btnHome.MouseBack = null;
             this.p_btnHome.Name = "p_btnHome";
             this.p_btnHome.NormlBack = null;
-            this.p_btnHome.Size = new System.Drawing.Size(91, 37);
+            this.p_btnHome.Size = new System.Drawing.Size(81, 37);
             this.p_btnHome.TabIndex = 28;
             this.p_btnHome.Text = "返回主页";
             this.p_btnHome.UseVisualStyleBackColor = false;
@@ -290,7 +290,7 @@
             this.btn_ManagePlan.NormlBack = null;
             this.btn_ManagePlan.Size = new System.Drawing.Size(88, 54);
             this.btn_ManagePlan.TabIndex = 29;
-            this.btn_ManagePlan.Text = "学习计划管理";
+            this.btn_ManagePlan.Text = "学习阶段管理";
             this.btn_ManagePlan.UseVisualStyleBackColor = false;
             this.btn_ManagePlan.Visible = false;
             this.btn_ManagePlan.Click += new System.EventHandler(this.btn_ManagePlan_Click);
@@ -320,6 +320,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(810, 669);
+            this.Controls.Add(this.c_flpClasses);
             this.Controls.Add(this.c_flp_recommend_c);
             this.Controls.Add(this.c_lbl_recommend_c);
             this.Controls.Add(this.btn_ManagePlan);
@@ -336,7 +337,6 @@
             this.Controls.Add(this.c_lblOwner);
             this.Controls.Add(this.c_lblClassesCredit);
             this.Controls.Add(this.c_lblClassesName);
-            this.Controls.Add(this.c_flpClasses);
             this.Controls.Add(this.p_lblCurPerson);
             this.Controls.Add(this.p_lblWelcome);
             this.Controls.Add(this.c_lblTitle);

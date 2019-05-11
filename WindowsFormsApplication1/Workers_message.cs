@@ -36,7 +36,7 @@ namespace WindowsFormsApplication1
                 Wm_cbBEmpStation.Items.Add(ds1.Tables["user"].Rows[i][0]);
             }
             //Wm_cbBUserType.Items.AddRange(new object[] { "系统管理员", "管理员", "员工" });
-            Wm_cbBEmpStation.SelectedIndex = 2;
+            Wm_cbBEmpStation.SelectedIndex = 0;
 
             string sql = "select g_group from [group]";
             DataSet ds2 = dc.ExecuteQuery(sql);
@@ -96,9 +96,9 @@ namespace WindowsFormsApplication1
             }
             else if (Wm_btnDelete.Text.Equals("确定"))
             {
-                int ut_id = Wm_cbBUserType.SelectedIndex + 1;
+                int ut_id = Wm_cbBUserType.SelectedIndex;
                 int station_id = Wm_cbBEmpStation.SelectedIndex;
-                int g_id = Wm_cbBGroup.SelectedIndex + 1;
+                int g_id = Wm_cbBGroup.SelectedIndex;
 
                 //验证输入的省份证号码是否有误
                 //CheckChinaIDCardNumberFormat(Wm_tbxIDNum.Text);
@@ -274,9 +274,9 @@ namespace WindowsFormsApplication1
                 //Console.WriteLine("查询出来的信息条数：" + ds.Tables["user"].Rows.Count);
                 //修改界面的控件的信息
                 Wm_tbxUserName.Text = ds.Tables["user"].Rows[0][6].ToString();
-                Wm_cbBUserType.SelectedIndex = ((int)ds.Tables["user"].Rows[0][1]) - 1;
+                Wm_cbBUserType.SelectedIndex = ((int)ds.Tables["user"].Rows[0][1]);
                 Wm_cbBEmpStation.SelectedIndex = (int)ds.Tables["user"].Rows[0][3];
-                Wm_cbBGroup.SelectedIndex = ((int)ds.Tables["user"].Rows[0][2]) - 1;
+                Wm_cbBGroup.SelectedIndex = ((int)ds.Tables["user"].Rows[0][2]);
                 Wm_tbxAccount.Text = ds.Tables["user"].Rows[0][4].ToString();
                 if (ds.Tables["user"].Rows[0][7].Equals("男"))
                 {
@@ -299,9 +299,9 @@ namespace WindowsFormsApplication1
                MessageBoxIcon.Question) == DialogResult.OK)
             {
                 DataBaseConnection dc = new DataBaseConnection();
-                int ut_id = Wm_cbBUserType.SelectedIndex + 1;
+                int ut_id = Wm_cbBUserType.SelectedIndex;
                 int station_id = Wm_cbBEmpStation.SelectedIndex;
-                int g_id = Wm_cbBGroup.SelectedIndex + 1;
+                int g_id = Wm_cbBGroup.SelectedIndex;
                 string sex = Wm_cbBSex.SelectedItem.ToString();
                 //Console.WriteLine("时间选择器里的值："+ Wm_dtpEntryTime.Value);
                 ////验证输入的省份证号码是否有误

@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
-            this.comboBox1 = new CCWin.SkinControl.SkinComboBox();
+            this.l_cbb_userType = new CCWin.SkinControl.SkinComboBox();
             this.btnLogin = new CCWin.SkinControl.SkinButton();
             this.button2 = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
@@ -107,16 +107,16 @@
             this.skinLabel1.TabIndex = 9;
             this.skinLabel1.Text = "员工学习管理系统";
             // 
-            // comboBox1
+            // l_cbb_userType
             // 
-            this.comboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(442, 326);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 27);
-            this.comboBox1.TabIndex = 11;
-            this.comboBox1.WaterText = "";
+            this.l_cbb_userType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.l_cbb_userType.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.l_cbb_userType.FormattingEnabled = true;
+            this.l_cbb_userType.Location = new System.Drawing.Point(442, 326);
+            this.l_cbb_userType.Name = "l_cbb_userType";
+            this.l_cbb_userType.Size = new System.Drawing.Size(138, 27);
+            this.l_cbb_userType.TabIndex = 11;
+            this.l_cbb_userType.WaterText = "";
             // 
             // btnLogin
             // 
@@ -160,7 +160,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.l_cbb_userType);
             this.Controls.Add(this.skinLabel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private CCWin.SkinControl.SkinLabel skinLabel1;
-        private CCWin.SkinControl.SkinComboBox comboBox1;
+        private CCWin.SkinControl.SkinComboBox l_cbb_userType;
         private CCWin.SkinControl.SkinButton btnLogin;
         private CCWin.SkinControl.SkinButton button2;
     }

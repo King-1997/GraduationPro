@@ -11,7 +11,6 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    
     public partial class Mainmenu : CCSkinMain
     {
         //设置窗体显示字体格式

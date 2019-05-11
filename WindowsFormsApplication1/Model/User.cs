@@ -12,6 +12,8 @@ namespace WindowsFormsApplication1.Model
         public static string userType;
         public static int userId;
         public static int groupId;
+        public static int ut_id;
+        public static int station_id;
         public static string email;
     }
 }

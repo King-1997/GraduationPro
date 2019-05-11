@@ -46,12 +46,12 @@
             this.m_lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.m_lblTitle.Enabled = false;
             this.m_lblTitle.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold);
-            this.m_lblTitle.Location = new System.Drawing.Point(334, 74);
+            this.m_lblTitle.Location = new System.Drawing.Point(277, 71);
             this.m_lblTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.m_lblTitle.Name = "m_lblTitle";
-            this.m_lblTitle.Size = new System.Drawing.Size(304, 53);
+            this.m_lblTitle.Size = new System.Drawing.Size(471, 53);
             this.m_lblTitle.TabIndex = 1;
-            this.m_lblTitle.Text = "员工学习管理系统";
+            this.m_lblTitle.Text = "基于C#的员工在线学习平台";
             // 
             // p_lblCurPerson
             // 
@@ -194,7 +194,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Mainmenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "员工学习管理系统";
+            this.Text = "基于C#的员工在线学习平台";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
