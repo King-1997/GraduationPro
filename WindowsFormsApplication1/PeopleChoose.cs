@@ -83,8 +83,8 @@ namespace WindowsFormsApplication1
             fLP_people.Controls.Clear();
             JudgeYearAndMonth jym = new JudgeYearAndMonth();
             //获取查询条件：tBx_findkeywords，cbB_findKey
-            String KeyWord = tBx_findkeywords.Text;
-            String KeyType = cbB_findKey.SelectedItem.ToString();
+            string KeyWord = tBx_findkeywords.Text;
+            string KeyType = cbB_findKey.SelectedItem.ToString();
             if (!cbB_findKey.Text.Equals("按组别") && string.IsNullOrEmpty(KeyWord))
             {
                 MessageBox.Show("请输入关键字！");
@@ -204,9 +204,9 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                //员工姓名
-                var lbl_no_user = new Label { Text = string.Concat("抱歉，当前没有查询到任何数据！") };
-                lbl_no_user.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                //无数据
+                var lbl_no_user = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_user.Font = font;
                 lbl_no_user.TextAlign = ContentAlignment.MiddleCenter;
                 lbl_no_user.Width = 579;
                 lbl_no_user.Height = 150;

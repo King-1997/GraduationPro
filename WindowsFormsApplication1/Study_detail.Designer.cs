@@ -68,6 +68,7 @@
             this.Controls.Add(this.sd_flp_detail);
             this.Name = "Study_detail";
             this.Text = "学习详情";
+            this.Load += new System.EventHandler(this.Study_detail_Load);
             this.ResumeLayout(false);
 
         }

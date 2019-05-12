@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
                 btn_upload.Text = "确定";
                 //Console.WriteLine("ClassesInfo里的课程id：" + c_id);
                 DataBaseConnection dc = new DataBaseConnection();
-                String sql = "select c.c_name,u.u_name,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime,c_annex from [User] u,Classes c where c.u_id = u.u_id and c_id = " + c_id + "";
+                String sql = "select c.c_name,g.g_group,c.c_introduction,c.c_file,c.c_credit,c.c_recommendTime,c.c_ifExam,c_minTime,c_maxTime,c_annex from [group] g,Classes c where c.u_id = g.g_id and c_id = " + c_id + "";
                 DataSet ds = dc.ExecuteQuery(sql);
                 lbl_classhanded_show.Text = ds.Tables["user"].Rows[0][1].ToString();
                 txtBx_classname.Text = ds.Tables["user"].Rows[0][0].ToString();
@@ -127,7 +127,7 @@ namespace WindowsFormsApplication1
                     string select_c_id = "select next value for Classes_s";
                     DataSet ds = dc.ExecuteQuery(select_c_id);
                     int.TryParse(ds.Tables["user"].Rows[0][0].ToString(), out c_id);
-                    string insert_sql = "insert into Classes values (" + c_id + "," + Model.User.userId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0," + c_minTime + "," + c_maxTime + ",N'" + c_axxex + "')";
+                    string insert_sql = "insert into Classes values (" + c_id + "," + Model.User.groupId + ",N'" + c_name1 + "'," + c_credit + ",N'" + c_file + "',convert(char(10),GetDate(),120),N'" + c_introdution + "',N'" + c_ifExam + "'," + c_recommendTime + ",0," + c_minTime + "," + c_maxTime + ",N'" + c_axxex + "')";
                     //Console.WriteLine("SQL:" + insert_sql);
                     int flag = dc.ExecuteUpdate(insert_sql);
                     if (flag != 0)

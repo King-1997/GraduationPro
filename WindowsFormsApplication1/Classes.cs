@@ -432,7 +432,7 @@ namespace WindowsFormsApplication1
             //刷新显示区域，显示全部课程
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,g.g_group,c.c_recommendTime,c.c_id from classes c,[group] g where g.g_id = c.u_id order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,g.g_group,c.c_recommendTime,c.c_id from classes c,[group] g where g.g_id = c.u_id order by g.g_group, c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {

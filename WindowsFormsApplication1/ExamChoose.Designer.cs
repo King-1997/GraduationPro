@@ -43,6 +43,8 @@
             this.ec_lbl_Start_Time = new System.Windows.Forms.Label();
             this.ec_dtp_Start_Time = new System.Windows.Forms.DateTimePicker();
             this.ec_lbl_Exam_Name = new System.Windows.Forms.Label();
+            this.ec_lbl_Type = new System.Windows.Forms.Label();
+            this.ec_ccb_Type = new CCWin.SkinControl.SkinComboBox();
             this.SuspendLayout();
             // 
             // ec_btn_back
@@ -50,7 +52,7 @@
             this.ec_btn_back.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_back.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_back.DownBack = null;
-            this.ec_btn_back.Location = new System.Drawing.Point(712, 551);
+            this.ec_btn_back.Location = new System.Drawing.Point(729, 594);
             this.ec_btn_back.MouseBack = null;
             this.ec_btn_back.Name = "ec_btn_back";
             this.ec_btn_back.NormlBack = null;
@@ -65,7 +67,7 @@
             this.ec_btn_confirm.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_confirm.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_confirm.DownBack = null;
-            this.ec_btn_confirm.Location = new System.Drawing.Point(595, 551);
+            this.ec_btn_confirm.Location = new System.Drawing.Point(612, 594);
             this.ec_btn_confirm.MouseBack = null;
             this.ec_btn_confirm.Name = "ec_btn_confirm";
             this.ec_btn_confirm.NormlBack = null;
@@ -80,7 +82,7 @@
             this.ec_btn_All_Exam.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_All_Exam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_All_Exam.DownBack = null;
-            this.ec_btn_All_Exam.Location = new System.Drawing.Point(559, 48);
+            this.ec_btn_All_Exam.Location = new System.Drawing.Point(654, 48);
             this.ec_btn_All_Exam.MouseBack = null;
             this.ec_btn_All_Exam.Name = "ec_btn_All_Exam";
             this.ec_btn_All_Exam.NormlBack = null;
@@ -94,7 +96,7 @@
             this.ec_btn_find.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_find.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_find.DownBack = null;
-            this.ec_btn_find.Location = new System.Drawing.Point(484, 48);
+            this.ec_btn_find.Location = new System.Drawing.Point(555, 48);
             this.ec_btn_find.MouseBack = null;
             this.ec_btn_find.Name = "ec_btn_find";
             this.ec_btn_find.NormlBack = null;
@@ -109,17 +111,17 @@
             this.ec_fLP_Exam_Info.AutoScroll = true;
             this.ec_fLP_Exam_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(208)))), ((int)(((byte)(255)))));
             this.ec_fLP_Exam_Info.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ec_fLP_Exam_Info.Location = new System.Drawing.Point(81, 99);
+            this.ec_fLP_Exam_Info.Location = new System.Drawing.Point(61, 99);
             this.ec_fLP_Exam_Info.Margin = new System.Windows.Forms.Padding(4);
             this.ec_fLP_Exam_Info.Name = "ec_fLP_Exam_Info";
-            this.ec_fLP_Exam_Info.Size = new System.Drawing.Size(663, 290);
+            this.ec_fLP_Exam_Info.Size = new System.Drawing.Size(815, 290);
             this.ec_fLP_Exam_Info.TabIndex = 17;
             // 
             // ec_lbl_keyword
             // 
             this.ec_lbl_keyword.AutoSize = true;
             this.ec_lbl_keyword.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ec_lbl_keyword.Location = new System.Drawing.Point(109, 52);
+            this.ec_lbl_keyword.Location = new System.Drawing.Point(130, 53);
             this.ec_lbl_keyword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ec_lbl_keyword.Name = "ec_lbl_keyword";
             this.ec_lbl_keyword.Size = new System.Drawing.Size(138, 21);
@@ -129,7 +131,7 @@
             // ec_tBx_findkeywords
             // 
             this.ec_tBx_findkeywords.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ec_tBx_findkeywords.Location = new System.Drawing.Point(247, 48);
+            this.ec_tBx_findkeywords.Location = new System.Drawing.Point(300, 48);
             this.ec_tBx_findkeywords.Margin = new System.Windows.Forms.Padding(2);
             this.ec_tBx_findkeywords.Name = "ec_tBx_findkeywords";
             this.ec_tBx_findkeywords.Size = new System.Drawing.Size(219, 29);
@@ -140,7 +142,7 @@
             this.ec_btn_Add_Exam.BackColor = System.Drawing.Color.Transparent;
             this.ec_btn_Add_Exam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ec_btn_Add_Exam.DownBack = null;
-            this.ec_btn_Add_Exam.Location = new System.Drawing.Point(647, 48);
+            this.ec_btn_Add_Exam.Location = new System.Drawing.Point(761, 48);
             this.ec_btn_Add_Exam.MouseBack = null;
             this.ec_btn_Add_Exam.Name = "ec_btn_Add_Exam";
             this.ec_btn_Add_Exam.NormlBack = null;
@@ -154,7 +156,7 @@
             // 
             this.ec_tBx_Exam_Name.BackColor = System.Drawing.Color.SkyBlue;
             this.ec_tBx_Exam_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ec_tBx_Exam_Name.Location = new System.Drawing.Point(188, 406);
+            this.ec_tBx_Exam_Name.Location = new System.Drawing.Point(196, 438);
             this.ec_tBx_Exam_Name.Margin = new System.Windows.Forms.Padding(2);
             this.ec_tBx_Exam_Name.Name = "ec_tBx_Exam_Name";
             this.ec_tBx_Exam_Name.Size = new System.Drawing.Size(165, 29);
@@ -164,7 +166,7 @@
             // 
             this.ec_lbl_End_Time.AutoSize = true;
             this.ec_lbl_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ec_lbl_End_Time.Location = new System.Drawing.Point(111, 491);
+            this.ec_lbl_End_Time.Location = new System.Drawing.Point(415, 491);
             this.ec_lbl_End_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ec_lbl_End_Time.Name = "ec_lbl_End_Time";
             this.ec_lbl_End_Time.Size = new System.Drawing.Size(68, 17);
@@ -174,7 +176,7 @@
             // ec_dtp_End_Time
             // 
             this.ec_dtp_End_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ec_dtp_End_Time.Location = new System.Drawing.Point(188, 491);
+            this.ec_dtp_End_Time.Location = new System.Drawing.Point(492, 488);
             this.ec_dtp_End_Time.Name = "ec_dtp_End_Time";
             this.ec_dtp_End_Time.Size = new System.Drawing.Size(165, 23);
             this.ec_dtp_End_Time.TabIndex = 45;
@@ -183,7 +185,7 @@
             // 
             this.ec_lbl_Start_Time.AutoSize = true;
             this.ec_lbl_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ec_lbl_Start_Time.Location = new System.Drawing.Point(113, 456);
+            this.ec_lbl_Start_Time.Location = new System.Drawing.Point(417, 444);
             this.ec_lbl_Start_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ec_lbl_Start_Time.Name = "ec_lbl_Start_Time";
             this.ec_lbl_Start_Time.Size = new System.Drawing.Size(68, 17);
@@ -193,7 +195,7 @@
             // ec_dtp_Start_Time
             // 
             this.ec_dtp_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ec_dtp_Start_Time.Location = new System.Drawing.Point(188, 453);
+            this.ec_dtp_Start_Time.Location = new System.Drawing.Point(492, 440);
             this.ec_dtp_Start_Time.Name = "ec_dtp_Start_Time";
             this.ec_dtp_Start_Time.Size = new System.Drawing.Size(165, 23);
             this.ec_dtp_Start_Time.TabIndex = 43;
@@ -202,18 +204,46 @@
             // 
             this.ec_lbl_Exam_Name.AutoSize = true;
             this.ec_lbl_Exam_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ec_lbl_Exam_Name.Location = new System.Drawing.Point(123, 413);
+            this.ec_lbl_Exam_Name.Location = new System.Drawing.Point(131, 445);
             this.ec_lbl_Exam_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ec_lbl_Exam_Name.Name = "ec_lbl_Exam_Name";
             this.ec_lbl_Exam_Name.Size = new System.Drawing.Size(56, 17);
             this.ec_lbl_Exam_Name.TabIndex = 42;
-            this.ec_lbl_Exam_Name.Text = "考试名：";
+            this.ec_lbl_Exam_Name.Text = "测试名：";
+            // 
+            // ec_lbl_Type
+            // 
+            this.ec_lbl_Type.AutoSize = true;
+            this.ec_lbl_Type.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.ec_lbl_Type.Location = new System.Drawing.Point(118, 490);
+            this.ec_lbl_Type.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ec_lbl_Type.Name = "ec_lbl_Type";
+            this.ec_lbl_Type.Size = new System.Drawing.Size(68, 17);
+            this.ec_lbl_Type.TabIndex = 49;
+            this.ec_lbl_Type.Text = "测试类型：";
+            // 
+            // ec_ccb_Type
+            // 
+            this.ec_ccb_Type.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ec_ccb_Type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ec_ccb_Type.FormattingEnabled = true;
+            this.ec_ccb_Type.Items.AddRange(new object[] {
+            "考试",
+            "课后测试"});
+            this.ec_ccb_Type.Location = new System.Drawing.Point(196, 484);
+            this.ec_ccb_Type.Name = "ec_ccb_Type";
+            this.ec_ccb_Type.Size = new System.Drawing.Size(165, 27);
+            this.ec_ccb_Type.TabIndex = 50;
+            this.ec_ccb_Type.Visible = false;
+            this.ec_ccb_Type.WaterText = "";
             // 
             // ExamChoose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 614);
+            this.ClientSize = new System.Drawing.Size(947, 668);
+            this.Controls.Add(this.ec_ccb_Type);
+            this.Controls.Add(this.ec_lbl_Type);
             this.Controls.Add(this.ec_tBx_Exam_Name);
             this.Controls.Add(this.ec_lbl_End_Time);
             this.Controls.Add(this.ec_dtp_End_Time);
@@ -252,5 +282,7 @@
         private System.Windows.Forms.Label ec_lbl_Start_Time;
         private System.Windows.Forms.DateTimePicker ec_dtp_Start_Time;
         private System.Windows.Forms.Label ec_lbl_Exam_Name;
+        private System.Windows.Forms.Label ec_lbl_Type;
+        private CCWin.SkinControl.SkinComboBox ec_ccb_Type;
     }
 }

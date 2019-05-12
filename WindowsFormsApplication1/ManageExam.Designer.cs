@@ -40,6 +40,9 @@
             this.me_lbl_EndTime = new System.Windows.Forms.Label();
             this.me_lbl_StartTime = new System.Windows.Forms.Label();
             this.me_lbl_ExamName = new System.Windows.Forms.Label();
+            this.me_tbx_Pass_Goal = new System.Windows.Forms.TextBox();
+            this.me_lbl_Pass_Goal = new System.Windows.Forms.Label();
+            this.me_lbl_totalGoal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // me_btn_back
@@ -88,7 +91,7 @@
             this.me_lbl_Exam_Name.Name = "me_lbl_Exam_Name";
             this.me_lbl_Exam_Name.Size = new System.Drawing.Size(56, 17);
             this.me_lbl_Exam_Name.TabIndex = 49;
-            this.me_lbl_Exam_Name.Text = "考试名：";
+            this.me_lbl_Exam_Name.Text = "测试名：";
             // 
             // ep_btn_All_Peroid
             // 
@@ -142,6 +145,7 @@
             this.ep_btn_confirm.TabIndex = 58;
             this.ep_btn_confirm.Text = "确定";
             this.ep_btn_confirm.UseVisualStyleBackColor = false;
+            this.ep_btn_confirm.Click += new System.EventHandler(this.ep_btn_confirm_Click);
             // 
             // me_lbl_EndTime
             // 
@@ -176,11 +180,47 @@
             this.me_lbl_ExamName.TabIndex = 59;
             this.me_lbl_ExamName.Text = "考试名";
             // 
+            // me_tbx_Pass_Goal
+            // 
+            this.me_tbx_Pass_Goal.BackColor = System.Drawing.Color.SkyBlue;
+            this.me_tbx_Pass_Goal.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.me_tbx_Pass_Goal.Location = new System.Drawing.Point(144, 434);
+            this.me_tbx_Pass_Goal.Margin = new System.Windows.Forms.Padding(2);
+            this.me_tbx_Pass_Goal.Name = "me_tbx_Pass_Goal";
+            this.me_tbx_Pass_Goal.Size = new System.Drawing.Size(165, 29);
+            this.me_tbx_Pass_Goal.TabIndex = 63;
+            // 
+            // me_lbl_Pass_Goal
+            // 
+            this.me_lbl_Pass_Goal.AutoSize = true;
+            this.me_lbl_Pass_Goal.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.me_lbl_Pass_Goal.Location = new System.Drawing.Point(70, 441);
+            this.me_lbl_Pass_Goal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.me_lbl_Pass_Goal.Name = "me_lbl_Pass_Goal";
+            this.me_lbl_Pass_Goal.Size = new System.Drawing.Size(68, 17);
+            this.me_lbl_Pass_Goal.TabIndex = 62;
+            this.me_lbl_Pass_Goal.Text = "通过分数：";
+            // 
+            // me_lbl_totalGoal
+            // 
+            this.me_lbl_totalGoal.AutoSize = true;
+            this.me_lbl_totalGoal.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.me_lbl_totalGoal.ForeColor = System.Drawing.Color.IndianRed;
+            this.me_lbl_totalGoal.Location = new System.Drawing.Point(316, 440);
+            this.me_lbl_totalGoal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.me_lbl_totalGoal.Name = "me_lbl_totalGoal";
+            this.me_lbl_totalGoal.Size = new System.Drawing.Size(80, 17);
+            this.me_lbl_totalGoal.TabIndex = 64;
+            this.me_lbl_totalGoal.Text = "当前总分为：";
+            // 
             // ManageExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 519);
+            this.Controls.Add(this.me_lbl_totalGoal);
+            this.Controls.Add(this.me_tbx_Pass_Goal);
+            this.Controls.Add(this.me_lbl_Pass_Goal);
             this.Controls.Add(this.me_lbl_EndTime);
             this.Controls.Add(this.me_lbl_StartTime);
             this.Controls.Add(this.me_lbl_ExamName);
@@ -193,7 +233,7 @@
             this.Controls.Add(this.me_lbl_Exam_Name);
             this.Controls.Add(this.me_btn_back);
             this.Name = "ManageExam";
-            this.Text = "考试详细信息";
+            this.Text = "测试详细信息";
             this.Load += new System.EventHandler(this.ManageExam_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -213,5 +253,8 @@
         private System.Windows.Forms.Label me_lbl_EndTime;
         private System.Windows.Forms.Label me_lbl_StartTime;
         private System.Windows.Forms.Label me_lbl_ExamName;
+        private System.Windows.Forms.TextBox me_tbx_Pass_Goal;
+        private System.Windows.Forms.Label me_lbl_Pass_Goal;
+        private System.Windows.Forms.Label me_lbl_totalGoal;
     }
 }

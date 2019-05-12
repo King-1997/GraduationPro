@@ -171,11 +171,11 @@ namespace WindowsFormsApplication1
                         string insert_sql = "";
                         if (c_id == -1)
                         {
-                            insert_sql += "insert into question values(next value for question_s,null,null,N'" + q_title + "','" + q_answer + "',N'" + q_option1 + "',N'" + q_option2 + "',N'" + q_option3 + "',N'" + q_option4 + "'," + q_goal + ")";
+                            insert_sql += "insert into question values(next value for question_s,null,N'" + q_title + "','" + q_answer + "',N'" + q_option1 + "',N'" + q_option2 + "',N'" + q_option3 + "',N'" + q_option4 + "'," + q_goal + ")";
                         }
                         else
                         {
-                            insert_sql += "insert into question values(next value for question_s," + c_id + ",null,N'" + q_title + "','" + q_answer + "',N'" + q_option1 + "',N'" + q_option2 + "',N'" + q_option3 + "',N'" + q_option4 + "'," + q_goal + ")";
+                            insert_sql += "insert into question values(next value for question_s," + c_id + ",N'" + q_title + "','" + q_answer + "',N'" + q_option1 + "',N'" + q_option2 + "',N'" + q_option3 + "',N'" + q_option4 + "'," + q_goal + ")";
                         }
                         flag1 = dc.ExecuteUpdate(insert_sql);
                     }
@@ -333,11 +333,11 @@ namespace WindowsFormsApplication1
                             {
                                 if (c_id == -1)
                                 {
-                                    insert_user = "insert into question values (next value for question_s,null,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                                    insert_user = "insert into question values (next value for question_s,null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
                                 }
                                 else
                                 {
-                                    insert_user = "insert into question values (next value for question_s," + c_id + ",null,'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
+                                    insert_user = "insert into question values (next value for question_s," + c_id + ",'" + q_title + "','" + q_answer + "','" + q_a + "','" + q_b + "','" + q_c + "','" + q_d + "'," + q_goal + ")";
                                 }
                                 //执行插入语句
 

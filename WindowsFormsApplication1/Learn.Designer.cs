@@ -57,6 +57,7 @@
             this.l_btn_play = new CCWin.SkinControl.SkinButton();
             this.L_lbl_vtime = new System.Windows.Forms.Label();
             this.l_lbl_position = new System.Windows.Forms.Label();
+            this.skinButton1 = new CCWin.SkinControl.SkinButton();
             ((System.ComponentModel.ISupportInitialize)(this.L_player)).BeginInit();
             this.SuspendLayout();
             // 
@@ -366,12 +367,28 @@
             this.l_lbl_position.TabIndex = 31;
             this.l_lbl_position.Text = "课程文件时长";
             // 
+            // skinButton1
+            // 
+            this.skinButton1.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton1.DownBack = null;
+            this.skinButton1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.skinButton1.Location = new System.Drawing.Point(906, 547);
+            this.skinButton1.MouseBack = null;
+            this.skinButton1.Name = "skinButton1";
+            this.skinButton1.NormlBack = null;
+            this.skinButton1.Size = new System.Drawing.Size(73, 37);
+            this.skinButton1.TabIndex = 32;
+            this.skinButton1.Text = "练习";
+            this.skinButton1.UseVisualStyleBackColor = false;
+            // 
             // Learn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1067, 727);
+            this.ClientSize = new System.Drawing.Size(1038, 727);
+            this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.l_lbl_position);
             this.Controls.Add(this.L_lbl_vtime);
             this.Controls.Add(this.l_btn_play);
@@ -436,5 +453,6 @@
         private CCWin.SkinControl.SkinButton l_btn_play;
         private System.Windows.Forms.Label L_lbl_vtime;
         private System.Windows.Forms.Label l_lbl_position;
+        private CCWin.SkinControl.SkinButton skinButton1;
     }
 }

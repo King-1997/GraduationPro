@@ -108,7 +108,7 @@ namespace WindowsFormsApplication1
                             {
                                 sp_line_id = (int)ds2.Tables["user"].Rows[j][0];
                                 //插入用户学习计划行表
-                                string insert_up_lines = "insert into user_plan_lines values(next value for user_plan_lines_s," + sp_line_id + "," + up_head_id + ",0,null,0,null)";
+                                string insert_up_lines = "insert into user_plan_lines values(next value for user_plan_lines_s," + sp_line_id + "," + up_head_id + ",0,'100%',0,null)";
                                 flag3 = dc.ExecuteUpdate(insert_up_lines);
                             }
                         }
