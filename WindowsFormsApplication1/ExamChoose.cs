@@ -115,7 +115,7 @@ namespace WindowsFormsApplication1
                     var rb = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     rb.Font = font;
                     rb.Width = 100;
-                    rb.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    rb.Name = ds.Tables["user"].Rows[i][6].ToString();
                     rb.TextAlign = ContentAlignment.MiddleCenter;
                     rb.Click += new EventHandler(btn_oK_Click);
                     //测试类型

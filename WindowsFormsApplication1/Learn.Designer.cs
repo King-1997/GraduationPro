@@ -57,7 +57,7 @@
             this.l_btn_play = new CCWin.SkinControl.SkinButton();
             this.L_lbl_vtime = new System.Windows.Forms.Label();
             this.l_lbl_position = new System.Windows.Forms.Label();
-            this.skinButton1 = new CCWin.SkinControl.SkinButton();
+            this.l_btn_exercise = new CCWin.SkinControl.SkinButton();
             ((System.ComponentModel.ISupportInitialize)(this.L_player)).BeginInit();
             this.SuspendLayout();
             // 
@@ -367,20 +367,21 @@
             this.l_lbl_position.TabIndex = 31;
             this.l_lbl_position.Text = "课程文件时长";
             // 
-            // skinButton1
+            // l_btn_exercise
             // 
-            this.skinButton1.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton1.DownBack = null;
-            this.skinButton1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.skinButton1.Location = new System.Drawing.Point(906, 547);
-            this.skinButton1.MouseBack = null;
-            this.skinButton1.Name = "skinButton1";
-            this.skinButton1.NormlBack = null;
-            this.skinButton1.Size = new System.Drawing.Size(73, 37);
-            this.skinButton1.TabIndex = 32;
-            this.skinButton1.Text = "练习";
-            this.skinButton1.UseVisualStyleBackColor = false;
+            this.l_btn_exercise.BackColor = System.Drawing.Color.Transparent;
+            this.l_btn_exercise.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.l_btn_exercise.DownBack = null;
+            this.l_btn_exercise.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.l_btn_exercise.Location = new System.Drawing.Point(906, 547);
+            this.l_btn_exercise.MouseBack = null;
+            this.l_btn_exercise.Name = "l_btn_exercise";
+            this.l_btn_exercise.NormlBack = null;
+            this.l_btn_exercise.Size = new System.Drawing.Size(73, 37);
+            this.l_btn_exercise.TabIndex = 32;
+            this.l_btn_exercise.Text = "练习";
+            this.l_btn_exercise.UseVisualStyleBackColor = false;
+            this.l_btn_exercise.Click += new System.EventHandler(this.l_btn_exercise_Click);
             // 
             // Learn
             // 
@@ -388,7 +389,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1038, 727);
-            this.Controls.Add(this.skinButton1);
+            this.Controls.Add(this.l_btn_exercise);
             this.Controls.Add(this.l_lbl_position);
             this.Controls.Add(this.L_lbl_vtime);
             this.Controls.Add(this.l_btn_play);
@@ -453,6 +454,6 @@
         private CCWin.SkinControl.SkinButton l_btn_play;
         private System.Windows.Forms.Label L_lbl_vtime;
         private System.Windows.Forms.Label l_lbl_position;
-        private CCWin.SkinControl.SkinButton skinButton1;
+        private CCWin.SkinControl.SkinButton l_btn_exercise;
     }
 }

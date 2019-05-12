@@ -155,7 +155,6 @@ namespace WindowsFormsApplication1
                     btn_check.Width = 50;
                     btn_check.TextAlign = ContentAlignment.MiddleCenter;
                     btn_check.Name = ds.Tables["user"].Rows[i][7].ToString();
-                    c_id = ds.Tables["user"].Rows[i][1].ToString();
                     exam_p_id = ds.Tables["user"].Rows[i][3].ToString();
                     btn_check.Click += new EventHandler(editPeriodInfo);
                     //删除阶段
@@ -189,6 +188,7 @@ namespace WindowsFormsApplication1
         //修改学习计划行信息按钮事件处理
         private void editPeriodInfo(object sender, EventArgs e)
         {
+
             ShowControls();
             Button button = (Button)sender;
             int.TryParse(button.Name, out sp_line_id);
@@ -265,7 +265,7 @@ namespace WindowsFormsApplication1
                     int flag = dc.ExecuteUpdate(update_sql);
                     if (flag == 1)
                     {
-                        MessageBox.Show("修改阶段信息成功！");                        
+                        MessageBox.Show("修改阶段信息成功！");
                     }
                     else
                     {
@@ -285,12 +285,16 @@ namespace WindowsFormsApplication1
         //添加新阶段信息，需先将sp_line_id置为-1，不然可能不为-1则会执行update而不是insert
         private void ep_btn_addPeroid_Click(object sender, EventArgs e)
         {
-            sp_line_id = -1;
+            sp_line_id = -1;            
             ShowControls();
         }
         //显示添加阶段的控件
         private void ShowControls()
         {
+            c_id = null;
+            lesson_name = null;
+            exam_p_id = null;
+            exam_name = null;
             ep_flp_Lines_Info.Height = 160;
             ep_lbl_Period_Name.Visible = true;
             ep_tBx_Period_Name.Visible = true;
@@ -330,7 +334,7 @@ namespace WindowsFormsApplication1
             ClassChoose classChoose = new ClassChoose();
             classChoose.Owner = this;
             Hide();
-            classChoose.Show();           
+            classChoose.Show();
         }
 
         private void ep_btn_addExam_Click(object sender, EventArgs e)

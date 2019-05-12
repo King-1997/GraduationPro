@@ -183,6 +183,7 @@ namespace WindowsFormsApplication1
                     var btn_learn = new Button { Text = "学习" };
                     btn_learn.Width = 50;
                     btn_learn.Name = ds.Tables["user"].Rows[i][7].ToString();
+                    up_line_id = (int)ds.Tables["user"].Rows[i][8];
                     btn_learn.TextAlign = ContentAlignment.MiddleCenter;
                     btn_learn.Click += new EventHandler(btn_studyClass_Click);
 
@@ -262,9 +263,10 @@ namespace WindowsFormsApplication1
         private void btn_studyClass_Click(object sender, EventArgs e)
         {
             //选择课程，跳转到学习页面
-            Button button = (Button)sender;
-            int.TryParse(button.Name, out Learn.c_id);
+            Button button = (Button)sender;            
             Learn learn = new Learn();
+            int.TryParse(button.Name, out Learn.c_id);
+            Learn.up_line_id = up_line_id;
             learn.Owner = this;
             Hide();
             learn.Show();

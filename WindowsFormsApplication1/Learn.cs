@@ -16,11 +16,13 @@ namespace WindowsFormsApplication1
     public partial class Learn : CCSkinMain
     {
         public static int c_id = -1;
+        public static int up_line_id = -1;
         private string c_file = null;
         private string v_time = null;//获取当前视频文件时长string
         private double v_time_d = 0;//获取当前视频文件时长double
         private string v_position = null;
         private double v_position_d = 0;
+        private string schedule = null;
         private string c_name = null;
         private string c_ifExam = null;
         private int c_maxTime = 30;
@@ -76,13 +78,43 @@ namespace WindowsFormsApplication1
             //Console.WriteLine("附件路径："+c_annex);
             //Console.WriteLine(c_annex.LastIndexOf("\\")+1);
             //Console.WriteLine("附件名："+c_annex.Substring(c_annex.LastIndexOf("\\")+1));
-            L_lblClassesAnnex.Text = c_annex.Substring(c_annex.LastIndexOf("\\")+1);//从路径中截取出文件名
+            L_lblClassesAnnex.Text = c_annex.Substring(c_annex.LastIndexOf("\\") + 1);//从路径中截取出文件名
+
+            string select_up_line = "select up_line_schedule from user_plan_lines where up_line_id = "+ up_line_id;
+            DataSet ds2 = dc.ExecuteQuery(select_up_line);
+            schedule = ds2.Tables["user"].Rows[0][0].ToString();
         }
         private void L_btnReturn_Click(object sender, EventArgs e)
         {
-            timer1.Stop();//关闭计时器
-            Owner.Show();
-            Dispose();
+            DataBaseConnection dc = new DataBaseConnection();
+            string str = (1-(v_position_d / v_time_d)).ToString("0%"); //无小数位
+            string str_p = (v_position_d / v_time_d).ToString("P");    //P表示二位小数0.00%
+            Console.WriteLine("百分数："+str);
+            int a = string.Compare(str, schedule);
+            if (v_position_d < v_time_d)
+            {
+                if (MessageBox.Show("检测到您未完成该视频的学习，确定返回吗？", "判断", MessageBoxButtons.OKCancel,
+               MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    string update_sql = "";
+                    if (schedule.Equals("100%"))
+                    {
+                        update_sql = "update user_plan_lines set up_line_schedule = '" + str + "' where up_line_id =" + up_line_id;
+                        int flag = dc.ExecuteUpdate(update_sql);
+                    }
+                    else
+                    {
+                        if (a < 0)
+                        {
+                            update_sql = "update user_plan_lines set up_line_schedule = '" + str + "' where up_line_id =" + up_line_id;
+                            int flag = dc.ExecuteUpdate(update_sql);
+                        }
+                    }                    
+                    timer1.Stop();//关闭计时器
+                    Owner.Show();
+                    Dispose();
+                }
+            }  
         }
         //计时器
         private int openingtime = 0;//记录页面打开时间
@@ -114,14 +146,14 @@ namespace WindowsFormsApplication1
             //判断学习状态
             if (learningtime % 10 == 0)//每隔一段时间进行弹窗确认学习状态
             {
-                l_btn_pause_Click(sender,e);
+                l_btn_pause_Click(sender, e);
                 learningtime++;
                 learn = false;//未回应则设置为不在学习
                 lbl_learningState.Text = "不在学习";
                 MessageBox.Show("请确认您当前的学习状况！");
                 learn = true;//回应成功修改成正在学习
                 lbl_learningState.Text = "正在学习";
-                l_btn_play_Click(sender,e);
+                l_btn_play_Click(sender, e);
             }
             if (learningtime > c_minTime * 60)
                 L_btnExam.Enabled = true;
@@ -162,6 +194,9 @@ namespace WindowsFormsApplication1
                 learn = true;
                 lbl_learningState.Text = "正在学习";
                 //L_player.fullScreen = true;//全屏打开文件
+                DataBaseConnection dc = new DataBaseConnection();
+                string update_sql = "update user_plan_lines set study_status_id = 1 where up_line_id = " + up_line_id;
+                int flag = dc.ExecuteUpdate(update_sql);
             }
             else
             {
@@ -206,11 +241,11 @@ namespace WindowsFormsApplication1
                 if (file != null)
                 {
                     string lblname = file.Name;
-                    var lbl = new Label {Text = lblname};
+                    var lbl = new Label { Text = lblname };
                     lbl.AutoSize = true;
                     lbl.Font = font;
                     lbl.Anchor = AnchorStyles.None;
-                    var button = new Button {Name=lblname,Text = "打开" };
+                    var button = new Button { Name = lblname, Text = "打开" };
                     //button.Click += new EventHandler(Filesopen);
                     //fLP_filesPreview.Controls.Add(lbl);fLP_filesPreview.Controls.Add(button);
                     //fLP_filesPreview.SetFlowBreak(button, true);
@@ -225,12 +260,12 @@ namespace WindowsFormsApplication1
             //Button button = (Button)sender;
             //string fileroad = "D:\\01 SQL培训\\2.0视频\\第1单元_Select" + button.Name;//文件路径
             string fileExtension = Path.GetExtension(fileroad);//即扩展名 
-            if(fileExtension==".pdf")//打开pdf文件
+            if (fileExtension == ".pdf")//打开pdf文件
             {
                 System.Diagnostics.Process.Start(fileroad);
             }
-            else if(fileExtension== ".mp3"||fileExtension==".wav"||fileExtension==".mp4"||
-                    fileExtension==".mov"||fileExtension==".wmv"||fileExtension==".mpg")//打开视频文件
+            else if (fileExtension == ".mp3" || fileExtension == ".wav" || fileExtension == ".mp4" ||
+                    fileExtension == ".mov" || fileExtension == ".wmv" || fileExtension == ".mpg")//打开视频文件
             {
                 L_player.URL = c_file;
                 open = true;
@@ -253,11 +288,13 @@ namespace WindowsFormsApplication1
                     l_btn_pause_Click(sender, e);
                     ExamForm.c_id = c_id;
                     ExamForm examForm = new ExamForm();
+                    ExamForm.up_line_id = up_line_id;
                     examForm.Owner = this;
                     Hide();
                     examForm.Show();
                 }
-            }else//当前视频播放进度等于视频总长度时也可以直接进入考试界面进入
+            }
+            else//当前视频播放进度等于视频总长度时也可以直接进入考试界面进入
             {
                 //learn = false;
                 open = false;
@@ -289,12 +326,24 @@ namespace WindowsFormsApplication1
         {
             //learn = false;
             open = false;
-            l_btn_pause_Click(sender,e);
+            l_btn_pause_Click(sender, e);
             Emp_Comment.c_id = c_id;
             Emp_Comment emp_comment = new Emp_Comment();
             emp_comment.Owner = this;
             Hide();
             emp_comment.Show();
-        } 
+        }
+
+        private void l_btn_exercise_Click(object sender, EventArgs e)
+        {
+            //learn = false;
+            open = false;
+            l_btn_pause_Click(sender, e);
+            Exercise.c_id = c_id;
+            Exercise exercise = new Exercise();
+            exercise.Owner = this;
+            Hide();
+            exercise.Show();
+        }
     }
 }

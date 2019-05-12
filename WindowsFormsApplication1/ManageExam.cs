@@ -288,7 +288,7 @@ namespace WindowsFormsApplication1
                         {
                             int q_idd = 0;
                             int.TryParse(q_ids, out q_idd);
-                            string select_q_id = "select q_id from exam_detail where q_id = " + q_idd;
+                            string select_q_id = "select q_id from exam_detail where exam_p_id = "+exam_p_id+" and q_id = " + q_idd;
                             DataSet ds = dc.ExecuteQuery(select_q_id);
                             if (ds.Tables["user"].Rows.Count == 0)
                             {

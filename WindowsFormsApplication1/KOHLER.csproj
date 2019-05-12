@@ -152,6 +152,12 @@
     <Compile Include="ExamChoose.Designer.cs">
       <DependentUpon>ExamChoose.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exercise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exercise.Designer.cs">
+      <DependentUpon>Exercise.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageExam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExamChoose.resx">
       <DependentUpon>ExamChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exercise.resx">
+      <DependentUpon>Exercise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageExam.resx">
       <DependentUpon>ManageExam.cs</DependentUpon>

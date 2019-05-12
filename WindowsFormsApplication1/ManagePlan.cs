@@ -170,7 +170,7 @@ namespace WindowsFormsApplication1
                     var plan_name = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     plan_name.Font = font;
                     plan_name.Width = 120;
-                    plan_name.Name = ds.Tables["user"].Rows[i][5].ToString();
+                    plan_name.Name = ds.Tables["user"].Rows[i][6].ToString();
                     plan_name.TextAlign = ContentAlignment.MiddleCenter;
                     plan_name.Click += new EventHandler(btn_OK_Click);
                     //计划简介

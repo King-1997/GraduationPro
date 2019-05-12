@@ -35,6 +35,9 @@
             this.btn_hand = new CCWin.SkinControl.SkinButton();
             this.ef_timer = new System.Windows.Forms.Timer(this.components);
             this.ef_lbl_curTime = new System.Windows.Forms.Label();
+            this.ef_lbl_totalGoal = new System.Windows.Forms.Label();
+            this.ef_lbl_passGoal = new System.Windows.Forms.Label();
+            this.ef_lbl_exam_name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_Lesson_Name
@@ -51,10 +54,10 @@
             // fLP_ExamShow
             // 
             this.fLP_ExamShow.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.fLP_ExamShow.Location = new System.Drawing.Point(92, 100);
+            this.fLP_ExamShow.Location = new System.Drawing.Point(92, 149);
             this.fLP_ExamShow.Margin = new System.Windows.Forms.Padding(2);
             this.fLP_ExamShow.Name = "fLP_ExamShow";
-            this.fLP_ExamShow.Size = new System.Drawing.Size(559, 358);
+            this.fLP_ExamShow.Size = new System.Drawing.Size(559, 309);
             this.fLP_ExamShow.TabIndex = 1;
             // 
             // btn_cancel
@@ -103,11 +106,44 @@
             this.ef_lbl_curTime.TabIndex = 6;
             this.ef_lbl_curTime.Text = "YYYY/MM/dd HH:mm:ss";
             // 
+            // ef_lbl_totalGoal
+            // 
+            this.ef_lbl_totalGoal.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ef_lbl_totalGoal.Location = new System.Drawing.Point(356, 47);
+            this.ef_lbl_totalGoal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ef_lbl_totalGoal.Name = "ef_lbl_totalGoal";
+            this.ef_lbl_totalGoal.Size = new System.Drawing.Size(117, 32);
+            this.ef_lbl_totalGoal.TabIndex = 7;
+            this.ef_lbl_totalGoal.Text = "总分为：";
+            // 
+            // ef_lbl_passGoal
+            // 
+            this.ef_lbl_passGoal.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ef_lbl_passGoal.Location = new System.Drawing.Point(356, 88);
+            this.ef_lbl_passGoal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ef_lbl_passGoal.Name = "ef_lbl_passGoal";
+            this.ef_lbl_passGoal.Size = new System.Drawing.Size(117, 32);
+            this.ef_lbl_passGoal.TabIndex = 8;
+            this.ef_lbl_passGoal.Text = "通过分数为：";
+            // 
+            // ef_lbl_exam_name
+            // 
+            this.ef_lbl_exam_name.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ef_lbl_exam_name.Location = new System.Drawing.Point(121, 47);
+            this.ef_lbl_exam_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ef_lbl_exam_name.Name = "ef_lbl_exam_name";
+            this.ef_lbl_exam_name.Size = new System.Drawing.Size(117, 32);
+            this.ef_lbl_exam_name.TabIndex = 9;
+            this.ef_lbl_exam_name.Text = "考试名：";
+            // 
             // ExamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 577);
+            this.Controls.Add(this.ef_lbl_exam_name);
+            this.Controls.Add(this.ef_lbl_passGoal);
+            this.Controls.Add(this.ef_lbl_totalGoal);
             this.Controls.Add(this.ef_lbl_curTime);
             this.Controls.Add(this.btn_hand);
             this.Controls.Add(this.btn_cancel);
@@ -131,5 +167,8 @@
         private CCWin.SkinControl.SkinButton btn_hand;
         private System.Windows.Forms.Timer ef_timer;
         private System.Windows.Forms.Label ef_lbl_curTime;
+        private System.Windows.Forms.Label ef_lbl_totalGoal;
+        private System.Windows.Forms.Label ef_lbl_passGoal;
+        private System.Windows.Forms.Label ef_lbl_exam_name;
     }
 }
