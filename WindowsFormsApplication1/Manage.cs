@@ -269,5 +269,14 @@ namespace WindowsFormsApplication1
             Hide();
             study_detail.Show();
         }
+
+        private void m_btn_exercise_Click(object sender, EventArgs e)
+        {
+            //打开选择试卷界面examChoose，隐藏本界面
+            ExamChoose examChoose = new ExamChoose();
+            examChoose.Owner = this;
+            Hide();
+            examChoose.Show();
+        }
     }
 }

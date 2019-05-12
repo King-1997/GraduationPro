@@ -49,6 +49,7 @@
             this.m_lbl_title = new System.Windows.Forms.Label();
             this.m_tbx_title = new System.Windows.Forms.TextBox();
             this.m_btn_detail = new CCWin.SkinControl.SkinButton();
+            this.m_btn_exercise = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // p_lblTitle
@@ -320,6 +321,22 @@
             this.m_btn_detail.UseVisualStyleBackColor = false;
             this.m_btn_detail.Click += new System.EventHandler(this.m_btn_detail_Click);
             // 
+            // m_btn_exercise
+            // 
+            this.m_btn_exercise.BackColor = System.Drawing.Color.Transparent;
+            this.m_btn_exercise.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.m_btn_exercise.DownBack = null;
+            this.m_btn_exercise.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.m_btn_exercise.Location = new System.Drawing.Point(670, 433);
+            this.m_btn_exercise.MouseBack = null;
+            this.m_btn_exercise.Name = "m_btn_exercise";
+            this.m_btn_exercise.NormlBack = null;
+            this.m_btn_exercise.Size = new System.Drawing.Size(89, 46);
+            this.m_btn_exercise.TabIndex = 42;
+            this.m_btn_exercise.Text = "测试管理";
+            this.m_btn_exercise.UseVisualStyleBackColor = false;
+            this.m_btn_exercise.Click += new System.EventHandler(this.m_btn_exercise_Click);
+            // 
             // Manage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -327,6 +344,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(817, 618);
             this.ControlBox = false;
+            this.Controls.Add(this.m_btn_exercise);
             this.Controls.Add(this.m_btn_detail);
             this.Controls.Add(this.m_tbx_title);
             this.Controls.Add(this.m_lbl_title);
@@ -378,5 +396,6 @@
         private System.Windows.Forms.Label m_lbl_title;
         private System.Windows.Forms.TextBox m_tbx_title;
         private CCWin.SkinControl.SkinButton m_btn_detail;
+        private CCWin.SkinControl.SkinButton m_btn_exercise;
     }
 }
