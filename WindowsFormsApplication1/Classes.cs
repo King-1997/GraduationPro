@@ -146,7 +146,7 @@ namespace WindowsFormsApplication1
                     if (ds.Tables["user"].Rows.Count == 0)
                     {
                         //Console.WriteLine("推荐课程的id:" + id);
-                        string select_c_info = "select c.c_name,c.c_credit,u.u_name,c.c_recommendTime,c.c_id from classes c,[group] g where c.u_id = g.g_id and c_id = " + id;
+                        string select_c_info = "select c.c_name,c.c_credit,g.g_group,c.c_recommendTime,c.c_id from classes c,[group] g where c.u_id = g.g_id and c_id = " + id;
                         showRecClassInfo(select_c_info);
                     }
                 }

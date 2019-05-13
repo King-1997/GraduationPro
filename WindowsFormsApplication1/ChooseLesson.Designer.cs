@@ -96,6 +96,7 @@
             this.btn_Finding.BackColor = System.Drawing.Color.Transparent;
             this.btn_Finding.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_Finding.DownBack = null;
+            this.btn_Finding.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btn_Finding.Location = new System.Drawing.Point(478, 48);
             this.btn_Finding.MouseBack = null;
             this.btn_Finding.Name = "btn_Finding";
@@ -111,6 +112,7 @@
             this.btn_AllClasses.BackColor = System.Drawing.Color.Transparent;
             this.btn_AllClasses.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_AllClasses.DownBack = null;
+            this.btn_AllClasses.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btn_AllClasses.Location = new System.Drawing.Point(579, 48);
             this.btn_AllClasses.MouseBack = null;
             this.btn_AllClasses.Name = "btn_AllClasses";
@@ -126,6 +128,7 @@
             this.btn_deteminal.BackColor = System.Drawing.Color.Transparent;
             this.btn_deteminal.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_deteminal.DownBack = null;
+            this.btn_deteminal.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btn_deteminal.Location = new System.Drawing.Point(579, 563);
             this.btn_deteminal.MouseBack = null;
             this.btn_deteminal.Name = "btn_deteminal";
@@ -141,6 +144,7 @@
             this.btn_return.BackColor = System.Drawing.Color.Transparent;
             this.btn_return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.btn_return.DownBack = null;
+            this.btn_return.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.btn_return.Location = new System.Drawing.Point(659, 563);
             this.btn_return.MouseBack = null;
             this.btn_return.Name = "btn_return";
