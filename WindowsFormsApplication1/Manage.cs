@@ -203,11 +203,11 @@ namespace WindowsFormsApplication1
         }
         private void m_btn_plan_manage_Click(object sender, EventArgs e)
         {
-            //给组员安排课程，打开课程安排页面
-            ManagePlan createPlan = new ManagePlan();
-            createPlan.Owner = this;
+            //管理学习计划，打开学习计划页面
+            StudyPlan studyPlan = new StudyPlan();
+            studyPlan.Owner = this;
             Hide();
-            createPlan.Show();
+            studyPlan.Show();
         }
         private void m_btn_Announce_Click(object sender, EventArgs e)
         {            

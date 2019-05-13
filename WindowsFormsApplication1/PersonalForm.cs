@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
             HideControls();
-            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,(select ss_prompt from study_status where study_status_id = upl.study_status_id),(select max(ee.real_goal) from employee_exam ee,exam_detail ed,question q where ee.u_id = "+Model.User.userId+" and ee.exam_p_id = ed.exam_p_id and ed.q_id = q.q_id and q.c_id =c.c_id) as goal,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 2";
+            string sql = "select sps.sps_name, sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,(select ss_prompt from study_status where study_status_id = upl.study_status_id),(select max(ee.real_goal) from employee_exam ee,exam_detail ed,question q where ee.u_id = "+Model.User.userId+" and ee.exam_p_id = ed.exam_p_id and ed.q_id = q.q_id and q.c_id =c.c_id) as goal,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,study_plans sps,Classes c where sph.sps_id = sps.sps_id and uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 2";
             displayAlreadyClasses(sql);
         }
         private void displayAlreadyClasses(string sql)
@@ -214,7 +214,7 @@ namespace WindowsFormsApplication1
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
             HideControls();
-            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 0 or upl.study_status_id = 1";
+            string sql = "select sps.sps_name,sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,study_plans sps,Classes c where sph.sps_id = sps.sps_id and uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 0 or upl.study_status_id = 1";
             displayClasses(sql);
         }
         private void displayClasses(string sql)

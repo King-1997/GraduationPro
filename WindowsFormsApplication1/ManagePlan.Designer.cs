@@ -286,7 +286,7 @@
             this.Controls.Add(this.mp_tBx_findkeywords);
             this.Controls.Add(this.mp_flp_PlanInfo);
             this.Name = "ManagePlan";
-            this.Text = "学习计划管理";
+            this.Text = "学习阶段管理";
             this.Load += new System.EventHandler(this.ManagePlan_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

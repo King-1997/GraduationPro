@@ -181,6 +181,12 @@
     <Compile Include="Ques_detail.Designer.cs">
       <DependentUpon>Ques_detail.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudyPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudyPlan.Designer.cs">
+      <DependentUpon>StudyPlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Study_detail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,6 +384,9 @@
     </Compile>
     <EmbeddedResource Include="Ques_detail.resx">
       <DependentUpon>Ques_detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudyPlan.resx">
+      <DependentUpon>StudyPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Study_detail.resx">
       <DependentUpon>Study_detail.cs</DependentUpon>

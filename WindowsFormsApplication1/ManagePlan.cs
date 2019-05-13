@@ -15,8 +15,9 @@ namespace WindowsFormsApplication1
     {
         //设置窗体显示字体格式
         Font font = new Font("微软雅黑", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
+        public static int sps_id = -1;
         private int sp_head_id = -1;
-        public static List<string> classes = null;
+        //public static List<string> classes = null;
         public string PlanId = null;//保存选择的课程id信息
         public string PlanName = null;//保存选择的课程名信息
         public ManagePlan()
@@ -71,15 +72,7 @@ namespace WindowsFormsApplication1
         }
         private void ManagePlan_Load(object sender, EventArgs e)
         {
-            string select_sql = "";
-            if (Model.User.groupId == 0)
-            {
-                select_sql += "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id";
-            }else
-            {
-                select_sql += "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sph.sp_emp_dpt = "+Model.User.groupId;
-            }
-            
+            string select_sql = "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sps_id = "+sps_id;            
             showPlanInfo(select_sql);
         }
         private void mp_btn_find_Click(object sender, EventArgs e)
@@ -90,15 +83,7 @@ namespace WindowsFormsApplication1
                 ManagePlan_Load(sender,e);
             }else
             {
-                string select_sql = "";
-                if (Model.User.groupId == 0)
-                {
-                    select_sql += "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sp_head_name like '%" + keyword + "%'";
-                }
-                else
-                {
-                    select_sql += "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sph.sp_emp_dpt = " + Model.User.groupId+ "and sp_head_name like '%" + keyword + "%'";
-                }
+                string select_sql = "select sph.sp_head_name,sph.sp_head_summary,(select g_group from [group] where g_id =sph.sp_created) as created,(select g_group from [group] where g_id =sph.sp_emp_dpt) as emp_dpt,ut.ut_type,es.station_name,sp_head_id from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sps_id = "+sps_id+" and sp_head_name like '%" + keyword + "%'";
                 showPlanInfo(select_sql);
             }
         }
@@ -167,12 +152,12 @@ namespace WindowsFormsApplication1
                 for (int i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
                     //计划名
-                    var plan_name = new CheckBox { Text = ds.Tables["user"].Rows[i][0].ToString() };
+                    var plan_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
                     plan_name.Font = font;
                     plan_name.Width = 120;
                     plan_name.Name = ds.Tables["user"].Rows[i][6].ToString();
                     plan_name.TextAlign = ContentAlignment.MiddleCenter;
-                    plan_name.Click += new EventHandler(btn_OK_Click);
+                    //plan_name.Click += new EventHandler(btn_OK_Click);
                     //计划简介
                     var introducation = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     introducation.Font = font;
@@ -235,7 +220,7 @@ namespace WindowsFormsApplication1
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
                 lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 579;
+                lbl_no_data.Width = 540;
                 lbl_no_data.Height = 150;
                 mp_flp_PlanInfo.Controls.Add(lbl_no_data);
             }
@@ -326,7 +311,7 @@ namespace WindowsFormsApplication1
         {
             Owner.Show();
             Dispose();
-            classes = null;
+            //classes = null;
         }
         //新增计划按钮事件处理
         private void mp_btn_addPlan_Click(object sender, EventArgs e)
@@ -353,7 +338,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             if (sp_head_id == -1)
             {
-                string insert_sql = "insert into study_plan_header values(next value for study_plan_header_s,'" + plan_name + "','" + head_summary + "','" + Model.User.groupId + "',convert(char(10),GetDate(),120),"+ emp_dpt + "," + emp_type + ","+emp_station+")";
+                string insert_sql = "insert into study_plan_header values(next value for study_plan_header_s,'" + plan_name + "','" + head_summary + "','" + Model.User.groupId + "',convert(char(10),GetDate(),120),"+ emp_dpt + "," + emp_type + ","+emp_station+","+ sps_id + ")";
                 int flag = dc.ExecuteUpdate(insert_sql);
                 if (flag != 0)
                 {
@@ -368,7 +353,7 @@ namespace WindowsFormsApplication1
                 if (MessageBox.Show("您确定要保存该修改吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    string update_sql = "update study_plan_header set sp_head_name = '" + plan_name + "',sp_head_summary = '" + head_summary + "',sp_emp_dpt = "+emp_dpt+",sp_emp_type = " + emp_type + ",sp_emp_station = "+emp_station+" where sp_head_id =" + sp_head_id;
+                    string update_sql = "update study_plan_header set sp_head_name = '" + plan_name + "',sp_head_summary = '" + head_summary + "',sp_emp_dpt = "+emp_dpt+",sp_emp_type = " + emp_type + ",sp_emp_station = "+emp_station+" where sp_head_id =" + sp_head_id+" and sps_id = "+ sps_id;
                     int flag = dc.ExecuteUpdate(update_sql);
                     if (flag != 0)
                     {
