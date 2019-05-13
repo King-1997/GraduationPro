@@ -77,13 +77,145 @@ namespace WindowsFormsApplication1
         private void Btn_classfinished_Click(object sender, EventArgs e)
         {
             HideControls();
-            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 2";
-            displayClasses(sql);
+            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,(select ss_prompt from study_status where study_status_id = upl.study_status_id),c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 2";
+            displayAlreadyClasses(sql);
+        }
+        private void displayAlreadyClasses(string sql)
+        {
+            //刷新页面显示
+            p_flpClasses.Controls.Clear();
+            DataBaseConnection dc = new DataBaseConnection();
+            DataSet ds = dc.ExecuteQuery(sql);
+            if (ds.Tables["user"].Rows.Count > 0)
+            {
+                //标签栏目
+                var lbl_plan_name = new Label { Text = "所属学习计划" };
+                lbl_plan_name.Width = 100;
+                lbl_plan_name.Font = font;
+                lbl_plan_name.TextAlign = ContentAlignment.MiddleCenter;
+                //标签栏目
+                var lbl_peroid_name = new Label { Text = "阶段名" };
+                lbl_peroid_name.Width = 80;
+                lbl_peroid_name.Font = font;
+                lbl_peroid_name.TextAlign = ContentAlignment.MiddleCenter;
+                //标签栏目
+                var lblname = new Label { Text = "课程名" };
+                lblname.Width = 100;
+                lblname.Font = font;
+                lblname.TextAlign = ContentAlignment.MiddleCenter;
+                var lblcredit = new Label { Text = "学分" };
+                lblcredit.Width = 50;
+                lblcredit.Font = font;
+                lblcredit.TextAlign = ContentAlignment.MiddleCenter;
+                var lblu_name = new Label { Text = "开课部门" };
+                lblu_name.Width = 80;
+                lblu_name.Font = font;
+                lblu_name.TextAlign = ContentAlignment.MiddleCenter;
+                var lbltime = new Label { Text = "学时" };
+                lbltime.Width = 50;
+                lbltime.Font = font;
+                lbltime.TextAlign = ContentAlignment.MiddleCenter;
+                var lblschedule = new Label { Text = "进度" };
+                lblschedule.Width = 80;
+                lblschedule.Font = font;
+                lblschedule.TextAlign = ContentAlignment.MiddleCenter;
+                //var lbl_false = new Label { Text = "" };
+                //lbl_false.Width = 50;
+                //lbl_false.Font = font;
+                //lbl_false.TextAlign = ContentAlignment.MiddleCenter;
+                var lbl_Eva = new Label { Text = "" };
+                lbl_Eva.Width = 50;
+                lbl_Eva.Font = font;
+                lbl_Eva.TextAlign = ContentAlignment.MiddleCenter;
+                p_flpClasses.Controls.Add(lbl_plan_name);
+                p_flpClasses.Controls.Add(lbl_peroid_name);
+                p_flpClasses.Controls.Add(lblname);
+                p_flpClasses.Controls.Add(lblcredit);
+                p_flpClasses.Controls.Add(lblu_name);
+                p_flpClasses.Controls.Add(lbltime);
+                p_flpClasses.Controls.Add(lblschedule);
+                //p_flpClasses.Controls.Add(lbl_false);
+                p_flpClasses.Controls.Add(lbl_Eva);
+                p_flpClasses.SetFlowBreak(lbl_Eva, true);
+
+                for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
+                {
+                    //学习计划名
+                    var lbl_planname = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
+                    lbl_planname.Width = 100;
+                    lbl_planname.Font = font;
+                    lbl_planname.TextAlign = ContentAlignment.MiddleCenter;
+                    //学习阶段名
+                    var lbl_peroidname = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
+                    lbl_peroidname.Width = 80;
+                    lbl_peroidname.Font = font;
+                    lbl_peroidname.TextAlign = ContentAlignment.MiddleCenter;
+                    //课程名
+                    var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
+                    lblUFClasses_name.Width = 100;
+                    lblUFClasses_name.Font = font;
+                    lblUFClasses_name.TextAlign = ContentAlignment.MiddleCenter;
+                    //学分
+                    var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
+                    lblUFClasses_credit.Width = 50;
+                    lblUFClasses_credit.Font = font;
+                    lblUFClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
+                    //开课部门
+                    var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
+                    lblUFClasses_u_name.Width = 80;
+                    lblUFClasses_u_name.Font = font;
+                    lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
+                    //推荐学时
+                    var lblUFClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
+                    lblUFClasses_recommendTime.Width = 50;
+                    lblUFClasses_recommendTime.Font = font;
+                    lblUFClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
+                    //剩余进度
+                    var lbl_schedule = new Label { Text = ds.Tables["user"].Rows[i][6].ToString() };
+                    lbl_schedule.Width = 80;
+                    lbl_schedule.Font = font;
+                    lbl_schedule.TextAlign = ContentAlignment.MiddleCenter;
+
+                    //var btn_learn = new Button { Text = "学习" };
+                    //btn_learn.Width = 50;
+                    //btn_learn.Name = ds.Tables["user"].Rows[i][7].ToString();
+                    //up_line_id = (int)ds.Tables["user"].Rows[i][8];
+                    //btn_learn.TextAlign = ContentAlignment.MiddleCenter;
+                    //btn_learn.Click += new EventHandler(btn_studyClass_Click);
+
+                    var btnEvaluation = new Button { Text = "评价" };
+                    btnEvaluation.Width = 50;
+                    btnEvaluation.Name = ds.Tables["user"].Rows[i][8].ToString();
+                    btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
+                    btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
+
+                    p_flpClasses.Controls.Add(lbl_planname);
+                    p_flpClasses.Controls.Add(lbl_peroidname);
+                    p_flpClasses.Controls.Add(lblUFClasses_name);
+                    p_flpClasses.Controls.Add(lblUFClasses_credit);
+                    p_flpClasses.Controls.Add(lblUFClasses_u_name);
+                    p_flpClasses.Controls.Add(lblUFClasses_recommendTime);
+                    p_flpClasses.Controls.Add(lbl_schedule);
+                    //p_flpClasses.Controls.Add(btn_learn);
+                    p_flpClasses.Controls.Add(btnEvaluation);
+                    p_flpClasses.SetFlowBreak(btnEvaluation, true);
+                }
+            }
+            else
+            {
+                //查询不到数据时提示无数据
+                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
+                lbl_no_data.Font = font;
+                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
+                lbl_no_data.Width = 550;
+                lbl_no_data.Height = 100;
+                p_flpClasses.Controls.Add(lbl_no_data);
+            }
         }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
             HideControls();
-            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select u.u_name from [User] u where u.u_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and uph.study_status_id = 0 or uph.study_status_id = 1";
+            string sql = "select sph.sp_head_name,spl.sp_peroid,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 0 or upl.study_status_id = 1";
             displayClasses(sql);
         }
         private void displayClasses(string sql)
@@ -96,27 +228,29 @@ namespace WindowsFormsApplication1
             {
                 //标签栏目
                 var lbl_plan_name = new Label { Text = "所属学习计划" };
-                lbl_plan_name.Width = 80;
+                lbl_plan_name.Width = 100;
                 lbl_plan_name.Font = font;
+                lbl_plan_name.TextAlign = ContentAlignment.MiddleCenter;
                 //标签栏目
                 var lbl_peroid_name = new Label { Text = "阶段名" };
                 lbl_peroid_name.Width = 80;
                 lbl_peroid_name.Font = font;
+                lbl_peroid_name.TextAlign = ContentAlignment.MiddleCenter;
                 //标签栏目
                 var lblname = new Label { Text = "课程名" };
-                lblname.Width = 80;
+                lblname.Width = 100;
                 lblname.Font = font;
                 lblname.TextAlign = ContentAlignment.MiddleCenter;
                 var lblcredit = new Label { Text = "学分" };
-                lblcredit.Width = 80;
+                lblcredit.Width = 50;
                 lblcredit.Font = font;
                 lblcredit.TextAlign = ContentAlignment.MiddleCenter;
-                var lblu_name = new Label { Text = "上传人" };
-                lblu_name.Width = 60;
+                var lblu_name = new Label { Text = "开课部门" };
+                lblu_name.Width = 80;
                 lblu_name.Font = font;
                 lblu_name.TextAlign = ContentAlignment.MiddleCenter;
                 var lbltime = new Label { Text = "学时" };
-                lbltime.Width = 80;
+                lbltime.Width = 50;
                 lbltime.Font = font;
                 lbltime.TextAlign = ContentAlignment.MiddleCenter;
                 var lblschedule = new Label { Text = "剩余进度" };
@@ -146,7 +280,7 @@ namespace WindowsFormsApplication1
                 {
                     //学习计划名
                     var lbl_planname = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
-                    lbl_planname.Width = 80;
+                    lbl_planname.Width = 100;
                     lbl_planname.Font = font;
                     lbl_planname.TextAlign = ContentAlignment.MiddleCenter;
                     //学习阶段名
@@ -156,22 +290,22 @@ namespace WindowsFormsApplication1
                     lbl_peroidname.TextAlign = ContentAlignment.MiddleCenter;
                     //课程名
                     var lblUFClasses_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
-                    lblUFClasses_name.Width = 80;
+                    lblUFClasses_name.Width = 100;
                     lblUFClasses_name.Font = font;
                     lblUFClasses_name.TextAlign = ContentAlignment.MiddleCenter;
                     //学分
                     var lblUFClasses_credit = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
-                    lblUFClasses_credit.Width = 80;
+                    lblUFClasses_credit.Width = 50;
                     lblUFClasses_credit.Font = font;
                     lblUFClasses_credit.TextAlign = ContentAlignment.MiddleCenter;
-                    //上传人
+                    //开课部门
                     var lblUFClasses_u_name = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
-                    lblUFClasses_u_name.Width = 60;
+                    lblUFClasses_u_name.Width = 80;
                     lblUFClasses_u_name.Font = font;
                     lblUFClasses_u_name.TextAlign = ContentAlignment.MiddleCenter;
                     //推荐学时
                     var lblUFClasses_recommendTime = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
-                    lblUFClasses_recommendTime.Width = 80;
+                    lblUFClasses_recommendTime.Width = 50;
                     lblUFClasses_recommendTime.Font = font;
                     lblUFClasses_recommendTime.TextAlign = ContentAlignment.MiddleCenter;
                     //剩余进度
@@ -391,8 +525,10 @@ namespace WindowsFormsApplication1
         {
             p_lbl_Score.Visible = false;
             p_tbx_Score.Visible = false;
+            p_tbx_Score.Font = font;
             p_lbl_Prompt.Visible = false;
             p_tbx_prompt.Visible = false;
+            p_tbx_prompt.Font = font;
             p_btn_Submit.Visible = false;
             p_flpClasses.Height = 260;
         }

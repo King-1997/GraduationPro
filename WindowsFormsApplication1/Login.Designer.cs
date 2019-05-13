@@ -102,11 +102,11 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 24F);
-            this.skinLabel1.Location = new System.Drawing.Point(330, 113);
+            this.skinLabel1.Location = new System.Drawing.Point(263, 112);
             this.skinLabel1.Name = "skinLabel1";
-            this.skinLabel1.Size = new System.Drawing.Size(283, 50);
+            this.skinLabel1.Size = new System.Drawing.Size(432, 50);
             this.skinLabel1.TabIndex = 9;
-            this.skinLabel1.Text = "员工学习管理系统";
+            this.skinLabel1.Text = "基于C#的员工在线学习平台";
             // 
             // l_cbb_userType
             // 

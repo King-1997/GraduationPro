@@ -80,7 +80,7 @@
             this.p_btnQuit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnQuit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnQuit.DownBack = null;
-            this.p_btnQuit.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.p_btnQuit.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.p_btnQuit.Location = new System.Drawing.Point(757, 148);
             this.p_btnQuit.MouseBack = null;
             this.p_btnQuit.Name = "p_btnQuit";

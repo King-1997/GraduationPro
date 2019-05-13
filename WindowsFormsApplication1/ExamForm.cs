@@ -21,10 +21,11 @@ namespace WindowsFormsApplication1
         private List<string> answer = new List<string>();
         private List<string> selected = new List<string>();
         private List<int> goal = new List<int>();
-        int real_goal = 0;
-        int totalGoal = 0;
-        int passGoal = 0;
-        int exam_time = 0;
+        private int real_goal = 0;
+        private int totalGoal = 0;
+        private int passGoal = 0;
+        private int exam_time = 0;
+        private int credit = 0;
         public ExamForm()
         {
             InitializeComponent();
@@ -83,6 +84,8 @@ namespace WindowsFormsApplication1
                             MessageBox.Show("恭喜您已完成该课程！");
                             string update_sql = "update user_plan_lines set study_status_id = 2 where up_line_id = " + up_line_id;
                             dc.ExecuteUpdate(update_sql);
+                            string update_user = "update [User] set u_credit = u_credit + " + credit + " where u_id = " + Model.User.userId;
+                            dc.ExecuteUpdate(update_user);
                         }
                         else
                         {
@@ -122,6 +125,9 @@ namespace WindowsFormsApplication1
                 ef_lbl_passGoal.Text += passGoal;
                 ef_lbl_exam_name.Text += ds.Tables["user"].Rows[0][2].ToString();
             }
+            string select_c_credit = "select c_credit from classes where c_id = " + c_id;
+            DataSet ds2 = dc.ExecuteQuery(select_c_credit);
+            int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out credit);
             //查询当前用户考试次数
             string select_time = "select count(1) from employee_exam where u_id = " + Model.User.userId + " and exam_p_id = " + exam_p_id;
             DataSet ds1 = dc.ExecuteQuery(select_time);
