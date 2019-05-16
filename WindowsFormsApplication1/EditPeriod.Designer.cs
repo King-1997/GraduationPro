@@ -36,13 +36,11 @@
             this.ep_btn_back = new CCWin.SkinControl.SkinButton();
             this.ep_lbl_Emp_Type = new System.Windows.Forms.Label();
             this.ep_btn_confirm = new CCWin.SkinControl.SkinButton();
-            this.ep_lbl_Period_Name = new System.Windows.Forms.Label();
             this.ep_dtp_Start_Time = new System.Windows.Forms.DateTimePicker();
             this.ep_lbl_Start_Time = new System.Windows.Forms.Label();
             this.ep_lbl_End_Time = new System.Windows.Forms.Label();
             this.ep_dtp_End_Time = new System.Windows.Forms.DateTimePicker();
             this.ep_btn_addClass = new CCWin.SkinControl.SkinButton();
-            this.ep_tBx_Period_Name = new System.Windows.Forms.TextBox();
             this.ep_btn_addExam = new CCWin.SkinControl.SkinButton();
             this.ep_lbl_Class_Name = new System.Windows.Forms.Label();
             this.ep_lbl_Exam_Name = new System.Windows.Forms.Label();
@@ -139,17 +137,6 @@
             this.ep_btn_confirm.UseVisualStyleBackColor = false;
             this.ep_btn_confirm.Click += new System.EventHandler(this.ep_btn_confirm_Click);
             // 
-            // ep_lbl_Period_Name
-            // 
-            this.ep_lbl_Period_Name.AutoSize = true;
-            this.ep_lbl_Period_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_Period_Name.Location = new System.Drawing.Point(65, 425);
-            this.ep_lbl_Period_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.ep_lbl_Period_Name.Name = "ep_lbl_Period_Name";
-            this.ep_lbl_Period_Name.Size = new System.Drawing.Size(56, 17);
-            this.ep_lbl_Period_Name.TabIndex = 32;
-            this.ep_lbl_Period_Name.Text = "阶段名：";
-            // 
             // ep_dtp_Start_Time
             // 
             this.ep_dtp_Start_Time.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -193,7 +180,7 @@
             this.ep_btn_addClass.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_addClass.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_addClass.DownBack = null;
-            this.ep_btn_addClass.Location = new System.Drawing.Point(308, 420);
+            this.ep_btn_addClass.Location = new System.Drawing.Point(60, 419);
             this.ep_btn_addClass.MouseBack = null;
             this.ep_btn_addClass.Name = "ep_btn_addClass";
             this.ep_btn_addClass.NormlBack = null;
@@ -203,22 +190,12 @@
             this.ep_btn_addClass.UseVisualStyleBackColor = false;
             this.ep_btn_addClass.Click += new System.EventHandler(this.ep_btn_addClass_Click);
             // 
-            // ep_tBx_Period_Name
-            // 
-            this.ep_tBx_Period_Name.BackColor = System.Drawing.Color.SkyBlue;
-            this.ep_tBx_Period_Name.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ep_tBx_Period_Name.Location = new System.Drawing.Point(127, 421);
-            this.ep_tBx_Period_Name.Margin = new System.Windows.Forms.Padding(2);
-            this.ep_tBx_Period_Name.Name = "ep_tBx_Period_Name";
-            this.ep_tBx_Period_Name.Size = new System.Drawing.Size(155, 29);
-            this.ep_tBx_Period_Name.TabIndex = 38;
-            // 
             // ep_btn_addExam
             // 
             this.ep_btn_addExam.BackColor = System.Drawing.Color.Transparent;
             this.ep_btn_addExam.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.ep_btn_addExam.DownBack = null;
-            this.ep_btn_addExam.Location = new System.Drawing.Point(506, 421);
+            this.ep_btn_addExam.Location = new System.Drawing.Point(286, 419);
             this.ep_btn_addExam.MouseBack = null;
             this.ep_btn_addExam.Name = "ep_btn_addExam";
             this.ep_btn_addExam.NormlBack = null;
@@ -232,7 +209,7 @@
             // 
             this.ep_lbl_Class_Name.AutoSize = true;
             this.ep_lbl_Class_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_Class_Name.Location = new System.Drawing.Point(403, 426);
+            this.ep_lbl_Class_Name.Location = new System.Drawing.Point(166, 425);
             this.ep_lbl_Class_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ep_lbl_Class_Name.Name = "ep_lbl_Class_Name";
             this.ep_lbl_Class_Name.Size = new System.Drawing.Size(44, 17);
@@ -243,7 +220,7 @@
             // 
             this.ep_lbl_Exam_Name.AutoSize = true;
             this.ep_lbl_Exam_Name.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.ep_lbl_Exam_Name.Location = new System.Drawing.Point(602, 427);
+            this.ep_lbl_Exam_Name.Location = new System.Drawing.Point(382, 425);
             this.ep_lbl_Exam_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ep_lbl_Exam_Name.Name = "ep_lbl_Exam_Name";
             this.ep_lbl_Exam_Name.Size = new System.Drawing.Size(44, 17);
@@ -310,13 +287,11 @@
             this.Controls.Add(this.ep_lbl_Exam_Name);
             this.Controls.Add(this.ep_lbl_Class_Name);
             this.Controls.Add(this.ep_btn_addExam);
-            this.Controls.Add(this.ep_tBx_Period_Name);
             this.Controls.Add(this.ep_btn_addClass);
             this.Controls.Add(this.ep_lbl_End_Time);
             this.Controls.Add(this.ep_dtp_End_Time);
             this.Controls.Add(this.ep_lbl_Start_Time);
             this.Controls.Add(this.ep_dtp_Start_Time);
-            this.Controls.Add(this.ep_lbl_Period_Name);
             this.Controls.Add(this.ep_btn_confirm);
             this.Controls.Add(this.ep_lbl_Emp_Type);
             this.Controls.Add(this.ep_btn_back);
@@ -341,13 +316,11 @@
         private CCWin.SkinControl.SkinButton ep_btn_back;
         private System.Windows.Forms.Label ep_lbl_Emp_Type;
         private CCWin.SkinControl.SkinButton ep_btn_confirm;
-        private System.Windows.Forms.Label ep_lbl_Period_Name;
         private System.Windows.Forms.DateTimePicker ep_dtp_Start_Time;
         private System.Windows.Forms.Label ep_lbl_Start_Time;
         private System.Windows.Forms.Label ep_lbl_End_Time;
         private System.Windows.Forms.DateTimePicker ep_dtp_End_Time;
         private CCWin.SkinControl.SkinButton ep_btn_addClass;
-        private System.Windows.Forms.TextBox ep_tBx_Period_Name;
         private CCWin.SkinControl.SkinButton ep_btn_addExam;
         private System.Windows.Forms.Label ep_lbl_Class_Name;
         private System.Windows.Forms.Label ep_lbl_Exam_Name;

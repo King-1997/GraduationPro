@@ -28,7 +28,6 @@ namespace WindowsFormsApplication1
             ep_tBx_Plan_Name.Font = font;
             ep_tBx_Head_Summary.Font = font;
             ep_tBx_Emp_type.Font = font;
-            ep_tBx_Period_Name.Font = font;
             ep_dtp_Start_Time.Value = DateTime.Now.Date;
             //显示时间则格式为"yyyy-MM-dd HH:mm:ss"，HH表示24小时制，hh则为12小时制
             ep_dtp_Start_Time.CustomFormat = "yyyy-MM-dd";
@@ -53,7 +52,7 @@ namespace WindowsFormsApplication1
             string select_head_info = "select sph.sp_head_name,sph.sp_head_summary,g.g_group,ut.ut_type,es.station_name from study_plan_header sph,[group] g,UserType ut,employee_station es where sph.sp_created = g.g_id and sph.sp_emp_type = ut.ut_id and sph.sp_emp_station = es.station_id and sph.sp_head_id = " + sp_head_id;
             showHeaderInfo(select_head_info);
             //根据学习计划界面传head_id过来进行行信息操作
-            string select_line_info = "select spl.sp_peroid,c_id,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,exam_p_id,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.sp_line_id from study_plan_lines spl where spl.sp_head_id = " + sp_head_id;
+            string select_line_info = "select c_id,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,exam_p_id,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.sp_line_id from study_plan_lines spl where spl.sp_head_id = " + sp_head_id;
             showLinesInfo(select_line_info);
         }
         public void showClass_Exam_Info()
@@ -80,11 +79,6 @@ namespace WindowsFormsApplication1
             //在窗口添加学习计划信息
             if (ds.Tables["user"].Rows.Count > 0)
             {
-                //计划名标签
-                var lbl_period_name = new Label { Text = "阶段名" };
-                lbl_period_name.Font = font;
-                lbl_period_name.Width = 120;
-                lbl_period_name.TextAlign = ContentAlignment.MiddleCenter;
                 //课程名标签
                 var lbl_class_name = new Label { Text = "课程名" };
                 lbl_class_name.Font = font;
@@ -113,7 +107,6 @@ namespace WindowsFormsApplication1
                 var lbl_btn_delete = new Label { Text = "" };
                 lbl_btn_delete.Width = 50;
                 lbl_btn_delete.TextAlign = ContentAlignment.MiddleCenter;
-                ep_flp_Lines_Info.Controls.Add(lbl_period_name);
                 ep_flp_Lines_Info.Controls.Add(lbl_class_name);
                 ep_flp_Lines_Info.Controls.Add(lbl_exam_name);
                 ep_flp_Lines_Info.Controls.Add(lbl_start_time);
@@ -124,29 +117,23 @@ namespace WindowsFormsApplication1
 
                 for (var i = 0; i < ds.Tables["user"].Rows.Count; i++)
                 {
-                    //阶段名
-                    var period_name = new Label { Text = ds.Tables["user"].Rows[i][0].ToString() };
-                    period_name.Font = font;
-                    period_name.Width = 120;
-                    period_name.Name = ds.Tables["user"].Rows[i][0].ToString();
-                    period_name.TextAlign = ContentAlignment.MiddleCenter;
                     //课程名
-                    var class_name = new Label { Text = ds.Tables["user"].Rows[i][2].ToString() };
+                    var class_name = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     class_name.Font = font;
                     class_name.Width = 120;
                     class_name.TextAlign = ContentAlignment.MiddleCenter;
                     //试卷名
-                    var exam_name = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
+                    var exam_name = new Label { Text = ds.Tables["user"].Rows[i][3].ToString() };
                     exam_name.Font = font;
                     exam_name.Width = 120;
                     exam_name.TextAlign = ContentAlignment.MiddleCenter;
                     //开始时间
-                    var start_time = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
+                    var start_time = new Label { Text = ds.Tables["user"].Rows[i][4].ToString() };
                     start_time.Font = font;
                     start_time.Width = 80;
                     start_time.TextAlign = ContentAlignment.MiddleCenter;
                     //截止时间
-                    var end_time = new Label { Text = ds.Tables["user"].Rows[i][6].ToString() };
+                    var end_time = new Label { Text = ds.Tables["user"].Rows[i][5].ToString() };
                     end_time.Font = font;
                     end_time.Width = 100;
                     end_time.TextAlign = ContentAlignment.MiddleCenter;
@@ -154,17 +141,16 @@ namespace WindowsFormsApplication1
                     var btn_check = new Button { Text = "编辑" };
                     btn_check.Width = 50;
                     btn_check.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_check.Name = ds.Tables["user"].Rows[i][7].ToString();
-                    exam_p_id = ds.Tables["user"].Rows[i][3].ToString();
+                    btn_check.Name = ds.Tables["user"].Rows[i][6].ToString();
+                    //exam_p_id = ds.Tables["user"].Rows[i][2].ToString();
                     btn_check.Click += new EventHandler(editPeriodInfo);
                     //删除阶段
                     var btn_delete = new Button { Text = "删除" };
                     btn_delete.Width = 50;
                     btn_delete.TextAlign = ContentAlignment.MiddleCenter;
-                    btn_delete.Name = ds.Tables["user"].Rows[i][7].ToString();
+                    btn_delete.Name = ds.Tables["user"].Rows[i][6].ToString();
                     btn_delete.Click += new EventHandler(deletePeriod);
 
-                    ep_flp_Lines_Info.Controls.Add(period_name);
                     ep_flp_Lines_Info.Controls.Add(class_name);
                     ep_flp_Lines_Info.Controls.Add(exam_name);
                     ep_flp_Lines_Info.Controls.Add(start_time);
@@ -193,17 +179,17 @@ namespace WindowsFormsApplication1
             Button button = (Button)sender;
             int.TryParse(button.Name, out sp_line_id);
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select spl.sp_peroid,isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.c_id,spl.exam_p_id from study_plan_lines spl where spl.sp_line_id = " + sp_line_id;
+            string sql = "select isnull((select c_name from Classes where c_id = spl.c_id),'无') AS c_name,isnull((select exam_p_name from exam_paper where exam_p_id = spl.exam_p_id),'无') AS exam_p_name,spl.sp_startTime,spl.sp_endTime,spl.c_id,spl.exam_p_id from study_plan_lines spl where spl.sp_line_id = " + sp_line_id;
             DataSet ds = dc.ExecuteQuery(sql);
             //将阶段信息赋值给控件显示
-            ep_tBx_Period_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
-            ep_lbl_Class_Name.Text = ds.Tables["user"].Rows[0][1].ToString();
-            ep_lbl_Exam_Name.Text = ds.Tables["user"].Rows[0][2].ToString();
-            ep_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][3].ToString();
-            ep_dtp_End_Time.Text = ds.Tables["user"].Rows[0][4].ToString();
+            //ep_tBx_Period_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            ep_lbl_Class_Name.Text = ds.Tables["user"].Rows[0][0].ToString();
+            ep_lbl_Exam_Name.Text = ds.Tables["user"].Rows[0][1].ToString();
+            ep_dtp_Start_Time.Text = ds.Tables["user"].Rows[0][2].ToString();
+            ep_dtp_End_Time.Text = ds.Tables["user"].Rows[0][3].ToString();
             //将课程id，考试id赋值给全局变量
-            c_id = ds.Tables["user"].Rows[0][5].ToString();
-            exam_p_id = ds.Tables["user"].Rows[0][6].ToString();
+            c_id = ds.Tables["user"].Rows[0][4].ToString();
+            exam_p_id = ds.Tables["user"].Rows[0][5].ToString();
         }
         //删除阶段信息
         private void deletePeriod(object sender, EventArgs e)
@@ -229,7 +215,6 @@ namespace WindowsFormsApplication1
         //提交修改或插入的行信息
         private void ep_btn_confirm_Click(object sender, EventArgs e)
         {
-            string peroid_name = ep_tBx_Period_Name.Text;
             DateTime start_time = Convert.ToDateTime(ep_dtp_Start_Time.Value);
             DateTime end_time = Convert.ToDateTime(ep_dtp_End_Time.Value);
             int class_id = -1,exam_id = -1;
@@ -245,7 +230,7 @@ namespace WindowsFormsApplication1
             DataBaseConnection dc = new DataBaseConnection();
             if (sp_line_id == -1)
             {
-                string insert_sql = "insert into study_plan_lines values(next value for study_plan_lines_s,"+ sp_head_id +","+ class_id + ","+ exam_id + ",'"+ peroid_name + "',convert(varchar(100),'" + start_time + "',23),convert(varchar(100),'" + end_time + "',23))";
+                string insert_sql = "insert into study_plan_lines values(next value for study_plan_lines_s,"+ sp_head_id +","+ class_id + ","+ exam_id + ",convert(varchar(100),'" + start_time + "',23),convert(varchar(100),'" + end_time + "',23))";
                 int flag = dc.ExecuteUpdate(insert_sql);
                 if (flag == 1)
                 {
@@ -261,7 +246,7 @@ namespace WindowsFormsApplication1
                 if (MessageBox.Show("您确定要修改该阶段信息吗？", "判断", MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    string update_sql = "update study_plan_lines set c_id = " + class_id + ",exam_p_id = " + exam_id + ",sp_peroid = '" + peroid_name + "',sp_startTime = convert(varchar(100),'" + start_time + "',23),sp_endTime = convert(varchar(100),'" + end_time + "',23) where sp_line_id = "+sp_line_id;
+                    string update_sql = "update study_plan_lines set c_id = " + class_id + ",exam_p_id = " + exam_id + ",sp_startTime = convert(varchar(100),'" + start_time + "',23),sp_endTime = convert(varchar(100),'" + end_time + "',23) where sp_line_id = "+sp_line_id;
                     int flag = dc.ExecuteUpdate(update_sql);
                     if (flag == 1)
                     {
@@ -296,9 +281,6 @@ namespace WindowsFormsApplication1
             exam_p_id = null;
             exam_name = null;
             ep_flp_Lines_Info.Height = 160;
-            ep_lbl_Period_Name.Visible = true;
-            ep_tBx_Period_Name.Visible = true;
-            ep_tBx_Period_Name.Text = null;
             ep_btn_addClass.Visible = true;
             ep_lbl_Class_Name.Visible = true;
             ep_lbl_Class_Name.Text = null;
@@ -314,9 +296,7 @@ namespace WindowsFormsApplication1
         }
         //隐藏添加阶段的控件
         private void HideControls()
-        {            
-            ep_lbl_Period_Name.Visible = false;
-            ep_tBx_Period_Name.Visible = false;
+        {
             ep_btn_addClass.Visible = false;
             ep_lbl_Class_Name.Visible = false;
             ep_btn_addExam.Visible = false;

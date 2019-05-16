@@ -88,8 +88,9 @@
             this.ec_btn_All_Exam.NormlBack = null;
             this.ec_btn_All_Exam.Size = new System.Drawing.Size(70, 30);
             this.ec_btn_All_Exam.TabIndex = 19;
-            this.ec_btn_All_Exam.Text = "所有考试";
+            this.ec_btn_All_Exam.Text = "所有测试";
             this.ec_btn_All_Exam.UseVisualStyleBackColor = false;
+            this.ec_btn_All_Exam.Click += new System.EventHandler(this.ec_btn_All_Exam_Click);
             // 
             // ec_btn_find
             // 
@@ -148,7 +149,7 @@
             this.ec_btn_Add_Exam.NormlBack = null;
             this.ec_btn_Add_Exam.Size = new System.Drawing.Size(70, 30);
             this.ec_btn_Add_Exam.TabIndex = 22;
-            this.ec_btn_Add_Exam.Text = "新增考试";
+            this.ec_btn_Add_Exam.Text = "新增测试";
             this.ec_btn_Add_Exam.UseVisualStyleBackColor = false;
             this.ec_btn_Add_Exam.Click += new System.EventHandler(this.ec_btn_Add_Exam_Click);
             // 
@@ -259,7 +260,7 @@
             this.Controls.Add(this.ec_lbl_keyword);
             this.Controls.Add(this.ec_tBx_findkeywords);
             this.Name = "ExamChoose";
-            this.Text = "选择考试";
+            this.Text = "测试页面";
             this.Load += new System.EventHandler(this.ExamChoose_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

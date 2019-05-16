@@ -128,7 +128,7 @@ namespace WindowsFormsApplication1
             {
                 totalGoal = (int)ds.Tables["user"].Rows[0][0];//读取课后测试总分数
                 passGoal = (int)ds.Tables["user"].Rows[0][1];//读取课后测试通过分数
-                int.TryParse(ds.Tables["user"].Rows[0][2].ToString(), out exam_p_id);//读取课后测试id
+                int.TryParse(ds.Tables["user"].Rows[0][3].ToString(), out exam_p_id);//读取课后测试id
                 ef_lbl_totalGoal.Text += totalGoal;
                 ef_lbl_exam_name.Text += ds.Tables["user"].Rows[0][2].ToString();
             }

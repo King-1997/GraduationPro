@@ -76,6 +76,7 @@ namespace WindowsFormsApplication1
                     DataBaseConnection dc = new DataBaseConnection();
                     if (exam_time <= 3)//考试次数不能大于3次
                     {
+                        Console.WriteLine("试卷id:" + exam_p_id);
                         string insert_sql = "insert into employee_exam values(next value for employee_exam_s," + Model.User.userId + "," + exam_p_id + "," + real_goal + ")";
                         int flag = dc.ExecuteUpdate(insert_sql);
                         if (real_goal >= passGoal)
@@ -120,11 +121,12 @@ namespace WindowsFormsApplication1
             {
                 totalGoal = (int)ds.Tables["user"].Rows[0][0];//读取该门考试总分数
                 passGoal = (int)ds.Tables["user"].Rows[0][1];//读取该门考试通过分数
-                int.TryParse(ds.Tables["user"].Rows[0][2].ToString(), out exam_p_id);//读取该门考试id
+                int.TryParse(ds.Tables["user"].Rows[0][3].ToString(), out exam_p_id);//读取该门考试id
                 ef_lbl_totalGoal.Text += totalGoal;
                 ef_lbl_passGoal.Text += passGoal;
                 ef_lbl_exam_name.Text += ds.Tables["user"].Rows[0][2].ToString();
             }
+            Console.WriteLine("试卷id:"+exam_p_id);
             string select_c_credit = "select c_credit from classes where c_id = " + c_id;
             DataSet ds2 = dc.ExecuteQuery(select_c_credit);
             int.TryParse(ds2.Tables["user"].Rows[0][0].ToString(), out credit);

@@ -36,7 +36,7 @@ namespace WindowsFormsApplication1
             c_lblPeriod.Text = "推荐学时";
             c_flpClasses.Controls.Clear();
             DataBaseConnection dc = new DataBaseConnection();
-            string sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from Classes c,[user] u where u.u_id = c.u_id and u.u_id =" + Model.User.userId + " order by c.c_time desc";
+            string sql = "select c.c_name,c.c_credit,c_ifExam,c.c_recommendTime,c.c_id from Classes c,[user] u where u.u_id = c.u_id and u.u_id =" + Model.User.groupId + " order by c.c_time desc";
             DataSet ds = dc.ExecuteQuery(sql);
             if (ds.Tables["user"].Rows.Count > 0)
             {

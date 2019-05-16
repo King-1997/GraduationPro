@@ -349,5 +349,10 @@ namespace WindowsFormsApplication1
             Owner.Show();
             Dispose();
         }
+
+        private void ec_btn_All_Exam_Click(object sender, EventArgs e)
+        {
+            ExamChoose_Load(sender,e);
+        }
     }
 }

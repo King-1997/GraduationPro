@@ -123,6 +123,11 @@ namespace WindowsFormsApplication1
                 lbl_false.Width = 50;
                 lbl_false.Font = font;
                 lbl_false.TextAlign = ContentAlignment.MiddleCenter;
+                var lbl_exercise = new Label { Text = "" };
+                lbl_exercise.Width = 80;
+                lbl_exercise.Font = font;
+                lbl_exercise.TextAlign = ContentAlignment.MiddleCenter;
+
                 var lbl_Eva = new Label { Text = "" };
                 lbl_Eva.Width = 50;
                 lbl_Eva.Font = font;
@@ -135,6 +140,7 @@ namespace WindowsFormsApplication1
                 p_flpClasses.Controls.Add(lbltime);
                 p_flpClasses.Controls.Add(lblschedule);
                 p_flpClasses.Controls.Add(lbl_false);
+                p_flpClasses.Controls.Add(lbl_exercise);
                 p_flpClasses.Controls.Add(lbl_Eva);
                 p_flpClasses.SetFlowBreak(lbl_Eva, true);
 
@@ -181,10 +187,16 @@ namespace WindowsFormsApplication1
                     btn_learn.Font = font;
                     btn_learn.Name = ds.Tables["user"].Rows[i][7].ToString();
                     btn_learn.TextAlign = ContentAlignment.MiddleCenter;
+                    //课后练习
+                    var btn_exercise = new Button { Text = "课后练习" };
+                    btn_exercise.Width = 80;
+                    btn_exercise.Name = ds.Tables["user"].Rows[i][8].ToString();
+                    btn_exercise.TextAlign = ContentAlignment.MiddleCenter;
+                    btn_exercise.Click += new EventHandler(btn_exercise_Click);
 
                     var btnEvaluation = new Button { Text = "评价" };
                     btnEvaluation.Width = 50;
-                    btnEvaluation.Name = ds.Tables["user"].Rows[i][8].ToString();
+                    btnEvaluation.Name = ds.Tables["user"].Rows[i][9].ToString();
                     btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
                     btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
 
@@ -196,6 +208,7 @@ namespace WindowsFormsApplication1
                     p_flpClasses.Controls.Add(lblUFClasses_recommendTime);
                     p_flpClasses.Controls.Add(lbl_schedule);
                     p_flpClasses.Controls.Add(btn_learn);
+                    p_flpClasses.Controls.Add(btn_exercise);
                     p_flpClasses.Controls.Add(btnEvaluation);
                     p_flpClasses.SetFlowBreak(btnEvaluation, true);
                 }
@@ -211,10 +224,21 @@ namespace WindowsFormsApplication1
                 p_flpClasses.Controls.Add(lbl_no_data);
             }
         }
+        private void btn_exercise_Click(object sender,EventArgs e)
+        {
+            Button button = (Button)sender;
+            int c_id = 0;
+            int.TryParse(button.Name,out c_id);
+            Exercise.c_id = c_id;
+            Exercise exercise = new Exercise();
+            exercise.Owner = this;
+            Hide();
+            exercise.Show();
+        }
         private void btn_classunfinished_Click(object sender, EventArgs e)
         {
             HideControls();
-            string sql = "select sps.sps_name,sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,study_plans sps,Classes c where sph.sps_id = sps.sps_id and uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id = 0 or upl.study_status_id = 1";
+            string sql = "select sps.sps_name,sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,study_plans sps,Classes c where sph.sps_id = sps.sps_id and uph.u_id = " + Model.User.userId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id and upl.study_status_id <> 2";
             displayClasses(sql);
         }
         private void displayClasses(string sql)

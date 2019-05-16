@@ -43,9 +43,9 @@
             this.sd_flp_detail.AllowDrop = true;
             this.sd_flp_detail.AutoScroll = true;
             this.sd_flp_detail.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sd_flp_detail.Location = new System.Drawing.Point(55, 116);
+            this.sd_flp_detail.Location = new System.Drawing.Point(47, 116);
             this.sd_flp_detail.Name = "sd_flp_detail";
-            this.sd_flp_detail.Size = new System.Drawing.Size(722, 287);
+            this.sd_flp_detail.Size = new System.Drawing.Size(752, 287);
             this.sd_flp_detail.TabIndex = 19;
             // 
             // sd_btn_Return
@@ -54,7 +54,7 @@
             this.sd_btn_Return.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.sd_btn_Return.DownBack = null;
             this.sd_btn_Return.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.sd_btn_Return.Location = new System.Drawing.Point(721, 448);
+            this.sd_btn_Return.Location = new System.Drawing.Point(755, 502);
             this.sd_btn_Return.MouseBack = null;
             this.sd_btn_Return.Name = "sd_btn_Return";
             this.sd_btn_Return.NormlBack = null;
@@ -133,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 506);
+            this.ClientSize = new System.Drawing.Size(856, 558);
             this.Controls.Add(this.mm_btn_all);
             this.Controls.Add(this.btn_find);
             this.Controls.Add(this.sd_ccb_group);

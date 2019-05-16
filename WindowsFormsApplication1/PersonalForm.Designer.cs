@@ -198,9 +198,9 @@
             this.p_flpClasses.AllowDrop = true;
             this.p_flpClasses.AutoScroll = true;
             this.p_flpClasses.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.p_flpClasses.Location = new System.Drawing.Point(54, 382);
+            this.p_flpClasses.Location = new System.Drawing.Point(43, 382);
             this.p_flpClasses.Name = "p_flpClasses";
-            this.p_flpClasses.Size = new System.Drawing.Size(722, 154);
+            this.p_flpClasses.Size = new System.Drawing.Size(794, 154);
             this.p_flpClasses.TabIndex = 18;
             // 
             // p_btnQuit
@@ -253,7 +253,7 @@
             this.p_btnHome.BackColor = System.Drawing.Color.Transparent;
             this.p_btnHome.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnHome.DownBack = null;
-            this.p_btnHome.Location = new System.Drawing.Point(717, 655);
+            this.p_btnHome.Location = new System.Drawing.Point(774, 683);
             this.p_btnHome.MouseBack = null;
             this.p_btnHome.Name = "p_btnHome";
             this.p_btnHome.NormlBack = null;
@@ -328,7 +328,7 @@
             this.p_btnEdit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnEdit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnEdit.DownBack = null;
-            this.p_btnEdit.Location = new System.Drawing.Point(565, 655);
+            this.p_btnEdit.Location = new System.Drawing.Point(622, 683);
             this.p_btnEdit.MouseBack = null;
             this.p_btnEdit.Name = "p_btnEdit";
             this.p_btnEdit.NormlBack = null;
@@ -373,7 +373,7 @@
             this.p_btnSubmit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnSubmit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnSubmit.DownBack = null;
-            this.p_btnSubmit.Location = new System.Drawing.Point(641, 655);
+            this.p_btnSubmit.Location = new System.Drawing.Point(698, 683);
             this.p_btnSubmit.MouseBack = null;
             this.p_btnSubmit.Name = "p_btnSubmit";
             this.p_btnSubmit.NormlBack = null;
@@ -444,7 +444,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(834, 715);
+            this.ClientSize = new System.Drawing.Size(885, 727);
             this.ControlBox = false;
             this.Controls.Add(this.p_btn_Submit);
             this.Controls.Add(this.p_tbx_prompt);

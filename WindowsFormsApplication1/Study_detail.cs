@@ -55,6 +55,11 @@ namespace WindowsFormsApplication1
                 lbl_emp_name.Font = font;
                 lbl_emp_name.TextAlign = ContentAlignment.MiddleCenter;
                 //标签栏目
+                var lbl_plan_name = new Label { Text = "计划名" };
+                lbl_plan_name.Width = 80;
+                lbl_plan_name.Font = font;
+                lbl_plan_name.TextAlign = ContentAlignment.MiddleCenter;
+                //标签栏目
                 var lbl_peroid_name = new Label { Text = "阶段名" };
                 lbl_peroid_name.Width = 80;
                 lbl_peroid_name.Font = font;
@@ -90,6 +95,7 @@ namespace WindowsFormsApplication1
                 lbl_Eva.TextAlign = ContentAlignment.MiddleCenter;
 
                 sd_flp_detail.Controls.Add(lbl_emp_name);
+                sd_flp_detail.Controls.Add(lbl_plan_name);
                 sd_flp_detail.Controls.Add(lbl_peroid_name);
                 sd_flp_detail.Controls.Add(lblname);
                 sd_flp_detail.Controls.Add(lblcredit);
@@ -107,6 +113,11 @@ namespace WindowsFormsApplication1
                     lbl_empname.Width = 80;
                     lbl_empname.Font = font;
                     lbl_empname.TextAlign = ContentAlignment.MiddleCenter;
+                    //学习计划名
+                    var lbl_planname = new Label { Text = ds.Tables["user"].Rows[i][9].ToString() };
+                    lbl_planname.Width = 80;
+                    lbl_planname.Font = font;
+                    lbl_planname.TextAlign = ContentAlignment.MiddleCenter;
                     //学习阶段名
                     var lbl_peroidname = new Label { Text = ds.Tables["user"].Rows[i][1].ToString() };
                     lbl_peroidname.Width = 80;
@@ -148,9 +159,10 @@ namespace WindowsFormsApplication1
                     btnEvaluation.Width = 50;
                     btnEvaluation.Name = ds.Tables["user"].Rows[i][8].ToString();
                     btnEvaluation.TextAlign = ContentAlignment.MiddleCenter;
-                    //btnEvaluation.Click += new EventHandler(btn_Evaluation_Click);
+                    btnEvaluation.Click += new EventHandler(btn_Notice);
                     
                     sd_flp_detail.Controls.Add(lbl_empname);
+                    sd_flp_detail.Controls.Add(lbl_planname);
                     sd_flp_detail.Controls.Add(lbl_peroidname);
                     sd_flp_detail.Controls.Add(lblUFClasses_name);
                     sd_flp_detail.Controls.Add(lblUFClasses_credit);
@@ -173,7 +185,19 @@ namespace WindowsFormsApplication1
                 sd_flp_detail.Controls.Add(lbl_no_data);
             }
         }
-
+        private void btn_Notice(object sender,EventArgs e)
+        {
+            int line_id = -1;
+            Button button = (Button)sender;
+            int.TryParse(button.Name,out line_id);
+            DataBaseConnection dc = new DataBaseConnection();
+            string select_email = "select u_email,c.c_name from [User] u,user_plan_header uph,user_plan_lines upl,study_plan_lines spl,classes c where u.u_id = uph.u_id and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.c_id = c.c_id and upl.up_line_id = " + line_id;
+            DataSet ds = dc.ExecuteQuery(select_email);
+            string email = ds.Tables["user"].Rows[0][0].ToString();
+            string c_name = ds.Tables["user"].Rows[0][1].ToString();
+            EmailSend es = new EmailSend();
+            es.sendNoticeEmail(c_name, email);
+        }
         private void sd_btn_Return_Click(object sender, EventArgs e)
         {
             Owner.Show();
@@ -185,11 +209,11 @@ namespace WindowsFormsApplication1
             string sql = "";
             if (Model.User.groupId == 0)
             {
-                sql += "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id";
+                sql += "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id,(select sps_name from study_plans where sps_id = sph.sps_id) from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id order by sph.sp_head_name,upl.up_line_schedule ";
             }
             else
             {
-                sql += "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where sph.sp_emp_dpt = " + Model.User.groupId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id";
+                sql += "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id,(select sps_name from study_plans where sps_id = sph.sps_id) from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where sph.sp_emp_dpt = " + Model.User.groupId + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id order by sph.sp_head_name,upl.up_line_schedule ";
             }
             displayClasses(sql);
         }
@@ -197,7 +221,7 @@ namespace WindowsFormsApplication1
         private void btn_find_Click(object sender, EventArgs e)
         {
             int g_id = sd_ccb_group.SelectedIndex;
-            string sql = "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where sph.sp_emp_dpt = " + g_id + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id";
+            string sql = "select (select u.u_name from [User] u where u.u_id = uph.u_id), sph.sp_head_name,c.c_name,c.c_credit,(select g.g_group from [group] g where g.g_id = c.u_id) as u_name,c.c_recommendTime,upl.up_line_schedule,c.c_id,upl.up_line_id,(select sps_name from study_plans where sps_id = sph.sps_id) from user_plan_header uph,user_plan_lines upl,study_plan_lines spl,study_plan_header sph,Classes c where sph.sp_emp_dpt = " + g_id + " and uph.up_head_id = upl.up_head_id and upl.sp_line_id = spl.sp_line_id and spl.sp_head_id = sph.sp_head_id and spl.c_id = c.c_id order by sph.sp_head_name,upl.up_line_schedule ";
             displayClasses(sql);
         }
 
