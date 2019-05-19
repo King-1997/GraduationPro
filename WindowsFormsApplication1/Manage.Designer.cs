@@ -221,7 +221,7 @@
             // m_tBx_announcement
             // 
             this.m_tBx_announcement.BackColor = System.Drawing.Color.SkyBlue;
-            this.m_tBx_announcement.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.m_tBx_announcement.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.m_tBx_announcement.Location = new System.Drawing.Point(152, 462);
             this.m_tBx_announcement.Margin = new System.Windows.Forms.Padding(2);
             this.m_tBx_announcement.Multiline = true;
@@ -297,7 +297,7 @@
             // m_tbx_title
             // 
             this.m_tbx_title.BackColor = System.Drawing.Color.SkyBlue;
-            this.m_tbx_title.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.m_tbx_title.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.m_tbx_title.Location = new System.Drawing.Point(152, 415);
             this.m_tbx_title.Margin = new System.Windows.Forms.Padding(2);
             this.m_tbx_title.Multiline = true;

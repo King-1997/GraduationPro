@@ -153,6 +153,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                c_flp_recommend_c.Controls.Clear();
                 //无数据时显示提示
                 var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
                 lbl_no_data.Font = font;

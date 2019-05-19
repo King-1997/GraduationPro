@@ -59,7 +59,7 @@
             this.ep_lbl_Plan_Name.Name = "ep_lbl_Plan_Name";
             this.ep_lbl_Plan_Name.Size = new System.Drawing.Size(80, 17);
             this.ep_lbl_Plan_Name.TabIndex = 3;
-            this.ep_lbl_Plan_Name.Text = "学习计划名：";
+            this.ep_lbl_Plan_Name.Text = "学习阶段名：";
             // 
             // ep_lbl_Plan_Summary
             // 
@@ -70,7 +70,7 @@
             this.ep_lbl_Plan_Summary.Name = "ep_lbl_Plan_Summary";
             this.ep_lbl_Plan_Summary.Size = new System.Drawing.Size(92, 17);
             this.ep_lbl_Plan_Summary.TabIndex = 5;
-            this.ep_lbl_Plan_Summary.Text = "学习计划简介：";
+            this.ep_lbl_Plan_Summary.Text = "学习阶段简介：";
             // 
             // ep_btn_addPeroid
             // 
@@ -83,7 +83,7 @@
             this.ep_btn_addPeroid.NormlBack = null;
             this.ep_btn_addPeroid.Size = new System.Drawing.Size(70, 30);
             this.ep_btn_addPeroid.TabIndex = 25;
-            this.ep_btn_addPeroid.Text = "添加阶段";
+            this.ep_btn_addPeroid.Text = "添加安排";
             this.ep_btn_addPeroid.UseVisualStyleBackColor = false;
             this.ep_btn_addPeroid.Click += new System.EventHandler(this.ep_btn_addPeroid_Click);
             // 
@@ -238,7 +238,7 @@
             this.ep_btn_All_Peroid.NormlBack = null;
             this.ep_btn_All_Peroid.Size = new System.Drawing.Size(70, 30);
             this.ep_btn_All_Peroid.TabIndex = 42;
-            this.ep_btn_All_Peroid.Text = "所有阶段";
+            this.ep_btn_All_Peroid.Text = "所有安排";
             this.ep_btn_All_Peroid.UseVisualStyleBackColor = false;
             this.ep_btn_All_Peroid.Click += new System.EventHandler(this.ep_btn_All_Peroid_Click);
             // 

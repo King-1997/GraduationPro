@@ -97,12 +97,12 @@ namespace WindowsFormsApplication1
             if (ds.Tables["user"].Rows.Count > 0)
             {
                 //计划名称标签
-                var lbl_plan_name = new Label { Text = "计划名称" };
+                var lbl_plan_name = new Label { Text = "阶段名称" };
                 lbl_plan_name.Font = font;
                 lbl_plan_name.Width = 120;
                 lbl_plan_name.TextAlign = ContentAlignment.MiddleCenter;
                 //计划简介标签
-                var lbl_introducation = new Label { Text = "计划简介" };
+                var lbl_introducation = new Label { Text = "阶段简介" };
                 lbl_introducation.Font = font;
                 lbl_introducation.Width = 80;
                 lbl_introducation.TextAlign = ContentAlignment.MiddleCenter;
