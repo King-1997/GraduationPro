@@ -434,7 +434,6 @@ namespace WindowsFormsApplication1
             //从数据库中查找未处理的申请
             string u_type = Model.User.userType;
             string sql = "";
-
             if (u_type.Equals("主管"))
             {
                 sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is null and  sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
@@ -444,7 +443,6 @@ namespace WindowsFormsApplication1
                 sql = "select sr.sr_id,u.u_name,sr.sr_type,sr.sr_time from SignRecord sr,[User] u where sr.u_id = u.u_id and sr.sr_person1 is not null and sr.sr_person2 is null and sr.u_id in (select u_id from  [User] where g_id = " + Model.User.groupId + ")";
             }
             displayNews(sql);
-
         }
 
         private void displayNews(string sql)

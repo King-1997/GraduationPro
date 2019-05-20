@@ -212,13 +212,8 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                //无数据时显示提示
-                var lbl_no_data = new Label { Text = "抱歉，当前没有查询到任何数据！" };
-                lbl_no_data.Font = font;
-                lbl_no_data.TextAlign = ContentAlignment.MiddleCenter;
-                lbl_no_data.Width = 450;
-                lbl_no_data.Height = 100;
-                cl_flp_recommend_c.Controls.Add(lbl_no_data);
+                string select_c_info = "select c.c_name, g.g_group, c.c_introduction, c.c_credit, c.c_recommendTime, c.c_ifExam, c.c_id from classes c,[group] g where c.u_id = g.g_id and c_id in (select top 4 spl.c_id from user_plan_lines upl,study_plan_lines spl where upl.sp_line_id = spl.sp_line_id order by upl.up_line_score desc)";
+                ShowRecInfo(select_c_info);
             }
         }
         private void ShowRecInfo(String sql)

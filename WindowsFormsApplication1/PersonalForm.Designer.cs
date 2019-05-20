@@ -77,7 +77,7 @@
             // 
             this.p_lblWelcome.AutoSize = true;
             this.p_lblWelcome.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_lblWelcome.Location = new System.Drawing.Point(556, 42);
+            this.p_lblWelcome.Location = new System.Drawing.Point(646, 55);
             this.p_lblWelcome.Name = "p_lblWelcome";
             this.p_lblWelcome.Size = new System.Drawing.Size(56, 17);
             this.p_lblWelcome.TabIndex = 1;
@@ -87,7 +87,7 @@
             // 
             this.p_lblCurPerson.AutoSize = true;
             this.p_lblCurPerson.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.p_lblCurPerson.Location = new System.Drawing.Point(618, 42);
+            this.p_lblCurPerson.Location = new System.Drawing.Point(708, 55);
             this.p_lblCurPerson.Name = "p_lblCurPerson";
             this.p_lblCurPerson.Size = new System.Drawing.Size(32, 17);
             this.p_lblCurPerson.TabIndex = 2;
@@ -208,7 +208,7 @@
             this.p_btnQuit.BackColor = System.Drawing.Color.Transparent;
             this.p_btnQuit.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.p_btnQuit.DownBack = null;
-            this.p_btnQuit.Location = new System.Drawing.Point(665, 34);
+            this.p_btnQuit.Location = new System.Drawing.Point(755, 47);
             this.p_btnQuit.MouseBack = null;
             this.p_btnQuit.Name = "p_btnQuit";
             this.p_btnQuit.NormlBack = null;
